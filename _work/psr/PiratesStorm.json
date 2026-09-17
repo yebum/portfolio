@@ -1,0 +1,50 @@
+{
+  "id": "PiratesStorm",
+  "problem": {
+    "summary": "점수 쌓기를 넘어 계속 전진할 이유가 있는 슈팅 루프",
+    "body": [
+      "세로 슈팅 게임은 적을 없애 점수를 높이는 구조에 머물기 쉬워, 플레이어가 왜 계속 전진해야 하는지 설명하는 목표가 부족하다. 슈팅 게임의 전투 시스템을 더 깊게 분석하면서 명확한 목표와 클리어 조건을 가진 게임 루프를 설계하는 것을 과제로 삼았다.",
+      "또한 반복 생성이 많은 장르 특성상 웨이브의 난이도와 리듬을 코드 수정 없이 조절할 수 있어야 했고, PC와 모바일에서 같은 조작 감각을 제공해야 했다."
+    ]
+  },
+  "solution": {
+    "summary": "해적선 항해 서사와 책임을 나눈 C# 컴포넌트 설계",
+    "body": [
+      "우주선 전투 구조를 해적선의 항해로 재해석하고, 적 처치–코인 수집–함대 돌파–보스 격파–보물 획득의 순서로 게임 루프를 기획했다. 공격은 자동 발사로 처리해 사용자가 회피와 위치 선정에 집중하도록 했고, PC에서는 마우스 드래그, 모바일에서는 한 손가락 터치로 이동하도록 입력을 나눴다.",
+      "Unity 2022.3 · C# · URP 환경에서 게임 기획과 개발을 맡았다. 시간표 기반 적 웨이브, Catmull-Rom 경로 이동, 4단계 무기 패턴, 체력·무적 시간, 확률형 코인 드롭, 오브젝트 풀링과 무한 배경을 각각 독립된 C# 컴포넌트로 설계했다. 웨이브마다 경로·수량·속도·사격 확률을 Inspector 값으로 조절하게 해 스크립트를 다시 작성하지 않고 전투 리듬을 설계했다."
+    ],
+    "points": [
+      {
+        "label": "LevelController.cs · Wave.cs",
+        "body": "LevelController가 enemyWaves의 timeToStart와 wave 프리팹을 읽어 각 웨이브를 독립 코루틴으로 예약한다. Wave는 count, speed, timeBetween, pathPoints, Loop와 Shooting 값을 묶어 관리하고, Catmull-Rom 보간 경로를 OnDrawGizmos로 에디터에서 미리 그려 직선·곡선·루프형 함대를 값만으로 구성했다."
+      },
+      {
+        "label": "PlayerMoving.cs · PlayerShooting.cs",
+        "body": "Camera.ViewportToWorldPoint()와 Borders 오프셋으로 해상도에 대응하는 이동 범위를 계산하고, 마우스·터치 입력을 Vector3.MoveTowards로 이동시킨 뒤 Mathf.Clamp로 경계 안에 고정한다. PlayerShooting은 Time.time과 nextFire로 자동 발사 주기를 제어하고, weaponPower 1~4를 switch로 분기해 1발에서 ±15도 5발까지 패턴을 확장하며 포구별 ParticleSystem을 함께 재생한다."
+      },
+      {
+        "label": "Player.cs · Projectile.cs · Enemy.cs",
+        "body": "Player는 체력 3과 UI 스프라이트를 관리하고, GetDamage()에서 nextDamage 이전의 연속 충돌을 무시해 무적 시간을 만든다. Projectile은 enemyBullet bool 하나로 피해 대상을 구분한다. Enemy는 Invoke로 무작위 발사를 예약하고, 파괴 시 점수 10점을 더하며 일반 적은 확률로 코인을, 보스는 treasureChestPrefab을 생성한다."
+      },
+      {
+        "label": "PoolingController.cs · RepeatingBackground.cs",
+        "body": "PoolingController는 프리팹을 Start()에서 미리 생성해 비활성화하고, GetPoolingObject()로 재사용하며 모두 사용 중이면 AddNewObject()로 풀을 확장한다. RepeatingBackground는 Y좌표가 -verticalSize 아래로 내려가면 verticalSize × 2만큼 올려 배경을 잇는다. 부모 Scale로 배경이 겹치던 문제는 Debug.Log 좌표 비교로 verticalSize 기준을 보정해 해결했다."
+      },
+      {
+        "label": "GameController.cs · TreasureChest.cs",
+        "body": "싱글톤 GameController가 점수, 코인, 게임오버 UI와 씬 재시작을 통합하고, GameOverCor()가 지연 뒤 게임오버 패널과 최종 점수를 표시한다. TreasureChest.OnTriggerEnter2D()는 Player 태그를 확인하고 isCollected로 중복 실행을 막은 뒤 Success 씬을 로드한다. SceneButtonController와 PopupController가 씬 이동과 조작 설명창을 담당한다."
+      },
+      {
+        "label": "Architecture · Debugging",
+        "body": "입력, 발사, 피해, 적, 웨이브, 레벨, 풀링, UI와 씬 전환으로 책임을 분리하고, 전역 시스템은 instance로, 웨이브별 값은 Serializable 클래스로 Inspector에 노출했다. 중복 피해는 nextDamage, 중복 보물 획득은 isCollected, 반복 발사는 Invoke와 CancelInvoke로 제어했고, 화면에서만 보이는 오류는 좌표 로그로 원인을 확인했다."
+      }
+    ]
+  },
+  "result": {
+    "summary": "인트로부터 Success 씬까지 연결된 2D 슈팅 게임 완성",
+    "body": [
+      "시간표 기반 웨이브와 곡선 경로, 자동 사격과 4단계 무기, 체력·실드·점수·코인, 보스와 보물상자, 무한 배경과 사운드를 결합한 2D 슈팅 게임을 완성했다. PC와 모바일 조작을 함께 지원하고, 인트로 설명 팝업부터 게임오버·재시작·성공 화면까지 전체 사용자 흐름을 연결했다. 학과 우수작 연합PT(유니티 프로그래밍, 2026)에 선정됐다.",
+      "데이터 기반 웨이브 설계, 오브젝트 재사용, 데미지 전달과 보상 분기가 하나의 게임 루프를 만드는 방식을 이해했고, 상태의 소유자와 스크립트 간 호출 방향을 정리해야 기능이 늘어나도 수정 범위를 통제할 수 있다는 점을 배웠다."
+    ]
+  }
+}

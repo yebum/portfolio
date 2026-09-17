@@ -1,0 +1,111 @@
+{
+  "Neuroscape": {
+    "title": "검증 결과",
+    "source": "발표 자료 p.9 · 교사·교육기관 담당자 대상 PCF 검증",
+    "groups": [
+      {
+        "kind": "stats",
+        "label": "검증 대상과 문제 강도",
+        "sample": "PCF(문제–고객 적합성) 검증",
+        "items": [
+          { "value": "20명+", "label": "교사" },
+          { "value": "5명+", "label": "교육기관 담당자" },
+          { "value": "7.6", "unit": "/10", "label": "Pain Score — 직무 스트레스와 회복 필요도" }
+        ]
+      },
+      {
+        "kind": "bars",
+        "label": "응답 비율",
+        "sample": "자료 기준",
+        "items": [
+          { "label": "문제 공감", "sub": "직장 내 회복 공간 부족에 공감", "value": 87 },
+          { "label": "지불 가능성", "sub": "담당자의 예산 또는 도입 가능성 응답", "value": 79 },
+          { "label": "Early Adopter", "sub": "초기 체험·실증 참여 의향", "value": 54.5 }
+        ]
+      }
+    ]
+  },
+  "dndn": {
+    "title": "6주 실증 실험",
+    "source": "발표 자료 p.8–10 · 팀 검증 결과",
+    "groups": [
+      {
+        "kind": "bars",
+        "label": "중장년층 설문",
+        "sample": "구글폼 설문 50명",
+        "items": [
+          { "label": "통합된 AI 툴 필요", "value": 90 },
+          { "label": "유료 사용 의향", "value": 80 },
+          { "label": "부업 고민 경험", "value": 70 },
+          { "label": "AI 사용이 어렵다", "value": 65 }
+        ]
+      },
+      {
+        "kind": "stats",
+        "label": "유튜브 채널 PoC",
+        "sample": "5일 내 채널 개설 후 든든AI로 영상 제작",
+        "items": [
+          { "value": "1만 회+", "label": "5일 누적 조회수" },
+          { "value": "10분 이내", "label": "영상 1편 제작 시간" }
+        ]
+      },
+      {
+        "kind": "stats",
+        "label": "오프라인 실습 특강",
+        "sample": "협력업체 중년유튜브학교 수강생",
+        "items": [
+          { "value": "24시간", "label": "모집 정원 마감까지" },
+          { "value": "1시간", "label": "수강생 영상 제작·발행 성공까지" }
+        ]
+      }
+    ]
+  },
+  "CITY": {
+    "title": "주민 검증",
+    "source": "발표 자료 p.3, p.31",
+    "groups": [
+      {
+        "kind": "stats",
+        "label": "문제 근거",
+        "sample": "발표 자료에 인용된 시민 설문",
+        "items": [
+          { "value": "85%", "label": "공공기관이 시민 의견을 중요하게 여기지 않는다고 느끼는 시민" }
+        ]
+      },
+      {
+        "kind": "stack",
+        "label": "콘셉트 반응",
+        "sample": "지역 주민 18명 · 콘셉트 설명 후 약 3분 인터뷰",
+        "items": [
+          { "label": "긍정", "value": 61, "n": 11, "sub": "진행 상황의 투명한 공유, 보상 기반 참여 동기" },
+          { "label": "중립", "value": 28, "n": 5, "sub": "운영 지속성과 인력, 보상 모델 검증 필요" },
+          { "label": "부정", "value": 11, "n": 2, "sub": "투표 조작 우려, 프라이버시와 참여 피로" }
+        ]
+      }
+    ]
+  },
+  "BioAx": {
+    "title": "데이터 분석 · 모델 성능",
+    "source": "발표 자료 p.3, p.10 · 비짓제주 콘텐츠·제주 관광지·인증기업 공공데이터",
+    "groups": [
+      {
+        "kind": "stats",
+        "label": "공공데이터 분석",
+        "sample": "문제 정의의 근거",
+        "items": [
+          { "value": "73%", "label": "인기 관광지 상위 30곳 중 반경 3km 안에 바이오 POI가 있는 비율" },
+          { "value": "52.5배", "label": "인기 상위 50개 관광지 대비 낮은 바이오 POI 조회수(중앙값)" },
+          { "value": "3.4%", "label": "2016–2025 비짓제주 신규 콘텐츠 중 바이오 관련 평균 비중" }
+        ]
+      },
+      {
+        "kind": "stats",
+        "label": "AI 코스 추천 모델",
+        "sample": "CatBoost Regressor · Random Search · K-Fold 교차검증(k=10)",
+        "items": [
+          { "value": "0.3745", "label": "Recall@10 — 추천 POI Top-10 기준" }
+        ]
+      }
+    ]
+  }
+}

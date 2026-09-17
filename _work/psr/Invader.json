@@ -1,0 +1,31 @@
+{
+  "id": "Invader",
+  "problem": {
+    "summary": "배운 Unity 기능을 하나의 완결된 게임 루프로 묶기",
+    "body": [
+      "유니티 프로그래밍 수업에서 배운 입력 처리, 프리팹 생성, 충돌 이벤트, 씬 전환은 각각의 예제로 끝나기 쉽다. 이를 하나의 플레이 경험으로 연결해 고전 슈팅 게임의 회피·발사 구조를 컴포넌트와 상태 관리로 직접 구현하는 것이 출발점이었다.",
+      "동시에 조작은 설명 없이 이해될 만큼 단순하면서도, 난이도 변화와 기억에 남는 콘셉트를 갖춘 게임이어야 했다."
+    ]
+  },
+  "solution": {
+    "summary": "원숭이 vs 드론, 단일 프리팹 3단계 90초 슈팅 게임",
+    "body": [
+      "우주선 대신 원숭이가 바나나로 드론을 막는 3D 아케이드 게임을 기획하고 Unity 2022.3 · C# · URP로 개발했다. 플레이어는 90초 동안 방향키로 위아래를 이동하고 Space 키로 바나나를 발사한다.",
+      "조작은 위·아래 이동과 한 버튼 발사만 남기고, 적의 규칙이 순차적으로 변하도록 난이도를 설계했다. Stage 1은 움직임과 명중을 익히는 구간, Stage 2는 조준 탄환을 피하는 구간, Stage 3은 빠른 랜덤 생성 속에서 90초까지 생존하는 구간이다. 하나의 드론 프리팹이 스테이지 값에 따라 다르게 행동하도록 만들고, 시작·플레이·실패·성공 씬을 연결했다."
+    ],
+    "points": [
+      { "label": "GameMaster.cs", "body": "게임 전체의 상태 머신으로, 매 프레임 플레이어 존재·90초 제한·EnemyLine 태그 개수를 검사해 Fail/Success 씬 이동과 1→2→3단계 진행을 처리한다. isStageChanging으로 중복 전환을 막고, Stage 3은 SpawnRandomStage() 코루틴이 1.5초마다 드론을 생성한다. 점수는 static score와 AddScore()로 공유해 TextMeshPro UI를 갱신한다." },
+      { "label": "Monkey.cs · Banana.cs", "body": "Input.GetKey로 이동, Input.GetKeyDown으로 발사를 분리하고 이동을 -5.5~5.5로 제한한다. 바나나는 고정 Z 평면에서 이동 후 자동 제거되며 EnemyBullet과 충돌하면 함께 사라진다. 피격 시 isDead 설정과 Collider·MeshRenderer 비활성화 후 0.5초 뒤 제거해, 피격음 재생 후 실패 씬으로 넘어가게 했다." },
+      { "label": "Drone.cs", "body": "SetStage(stage)가 isRandomEnemy, useFire, moveSpeedY, fireTime과 태그를 바꿔 한 프리팹을 세 패턴으로 재사용한다. Stage 1은 속도 3 라인 이동, Stage 2는 4초 간격 조준 사격, Stage 3은 개별 방향·속도 5·2초 사격이다. 라인형은 static 상태를 공유해 함께 방향을 바꾸고 왕복이 끝나면 X축으로 5만큼 전진한다." },
+      { "label": "EnemyBullet.cs", "body": "SetTarget()으로 받은 플레이어 위치와 시작점의 Z값을 5로 고정하고 방향을 normalized 벡터로 저장해, 거리와 무관하게 일정 속도의 직선 궤도를 유지한다. dir × speed × Time.deltaTime으로 프레임 독립 이동을 적용하고, 모든 전투 좌표를 같은 Z 평면에 고정해 2D 슈팅처럼 안정적으로 판정되게 했다." },
+      { "label": "Scene Flow · Debugging", "body": "SceneLoader가 Start, Invader01, Fail, Success 씬을 연결하고 오브젝트는 Player·Bullet·EnemyLine 등 태그로 역할을 구분한다. 분기마다 null 검사와 Debug.Log를 두었고, 라인형 적의 반복 방향 전환은 isChangingDirection 플래그로, 사망 직후 입력·충돌 재실행은 isDead와 Collider 비활성화 순서로 해결했다." }
+    ]
+  },
+  "result": {
+    "summary": "C#으로 완성한 전체 게임 루프, 학과 우수작 연합PT 선정",
+    "body": [
+      "입력–발사–충돌–점수–스테이지–승패–씬 전환으로 이어지는 전체 게임 루프를 C# 스크립트로 완성했다. 단일 Drone 프리팹에 단계별 파라미터와 집단·개별 이동을 결합해 적 수를 늘리지 않고도 난이도 변화를 만들었고, 코루틴과 상태 플래그로 지속 생성과 중복 실행을 제어했다. 학과 우수작 연합PT(유니티 프로그래밍, 2026)에 선정되었다.",
+      "개별 기능 작성보다 각 스크립트가 어떤 상태를 소유하고 어떤 이벤트로 연결되는지 설계하는 일이 게임 프로그래밍의 핵심이라는 점을 배웠다."
+    ]
+  }
+}
