@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap">
   <link rel="preload" as="image" href="assets/img/TimeOfExtinction.webp">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=guestbook-1">
 </head>
 <body>
   <a class="skip" href="#index">Skip to work</a>
@@ -31,6 +31,7 @@
       <a href="#/index" data-nav="index">Work</a>
       <a href="#/about" data-nav="about">About</a>
       <a href="#/recognition" data-nav="recognition">Recognition</a>
+      <a href="#/guestbook" data-nav="guestbook">Guestbook</a>
       <a href="#/contact" data-nav="contact" class="nav-contact">Contact</a>
     </nav>
     <button class="nav-menu" id="nav-menu" type="button" aria-expanded="false" aria-controls="nav-links">
@@ -181,6 +182,57 @@
   <!-- ─────────────────────────── DETAIL ─────────────────────────── -->
   <main id="detail" class="view" hidden></main>
 
+  <!-- ─────────────────────────── GUESTBOOK ─────────────────────────── -->
+  <section class="gb site-pad" id="guestbook" aria-labelledby="gb-h">
+    <div class="gb-head">
+      <div class="gb-head-copy">
+        <span class="mono">Guestbook</span>
+        <h2 class="h2 h2--xl" id="gb-h">Leave a note.</h2>
+      </div>
+      <p class="sec-sub">작업을 보고 든 생각, 피드백, 협업 제안까지 편하게 남겨주세요. 남겨주신 의견은 다음 작업과 이 사이트를 다듬는 데 씁니다.</p>
+    </div>
+
+    <form class="card gb-composer" id="gb-form" novalidate>
+      <div class="ticks ticks--top" aria-hidden="true"></div>
+      <div class="gb-composer-top">
+        <div class="gb-types" role="radiogroup" aria-label="글 종류">
+          <button type="button" role="radio" data-gb-type="note" aria-checked="true">한마디</button>
+          <button type="button" role="radio" data-gb-type="feedback" aria-checked="false">피드백</button>
+          <button type="button" role="radio" data-gb-type="collab" aria-checked="false">협업 제안</button>
+        </div>
+        <span class="gb-live mono" id="gb-live" data-state="wait"><i aria-hidden="true"></i>Connecting</span>
+      </div>
+      <label class="visually-hidden" for="gb-message">메시지</label>
+      <textarea id="gb-message" name="message" rows="3" maxlength="200" required></textarea>
+      <div class="gb-extra">
+        <label class="gb-field"><span class="fact-k">어떤 작업에 대한 글인가요?</span>
+          <select id="gb-project" name="project"><option value="">포트폴리오 전체</option></select>
+        </label>
+        <label class="gb-field"><span class="fact-k">닉네임</span>
+          <input id="gb-name" name="nickname" type="text" maxlength="20" autocomplete="nickname" placeholder="20자 이내" required>
+        </label>
+      </div>
+      <input class="gb-hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="gb-composer-foot">
+        <p class="gb-status ctx" id="gb-status" role="status" aria-live="polite">방명록에 연결하는 중…</p>
+        <span class="mono dim tabular" id="gb-count">0 / 200</span>
+        <button class="chip" id="gb-submit" type="submit" disabled>Leave a note ↗</button>
+      </div>
+    </form>
+
+    <div class="gb-bar">
+      <div class="filters" id="gb-filters" role="tablist" aria-label="글 종류로 보기">
+        <button type="button" class="filter" role="tab" data-gb-filter="all" aria-selected="true">전체<sup>00</sup></button>
+        <button type="button" class="filter" role="tab" data-gb-filter="note" aria-selected="false">한마디<sup>00</sup></button>
+        <button type="button" class="filter" role="tab" data-gb-filter="feedback" aria-selected="false">피드백<sup>00</sup></button>
+        <button type="button" class="filter" role="tab" data-gb-filter="collab" aria-selected="false">협업 제안<sup>00</sup></button>
+      </div>
+      <span class="ctx dim">최신순</span>
+    </div>
+    <ol class="gb-wall" id="gb-wall" aria-live="polite"></ol>
+    <button class="chip chip--light gb-more" id="gb-more" type="button" hidden>더 보기</button>
+  </section>
+
   <!-- ─────────────────────────── CONTACT / FOOTER ─────────────────────────── -->
   <footer class="footer site-pad" id="contact">
     <div class="card contact-card">
@@ -204,7 +256,7 @@
     <div class="footer-bar">
       <p class="footer-line">Made by hand, between art and technology.</p>
       <nav class="footer-links" aria-label="Footer">
-        <a href="#/index">Work</a><a href="#/about">About</a><a href="#/recognition">Recognition</a>
+        <a href="#/index">Work</a><a href="#/about">About</a><a href="#/recognition">Recognition</a><a href="#/guestbook">Guestbook</a>
         <a href="https://github.com/yebum" target="_blank" rel="noopener noreferrer">GitHub</a>
       </nav>
       <p class="mono dim">© 2026 Yebum Ko · Seoul</p>
@@ -224,6 +276,7 @@
   <div class="toast mono" id="toast" role="status" aria-live="polite"></div>
 
   <script src="js/data.js?v=matmi-2026"></script>
-  <script src="js/app.js?v=matmi-2026"></script>
+  <script src="js/app.js?v=guestbook-1"></script>
+  <script src="js/guestbook.js?v=guestbook-1"></script>
 </body>
 </html>

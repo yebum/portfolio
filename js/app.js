@@ -426,6 +426,15 @@
         ${imgs}
         ${links}
 
+        <section class="pd-feedback site-pad" aria-label="Feedback">
+          <a class="card pd-fb" href="#/guestbook" data-feedback="${p.id}">
+            <div class="ticks ticks--top" aria-hidden="true"></div>
+            <span class="mono">Feedback</span>
+            <span class="pd-fb-q">이 작업, 어떻게 보셨나요?</span>
+            <span class="pd-fb-go ctx">${esc(p.fullTitle)}에 대한 의견 남기기 →</span>
+          </a>
+        </section>
+
         <nav class="pd-next" aria-label="More projects">
           ${nav(prevP, 'Previous')}
           ${nav(nextP, 'Next project')}
@@ -468,7 +477,7 @@
   });
 
   /* ════════════════════════ ROUTER ════════════════════════ */
-  const SECTIONS = ['top', 'selected', 'index', 'about', 'recognition', 'contact'];
+  const SECTIONS = ['top', 'selected', 'index', 'about', 'recognition', 'guestbook', 'contact'];
   let current = null;          // 'home' | 'detail'
   let homeScroll = 0;          // scroll offset to restore when coming back
   let cameFromHome = false;
@@ -529,6 +538,9 @@
       route();
       return;
     }
+    if (target === '#/guestbook' && a.dataset.feedback) {
+      window.dispatchEvent(new CustomEvent('guestbook:open', { detail: { project: a.dataset.feedback, kind: 'feedback' } }));
+    }
     // Contact lives in the shared footer — never leave the current view for it
     if (target === '#/contact') { e.preventDefault(); scrollToSection('contact', true); closeMenu(); return; }
     if (!target.startsWith('#/work/')) sectionClick = true;
@@ -555,7 +567,7 @@
       setActiveNav(id === 'selected' ? 'index' : id);
     }
   }, { rootMargin: '-45% 0px -50% 0px' });
-  ['selected', 'index', 'about', 'recognition', 'contact'].forEach(id => navIO.observe(document.getElementById(id)));
+  ['selected', 'index', 'about', 'recognition', 'guestbook', 'contact'].forEach(id => navIO.observe(document.getElementById(id)));
   new IntersectionObserver(([e]) => { if (e.isIntersecting && current === 'home') setActiveNav(''); }, { rootMargin: '-45% 0px -50% 0px' }).observe($('#top'));
 
   /* ── modal (reel) ─────────────────────────────────── */
