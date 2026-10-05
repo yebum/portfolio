@@ -2,6 +2,129 @@
 window.PORTFOLIO = {
   "projects": [
     {
+      "id": "MATMI",
+      "title": "MATMI",
+      "fullTitle": "MATMI",
+      "context": "2026 Global Start-up Design Thinking Hackathon · Team 13 Hexagon",
+      "year": "2026",
+      "discipline": "ux",
+      "awards": [
+        "Grand Award"
+      ],
+      "cover": "MATMI",
+      "lead": "MATMI는 낯선 음식의 이름을 번역해도 맛과 식감, 재료, 문화적 맥락까지 알기는 어렵다는 문제에서 출발한 푸드 경험 서비스이다. 메뉴에 카메라를 비추면 음식을 인식하고 3D 모습과 맛·식감·재료 정보, 개인 취향과의 적합도를 보여주어 주문 전 선택을 돕는다.",
+      "caseStudy": {
+        "problem": {
+          "summary": "메뉴 이름은 번역되어도 음식의 경험은 전달되지 않는다",
+          "body": [
+            "글로벌 해커톤 첫날, 서로 다른 국가에서 온 팀원에게 김밥을 설명하며 음식 이름과 재료를 번역하는 것만으로는 실제 맛과 식감을 전하기 어렵다는 점을 발견했다. 여행자도 현지 메뉴를 번역한 뒤 이미지와 리뷰를 다시 검색하고 비교해야 음식을 고를 수 있다.",
+            "MATMI는 낯선 현지 음식에 관심이 있는 독립 여행자와 유학생이 별도의 검색 없이 음식의 모습과 특징을 이해하고, 자신의 취향에 맞는지 판단할 수 있도록 돕는 것을 목표로 했다."
+          ]
+        },
+        "solution": {
+          "summary": "메뉴 스캔에서 3D 푸드 렌즈와 개인화 정보까지 한 흐름으로",
+          "body": [
+            "4일간의 해커톤에서 다섯 가지 음식(Tteokbokki, Phở, Pad Thai, Nasi Goreng, Lángos)을 지원하는 모바일 웹 MVP를 기획·디자인·구현했다. 로그인 없이 메뉴를 스캔하면 OCR로 음식명을 찾고, 인식 결과를 선택해 3D 음식 모델과 맛·식감·재료·주의 정보를 확인할 수 있다.",
+            "취향 프로필을 바탕으로 Taste Match 점수를 계산하고, Community Lens에서 문화권별 음식 경험을 공유하도록 설계했다. 기기와 환경에 따라 카메라 사용이 어려울 때는 사진 업로드 흐름을 제공했다."
+          ],
+          "points": [
+            {
+              "label": "메뉴 OCR",
+              "body": "Tesseract.js로 카메라의 메뉴 텍스트를 읽고 표기를 정규화해 지원 음식 다섯 가지와 비교한다. OCR 작업을 겹치지 않게 실행하고 일시적인 인식 누락에도 결과를 잠시 유지한다."
+            },
+            {
+              "label": "Food Lens · 3D 프리뷰",
+              "body": "GLB 음식 모델을 회전·확대해 형태를 먼저 확인하고, 맛과 식감, 주요 재료와 주의 정보를 같은 화면에서 읽을 수 있게 했다."
+            },
+            {
+              "label": "Taste Match",
+              "body": "좋아하는 맛·재료와 피하고 싶은 요소를 취향 프로필로 받아 음식 특성과 비교하고, 프로필을 바꾸면 0–100점 적합도를 다시 계산한다."
+            },
+            {
+              "label": "Community Lens · My MATMI",
+              "body": "문화권별 음식 경험 리뷰를 Supabase에 저장·조회하고, 브라우저에 저장한 음식과 먹어본 음식, 작성한 리뷰 기록을 My MATMI에서 확인하도록 연결했다."
+            },
+            {
+              "label": "MATMI Glass",
+              "body": "Unity와 OpenXR·Meta XR로 음식 정보가 시야에 나타나는 HUD 프로토타입을 제작했다. Quest 3 기기 권한과 ADB 연결 제한으로 실기기 카메라 OCR은 검증하지 못했으며, Unity Editor의 웹캠 영상과 발표용 선택 모드로 확장 방향을 시연했다."
+            }
+          ]
+        },
+        "result": {
+          "summary": "작동하는 웹 MVP 배포와 해커톤 Grand Award",
+          "body": [
+            "메뉴 촬영·음식 인식·3D 확인·Taste Match·Community Lens·개인 기록을 하나의 사용자 흐름으로 연결한 반응형 웹 MVP를 배포했다. 음식 데이터는 별도 catalog로 관리해 지원 음식과 3D 에셋을 추가할 수 있게 구성했다.",
+            "웹 서비스와 별도의 Unity XR 데모로 모바일에서 웨어러블로 이어지는 경험을 제시했으며, 2026 Global Start-up Design Thinking Hackathon에서 Grand Award를 수상했다."
+          ]
+        }
+      },
+      "details": [
+        {
+          "k": "프로젝트 유형",
+          "v": "글로벌 해커톤 · AI 푸드 경험 서비스"
+        },
+        {
+          "k": "기간",
+          "v": "4일 · 2026"
+        },
+        {
+          "k": "역할",
+          "v": "서비스 기획 · UX/UI · 웹 MVP 개발 · Unity XR 프로토타이핑"
+        },
+        {
+          "k": "사용 기술",
+          "v": "Expo Router · React · TypeScript · Tesseract.js · 3D Web · Supabase · Unity"
+        }
+      ],
+      "media": {
+        "films": [
+          {
+            "kind": "youtube",
+            "id": "yiwUCvBpjL8",
+            "label": "MATMI Demo Video"
+          }
+        ],
+        "decks": [
+          {
+            "src": "assets/pdf/MATMI-Team13-Hexagon.pdf",
+            "label": "Team 13 Hexagon · 발표 자료"
+          }
+        ],
+        "images": [
+          {
+            "src": "MATMI",
+            "label": "MATMI User Flow"
+          },
+          {
+            "src": "MATMI-home",
+            "label": "Home · Scan a menu"
+          },
+          {
+            "src": "MATMI-scanner",
+            "label": "Menu Scanner"
+          },
+          {
+            "src": "MATMI-food-lens",
+            "label": "Food Lens · Taste Match"
+          },
+          {
+            "src": "MATMI-taste-profile",
+            "label": "Taste Profile"
+          }
+        ],
+        "links": [
+          {
+            "href": "https://try-matmi.vercel.app/",
+            "label": "Live Prototype"
+          },
+          {
+            "href": "https://github.com/yebum/matmi",
+            "label": "GitHub Repository"
+          }
+        ]
+      }
+    },
+    {
       "id": "TimeOfExtinction",
       "title": "소멸의시간",
       "fullTitle": "잠비나이 — 소멸의시간",
@@ -2184,7 +2307,7 @@ window.PORTFOLIO = {
       "title": "2026 Global Start-up Design Thinking Hackathon",
       "prize": "GRAND AWARD",
       "project": "MATMI",
-      "id": null
+      "id": "MATMI"
     },
     {
       "year": "2026",

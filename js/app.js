@@ -211,6 +211,10 @@
   const driveView = id => `https://drive.google.com/file/d/${id}/view`;
   const ytWatch = id => `https://youtu.be/${id}`;
   const driveDownload = id => `https://drive.google.com/uc?export=download&id=${id}`;
+  const deckView = d => d.src || driveView(d.id);
+  const deckDownload = d => d.src || driveDownload(d.id);
+  const deckEmbed = d => d.src || `https://drive.google.com/file/d/${d.id}/preview`;
+  const deckHost = d => d.src ? 'Portfolio PDF' : 'Google Drive';
   const CASE = [['problem', 'Problem'], ['solution', 'Solution'], ['result', 'Result']];
 
   // Problem / Solution / Result — with the PDF deck attached beside the text
@@ -241,10 +245,10 @@
         <ul class="pdf-files">${decks.map((d, i) => `
           <li class="pdf-file">
             <span class="pdf-ico" aria-hidden="true">PDF</span>
-            <span class="pdf-name"><b>${esc(deckName(d, i))}</b><span>${esc(p.fullTitle)} · Google Drive</span></span>
+            <span class="pdf-name"><b>${esc(deckName(d, i))}</b><span>${esc(p.fullTitle)} · ${deckHost(d)}</span></span>
             <span class="chips">
-              <a class="chip chip--light" href="${driveView(d.id)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(deckName(d, i))} 새 창에서 보기">Open ↗</a>
-              <a class="chip" href="${driveDownload(d.id)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(deckName(d, i))} 다운로드">Download ↓</a>
+              <a class="chip chip--light" href="${esc(deckView(d))}" target="_blank" rel="noopener noreferrer" aria-label="${esc(deckName(d, i))} 새 창에서 보기">Open ↗</a>
+              <a class="chip" href="${esc(deckDownload(d))}" ${d.src ? 'download' : 'target="_blank" rel="noopener noreferrer"'} aria-label="${esc(deckName(d, i))} 다운로드">Download ↓</a>
             </span>
           </li>`).join('')}
         </ul>
@@ -292,9 +296,9 @@
 
   function pdfPoster(p, d, name) {
     return `
-      <button class="poster" type="button" data-embed="drive" data-id="${esc(d.id)}" aria-label="${esc(name)} 미리보기">
+      <button class="poster" type="button" data-embed="${d.src ? 'pdf' : 'drive'}" data-id="${esc(d.src || d.id)}" aria-label="${esc(name)} 미리보기">
         <div class="ticks ticks--top" aria-hidden="true"></div>
-        <div class="card-top"><span class="mono">PDF</span><span class="mono dim">Google Drive</span></div>
+        <div class="card-top"><span class="mono">PDF</span><span class="mono dim">${deckHost(d)}</span></div>
         <span class="poster-title" aria-hidden="true">${esc(name)}</span>
         <span class="poster-center"><span class="play" aria-hidden="true"></span><span class="mono">Preview PDF</span></span>
       </button>`;
@@ -304,19 +308,19 @@
     const isDeck = kind === 'deck';
     const num = count > 1 ? ` ${pad2(i + 1)}` : '';
     const label = item.label || (isDeck ? 'Presentation deck' : 'Film') + num;
-    const out = isDeck ? driveView(item.id) : item.kind === 'youtube' ? ytWatch(item.id) : driveView(item.id);
-    const host = !isDeck && item.kind === 'youtube' ? 'YouTube' : 'Google Drive';
+    const out = isDeck ? deckView(item) : item.kind === 'youtube' ? ytWatch(item.id) : driveView(item.id);
+    const host = isDeck ? deckHost(item) : item.kind === 'youtube' ? 'YouTube' : 'Google Drive';
     return `
       <figure class="embed${isDeck ? ' embed--deck' : ''}" data-reveal>
         <div class="card">
-          <button class="poster" type="button" data-embed="${isDeck ? 'drive' : item.kind}" data-id="${esc(item.id)}" aria-label="${isDeck ? 'Open' : 'Play'} ${esc(label)}">
+          <button class="poster" type="button" data-embed="${isDeck ? (item.src ? 'pdf' : 'drive') : item.kind}" data-id="${esc(item.src || item.id)}" aria-label="${isDeck ? 'Open' : 'Play'} ${esc(label)}">
             ${poster ? `<img src="${src(poster)}" alt="" loading="lazy" decoding="async">` : `<span class="poster-title" aria-hidden="true">${esc(count > 1 ? (item.label || (isDeck ? 'Deck' : 'Film') + num) : p.fullTitle)}</span>`}
             <div class="ticks ticks--top${isDeck ? '' : ' ticks--light'}" aria-hidden="true"></div>
             <div class="card-top"><span class="mono">${isDeck ? 'Deck' : 'Film'}${num}</span><span class="mono dim">${host}</span></div>
             <span class="poster-center"><span class="play" aria-hidden="true"></span><span class="mono">${isDeck ? 'Open deck' : 'Play film'}</span></span>
           </button>
         </div>
-        <figcaption class="embed-cap"><span class="mono">${esc(label)}</span><a class="mono" href="${out}" target="_blank" rel="noopener noreferrer">Open in ${host} ↗</a></figcaption>
+        <figcaption class="embed-cap"><span class="mono">${esc(label)}</span><a class="mono" href="${esc(out)}" target="_blank" rel="noopener noreferrer">Open ${isDeck && item.src ? 'PDF' : `in ${host}`} ↗</a></figcaption>
       </figure>`;
   }
 
@@ -445,7 +449,7 @@
       const p = byId[location.hash.split('/').pop()], i = +tab.dataset.pdfTab, d = p.media.decks[i];
       $$('[data-pdf-tab]', detail).forEach(b => b.setAttribute('aria-selected', b === tab));
       const view = $('#pdf-view'), frame = $('iframe', view);
-      if (frame) frame.src = `https://drive.google.com/file/d/${d.id}/preview`;
+      if (frame) frame.src = deckEmbed(d);
       else view.innerHTML = pdfPoster(p, d, d.label || `PDF 자료 ${pad2(i + 1)}`);
       return;
     }
@@ -454,7 +458,7 @@
     const { embed, id } = btn.dataset;
     const url = embed === 'youtube'
       ? `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`
-      : `https://drive.google.com/file/d/${id}/preview`;
+      : embed === 'pdf' ? id : `https://drive.google.com/file/d/${id}/preview`;
     const f = document.createElement('iframe');
     f.src = url;
     f.title = btn.getAttribute('aria-label') || 'Embedded media';
