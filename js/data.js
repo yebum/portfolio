@@ -2181,6 +2181,13 @@ window.PORTFOLIO = {
   "awards": [
     {
       "year": "2026",
+      "title": "2026 Global Start-up Design Thinking Hackathon",
+      "prize": "GRAND AWARD",
+      "project": "MATMI",
+      "id": null
+    },
+    {
+      "year": "2026",
       "title": "부산국제마케팅광고제 MAD STARS",
       "prize": "Gold Prize",
       "project": "Neuroscape",
@@ -2237,6 +2244,11 @@ window.PORTFOLIO = {
     }
   ],
   "experience": [
+    [
+      "2026",
+      "XMF 페스티벌 한국 아티스트 총괄 사운드 인터랙티브 비주얼 제작",
+      "XMF FESTIVAL"
+    ],
     [
       "2026",
       "잠비나이 — 소멸의시간 오디오비주얼 제작",
