@@ -631,8 +631,8 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
-            "kind": "drive",
-            "id": "10iDYKqnyNNyr8Pj9hRNzn7H0ivoslYeT",
+            "kind": "youtube",
+            "id": "_e3P-kXF5Ds",
             "label": "2026 · Neuroscape · Video 01"
           }
         ],
@@ -901,8 +901,8 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
-            "kind": "drive",
-            "id": "1bVQEpydCDbwR4N0nAQGbl3Q5rHg0KKh9",
+            "kind": "youtube",
+            "id": "P43qHd_6m7I",
             "label": "2026 · Invader · Video 01"
           }
         ],
@@ -1009,8 +1009,8 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
-            "kind": "drive",
-            "id": "1dBv6cmtXUyBU9nn36rhEE-YXPahZY590",
+            "kind": "youtube",
+            "id": "XulGuPDgqS8",
             "label": "2026 · 잘타요VR · Video 01"
           }
         ],
