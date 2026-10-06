@@ -80,7 +80,7 @@ window.PORTFOLIO = {
         "films": [
           {
             "kind": "youtube",
-            "id": "yiwUCvBpjL8",
+            "id": "F-NkzQlBaaY",
             "label": "2026 · MATMI · Video 01"
           }
         ],
@@ -189,7 +189,7 @@ window.PORTFOLIO = {
         "films": [
           {
             "kind": "youtube",
-            "id": "ok3533ZfwyQ",
+            "id": "Yiv7aBwdAU4",
             "label": "2026 · 잠비나이 — 소멸의시간 · Video 01"
           }
         ],
@@ -279,7 +279,7 @@ window.PORTFOLIO = {
         "films": [
           {
             "kind": "youtube",
-            "id": "MQ4IRCMCQCo",
+            "id": "BgE90X3G_rA",
             "label": "2026 · 실감수제비 · Video 01"
           }
         ],
@@ -366,7 +366,7 @@ window.PORTFOLIO = {
         "films": [
           {
             "kind": "youtube",
-            "id": "nTv2XIjAabg",
+            "id": "wltwVsVlePI",
             "label": "2026 · Get The Ocean Summer Ready · Video 01"
           }
         ],
@@ -491,14 +491,14 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
-            "kind": "drive",
-            "id": "1e_5eY_QjNEegtY20EaZWKwv3mqtSHQct",
+            "kind": "youtube",
+            "id": "wP5sIceJL0Q",
             "label": "2026 · 연결 · Video 01"
           }
         ],
         "decks": [
           {
-            "id": "1dON_sgq-M_Zcy-p-uWuCNCoR3T4Pb9TW",
+            "id": "1lGwf16m7RxHmH7VpNh3JtwxCkvsnhoiz",
             "label": "2026 · 연결 · Presentation 01"
           }
         ],
@@ -638,7 +638,7 @@ window.PORTFOLIO = {
         ],
         "decks": [
           {
-            "id": "1YaPNUDRKhECPX4rHZFUZlIYUDc0_HxSZ",
+            "id": "14aEgKFRFp5sHhzpV5MRiNV2jdBPXoddr",
             "label": "2026 · Neuroscape · Presentation 01"
           }
         ],
@@ -726,7 +726,7 @@ window.PORTFOLIO = {
         ],
         "decks": [
           {
-            "id": "1ZtWzIYop_iDBT4swG7t-dUua5PrFpo8G",
+            "id": "1cjBZXPzT4YzQaqhe9ZykZBE1D7h4b_Ie",
             "label": "2026 · Beyond The Center · Presentation 01"
           }
         ],
@@ -814,7 +814,7 @@ window.PORTFOLIO = {
         ],
         "decks": [
           {
-            "id": "1JUDAMn8yTGQ0qtuGYOLIoejFBUgbSseO",
+            "id": "1prjilM8YLbc1_YWmU75l4wwPsLqhfFHn",
             "label": "2026 · 파국의 궤도 · Presentation 01"
           }
         ],
@@ -1016,7 +1016,7 @@ window.PORTFOLIO = {
         ],
         "decks": [
           {
-            "id": "16KbAchqRCjYefDXWFpQZUtG6Avankvcl",
+            "id": "1H4IHaQnr6T3gKzR1S486L8atYKDCbjJ2",
             "label": "2026 · 잘타요VR · Presentation 01"
           }
         ],
@@ -1222,7 +1222,7 @@ window.PORTFOLIO = {
         "films": [],
         "decks": [
           {
-            "id": "1ANKfQOK8b7UknGUftKsOjGHvtPV-BdBH",
+            "id": "1vUOMus0FEbTqhQKHVSmslc3Jl8AiEQYA",
             "label": "2026 · 팀플! · Presentation 01"
           }
         ],
@@ -1369,7 +1369,7 @@ window.PORTFOLIO = {
         ],
         "decks": [
           {
-            "id": "1GTKoLy_zkEXd9j9vvgvryR2NIW2moGaF",
+            "id": "1tfKhd0_O-NiNJvgiWghQEl2nztwo0W11",
             "label": "2026 · 든든AI · Presentation 01"
           }
         ],
@@ -1496,7 +1496,7 @@ window.PORTFOLIO = {
         ],
         "decks": [
           {
-            "id": "129ZRGtbEiZpoyGmBRwL1f1cdBHogAoSr",
+            "id": "1pDGy4QFKj2mA4kPbb1UaeIiLeWrnDanh",
             "label": "2026 · CITY: Civic Innovation Through You · Presentation 01"
           }
         ],
@@ -1562,7 +1562,7 @@ window.PORTFOLIO = {
         "films": [],
         "decks": [
           {
-            "id": "1tMEl_lq2yD3jzxxGmRPtdMUcBmAw88dB",
+            "id": "1SEB_wZJ091y3TBxCYEev0TQSTiCqqPdu",
             "label": "2026 · Jeonger · Presentation 01"
           }
         ],
@@ -1655,7 +1655,7 @@ window.PORTFOLIO = {
         ],
         "decks": [
           {
-            "id": "15N1K173q4mC_jvLkP1KIcvMXdgJ1Zm_R",
+            "id": "1Su_Uf8-D8JcqjWiwdS3QK164y_9119wK",
             "label": "2025 · 토스증권 광고 · Presentation 01"
           }
         ],
@@ -1741,7 +1741,7 @@ window.PORTFOLIO = {
         ],
         "decks": [
           {
-            "id": "1mbB08IOrVbqQ-2JPRC4AlYEy1V1wIzD-",
+            "id": "1HrcltPkX0Wb9poozIlV3RdgQ8YHSkgBR",
             "label": "2025 · 스대살: 스위스에서 대학생으로 살아남기 · Presentation 01"
           }
         ],
@@ -1841,11 +1841,11 @@ window.PORTFOLIO = {
         ],
         "decks": [
           {
-            "id": "1YoZYXckRYaJMp37kpkgk1sqzepWwYTUZ",
+            "id": "1LSL1heUjAEidimMM9U11UW_caHeAXls0",
             "label": "2025 · 슈퍼플레이 서포터즈 2기 · Presentation 01"
           },
           {
-            "id": "11QTOsKiQMDta-TCH2YQTHXVJFjFYWdJl",
+            "id": "1tlOMW97xPLHF73XSXjM_yCjv69ZZOQ7r",
             "label": "2025 · 슈퍼플레이 서포터즈 2기 · Presentation 02"
           }
         ],
@@ -1923,7 +1923,7 @@ window.PORTFOLIO = {
         "films": [],
         "decks": [
           {
-            "id": "14H8JPIvYtZfv8PdRqI7InkLV7BSXcSZR",
+            "id": "1cVQEFDFSgZjkz9HkMvL5L2xHr8G2AabS",
             "label": "2025 · 가치 제주, 고치 제주 · Presentation 01"
           }
         ],
@@ -2003,7 +2003,7 @@ window.PORTFOLIO = {
         "films": [],
         "decks": [
           {
-            "id": "1ZlQMCjZ6jWLpcgaNeCa8uu5QKYKCgFqI",
+            "id": "12ZpVYoN8BwvyhsX6RDUIm6oktkmVbWpf",
             "label": "2025 · Fill The [ ], Feel My [ ] · Presentation 01"
           }
         ],
@@ -2089,7 +2089,7 @@ window.PORTFOLIO = {
         ],
         "decks": [
           {
-            "id": "1by1xmH7UfcRhfganTzI2Wh_m6pnTBYom",
+            "id": "1IqdAof2B6x5eCni_IJt4WS9YDK9KPTvf",
             "label": "2025 · 기후동행카드 광고 · Presentation 01"
           }
         ],
@@ -2173,7 +2173,7 @@ window.PORTFOLIO = {
         ],
         "decks": [
           {
-            "id": "1mR5jdob21bv5n_-3hPW9zzafQJ7rzfHc",
+            "id": "1FfVr12HGsg2W4EUkYw_diqXAORAfDtF3",
             "label": "2025 · 네이버지도 광고 · Presentation 01"
           }
         ],
@@ -2259,7 +2259,7 @@ window.PORTFOLIO = {
         ],
         "decks": [
           {
-            "id": "1wa5yp3xS7RvKxmVics4NFBCh0_jkm_on",
+            "id": "1xl7mfpjuZwcHLrvhH9YCMnV-OqiUc0Ad",
             "label": "2025 · 디미디, 우주를 닮다 · Presentation 01"
           }
         ],
