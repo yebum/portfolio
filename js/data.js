@@ -807,8 +807,8 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
-            "kind": "drive",
-            "id": "1ZbmVpZwFRlPIEw2KhcgOynlWkr4F228a",
+            "kind": "youtube",
+            "id": "bo1T_u7wUDk",
             "label": "2026 · 파국의 궤도 · Video 01"
           }
         ],
