@@ -25,9 +25,8 @@ Open http://localhost:5178. Use a local server instead of opening the file direc
 ## Editing content
 
 - **Add or edit a project**: add an object to `projects` in `js/data.js`. Media goes in `media.films` (YouTube or Drive ID), `media.decks` (Drive PDF ID), `media.images` (WebP filename without the extension) and `media.links`.
-- **Featured on the hero and Selected work**: the `featured` array (4 IDs).
-- **Problem / Solution / Result text**: edit `_work/psr/<id>.json`, then run `node _work/build-data.js` to regenerate `js/data.js` (or edit `caseStudy` in `js/data.js` directly). `solution.points` is the list of key features or technical items.
-- **Results in numbers**: `_work/metrics.json` (per-project `groups`, where `kind` is `stats` | `bars` | `stack`). Always include `source` and `sample`. Run `node _work/build-data.js` after editing.
+- **Project order and visibility**: all projects in `js/data.js` appear in Work; their array order controls the default display.
+- **Problem / Solution / Result and metrics**: edit `caseStudy` and `metrics` in `js/data.js`. The `_work/` data builder is a legacy helper and does not include every later addition, including MATMI and Recognition updates. Running it over the current `js/data.js` would discard those additions.
 - **Attached PDFs**: Drive file IDs in `media.decks` appear automatically in the panel next to the Overview. The Drive file must be shared as "Anyone with the link" for preview and download to work.
 - **New images**: put the originals in `_source/img/` and run `python _work/opt.py` (it creates WebP files and fixes EXIF rotation).
 
