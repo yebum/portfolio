@@ -13,7 +13,7 @@
   const pad2 = n => String(n).padStart(2, '0');
   const src = (name, sm) => `assets/img/${name}${sm ? '-sm' : ''}.webp`;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  
   // run after layout; rAF alone never fires in background tabs, so race it with a timeout
   const afterLayout = fn => { let done = false; const run = () => { if (!done) { done = true; fn(); } }; requestAnimationFrame(run); setTimeout(run, 60); };
 
@@ -37,67 +37,6 @@
 
   /* ════════════════════════ HOME ════════════════════════ */
 
-  /* hero reel */
-  function initHero() {
-    const slides = $('#hero-slides'), pager = $('#hero-pager');
-    const feat = D.featured.map(id => byId[id]);
-    const DUR = 7000;
-    slides.innerHTML = feat.map((p, i) =>
-      `<figure class="hero-slide${i === 0 ? ' is-active' : ''}"><img src="${src(p.cover)}" alt="" ${i ? 'loading="lazy"' : 'fetchpriority="high"'} decoding="async"></figure>`).join('');
-    pager.innerHTML = feat.map((p, i) =>
-      `<button type="button" role="tab" aria-label="${esc(p.fullTitle)}" aria-selected="${i === 0}" style="--dur:${DUR}ms"></button>`).join('');
-
-    const slideEls = $$('.hero-slide', slides), dots = $$('button', pager);
-    let cur = 0, timer;
-    function go(i) {
-      cur = (i + feat.length) % feat.length;
-      slideEls.forEach((s, k) => s.classList.toggle('is-active', k === cur));
-      dots.forEach((d, k) => {
-        d.classList.remove('is-active');
-        d.classList.toggle('is-done', k < cur);
-        d.setAttribute('aria-selected', k === cur);
-      });
-      void dots[cur].offsetWidth; // restart progress animation
-      dots[cur].classList.add('is-active');
-      const p = feat[cur];
-      $('#hero-now-title').textContent = p.fullTitle;
-      $('#hero-now-ctx').textContent = p.context;
-      $('#hero-now-link').href = `#/work/${p.id}`;
-      clearTimeout(timer);
-      if (!reduced) timer = setTimeout(() => go(cur + 1), DUR);
-    }
-    dots.forEach((d, k) => d.addEventListener('click', () => go(k)));
-    go(0);
-
-    // pause reel when hero is off-screen or tab hidden
-    new IntersectionObserver(([e]) => { if (e.isIntersecting) go(cur); else clearTimeout(timer); }).observe($('.hero-card'));
-
-    // Genesis-style running timecode
-    const tc = $('#timecode'), t0 = performance.now();
-    setInterval(() => {
-      const s = Math.floor((performance.now() - t0) / 1000);
-      tc.textContent = `${pad2(Math.floor(s / 3600))}:${pad2(Math.floor(s / 60) % 60)}:${pad2(s % 60)}`;
-    }, 1000);
-  }
-
-  function renderSelected() {
-    $('#selected-grid').innerHTML = D.featured.map((id, i) => {
-      const p = byId[id];
-      return `
-      <a class="feat mono-hover" href="#/work/${p.id}" data-reveal>
-        <div class="card mono-img">
-          <img src="${src(p.cover)}" alt="${esc(p.fullTitle)}" loading="lazy" decoding="async">
-          <div class="card-top"><span class="mono">${pad2(i + 1)}</span><span class="mono">${esc(disc[p.discipline].label)}</span></div>
-        </div>
-        <div class="feat-meta">
-          <h3 class="feat-title">${esc(p.fullTitle)} <span class="feat-arrow" aria-hidden="true">→</span></h3>
-          <p class="feat-ctx">${esc(p.context)} · ${esc(p.year)}</p>
-          ${p.awards.length ? `<div class="chips"><span class="chip chip--award">${esc(p.awards[0])}</span></div>` : ''}
-        </div>
-      </a>`;
-    }).join('');
-  }
-
   function renderIndex() {
     const list = $('#index-list'), filters = $('#filters'), section = $('#index');
     const counts = D.projects.reduce((m, p) => (m[p.discipline] = (m[p.discipline] || 0) + 1, m), {});
@@ -105,10 +44,11 @@
     filters.innerHTML = tabs.map((t, i) =>
       `<button type="button" class="filter" role="tab" data-filter="${t.key}" aria-selected="${i === 0}">${esc(t.label)}<sup>${pad2(t.n)}</sup></button>`).join('');
 
-    list.innerHTML = D.projects.map((p, i) => `
-      <li data-disc="${p.discipline}">
-        <a class="row-link mono-hover" href="#/work/${p.id}" data-thumb="${src(p.cover, true)}">
-          <span class="row-thumb card mono-img"><img src="${src(p.cover, true)}" alt="" loading="lazy" decoding="async"></span>
+    const ordered = [...D.projects].sort((a, b) => Number(b.year) - Number(a.year));
+    list.innerHTML = ordered.map((p, i) => `
+      <li data-disc="${p.discipline}" data-search="${esc([p.fullTitle, p.context, p.year, disc[p.discipline].label, disc[p.discipline].ko].join(' ').toLowerCase())}">
+        <a class="row-link" href="#/work/${p.id}" data-thumb="${src(p.cover, true)}">
+          <span class="row-thumb card"><img src="${src(p.cover)}" alt="" loading="lazy" decoding="async"></span>
           <span class="row-no mono">${pad2(i + 1)}</span>
           <span class="row-title"><span class="t">${esc(p.fullTitle)}</span>${p.awards.length ? `<span class="row-award" title="${esc(p.awards.join(' · '))}" aria-label="Award"></span>` : ''}</span>
           <span class="row-disc">${esc(disc[p.discipline].label)}</span>
@@ -118,12 +58,22 @@
         </a>
       </li>`).join('');
 
-    const setFilter = key => {
-      $$('.filter', filters).forEach(b => b.setAttribute('aria-selected', b.dataset.filter === key));
-      $$('li', list).forEach(li => { li.hidden = key !== 'all' && li.dataset.disc !== key; });
-      try { sessionStorage.setItem('filter', key); } catch (e) { /* storage unavailable */ }
+    let activeFilter = 'all';
+    const search = $('#work-search');
+    const applyFilter = () => {
+      const query = search.value.trim().toLowerCase();
+      let visible = 0;
+      $$('.filter', filters).forEach(b => b.setAttribute('aria-selected', b.dataset.filter === activeFilter));
+      $$('li', list).forEach(li => {
+        li.hidden = (activeFilter !== 'all' && li.dataset.disc !== activeFilter) || !li.dataset.search.includes(query);
+        if (!li.hidden) visible++;
+      });
+      $('#work-count').textContent = visible + ' / ' + TOTAL + ' projects · 최신 연도순';
+      $('#work-empty').hidden = visible !== 0;
     };
-    filters.addEventListener('click', e => { const b = e.target.closest('.filter'); if (b) setFilter(b.dataset.filter); });
+    filters.addEventListener('click', e => { const b = e.target.closest('.filter'); if (b) { activeFilter = b.dataset.filter; applyFilter(); } });
+    search.addEventListener('input', applyFilter);
+    applyFilter();
 
     const setView = v => {
       section.classList.toggle('is-grid', v === 'grid');
@@ -131,33 +81,7 @@
       try { localStorage.setItem('indexView', v); } catch (e) { /* storage unavailable */ }
     };
     $$('[data-view]', section).forEach(b => b.addEventListener('click', () => setView(b.dataset.view)));
-
-    try {
-      const f = sessionStorage.getItem('filter'); if (f && tabs.some(t => t.key === f)) setFilter(f);
-      const v = localStorage.getItem('indexView'); if (v) setView(v);
-    } catch (e) { /* storage unavailable */ }
-
-    // floating preview that trails the cursor over list rows
-    if (!finePointer) return;
-    const prev = $('#index-preview'), pimg = $('img', prev);
-    let x = 0, y = 0, px = 0, py = 0, on = false, raf = 0;
-    const loop = () => {
-      px += (x - px) * 0.16; py += (y - py) * 0.16;
-      prev.style.transform = `translate3d(${px + 28}px, ${py - 90}px, 0)`;
-      raf = on || Math.abs(x - px) > .5 ? requestAnimationFrame(loop) : 0;
-    };
-    list.addEventListener('mousemove', e => {
-      if (section.classList.contains('is-grid')) return;
-      const row = e.target.closest('.row-link');
-      x = e.clientX; y = e.clientY;
-      if (!row) return;
-      if (!on) { px = x; py = y; on = true; prev.classList.add('is-on'); }
-      if (pimg.getAttribute('src') !== row.dataset.thumb) pimg.src = row.dataset.thumb;
-      if (!raf) raf = requestAnimationFrame(loop);
-    });
-    const hide = () => { on = false; prev.classList.remove('is-on'); };
-    list.addEventListener('mouseleave', hide);
-    addEventListener('scroll', hide, { passive: true });
+    setView('grid');
   }
 
   function renderAbout() {
@@ -426,15 +350,6 @@
         ${imgs}
         ${links}
 
-        <section class="pd-feedback site-pad" aria-label="Feedback">
-          <a class="card pd-fb" href="#/guestbook" data-feedback="${p.id}">
-            <div class="ticks ticks--top" aria-hidden="true"></div>
-            <span class="mono">Feedback</span>
-            <span class="pd-fb-q">이 작업, 어떻게 보셨나요?</span>
-            <span class="pd-fb-go ctx">${esc(p.fullTitle)}에 대한 의견 남기기 →</span>
-          </a>
-        </section>
-
         <nav class="pd-next" aria-label="More projects">
           ${nav(prevP, 'Previous')}
           ${nav(nextP, 'Next project')}
@@ -477,7 +392,7 @@
   });
 
   /* ════════════════════════ ROUTER ════════════════════════ */
-  const SECTIONS = ['top', 'selected', 'index', 'about', 'recognition', 'guestbook', 'contact'];
+  const SECTIONS = ['top', 'index', 'about', 'recognition', 'guestbook', 'contact'];
   let current = null;          // 'home' | 'detail'
   let homeScroll = 0;          // scroll offset to restore when coming back
   let cameFromHome = false;
@@ -508,7 +423,7 @@
       return;
     }
 
-    const section = SECTIONS.includes(parts[0]) ? parts[0] : 'top';
+    const section = parts[0] === 'selected' ? 'index' : SECTIONS.includes(parts[0]) ? parts[0] : 'top';
     const wasDetail = current === 'detail';
     document.title = 'Yebum Ko — Art × Technology';
     if (wasDetail) {
@@ -538,9 +453,6 @@
       route();
       return;
     }
-    if (target === '#/guestbook' && a.dataset.feedback) {
-      window.dispatchEvent(new CustomEvent('guestbook:open', { detail: { project: a.dataset.feedback, kind: 'feedback' } }));
-    }
     // Contact lives in the shared footer — never leave the current view for it
     if (target === '#/contact') { e.preventDefault(); scrollToSection('contact', true); closeMenu(); return; }
     if (!target.startsWith('#/work/')) sectionClick = true;
@@ -567,7 +479,7 @@
       setActiveNav(id === 'selected' ? 'index' : id);
     }
   }, { rootMargin: '-45% 0px -50% 0px' });
-  ['selected', 'index', 'about', 'recognition', 'guestbook', 'contact'].forEach(id => navIO.observe(document.getElementById(id)));
+  ['index', 'about', 'recognition', 'guestbook', 'contact'].forEach(id => navIO.observe(document.getElementById(id)));
   new IntersectionObserver(([e]) => { if (e.isIntersecting && current === 'home') setActiveNav(''); }, { rootMargin: '-45% 0px -50% 0px' }).observe($('#top'));
 
   /* ── modal (reel) ─────────────────────────────────── */
@@ -607,8 +519,8 @@
   tick(); setInterval(tick, 15000);
 
   /* ── boot ─────────────────────────────────────────── */
-  initHero();
-  renderSelected();
+
+
   renderIndex();
   renderAbout();
   renderRecognition();

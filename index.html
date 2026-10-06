@@ -15,8 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap">
-  <link rel="preload" as="image" href="assets/img/TimeOfExtinction.webp">
-  <link rel="stylesheet" href="css/style.css?v=guestbook-1">
+  <link rel="stylesheet" href="css/style.css?v=ui-20261006">
 </head>
 <body>
   <a class="skip" href="#index">Skip to work</a>
@@ -42,76 +41,39 @@
   <!-- ─────────────────────────── HOME ─────────────────────────── -->
   <main id="home" class="view">
 
-    <!-- HERO -->
-    <section class="hero site-pad" id="top" aria-label="Introduction">
-      <div class="card hero-card">
-        <div class="hero-slides" id="hero-slides" aria-hidden="true"></div>
-        <div class="hero-scrim" aria-hidden="true"></div>
-        <div class="ticks ticks--light" aria-hidden="true"></div>
-
-        <div class="card-top">
-          <span class="mono">Meet Yebum</span>
-          <span class="mono tabular" id="timecode" aria-hidden="true">00:00:00</span>
-        </div>
-
-        <div class="hero-copy">
-          <h1 class="display">Yebum Ko</h1>
-          <p class="hero-lead">Art × Technology. 공연 오디오비주얼과 이머시브 전시부터 XR 게임, 서비스 UX까지 — 아이디어가 실제로 작동하는 경험을 만듭니다.</p>
-          <div class="chips">
-            <a class="chip" href="#/index">View work</a>
-            <button class="chip chip--ghost" type="button" data-reel>Play reel</button>
-          </div>
-        </div>
-
-        <div class="hero-now" id="hero-now">
-          <span class="mono dim">Now showing</span>
-          <a class="hero-now-link" id="hero-now-link" href="#/work/TimeOfExtinction">
-            <span class="hero-now-title" id="hero-now-title">잠비나이 — 소멸의시간</span>
-            <span class="ctx" id="hero-now-ctx">KALEIDOSCOPE : 만화경</span>
-          </a>
-          <div class="hero-pager" id="hero-pager" role="tablist" aria-label="Featured work"></div>
-        </div>
+    <section class="intro site-pad" id="top" aria-labelledby="intro-title">
+      <div class="intro-kicker mono"><span>Yebum Ko · 고예범</span><span>Portfolio / 2025—2026</span></div>
+      <h1 id="intro-title">Ideas into<br><span>experiences.</span></h1>
+      <div class="intro-bottom">
+        <p>기술과 예술이 만나는 경험을 만듭니다.<br>공연과 전시, XR, 서비스 디자인까지.</p>
+        <a class="chip" href="#/index">전체 프로젝트 보기 ↓</a>
       </div>
-    </section>
-
-    <!-- STATEMENT -->
-    <section class="statement site-pad" aria-labelledby="statement-h">
-      <div class="sec-head">
-        <h2 class="h2" id="statement-h" data-reveal>Crafting the space between art &amp; technology.</h2>
-        <p class="sec-sub" data-reveal>저는 기술과 예술이 만나는 지점을 디자인하는 고예범입니다. 시각 언어와 인터랙션으로 새로운 경험을 만들고, 그 아이디어가 무대·전시장·화면 위에서 실제로 작동하는 방식을 탐구합니다.</p>
-      </div>
-      <dl class="stats" data-reveal>
-        <div><dt class="mono">Projects</dt><dd class="tabular" id="stat-projects">22</dd></div>
-        <div><dt class="mono">Awards</dt><dd class="tabular" id="stat-awards">8</dd></div>
-        <div><dt class="mono">Disciplines</dt><dd class="tabular">4</dd></div>
+      <dl class="stats">
+        <div><dt class="mono">Projects</dt><dd id="stat-projects">23</dd></div>
+        <div><dt class="mono">Awards</dt><dd id="stat-awards">9</dd></div>
+        <div><dt class="mono">Disciplines</dt><dd>4</dd></div>
         <div><dt class="mono">Based in</dt><dd>Seoul</dd></div>
       </dl>
     </section>
 
-    <!-- SELECTED -->
-    <section class="selected site-pad" id="selected" aria-labelledby="selected-h">
-      <div class="sec-label">
-        <span class="mono">Selected work</span>
-        <span class="mono dim">2026</span>
-      </div>
-      <h2 class="visually-hidden" id="selected-h">Selected work</h2>
-      <div class="selected-grid" id="selected-grid"></div>
-    </section>
-
     <!-- INDEX -->
-    <section class="index site-pad" id="index" aria-labelledby="index-h">
+    <section class="index site-pad is-grid" id="index" aria-labelledby="index-h">
       <div class="sec-head">
-        <h2 class="h2" id="index-h" data-reveal>Every project, in one index.</h2>
-        <p class="sec-sub" data-reveal>공연과 전시, 게임과 VR, 해커톤과 창업 경진대회, 광고와 캠페인. 분야별로 걸러 보거나, 행에 마우스를 올려 미리 보세요.</p>
+        <h2 class="h2" id="index-h" data-reveal>All projects.</h2>
+        <p class="sec-sub" data-reveal>모든 프로젝트를 같은 크기의 사진 카드로 소개합니다. 최신 연도부터 정렬하며, 분야와 프로젝트명으로 찾아볼 수 있습니다.</p>
       </div>
 
+      <div class="work-search-row">
+        <label class="work-search"><span class="visually-hidden">프로젝트 검색</span><input id="work-search" type="search" placeholder="프로젝트명, 분야, 키워드 검색" autocomplete="off"></label>
+        <p class="mono dim" id="work-count" role="status" aria-live="polite"></p>
+      </div>
       <div class="index-bar">
         <div class="filters" id="filters" role="tablist" aria-label="Filter by discipline"></div>
         <div class="index-tools">
           <span class="legend mono dim"><span class="legend-dot" aria-hidden="true"></span>Awarded</span>
           <div class="view-toggle" role="group" aria-label="Layout">
-            <button type="button" class="mono is-on" data-view="list" aria-pressed="true">List</button>
-            <button type="button" class="mono" data-view="grid" aria-pressed="false">Grid</button>
+            <button type="button" class="mono" data-view="list" aria-pressed="false">List</button>
+            <button type="button" class="mono is-on" data-view="grid" aria-pressed="true">Grid</button>
           </div>
         </div>
       </div>
@@ -120,7 +82,7 @@
         <span>No.</span><span>Project</span><span>Discipline</span><span>Context</span><span>Year</span><span></span>
       </div>
       <ol class="index-list" id="index-list"></ol>
-      <div class="index-preview" id="index-preview" aria-hidden="true"><img alt=""></div>
+      <p class="work-empty" id="work-empty" hidden>일치하는 프로젝트가 없습니다. 다른 검색어나 분야를 선택해 주세요.</p>
     </section>
 
     <!-- ABOUT -->
@@ -182,53 +144,22 @@
   <!-- ─────────────────────────── DETAIL ─────────────────────────── -->
   <main id="detail" class="view" hidden></main>
 
-  <!-- ─────────────────────────── GUESTBOOK ─────────────────────────── -->
   <section class="gb site-pad" id="guestbook" aria-labelledby="gb-h">
     <div class="gb-head">
-      <div class="gb-head-copy">
-        <span class="mono">Guestbook</span>
-        <h2 class="h2 h2--xl" id="gb-h">Leave a note.</h2>
-      </div>
-      <p class="sec-sub">작업을 보고 든 생각, 피드백, 협업 제안까지 편하게 남겨주세요. 남겨주신 의견은 다음 작업과 이 사이트를 다듬는 데 씁니다.</p>
+      <div class="gb-head-copy"><span class="mono">Guestbook</span><h2 class="h2 h2--xl" id="gb-h">한마디 남겨주세요.</h2></div>
+      <p class="sec-sub">포트폴리오를 보고 든 생각을 편하게 남겨주세요.</p>
     </div>
-
-    <form class="card gb-composer" id="gb-form" novalidate>
-      <div class="ticks ticks--top" aria-hidden="true"></div>
-      <div class="gb-composer-top">
-        <div class="gb-types" role="radiogroup" aria-label="글 종류">
-          <button type="button" role="radio" data-gb-type="note" aria-checked="true">한마디</button>
-          <button type="button" role="radio" data-gb-type="feedback" aria-checked="false">피드백</button>
-          <button type="button" role="radio" data-gb-type="collab" aria-checked="false">협업 제안</button>
-        </div>
-        <span class="gb-live mono" id="gb-live" data-state="wait"><i aria-hidden="true"></i>Connecting</span>
-      </div>
-      <label class="visually-hidden" for="gb-message">메시지</label>
-      <textarea id="gb-message" name="message" rows="3" maxlength="200" required></textarea>
-      <div class="gb-extra">
-        <label class="gb-field"><span class="fact-k">어떤 작업에 대한 글인가요?</span>
-          <select id="gb-project" name="project"><option value="">포트폴리오 전체</option></select>
-        </label>
-        <label class="gb-field"><span class="fact-k">닉네임</span>
-          <input id="gb-name" name="nickname" type="text" maxlength="20" autocomplete="nickname" placeholder="20자 이내" required>
-        </label>
-      </div>
-      <input class="gb-hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <form class="card gb-composer" id="gb-form">
+      <label class="gb-field gb-name-field" for="gb-name"><span>이름 / 닉네임</span><input id="gb-name" name="nickname" maxlength="20" autocomplete="nickname" placeholder="20자 이내" required></label>
+      <label class="gb-field" for="gb-message"><span>메시지</span><textarea id="gb-message" name="message" rows="3" maxlength="200" placeholder="반가운 인사 한마디를 남겨주세요." required></textarea></label>
+      <input class="gb-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="gb-composer-foot">
-        <p class="gb-status ctx" id="gb-status" role="status" aria-live="polite">방명록에 연결하는 중…</p>
-        <span class="mono dim tabular" id="gb-count">0 / 200</span>
-        <button class="chip" id="gb-submit" type="submit" disabled>Leave a note ↗</button>
+        <p class="gb-status ctx" id="gb-status" role="status" aria-live="polite">방명록을 불러오는 중…</p>
+        <span class="mono dim" id="gb-count">0 / 200</span>
+        <button class="chip" id="gb-submit" type="submit" disabled>남기기 ↗</button>
       </div>
     </form>
-
-    <div class="gb-bar">
-      <div class="filters" id="gb-filters" role="tablist" aria-label="글 종류로 보기">
-        <button type="button" class="filter" role="tab" data-gb-filter="all" aria-selected="true">전체<sup>00</sup></button>
-        <button type="button" class="filter" role="tab" data-gb-filter="note" aria-selected="false">한마디<sup>00</sup></button>
-        <button type="button" class="filter" role="tab" data-gb-filter="feedback" aria-selected="false">피드백<sup>00</sup></button>
-        <button type="button" class="filter" role="tab" data-gb-filter="collab" aria-selected="false">협업 제안<sup>00</sup></button>
-      </div>
-      <span class="ctx dim">최신순</span>
-    </div>
+    <div class="gb-bar"><span class="mono" id="gb-total">Guestbook</span><span class="ctx dim">최신순</span></div>
     <ol class="gb-wall" id="gb-wall" aria-live="polite"></ol>
     <button class="chip chip--light gb-more" id="gb-more" type="button" hidden>더 보기</button>
   </section>
@@ -275,8 +206,8 @@
 
   <div class="toast mono" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="js/data.js?v=matmi-2026"></script>
-  <script src="js/app.js?v=guestbook-1"></script>
-  <script src="js/guestbook.js?v=guestbook-1"></script>
+  <script src="js/data.js?v=ui-20261006"></script>
+  <script src="js/app.js?v=ui-20261006"></script>
+  <script src="js/guestbook.js?v=ui-20261006"></script>
 </body>
 </html>
