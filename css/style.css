@@ -393,6 +393,9 @@ h1, h2, h3, p { margin: 0; }
   padding: 14px 0; border-bottom: 1px solid var(--line);
 }
 .facts dd { font-size: 15px; letter-spacing: -0.02em; }
+.about-docs { display: grid; gap: 12px; }
+.about-docs .chips { gap: 8px; }
+.about-docs .chip { height: 34px; padding: 0 12px; font-family: var(--sans); font-size: 13px; }
 .about > .sec-label { margin: 0 var(--inset); }
 .caps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); }
 .cap { display: grid; gap: 18px; align-content: start; }
