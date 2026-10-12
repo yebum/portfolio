@@ -1107,8 +1107,8 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
-            "kind": "drive",
-            "id": "1OhU5AiFPJhbOyiOw62D7QFOpNWXq_nb6",
+            "kind": "youtube",
+            "id": "koqXKQzEUtI",
             "label": "2026 · Pirates Storm · Video 01"
           }
         ],
@@ -1362,8 +1362,8 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
-            "kind": "drive",
-            "id": "1wLRtBVc6J5XIy4k1-HjJAQ0x_9YOO8zy",
+            "kind": "youtube",
+            "id": "YoNpgE3ONRM",
             "label": "2026 · 든든AI · Video 01"
           }
         ],
@@ -1489,8 +1489,8 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
-            "kind": "drive",
-            "id": "165wWmOvIh6XDsoWgs2Cz4bZukWXie9S_",
+            "kind": "youtube",
+            "id": "4AX5Xxhnpgo",
             "label": "2026 · CITY: Civic Innovation Through You · Video 01"
           }
         ],
@@ -1648,8 +1648,8 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
-            "kind": "drive",
-            "id": "1VoEqZAsS8xkAm3E8MO1A1aWr6JMTooqw",
+            "kind": "youtube",
+            "id": "ZopMM2QZTKg",
             "label": "2025 · 토스증권 광고 · Video 01"
           }
         ],
@@ -1734,8 +1734,8 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
-            "kind": "drive",
-            "id": "1tTaCRIh8sJ4Vloc5zrC2YDQmvoQ9a4hq",
+            "kind": "youtube",
+            "id": "k1sjn-lrOUE",
             "label": "2025 · 스대살: 스위스에서 대학생으로 살아남기 · Video 01"
           }
         ],
@@ -1824,18 +1824,18 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
-            "kind": "drive",
-            "id": "1uUJxAylaoHZdA5825NYAI2BrbS_U8Cx9",
+            "kind": "youtube",
+            "id": "Kt5bfUfRhF4",
             "label": "2025 · 슈퍼플레이 서포터즈 2기 · Video 01"
           },
           {
-            "kind": "drive",
-            "id": "1TF4v7MfsLaEnBrUWzrccVR5sIKCRvD_T",
+            "kind": "youtube",
+            "id": "Od628ih6_Dc",
             "label": "2025 · 슈퍼플레이 서포터즈 2기 · Video 02"
           },
           {
-            "kind": "drive",
-            "id": "1DBZCxx29Sk1qMgCh2TVqvA9DeZADp1c7",
+            "kind": "youtube",
+            "id": "sQVPFUkcPnk",
             "label": "2025 · 슈퍼플레이 서포터즈 2기 · Video 03"
           }
         ],
@@ -2082,8 +2082,8 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
-            "kind": "drive",
-            "id": "1ke7vtQ-1vJ5VHRHtEum8von8mesD4G5h",
+            "kind": "youtube",
+            "id": "80ZupkcMMvU",
             "label": "2025 · 기후동행카드 광고 · Video 01"
           }
         ],
@@ -2166,8 +2166,8 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
-            "kind": "drive",
-            "id": "1c0ysNhxz2MXNm4vJok_mlwy2aZXfCs5J",
+            "kind": "youtube",
+            "id": "wn0vvi3ypE4",
             "label": "2025 · 네이버지도 광고 · Video 01"
           }
         ],
