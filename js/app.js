@@ -44,12 +44,107 @@
         button.classList.toggle('is-active', selected);
         button.setAttribute('aria-pressed', String(selected));
       });
+      $$('.intro-piece', root).forEach(button => button.setAttribute('aria-pressed', String(button.dataset.feature === id)));
     };
     root.addEventListener('click', e => {
-      const button = e.target.closest('.intro-feature-tab');
+      const button = e.target.closest('[data-feature]');
       if (button) setFeature(button.dataset.feature);
     });
     setFeature(ids[0]);
+
+    // Small spring-driven cards: the pointer nudges them, dragging throws them,
+    // and the shuffle control gives them a playful impulse before they settle.
+    if (reduced || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    const scene = $('.intro-scene', root);
+    const pieces = $$('.intro-piece', root).map((el, i) => ({
+      el, x: 0, y: 0, ax: 0, ay: 0, vx: 0, vy: 0,
+      start: [[.04, .13], [.72, .27], [.52, .69]][i]
+    }));
+    let pointer = null, dragging = null, frame = 0, moved = false, suppressClick = false;
+    const clamp = (n, lo, hi) => Math.min(hi, Math.max(lo, n));
+    const place = () => {
+      const w = scene.clientWidth, h = scene.clientHeight;
+      if (!w || !h) return;
+      pieces.forEach(p => {
+        p.ax = clamp(w * p.start[0], 0, w - p.el.offsetWidth);
+        p.ay = clamp(h * p.start[1], 0, h - p.el.offsetHeight);
+        if (!p.el.dataset.placed) { p.x = p.ax; p.y = p.ay; p.el.dataset.placed = 'true'; }
+        p.x = clamp(p.x, 0, w - p.el.offsetWidth);
+        p.y = clamp(p.y, 0, h - p.el.offsetHeight);
+        p.el.style.transform = `translate3d(${p.x}px,${p.y}px,0)`;
+      });
+    };
+    const animate = () => {
+      frame = 0;
+      let moving = false;
+      const w = scene.clientWidth, h = scene.clientHeight;
+      pieces.forEach(p => {
+        if (p === dragging) return;
+        p.vx += (p.ax - p.x) * .028;
+        p.vy += (p.ay - p.y) * .028;
+        if (pointer) {
+          const dx = p.x + p.el.offsetWidth / 2 - pointer.x;
+          const dy = p.y + p.el.offsetHeight / 2 - pointer.y;
+          const d = Math.hypot(dx, dy) || 1;
+          if (d < 150) {
+            const push = (150 - d) / 150 * .9;
+            p.vx += dx / d * push;
+            p.vy += dy / d * push;
+          }
+        }
+        p.vx *= .86; p.vy *= .86;
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > w - p.el.offsetWidth) { p.x = clamp(p.x, 0, w - p.el.offsetWidth); p.vx *= -.45; }
+        if (p.y < 0 || p.y > h - p.el.offsetHeight) { p.y = clamp(p.y, 0, h - p.el.offsetHeight); p.vy *= -.45; }
+        p.el.style.transform = `translate3d(${p.x}px,${p.y}px,0) rotate(${clamp(p.vx * 1.2,-9,9)}deg)`;
+        if (Math.abs(p.vx) + Math.abs(p.vy) > .08 || Math.abs(p.ax - p.x) + Math.abs(p.ay - p.y) > 1) moving = true;
+      });
+      if (moving || dragging) frame = requestAnimationFrame(animate);
+    };
+    const wake = () => { if (!frame) frame = requestAnimationFrame(animate); };
+    const local = e => { const r = scene.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
+    scene.addEventListener('pointermove', e => {
+      pointer = local(e);
+      if (dragging) {
+        const p = dragging, nextX = clamp(pointer.x - p.grabX, 0, scene.clientWidth - p.el.offsetWidth);
+        const nextY = clamp(pointer.y - p.grabY, 0, scene.clientHeight - p.el.offsetHeight);
+        p.vx = clamp(nextX - p.x, -18, 18); p.vy = clamp(nextY - p.y, -18, 18);
+        if (Math.abs(nextX - p.downX) + Math.abs(nextY - p.downY) > 5) moved = true;
+        p.x = nextX; p.y = nextY;
+        p.el.style.transform = `translate3d(${p.x}px,${p.y}px,0)`;
+      }
+      wake();
+    });
+    scene.addEventListener('pointerleave', () => { pointer = null; wake(); });
+    pieces.forEach(p => {
+      p.el.addEventListener('pointerdown', e => {
+        if (e.button !== 0) return;
+        const xy = local(e);
+        dragging = p; moved = false;
+        p.downX = p.x; p.downY = p.y;
+        p.grabX = xy.x - p.x; p.grabY = xy.y - p.y;
+        p.el.setPointerCapture(e.pointerId);
+        p.el.classList.add('is-dragging');
+      });
+      p.el.addEventListener('pointerup', () => {
+        if (dragging !== p) return;
+        dragging = null;
+        p.el.classList.remove('is-dragging');
+        if (moved) { suppressClick = true; setTimeout(() => { suppressClick = false; }, 0); }
+        wake();
+      });
+      p.el.addEventListener('pointercancel', () => { dragging = null; p.el.classList.remove('is-dragging'); wake(); });
+    });
+    root.addEventListener('click', e => {
+      if (suppressClick && e.target.closest('.intro-piece')) { e.preventDefault(); e.stopImmediatePropagation(); suppressClick = false; }
+    }, true);
+    $('.intro-shuffle', root).addEventListener('click', () => {
+      pieces.forEach((p, i) => { p.vx += (i - 1) * 8 + (Math.random() - .5) * 8; p.vy -= 5 + Math.random() * 6; });
+      wake();
+    });
+    root.classList.add('is-playful');
+    new ResizeObserver(place).observe(scene);
+    place();
   }
 
   /* ── reveal on scroll ─────────────────────────────── */

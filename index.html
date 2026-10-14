@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=portfolio-20261014d">
+  <link rel="stylesheet" href="css/style.css?v=portfolio-20261014e">
 </head>
 <body>
   <a class="skip" href="#index">Skip to work</a>
@@ -52,12 +52,19 @@
           </div>
         </div>
         <div class="intro-feature">
-          <div class="intro-feature-head mono"><span>Featured work</span><span id="intro-feature-count">01 / 03</span></div>
-          <a class="intro-feature-link" id="intro-feature-link" href="#/work/MATMI" aria-label="MATMI 프로젝트 보기">
-            <img id="intro-feature-image" src="assets/img/MATMI.webp" alt="" fetchpriority="high" decoding="async">
-            <span class="intro-feature-meta"><span id="intro-feature-title">MATMI</span><span class="mono" id="intro-feature-kind">UX · Service</span></span>
-            <span class="intro-feature-arrow" aria-hidden="true">↗</span>
-          </a>
+          <div class="intro-feature-head mono"><span>Featured work</span><div><button type="button" class="intro-shuffle" aria-label="프로젝트 카드를 흩뿌리기">흩뿌리기 ↗</button><span id="intro-feature-count">01 / 03</span></div></div>
+          <div class="intro-scene">
+            <a class="intro-feature-link" id="intro-feature-link" href="#/work/MATMI" aria-label="MATMI 프로젝트 보기">
+              <img id="intro-feature-image" src="assets/img/MATMI.webp" alt="" fetchpriority="high" decoding="async">
+              <span class="intro-feature-meta"><span id="intro-feature-title">MATMI</span><span class="mono" id="intro-feature-kind">UX · Service</span></span>
+              <span class="intro-feature-arrow" aria-hidden="true">↗</span>
+            </a>
+            <div class="intro-pieces" aria-label="마우스로 움직이는 대표 프로젝트 카드">
+              <button type="button" class="intro-piece intro-piece--one" data-feature="MATMI" aria-label="MATMI 선택, 드래그할 수 있음"><span class="mono">01 / UX</span><strong>MATMI</strong><span aria-hidden="true">↗</span></button>
+              <button type="button" class="intro-piece intro-piece--two" data-feature="Neuroscape" aria-label="Neuroscape 선택, 드래그할 수 있음"><span class="mono">02 / MEDIA</span><strong>Neuroscape</strong><span aria-hidden="true">↗</span></button>
+              <button type="button" class="intro-piece intro-piece--three" data-feature="TimeOfExtinction" aria-label="소멸의시간 선택, 드래그할 수 있음"><span class="mono">03 / ART</span><strong>소멸의시간</strong><span aria-hidden="true">↗</span></button>
+            </div>
+          </div>
           <div class="intro-feature-controls" role="group" aria-label="대표 프로젝트 선택">
             <button type="button" class="intro-feature-tab is-active" data-feature="MATMI" aria-pressed="true">01 <span>MATMI</span></button>
             <button type="button" class="intro-feature-tab" data-feature="Neuroscape" aria-pressed="false">02 <span>Neuroscape</span></button>
@@ -240,7 +247,7 @@
   <div class="toast mono" id="toast" role="status" aria-live="polite"></div>
 
   <script src="js/data.js?v=portfolio-20261014c"></script>
-  <script src="js/app.js?v=portfolio-20261014c"></script>
+  <script src="js/app.js?v=portfolio-20261014e"></script>
   <script src="js/guestbook.js?v=media-20261012a"></script>
 </body>
 </html>
