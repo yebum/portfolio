@@ -2510,6 +2510,7 @@ window.PORTFOLIO = {
       "body": "TouchDesigner 기반 실시간 오디오비주얼, 프로젝션 매핑, LED 월 콘텐츠. 공연장과 전시 공간의 스케일에서 작동하는 이미지를 만듭니다.",
       "tools": "TouchDesigner · MadMapper · Suno",
       "cover": "TimeOfExtinction-TouchDesigner",
+      "filter": "media",
       "pos": "30% 50%"
     },
     {
@@ -2517,14 +2518,16 @@ window.PORTFOLIO = {
       "title": "XR & Interaction",
       "body": "Unity로 만드는 VR 교육, 모션 인식 게임, EEG 반응형 콘텐츠. 몸의 움직임과 신호가 곧 인터페이스가 되는 경험.",
       "tools": "Unity · C# · MediaPipe · Blender",
-      "cover": "SilgamSujevi"
+      "cover": "SilgamSujevi",
+      "filter": "xr"
     },
     {
       "n": "03",
       "title": "UX & Service",
       "body": "문제 정의부터 서비스 구조, 화면 설계, 발표까지. 해커톤과 창업 경진대회에서 아이디어가 실제로 작동하는 방식을 설계합니다.",
       "tools": "Figma · HTML/CSS/JS · Python",
-      "cover": "BioAx"
+      "cover": "BioAx",
+      "filter": "ux"
     },
     {
       "n": "04",
@@ -2532,6 +2535,7 @@ window.PORTFOLIO = {
       "body": "3D 모션그래픽 광고, 브랜드 캠페인, 카드뉴스와 숏폼 영상. 메시지를 움직임으로 번역합니다.",
       "tools": "Blender · After Effects · Premiere Pro",
       "cover": "hana",
+      "filter": "motion",
       "pos": "72% 50%"
     }
   ]

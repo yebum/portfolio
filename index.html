@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=awards-20261014">
+  <link rel="stylesheet" href="css/style.css?v=portfolio-20261014c">
 </head>
 <body>
   <a class="skip" href="#index">Skip to work</a>
@@ -43,15 +43,32 @@
 
     <section class="intro site-pad" id="top" aria-labelledby="intro-title">
       <div class="intro-kicker mono"><span>Yebum Ko · 고예범</span><span>Portfolio / 2025—2026</span></div>
-      <h1 id="intro-title">Ideas into<br><span>experiences.</span></h1>
-      <div class="intro-bottom">
-        <p>기술과 예술이 만나는 경험을 만듭니다.<br>공연과 전시, XR, 서비스 디자인까지.</p>
-        <a class="chip" href="#/index">전체 프로젝트 보기 ↓</a>
+      <div class="intro-main">
+        <div class="intro-copy">
+          <h1 id="intro-title">Ideas into<br><span>experiences.</span></h1>
+          <div class="intro-bottom">
+            <p>기술과 예술이 만나는 경험을 만듭니다.<br>공연과 전시, XR, 서비스 디자인까지.</p>
+            <a class="chip" href="#/index">전체 프로젝트 보기 ↓</a>
+          </div>
+        </div>
+        <div class="intro-feature">
+          <div class="intro-feature-head mono"><span>Featured work</span><span id="intro-feature-count">01 / 03</span></div>
+          <a class="intro-feature-link" id="intro-feature-link" href="#/work/MATMI" aria-label="MATMI 프로젝트 보기">
+            <img id="intro-feature-image" src="assets/img/MATMI.webp" alt="" fetchpriority="high" decoding="async">
+            <span class="intro-feature-meta"><span id="intro-feature-title">MATMI</span><span class="mono" id="intro-feature-kind">UX · Service</span></span>
+            <span class="intro-feature-arrow" aria-hidden="true">↗</span>
+          </a>
+          <div class="intro-feature-controls" role="group" aria-label="대표 프로젝트 선택">
+            <button type="button" class="intro-feature-tab is-active" data-feature="MATMI" aria-pressed="true">01 <span>MATMI</span></button>
+            <button type="button" class="intro-feature-tab" data-feature="Neuroscape" aria-pressed="false">02 <span>Neuroscape</span></button>
+            <button type="button" class="intro-feature-tab" data-feature="TimeOfExtinction" aria-pressed="false">03 <span>소멸의시간</span></button>
+          </div>
+        </div>
       </div>
       <dl class="stats">
         <div><dt class="mono">Projects</dt><dd id="stat-projects">23</dd></div>
         <div><dt class="mono">Awards</dt><dd id="stat-awards">9</dd></div>
-        <div><dt class="mono">Disciplines</dt><dd>4</dd></div>
+        <div><dt class="mono">작업 분야</dt><dd>4</dd></div>
         <div><dt class="mono">Based in</dt><dd>Seoul</dd></div>
       </dl>
     </section>
@@ -68,7 +85,7 @@
         <p class="mono dim" id="work-count" role="status" aria-live="polite"></p>
       </div>
       <div class="index-bar">
-        <div class="filters" id="filters" role="tablist" aria-label="Filter by discipline"></div>
+        <div class="filters" id="filters" role="tablist" aria-label="작업 분야 필터"></div>
         <div class="index-tools">
           <span class="legend mono dim"><span class="legend-dot" aria-hidden="true"></span>Awarded</span>
           <div class="view-toggle" role="group" aria-label="Layout">
@@ -79,7 +96,7 @@
       </div>
 
       <div class="index-head mono dim" aria-hidden="true">
-        <span>No.</span><span>Project</span><span>Discipline</span><span>Context</span><span>Year</span><span></span>
+        <span>No.</span><span>Project</span><span>분야</span><span>Context</span><span>Year</span><span></span>
       </div>
       <ol class="index-list" id="index-list"></ol>
       <p class="work-empty" id="work-empty" hidden>일치하는 프로젝트가 없습니다. 다른 검색어나 분야를 선택해 주세요.</p>
@@ -88,9 +105,18 @@
     <!-- ABOUT -->
     <section class="about site-pad" id="about" aria-labelledby="about-h">
       <div class="about-top">
-        <div class="about-labels">
-          <span class="mono">About</span>
-          <span class="mono dim">고예범 · Yebum Ko</span>
+        <div class="about-side">
+          <div class="about-labels">
+            <span class="mono">About</span>
+            <span class="mono dim">고예범 · Yebum Ko</span>
+          </div>
+          <div class="about-visual" aria-hidden="true">
+            <span class="about-orbit about-orbit--outer"></span>
+            <span class="about-orbit about-orbit--inner"></span>
+            <span class="about-signal"></span>
+            <span class="about-visual-word">Signal<br>to<br>experience.</span>
+            <span class="about-visual-caption mono">Engineering → Digital Media Design</span>
+          </div>
         </div>
         <div class="about-body">
           <h2 class="h2 h2--xl" id="about-h" data-reveal>모든 프로젝트는 하나의 고유한 언어를 가진다고 믿습니다.</h2>
@@ -122,7 +148,7 @@
     <section class="recognition site-pad" id="recognition" aria-labelledby="rec-h">
       <div class="sec-head">
         <h2 class="h2" id="rec-h" data-reveal>Recognized along the way.</h2>
-        <p class="sec-sub" data-reveal>광고제, 해커톤, 창업 경진대회와 디지털 아트 공모전에서 받은 상. 프로젝트와 대회 정보 또는 수상 자료를 각각 확인할 수 있습니다.</p>
+        <p class="sec-sub" data-reveal>광고제, 해커톤, 창업 경진대회와 디지털 아트 공모전에서 받은 상. 프로젝트와 관련 보도 자료를 각각 확인할 수 있습니다.</p>
       </div>
 
       <div class="table" role="table" aria-label="Awards">
@@ -213,8 +239,8 @@
 
   <div class="toast mono" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="js/data.js?v=awards-20261014b"></script>
-  <script src="js/app.js?v=awards-20261014b"></script>
+  <script src="js/data.js?v=portfolio-20261014c"></script>
+  <script src="js/app.js?v=portfolio-20261014c"></script>
   <script src="js/guestbook.js?v=media-20261012a"></script>
 </body>
 </html>

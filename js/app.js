@@ -24,6 +24,34 @@
   const home = $('#home');
   const detail = $('#detail');
 
+  function initIntroFeature() {
+    const ids = ['MATMI', 'Neuroscape', 'TimeOfExtinction'];
+    const root = $('.intro-feature');
+    const link = $('#intro-feature-link');
+    const image = $('#intro-feature-image');
+    const setFeature = (id) => {
+      const p = byId[id];
+      if (!p) return;
+      const n = ids.indexOf(id) + 1;
+      link.href = `#/work/${id}`;
+      link.setAttribute('aria-label', `${p.fullTitle} 프로젝트 보기`);
+      image.src = src(p.cover);
+      $('#intro-feature-title').textContent = p.fullTitle;
+      $('#intro-feature-kind').textContent = disc[p.discipline].label;
+      $('#intro-feature-count').textContent = `${pad2(n)} / ${pad2(ids.length)}`;
+      $$('.intro-feature-tab', root).forEach(button => {
+        const selected = button.dataset.feature === id;
+        button.classList.toggle('is-active', selected);
+        button.setAttribute('aria-pressed', String(selected));
+      });
+    };
+    root.addEventListener('click', e => {
+      const button = e.target.closest('.intro-feature-tab');
+      if (button) setFeature(button.dataset.feature);
+    });
+    setFeature(ids[0]);
+  }
+
   /* ── reveal on scroll ─────────────────────────────── */
   const revealIO = new IntersectionObserver(entries => {
     for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); revealIO.unobserve(e.target); }
@@ -73,6 +101,13 @@
     };
     filters.addEventListener('click', e => { const b = e.target.closest('.filter'); if (b) { activeFilter = b.dataset.filter; applyFilter(); } });
     search.addEventListener('input', applyFilter);
+    $('#caps').addEventListener('click', e => {
+      const link = e.target.closest('[data-cap-filter]');
+      if (!link) return;
+      activeFilter = link.dataset.capFilter;
+      search.value = '';
+      applyFilter();
+    });
     applyFilter();
 
     const setView = v => {
@@ -87,16 +122,16 @@
   function renderAbout() {
     $('#caps').innerHTML = D.capabilities.map(c => `
       <article class="cap" data-reveal>
-        <div class="card mono-img"${c.pos ? ` style="--pos:${c.pos}"` : ''}><img src="${src(c.cover, true)}" alt="" loading="lazy" decoding="async">
+        <a class="card cap-link" href="#/index" data-cap-filter="${esc(c.filter)}" aria-label="${esc(c.title)} 분야의 프로젝트 보기"${c.pos ? ` style="--pos:${c.pos}"` : ''}><img src="${src(c.cover, true)}" alt="" loading="lazy" decoding="async">
           <div class="card-top"><span class="mono">${c.n}</span></div>
-        </div>
+          <span class="cap-link-label">이 분야 프로젝트 보기 <span aria-hidden="true">↗</span></span>
+        </a>
         <div class="cap-text">
-          <h3>${esc(c.title)}</h3>
+          <h3><span class="cap-type mono">작업 분야</span>${esc(c.title)}</h3>
           <p>${esc(c.body)}</p>
           <span class="mono">${esc(c.tools)}</span>
         </div>
       </article>`).join('');
-    $$('.cap').forEach(el => el.classList.add('mono-hover'));
   }
 
   function renderRecognition() {
@@ -108,7 +143,7 @@
         <span class="award-prize chip chip--award">${esc(a.prize)}</span>
         <span class="award-actions">
           ${a.id ? `<a class="chip chip--light" href="#/work/${esc(a.id)}" aria-label="${esc(a.project)} 프로젝트 보기">프로젝트 ↗</a>` : ''}
-          ${a.source ? `<a class="chip" href="${esc(a.source)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(a.title)} ${a.sourceKind === 'event' ? '대회 정보' : '수상 근거'}: ${esc(a.sourceLabel)}">${a.sourceKind === 'event' ? '대회 보기' : '수상 근거'} ↗</a>` : '<span class="award-unverified">관련 공개 자료 확인 중</span>'}
+          ${a.source ? `<a class="chip" href="${esc(a.source)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(a.title)} 관련 보도 자료: ${esc(a.sourceLabel)}">보도 자료 ↗</a>` : '<span class="award-unverified">관련 공개 자료 확인 중</span>'}
         </span>
       </div>`;
     }).join('');
@@ -522,6 +557,7 @@
   /* ── boot ─────────────────────────────────────────── */
 
 
+  initIntroFeature();
   renderIndex();
   renderAbout();
   renderRecognition();
