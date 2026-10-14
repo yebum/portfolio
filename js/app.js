@@ -428,7 +428,6 @@
       scrollTo({ top: 0, behavior: 'auto' });
       current = 'detail';
       setActiveNav('index');
-      updateHeroNav();
       return;
     }
 
@@ -441,7 +440,6 @@
       home.classList.remove('view'); void home.offsetWidth; home.classList.add('view');
     }
     current = 'home';
-    updateHeroNav();
     const explicit = sectionClick;
     sectionClick = false;
     if (wasDetail && cameFromHome && !explicit) {
@@ -473,16 +471,13 @@
 
   /* ── nav ──────────────────────────────────────────── */
   const navEl = $('#nav'), menuBtn = $('#nav-menu');
-  function updateHeroNav() {
-    document.body.classList.toggle('hero-at-top', current === 'home' && !home.hidden && $('#top').getBoundingClientRect().bottom > navEl.offsetHeight);
-  }
   const closeMenu = () => { navEl.classList.remove('is-open'); menuBtn.setAttribute('aria-expanded', 'false'); };
   menuBtn.addEventListener('click', () => {
     const open = !navEl.classList.contains('is-open');
     navEl.classList.toggle('is-open', open);
     menuBtn.setAttribute('aria-expanded', open);
   });
-  addEventListener('scroll', () => { navEl.classList.toggle('is-scrolled', scrollY > 8); updateHeroNav(); }, { passive: true });
+  addEventListener('scroll', () => navEl.classList.toggle('is-scrolled', scrollY > 8), { passive: true });
 
   function setActiveNav(key) { $$('[data-nav]').forEach(a => a.classList.toggle('is-active', a.dataset.nav === key)); }
   const navIO = new IntersectionObserver(entries => {
