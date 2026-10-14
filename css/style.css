@@ -412,7 +412,7 @@ h1, h2, h3, p { margin: 0; }
 .table { margin: 0 var(--inset); }
 .table-head, .award-row {
   display: grid;
-  grid-template-columns: 72px minmax(0, 2.4fr) minmax(0, 1.2fr) minmax(0, 1.1fr) 64px;
+  grid-template-columns: 72px minmax(0, 2.4fr) minmax(0, 1.2fr) minmax(0, 1.1fr) minmax(190px, 1.5fr);
   gap: 16px; align-items: center;
 }
 .table-head { padding: 0 14px 12px; }
@@ -421,11 +421,12 @@ h1, h2, h3, p { margin: 0; }
   transition: background-color .3s var(--ease);
 }
 #awards { border-bottom: 1px solid var(--line); }
-a.award-row:hover { background: var(--card); border-radius: 10px; }
 .award-title { font-size: 16px; letter-spacing: -0.03em; line-height: 1.35; }
 .award-project { color: var(--ink-2); font-size: 14px; }
 .award-row .chip.award-prize { justify-self: start; }
-.award-row .chip { justify-self: end; height: 26px; }
+.award-actions { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; align-items: center; }
+.award-actions .chip { height: 28px; padding: 0 10px; font-size: 12px; white-space: nowrap; }
+.award-unverified { color: var(--mute); font-size: 12px; text-align: right; }
 .award-row .row-go { opacity: 1; transform: none; }
 
 .cv {
@@ -779,11 +780,11 @@ a.award-row:hover { background: var(--card); border-radius: 10px; }
 
   .table-head { display: none; }
   .award-row { grid-template-columns: 1fr auto; gap: 6px 12px; padding: 16px 0; }
-  a.award-row:hover { border-radius: 0; background: none; }
   .award-row .mono.dim { grid-column: 1; grid-row: 1; }
   .award-title { grid-column: 1 / -1; grid-row: 2; }
   .award-project { grid-column: 1; grid-row: 3; }
-  .award-row .chip, .award-row .award-empty { grid-column: 2; grid-row: 3; }
+  .award-actions { grid-column: 1 / -1; grid-row: 4; justify-content: flex-start; margin-top: 6px; }
+  .award-unverified { text-align: left; }
   .award-row .chip.award-prize { grid-column: 2; grid-row: 1; justify-self: end; }
 
   .cv { grid-template-columns: 1fr; gap: 64px; }

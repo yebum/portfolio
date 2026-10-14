@@ -1517,7 +1517,7 @@ window.PORTFOLIO = {
       "year": "2026",
       "discipline": "ux",
       "awards": [
-        "Think City Hackathon 2nd Prize"
+        "ThinkCity 2026 Community Impact Award"
       ],
       "cover": "Jeonger",
       "lead": "Jeonger는 지역사회에서 도움이 필요한 노인과 도움을 제공할 수 있는 지역 구성원을 연결하는 커뮤니티 기반 매칭 플랫폼을 제안하는 프로젝트이다. ‘정(情)’이라는 개념에서 출발하여 단순한 노동 매칭을 넘어 세대 간 교류와 지역 공동체 회복을 목표로 한다. 이 프로젝트는 일상적인 생활 지원이 필요한 노인과 지역 구성원을 연결하여 지역 사회 내에서 서로 돕는 구조를 만드는 서비스 모델을 제안한다.",
@@ -1538,9 +1538,9 @@ window.PORTFOLIO = {
           "points": []
         },
         "result": {
-          "summary": "Community Impact Award 2nd Prize 수상",
+          "summary": "Community Impact Award 수상",
           "body": [
-            "지역사회 안에서 노인과 도움 제공자를 연결하는 커뮤니티 기반 서비스 모델을 최종 발표까지 완성했다. 세대 간 연결과 지역 공동체의 상호 도움 구조를 중심으로 한 서비스 가능성을 제시했고, Think City Hackathon 2026에서 Community Impact Award 2nd Prize를 받았다."
+            "지역사회 안에서 노인과 도움 제공자를 연결하는 커뮤니티 기반 서비스 모델을 최종 발표까지 완성했다. 세대 간 연결과 지역 공동체의 상호 도움 구조를 중심으로 한 서비스 가능성을 제시했고, ThinkCity 2026에서 Community Impact Award를 받았다."
           ]
         }
       },
@@ -2307,63 +2307,86 @@ window.PORTFOLIO = {
       "title": "2026 Global Start-up Design Thinking Hackathon",
       "prize": "GRAND AWARD",
       "project": "MATMI",
-      "id": "MATMI"
+      "id": "MATMI",
+      "source": "https://edu.chosun.com/site/data/html_dir/2026/10/07/2026100780040.html",
+      "sourceLabel": "조선에듀 기사"
     },
     {
       "year": "2026",
       "title": "부산국제마케팅광고제 MAD STARS",
       "prize": "Gold Prize",
       "project": "Neuroscape",
-      "id": "Neuroscape"
+      "id": "Neuroscape",
+      "source": "https://www.madstars.org/",
+      "sourceLabel": "MAD STARS 공식 사이트",
+      "sourceKind": "event"
     },
     {
       "year": "2026",
       "title": "제주 바이오 AX 해커톤",
       "prize": "우수상",
       "project": "연결",
-      "id": "BioAx"
+      "id": "BioAx",
+      "source": "https://www.picjeju.com/pages/single-view?category=mark&id=6309&sort=latest",
+      "sourceLabel": "제주 바이오 AX 해커톤 행사 안내",
+      "sourceKind": "event"
     },
     {
       "year": "2026",
       "title": "2026 BCM Academy AI X Media Startup Project",
       "prize": "창의상",
       "project": "Neuroscape",
-      "id": "Neuroscape"
+      "id": "Neuroscape",
+      "source": "https://ibcm.tv/copn/bbs/BbsView.do?is_mng=&_idxn=133&pageNo=1&bbs_id=000000016975&ntc_id=000000017432&ctgry_id=&sch_ntc_sel=ntc_all&sch_ntc_txt=&gridKind=kjs",
+      "sourceLabel": "BCM Academy 공개 게시글",
+      "sourceKind": "event"
     },
     {
       "year": "2026",
       "title": "\"Let's Go!\" COSS 스타트업 경진대회",
       "prize": "우수상",
       "project": "팀플!",
-      "id": "TeamPL"
+      "id": "TeamPL",
+      "source": "https://www.mt.co.kr/industry/2026/06/09/2026060917111116196",
+      "sourceLabel": "머니투데이 기사 · 수상팀명 숨뱉어"
     },
     {
       "year": "2026",
       "title": "한국게임학회 × 넥슨게임즈 전국 대학생 디지털 아트 공모전",
       "prize": "특선",
       "project": "백색의 결",
-      "id": null
+      "id": null,
+      "source": "https://kcgs.or.kr/homepage/boardMedia/210101",
+      "sourceLabel": "한국게임학회 수상자 명단 PDF"
     },
     {
       "year": "2026",
       "title": "NextGen Startup Challenge",
       "prize": "3rd Prize",
       "project": "CITY",
-      "id": "CITY"
+      "id": "CITY",
+      "source": "https://nextgenstartup.org/projects.html",
+      "sourceLabel": "NextGen Startup Challenge 프로젝트 목록",
+      "sourceKind": "event"
     },
     {
       "year": "2026",
       "title": "Think City Hackathon 2026",
-      "prize": "Community Impact · 2nd",
+      "prize": "Community Impact Award",
       "project": "Jeonger",
-      "id": "Jeonger"
+      "id": "Jeonger",
+      "source": "https://devpost.com/software/team-13-jeonger",
+      "sourceLabel": "Devpost 수상 프로젝트"
     },
     {
       "year": "2025",
       "title": "제주가치 공감 런케이션 해커톤",
       "prize": "장려상",
       "project": "가치 제주, 고치 제주",
-      "id": "learncation"
+      "id": "learncation",
+      "source": "https://jiles.or.kr/community/report.htm?act=view&category=426&page=1&seq=10935",
+      "sourceLabel": "제주평생교육장학진흥원 행사 보도자료",
+      "sourceKind": "event"
     }
   ],
   "experience": [

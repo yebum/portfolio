@@ -101,15 +101,16 @@
 
   function renderRecognition() {
     $('#awards').innerHTML = D.awards.map(a => {
-      const inner = `
+      return `<div class="award-row" role="row">
         <span class="mono dim">${esc(a.year)}</span>
         <span class="award-title">${esc(a.title)}</span>
         <span class="award-project">${esc(a.project)}</span>
         <span class="award-prize chip chip--award">${esc(a.prize)}</span>
-        ${a.id ? '<span class="chip chip--light">View</span>' : '<span class="award-empty"></span>'}`;
-      return a.id
-        ? `<a class="award-row" role="row" href="#/work/${a.id}">${inner}</a>`
-        : `<div class="award-row" role="row">${inner}</div>`;
+        <span class="award-actions">
+          ${a.id ? `<a class="chip chip--light" href="#/work/${esc(a.id)}" aria-label="${esc(a.project)} 프로젝트 보기">프로젝트 ↗</a>` : ''}
+          ${a.source ? `<a class="chip" href="${esc(a.source)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(a.title)} ${a.sourceKind === 'event' ? '대회 정보' : '수상 근거'}: ${esc(a.sourceLabel)}">${a.sourceKind === 'event' ? '대회 보기' : '수상 근거'} ↗</a>` : '<span class="award-unverified">관련 공개 자료 확인 중</span>'}
+        </span>
+      </div>`;
     }).join('');
 
     const SHOW = 8, exp = $('#experience'), more = $('#exp-more');
@@ -260,7 +261,7 @@
       ['Discipline', esc(disc[p.discipline].ko)],
       ...p.details.map(d => [esc(d.k), esc(d.v)]),
       ...(p.media.decks.length ? [['Attachment', `<a class="fact-link" href="#cs-pdf" data-jump="cs-pdf">PDF ${pad2(p.media.decks.length)} — 발표 자료 보기</a>`]] : []),
-      ...(p.awards.length ? [['Awards', `<div class="chips">${p.awards.map(a => `<span class="chip chip--award">${esc(a)}</span>`).join('')}</div>`]] : []),
+      ...(p.awards.length ? [['Awards', `<div class="chips">${p.awards.map(a => `<a class="chip chip--award" href="#/recognition" aria-label="${esc(a)} 수상 이력 보기">${esc(a)}</a>`).join('')}</div>`]] : []),
     ];
 
     const films = m.films.length ? `
@@ -322,7 +323,7 @@
             <div class="hero-copy">
               <h1 class="display" id="pd-title">${esc(p.fullTitle)}</h1>
               <p class="pd-ctx">${esc(p.context)}</p>
-              ${p.awards.length ? `<div class="chips">${p.awards.map(a => `<span class="chip chip--award">${esc(a)}</span>`).join('')}</div>` : ''}
+              ${p.awards.length ? `<div class="chips">${p.awards.map(a => `<a class="chip chip--award" href="#/recognition" aria-label="${esc(a)} 수상 이력 보기">${esc(a)}</a>`).join('')}</div>` : ''}
             </div>
           </div>
         </section>
