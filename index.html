@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=portfolio-20261014e">
+  <link rel="stylesheet" href="css/style.css?v=portfolio-20261014f">
 </head>
 <body>
   <a class="skip" href="#index">Skip to work</a>
@@ -41,44 +41,28 @@
   <!-- ─────────────────────────── HOME ─────────────────────────── -->
   <main id="home" class="view">
 
-    <section class="intro site-pad" id="top" aria-labelledby="intro-title">
-      <div class="intro-kicker mono"><span>Yebum Ko · 고예범</span><span>Portfolio / 2025—2026</span></div>
-      <div class="intro-main">
-        <div class="intro-copy">
-          <h1 id="intro-title">Ideas into<br><span>experiences.</span></h1>
-          <div class="intro-bottom">
-            <p>기술과 예술이 만나는 경험을 만듭니다.<br>공연과 전시, XR, 서비스 디자인까지.</p>
-            <a class="chip" href="#/index">전체 프로젝트 보기 ↓</a>
-          </div>
+    <section class="intro hero-intro" id="top" aria-labelledby="intro-title">
+      <canvas class="hero-field" id="hero-field" aria-hidden="true"></canvas>
+      <div class="hero-atmosphere" aria-hidden="true"></div>
+      <div class="hero-content site-pad">
+        <div class="intro-kicker mono"><span>ARTIST · SEOUL · 2026</span><span>PORTFOLIO / ART × TECHNOLOGY</span></div>
+        <div class="hero-center">
+          <p class="hero-eyebrow mono">INPUT <span>→</span> EXPRESSION</p>
+          <h1 class="hero-title" id="intro-title" aria-label="Yebum Ko"><span class="hero-letter" style="--base-rot:-13deg;--base-y:-8px">Y</span><span class="hero-letter" style="--base-rot:8deg;--base-y:8px">e</span><span class="hero-letter" style="--base-rot:-7deg;--base-y:-5px">b</span><span class="hero-letter" style="--base-rot:7deg;--base-y:5px">u</span><span class="hero-letter" style="--base-rot:-3deg;--base-y:0px">m</span></h1>
+          <div class="hero-hairline" aria-hidden="true"><span></span></div>
+          <p class="hero-subtitle mono">ART × TECHNOLOGY · INTERACTIVE EXPERIENCE</p>
+          <p class="hero-description">신호에 반응하는 이미지, 움직임으로 완성되는 경험.</p>
+          <a class="hero-cta" href="#/index">프로젝트 살펴보기 <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="intro-feature">
-          <div class="intro-feature-head mono"><span>Featured work</span><div><button type="button" class="intro-shuffle" aria-label="프로젝트 카드를 흩뿌리기">흩뿌리기 ↗</button><span id="intro-feature-count">01 / 03</span></div></div>
-          <div class="intro-scene">
-            <a class="intro-feature-link" id="intro-feature-link" href="#/work/MATMI" aria-label="MATMI 프로젝트 보기">
-              <img id="intro-feature-image" src="assets/img/MATMI.webp" alt="" fetchpriority="high" decoding="async">
-              <span class="intro-feature-meta"><span id="intro-feature-title">MATMI</span><span class="mono" id="intro-feature-kind">UX · Service</span></span>
-              <span class="intro-feature-arrow" aria-hidden="true">↗</span>
-            </a>
-            <div class="intro-pieces" aria-label="마우스로 움직이는 대표 프로젝트 카드">
-              <button type="button" class="intro-piece intro-piece--one" data-feature="MATMI" aria-label="MATMI 선택, 드래그할 수 있음"><span class="mono">01 / UX</span><strong>MATMI</strong><span aria-hidden="true">↗</span></button>
-              <button type="button" class="intro-piece intro-piece--two" data-feature="Neuroscape" aria-label="Neuroscape 선택, 드래그할 수 있음"><span class="mono">02 / MEDIA</span><strong>Neuroscape</strong><span aria-hidden="true">↗</span></button>
-              <button type="button" class="intro-piece intro-piece--three" data-feature="TimeOfExtinction" aria-label="소멸의시간 선택, 드래그할 수 있음"><span class="mono">03 / ART</span><strong>소멸의시간</strong><span aria-hidden="true">↗</span></button>
-            </div>
-          </div>
-          <div class="intro-feature-controls" role="group" aria-label="대표 프로젝트 선택">
-            <button type="button" class="intro-feature-tab is-active" data-feature="MATMI" aria-pressed="true">01 <span>MATMI</span></button>
-            <button type="button" class="intro-feature-tab" data-feature="Neuroscape" aria-pressed="false">02 <span>Neuroscape</span></button>
-            <button type="button" class="intro-feature-tab" data-feature="TimeOfExtinction" aria-pressed="false">03 <span>소멸의시간</span></button>
-          </div>
-        </div>
+        <div class="hero-footer mono"><span>MOVE YOUR CURSOR TO SHAPE THE SIGNAL</span><span id="hero-coordinates">X 050 · Y 050</span><a href="#/about">ABOUT THE ARTIST ↗</a></div>
       </div>
-      <dl class="stats">
+    </section>
+    <dl class="stats hero-stats site-pad">
         <div><dt class="mono">Projects</dt><dd id="stat-projects">23</dd></div>
         <div><dt class="mono">Awards</dt><dd id="stat-awards">9</dd></div>
         <div><dt class="mono">작업 분야</dt><dd>4</dd></div>
         <div><dt class="mono">Based in</dt><dd>Seoul</dd></div>
-      </dl>
-    </section>
+    </dl>
 
     <!-- INDEX -->
     <section class="index site-pad is-grid" id="index" aria-labelledby="index-h">
@@ -247,7 +231,8 @@
   <div class="toast mono" id="toast" role="status" aria-live="polite"></div>
 
   <script src="js/data.js?v=portfolio-20261014c"></script>
-  <script src="js/app.js?v=portfolio-20261014e"></script>
+  <script src="js/hero.js?v=portfolio-20261014f"></script>
+  <script src="js/app.js?v=portfolio-20261014f"></script>
   <script src="js/guestbook.js?v=media-20261012a"></script>
 </body>
 </html>
