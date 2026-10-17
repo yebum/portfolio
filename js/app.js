@@ -20,7 +20,13 @@
     'PiratesStorm-success': 1920, sds: 1920, SilgamSujevi: 2000,
     supporters: 1920, TeamPL: 1920, TimeOfExtinction: 2000,
     'TimeOfExtinction-TouchDesigner': 2000, toss: 1920, XrStudio: 1440,
-    YoungStars: 768
+    YoungStars: 768,
+    'XMF-Intro': 2000, 'XMF-SuperDuper-Sunburst': 2000,
+    'XMF-SuperDuper-Dreamland': 2000, 'XMF-StopIt-Mascot': 2000,
+    'XMF-StopIt-Corridor': 2000, 'XMF-HungryHeart-Liquid': 2000,
+    'XMF-HungryHeart-Inferno': 2000, 'XMF-LeftOrRight': 2000,
+    'XMF-Butterfly-Visit': 2000, 'XMF-Butterfly-Bloom': 2000,
+    'XMF-CottonCandy-Bubble': 2000, 'XMF-CottonCandy-Glitch': 2000
   };
   const responsive = (name, sizes) => imageWidths[name] > 900
     ? ` srcset="${src(name, true)} 900w, ${src(name)} ${imageWidths[name]}w" sizes="${sizes}"`
@@ -306,7 +312,7 @@
       <section class="pd-block" aria-label="Images">
         <div class="sec-label"><span class="mono">Images</span><span class="mono dim">${pad2(gallery.length)}</span></div>
         <div class="pd-gallery">${gallery.map(im => `
-          <figure data-reveal><div class="card"><img src="${src(im.src)}" alt="${esc(im.label || p.fullTitle)}" loading="lazy" decoding="async"></div>
+          <figure data-reveal><div class="card"><img src="${src(im.src)}"${responsive(im.src, '(max-width: 760px) 100vw, 50vw')} alt="${esc(im.label || p.fullTitle)}" loading="lazy" decoding="async"></div>
           ${im.label ? `<figcaption class="mono dim">${esc(im.label)}</figcaption>` : ''}</figure>`).join('')}
         </div>
       </section>` : '';

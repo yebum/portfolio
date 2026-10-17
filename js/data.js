@@ -2,6 +2,66 @@
 window.PORTFOLIO = {
   "projects": [
     {
+      "id": "XMF2026",
+      "title": "XMF 2026",
+      "fullTitle": "XMF 2026 — HI-FI UN!CORN",
+      "context": "XMF FESTIVAL · 공연 비주얼 프리비즈",
+      "year": "2026",
+      "discipline": "media",
+      "awards": [],
+      "cover": "XMF-Intro",
+      "lead": "XMF 2026의 HI-FI UN!CORN 무대를 위해 제작한 공연 비주얼 프리비즈다. Intro와 각 곡의 분위기에 맞춘 화면을 무대 전체와 클로즈업 시점에서 확인할 수 있도록 구성했다.",
+      "caseStudy": {
+        "problem": {
+          "summary": "곡마다 다른 분위기를 하나의 무대 비주얼 흐름으로 구성하기",
+          "body": [
+            "Intro, Super Duper, Stop It, Hungry Heart, Butterfly, Cotton Candy 등 곡마다 다른 색과 이미지가 필요했다. 동시에 넓은 무대 화면과 관객 시점에서도 각 장면의 중심이 읽히도록 확인해야 했다."
+          ]
+        },
+        "solution": {
+          "summary": "곡별 장면을 무대 시뮬레이션과 화면별 클로즈업으로 점검",
+          "body": [
+            "곡별로 색, 그래픽 요소와 화면 전환의 방향을 달리한 비주얼을 제작하고, 무대 전체와 개별 스크린을 함께 보여주는 프리비즈 이미지로 정리했다.",
+            "작업 기록에는 Intro의 푸른 조명, Super Duper의 밝은 그래픽, Hungry Heart의 강한 붉은 계열, Butterfly의 파스텔 톤, Cotton Candy의 분홍빛 장면 등이 담겨 있다."
+          ]
+        },
+        "result": {
+          "summary": "무대 적용 모습을 보여주는 곡별 프리비즈 완성",
+          "body": [
+            "곡별 무대 비주얼을 한눈에 비교할 수 있는 프리비즈 이미지와 HI-FI UN!CORN 영상 후보를 완성했다. 아래 이미지는 실제 공연 촬영본이 아닌 무대 시뮬레이션 자료다."
+          ]
+        }
+      },
+      "details": [
+        { "k": "프로젝트 유형", "v": "페스티벌 공연 비주얼 · 무대 프리비즈" },
+        { "k": "역할", "v": "한국 아티스트 비주얼 총괄 · 사운드 인터랙티브 비주얼 제작" },
+        { "k": "아티스트", "v": "HI-FI UN!CORN" }
+      ],
+      "media": {
+        "films": [
+          { "kind": "youtube", "id": "aWXtcUzruUY", "label": "2026 · HI-FI UN!CORN · 프리비즈 01" },
+          { "kind": "youtube", "id": "y3D2Cf-OJag", "label": "2026 · HI-FI UN!CORN · 프리비즈 02" },
+          { "kind": "youtube", "id": "-ukPUqmVUCE", "label": "2026 · HI-FI UN!CORN · 프리비즈 03" }
+        ],
+        "decks": [],
+        "images": [
+          { "src": "XMF-Intro", "label": "HI-FI UN!CORN · Intro · Sky Bloom — 프리비즈" },
+          { "src": "XMF-SuperDuper-Sunburst", "label": "Super Duper · Sunburst — 프리비즈" },
+          { "src": "XMF-SuperDuper-Dreamland", "label": "Super Duper · Dreamland — 프리비즈" },
+          { "src": "XMF-StopIt-Mascot", "label": "Stop It · Mascot — 프리비즈" },
+          { "src": "XMF-StopIt-Corridor", "label": "Stop It · Corridor — 프리비즈" },
+          { "src": "XMF-HungryHeart-Liquid", "label": "Hungry Heart · Liquid Heart — 프리비즈" },
+          { "src": "XMF-HungryHeart-Inferno", "label": "Hungry Heart · Inferno — 프리비즈" },
+          { "src": "XMF-LeftOrRight", "label": "Left or Right · Camera FX — 프리비즈" },
+          { "src": "XMF-Butterfly-Visit", "label": "Butterfly · Visit — 프리비즈" },
+          { "src": "XMF-Butterfly-Bloom", "label": "Butterfly · Cold Bloom — 프리비즈" },
+          { "src": "XMF-CottonCandy-Bubble", "label": "Cotton Candy · Bubble — 프리비즈" },
+          { "src": "XMF-CottonCandy-Glitch", "label": "Cotton Candy · Candy Glitch — 프리비즈" }
+        ],
+        "links": []
+      }
+    },
+    {
       "id": "MATMI",
       "title": "MATMI",
       "fullTitle": "MATMI",
