@@ -8,10 +8,11 @@
   const timeline = reel.querySelector('.showreel-timeline');
   const marks = [...timeline.querySelectorAll('button[data-slide]')];
   const count = reel.querySelector('#showreel-count');
+  const nowTitle = reel.querySelector('#showreel-now-title');
   const toggle = reel.querySelector('.showreel-toggle');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const duration = 6000;
-  let index = 0;
+  let index = 4;
   let timer = 0;
   let visible = true;
   let paused = reduced;
@@ -44,13 +45,14 @@
     void timeline.offsetWidth;
     marks[index].classList.add('is-active');
     count.textContent = `${String(index + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+    nowTitle.textContent = slides[index].querySelector('.showreel-caption strong').textContent;
   };
 
   const setPaused = value => {
     paused = value;
     toggle.setAttribute('aria-pressed', String(paused));
     toggle.setAttribute('aria-label', paused ? '자동 재생 시작' : '자동 재생 일시정지');
-    toggle.textContent = paused ? '▶' : 'Ⅱ';
+    toggle.textContent = paused ? 'Play reel' : 'Pause reel';
     schedule();
   };
 
@@ -69,7 +71,6 @@
     });
   });
   toggle.addEventListener('click', () => setPaused(!paused));
-  if (reduced) toggle.hidden = true;
 
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(([entry]) => {
@@ -78,6 +79,6 @@
     }, { threshold: 0.2 }).observe(reel);
   }
   document.addEventListener('visibilitychange', schedule);
-  show(0);
+  show(4);
   setPaused(reduced);
 })();
