@@ -2452,6 +2452,11 @@ window.PORTFOLIO = {
   "experience": [
     [
       "2026",
+      "실감미디어 경진대회 결선 진출",
+      "실감미디어 혁신융합대학사업단"
+    ],
+    [
+      "2026",
       "XMF 페스티벌 한국 아티스트 총괄 사운드 인터랙티브 비주얼 제작",
       "XMF FESTIVAL"
     ],
@@ -2459,11 +2464,6 @@ window.PORTFOLIO = {
       "2026",
       "잠비나이 — 소멸의시간 오디오비주얼 제작",
       "KALEIDOSCOPE : 만화경"
-    ],
-    [
-      "2026",
-      "실감미디어 경진대회 본선 진출",
-      "실감미디어 혁신융합대학사업단"
     ],
     [
       "2026",
@@ -2585,7 +2585,7 @@ window.PORTFOLIO = {
       "n": "03",
       "title": "UX & Service",
       "body": "문제 정의부터 서비스 구조, 화면 설계, 발표까지. 해커톤과 창업 경진대회에서 아이디어가 실제로 작동하는 방식을 설계합니다.",
-      "tools": "Figma · HTML/CSS/JS · Python",
+      "tools": "Figma · HTML/CSS/JS",
       "cover": "BioAx",
       "filter": "ux"
     },
@@ -2593,7 +2593,7 @@ window.PORTFOLIO = {
       "n": "04",
       "title": "Motion & Campaign",
       "body": "3D 모션그래픽 광고, 브랜드 캠페인, 카드뉴스와 숏폼 영상. 메시지를 움직임으로 번역합니다.",
-      "tools": "Blender · After Effects · Premiere Pro",
+      "tools": "Blender · Adobe CC",
       "cover": "hana",
       "filter": "motion",
       "pos": "72% 50%"
