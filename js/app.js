@@ -11,7 +11,26 @@
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const pad2 = n => String(n).padStart(2, '0');
-  const src = (name, sm) => `assets/img/${name}${sm ? '-sm' : ''}.webp`;
+  const src = (name, sm) => `assets/img/${encodeURIComponent(name)}${sm ? '-sm' : ''}.webp`;
+  const imageWidths = {
+    BeyondTheCenter: 2000, BioAx: 1920, CITY01: 1280, climate: 1920, dmd: 1280,
+    dndn: 2000, GetTheOceanSummerReady: 2000, hana: 1917, Invader: 1536,
+    'Invader-success': 1536, JalTayo: 1920, Jeonger: 1920, learncation: 1920,
+    MATMI: 1800, naver: 1920, Neuroscape: 2000, PiratesStorm: 1672,
+    'PiratesStorm-success': 1920, sds: 1920, SilgamSujevi: 2000,
+    supporters: 1920, TeamPL: 1920, TimeOfExtinction: 2000,
+    'TimeOfExtinction-TouchDesigner': 2000, toss: 1920, XrStudio: 1440,
+    YoungStars: 768
+  };
+  const responsive = (name, sizes) => imageWidths[name] > 900
+    ? ` srcset="${src(name, true)} 900w, ${src(name)} ${imageWidths[name]}w" sizes="${sizes}"`
+    : '';
+  const externalUrl = value => {
+    try {
+      const url = new URL(value);
+      return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : null;
+    } catch (_) { return null; }
+  };
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   
   // run after layout; rAF alone never fires in background tabs, so race it with a timeout
@@ -48,7 +67,7 @@
     list.innerHTML = ordered.map((p, i) => `
       <li data-disc="${p.discipline}" data-search="${esc([p.fullTitle, p.context, p.year, disc[p.discipline].label, disc[p.discipline].ko].join(' ').toLowerCase())}">
         <a class="row-link" href="#/work/${p.id}" data-thumb="${src(p.cover, true)}">
-          <span class="row-thumb card"><img src="${src(p.cover)}" alt="" loading="lazy" decoding="async"></span>
+          <span class="row-thumb card"><img src="${src(p.cover)}"${responsive(p.cover, '(max-width: 560px) 100vw, (max-width: 820px) 50vw, 33vw')} alt="" loading="lazy" decoding="async"></span>
           <span class="row-no mono">${pad2(i + 1)}</span>
           <span class="row-title"><span class="t">${esc(p.fullTitle)}</span>${p.awards.length ? `<span class="row-award" title="${esc(p.awards.join(' · '))}" aria-label="Award"></span>` : ''}</span>
           <span class="row-disc">${esc(disc[p.discipline].label)}</span>
@@ -115,7 +134,7 @@
         <span class="award-prize chip chip--award">${esc(a.prize)}</span>
         <span class="award-actions">
           ${a.id ? `<a class="chip chip--light" href="#/work/${esc(a.id)}" aria-label="${esc(a.project)} 프로젝트 보기">프로젝트 ↗</a>` : ''}
-          ${a.source ? `<a class="chip" href="${esc(a.source)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(a.title)} 관련 보도 자료: ${esc(a.sourceLabel)}">보도 자료 ↗</a>` : '<span class="award-unverified">관련 공개 자료 확인 중</span>'}
+          ${externalUrl(a.source) ? `<a class="chip" href="${esc(externalUrl(a.source))}" target="_blank" rel="noopener noreferrer" aria-label="${esc(a.title)} 관련 보도 자료: ${esc(a.sourceLabel)}">보도 자료 ↗</a>` : '<span class="award-unverified">관련 공개 자료 확인 중</span>'}
         </span>
       </div>`;
     }).join('');
@@ -295,8 +314,10 @@
     const links = m.links.length ? `
       <section class="pd-block" aria-label="Links">
         <div class="sec-label"><span class="mono">Links</span><span class="mono dim">${pad2(m.links.length)}</span></div>
-        <div class="links">${m.links.map(l => `
-          <a href="${esc(l.href)}" target="_blank" rel="noopener noreferrer"><span>${esc(l.label)}</span><span class="mono">${esc(new URL(l.href).hostname.replace('www.', ''))} ↗</span></a>`).join('')}
+        <div class="links">${m.links.map(l => {
+          const href = externalUrl(l.href);
+          return href ? `<a href="${esc(href)}" target="_blank" rel="noopener noreferrer"><span>${esc(l.label)}</span><span class="mono">${esc(new URL(href).hostname.replace('www.', ''))} ↗</span></a>` : '';
+        }).join('')}
         </div>
       </section>` : '';
 
@@ -388,11 +409,15 @@
     const btn = e.target.closest('[data-embed]');
     if (!btn) return;
     const { embed, id } = btn.dataset;
-    const url = embed === 'youtube'
+    const url = embed === 'youtube' && /^[\w-]{11}$/.test(id)
       ? `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`
-      : embed === 'pdf' ? id : `https://drive.google.com/file/d/${id}/preview`;
+      : embed === 'drive' && /^[\w-]{10,}$/.test(id)
+        ? `https://drive.google.com/file/d/${id}/preview`
+        : embed === 'pdf' && /^assets\/pdf\/[\w.-]+\.pdf$/.test(id) ? id : null;
+    if (!url) { toast('미디어 주소를 확인해 주세요.'); return; }
     const f = document.createElement('iframe');
     f.src = url;
+    f.referrerPolicy = 'strict-origin-when-cross-origin';
     f.title = btn.getAttribute('aria-label') || 'Embedded media';
     f.allow = 'autoplay; encrypted-media; fullscreen; picture-in-picture';
     f.allowFullscreen = true;
@@ -493,8 +518,15 @@
   /* ── modal (reel) ─────────────────────────────────── */
   const modal = $('#modal'), frame = $('#modal-frame');
   function openVideo(title, ytId) {
+    if (!/^[\w-]{11}$/.test(ytId)) return;
     $('#modal-title').textContent = title;
-    frame.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${ytId}?autoplay=1&rel=0&modestbranding=1" title="${esc(title)}" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+    const video = document.createElement('iframe');
+    video.src = `https://www.youtube-nocookie.com/embed/${ytId}?autoplay=1&rel=0&modestbranding=1`;
+    video.title = title;
+    video.allow = 'autoplay; encrypted-media; fullscreen; picture-in-picture';
+    video.allowFullscreen = true;
+    video.referrerPolicy = 'strict-origin-when-cross-origin';
+    frame.replaceChildren(video);
     modal.showModal();
   }
   modal.addEventListener('close', () => { frame.innerHTML = ''; });

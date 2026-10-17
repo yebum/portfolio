@@ -35,18 +35,27 @@
     more.hidden = notes.length <= shown;
   }
   more.addEventListener('click', () => { shown += 9; render(); });
-  Promise.all([import(SDK+'firebase-app.js'), import(SDK+'firebase-auth.js'), import(SDK+'firebase-firestore.js')])
-    .then(async ([appModule, auth, fs]) => {
-      api = fs;
-      const app = appModule.initializeApp(config);
-      ref = fs.collection(fs.getFirestore(app), 'guestbook');
-      fs.onSnapshot(fs.query(ref, fs.orderBy('createdAt','desc')), snapshot => {
-        notes = snapshot.docs.map(doc => doc.data()).filter(d => typeof d.message === 'string');
-        render();
-      }, () => { status('방명록을 불러오지 못했어요. 잠시 후 다시 열어주세요.', 'error'); });
-      try { user = (await auth.signInAnonymously(auth.getAuth(app))).user; submit.disabled = false; status('남긴 글은 공개됩니다. 연락처 등 개인정보는 적지 말아주세요.'); }
-      catch (_) { status('지금은 글을 남길 수 없어요. 잠시 후 다시 열어주세요.', 'error'); }
-    }).catch(() => { status('연결하지 못했어요. 네트워크를 확인해 주세요.', 'error'); });
+  function loadGuestbook() {
+    Promise.all([import(SDK+'firebase-app.js'), import(SDK+'firebase-auth.js'), import(SDK+'firebase-firestore.js')])
+      .then(async ([appModule, auth, fs]) => {
+        api = fs;
+        const app = appModule.initializeApp(config);
+        ref = fs.collection(fs.getFirestore(app), 'guestbook');
+        fs.onSnapshot(fs.query(ref, fs.orderBy('createdAt','desc')), snapshot => {
+          notes = snapshot.docs.map(doc => doc.data()).filter(d => typeof d.message === 'string');
+          render();
+        }, () => { status('방명록을 불러오지 못했어요. 잠시 후 다시 열어주세요.', 'error'); });
+        try { user = (await auth.signInAnonymously(auth.getAuth(app))).user; submit.disabled = false; status('남긴 글은 공개됩니다. 연락처 등 개인정보는 적지 말아주세요.'); }
+        catch (_) { status('지금은 글을 남길 수 없어요. 잠시 후 다시 열어주세요.', 'error'); }
+      }).catch(() => { status('연결하지 못했어요. 네트워크를 확인해 주세요.', 'error'); });
+  }
+  // Keep Firebase off the critical path until the guestbook is near the viewport.
+  const observer = new IntersectionObserver((entries, current) => {
+    if (!entries[0].isIntersecting) return;
+    current.disconnect();
+    loadGuestbook();
+  }, { rootMargin: '300px' });
+  observer.observe(document.getElementById('guestbook'));
   form.addEventListener('submit', async e => {
     e.preventDefault();
     if (form.elements.website.value || !user || !api) return;

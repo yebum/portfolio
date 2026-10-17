@@ -29,6 +29,8 @@ Open http://localhost:5178. Use a local server instead of opening the file direc
 - **Problem / Solution / Result and metrics**: edit `caseStudy` and `metrics` in `js/data.js`. The `_work/` data builder is a legacy helper and does not include every later addition, including MATMI and Recognition updates. Running it over the current `js/data.js` would discard those additions.
 - **Attached PDFs**: Drive file IDs in `media.decks` appear automatically in the panel next to the Overview. The Drive file must be shared as "Anyone with the link" for preview and download to work.
 - **New images**: put the originals in `_source/img/` and run `python _work/opt.py` (it creates WebP files and fixes EXIF rotation).
+- **New cover images**: after generating WebP files, add the full image width to `imageWidths` in `js/app.js` so cards can select the right image size.
+- **New external services**: update the Content Security Policy in `index.html` only for the domains the service needs.
 
 ## Deploy
 
