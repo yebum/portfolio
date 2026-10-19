@@ -62,6 +62,563 @@ window.PORTFOLIO = {
       }
     },
     {
+      "id": "XMF2026-hrtzwav",
+      "title": "XMF 2026 · HRTZWAV",
+      "fullTitle": "XMF 2026 — HRTZWAV",
+      "context": "XMF FESTIVAL · 공연 비주얼 프리비즈",
+      "year": "2026",
+      "discipline": "media",
+      "awards": [],
+      "cover": "XMF-hrtzwav-01",
+      "lead": "XMF 2026 HRTZWAV 무대를 위해 제작한 곡별 비주얼 이미지와 오디오 리액티브 영상 작업을 정리했다.",
+      "caseStudy": {
+        "problem": {
+          "summary": "곡별 분위기에 맞는 공연 비주얼 구성",
+          "body": [
+            "HRTZWAV의 곡마다 다른 분위기를 무대 화면에 담기 위해 곡별 비주얼을 제작했다."
+          ]
+        },
+        "solution": {
+          "summary": "곡별 이미지와 오디오 리액티브 영상 제작",
+          "body": [
+            "곡별 장면을 이미지로 정리하고, 사운드에 반응하는 영상 작업을 함께 구성했다."
+          ]
+        },
+        "result": {
+          "summary": "무대 비주얼 프리비즈와 영상 작업물 정리",
+          "body": [
+            "아래에서 오디오 리액티브 영상과 곡별 비주얼 이미지를 볼 수 있다. 이미지는 실제 공연 촬영본이 아닌 무대 비주얼 자료다."
+          ]
+        }
+      },
+      "details": [
+        {
+          "k": "프로젝트 유형",
+          "v": "페스티벌 공연 비주얼 · 무대 프리비즈"
+        },
+        {
+          "k": "역할",
+          "v": "한국 아티스트 비주얼 총괄 · 사운드 인터랙티브 비주얼 제작"
+        },
+        {
+          "k": "아티스트",
+          "v": "HRTZWAV"
+        }
+      ],
+      "media": {
+        "films": [
+          {
+            "kind": "local",
+            "src": "assets/video/XMF-hrtzwav-reactive-01.mp4",
+            "label": "HRTZWAV · 오디오 리액티브 영상 01"
+          },
+          {
+            "kind": "local",
+            "src": "assets/video/XMF-hrtzwav-reactive-02.mp4",
+            "label": "HRTZWAV · 오디오 리액티브 영상 02"
+          },
+          {
+            "kind": "local",
+            "src": "assets/video/XMF-hrtzwav-reactive-03.mp4",
+            "label": "HRTZWAV · 오디오 리액티브 영상 03"
+          }
+        ],
+        "decks": [],
+        "images": [
+          {
+            "src": "XMF-hrtzwav-01",
+            "label": "HRTZWAV · dream · 이미지 A"
+          },
+          {
+            "src": "XMF-hrtzwav-02",
+            "label": "HRTZWAV · dream · 이미지 B"
+          },
+          {
+            "src": "XMF-hrtzwav-03",
+            "label": "HRTZWAV · dream · 이미지 C"
+          },
+          {
+            "src": "XMF-hrtzwav-04",
+            "label": "HRTZWAV · nineteen · 이미지 A"
+          },
+          {
+            "src": "XMF-hrtzwav-05",
+            "label": "HRTZWAV · nineteen · 이미지 B"
+          },
+          {
+            "src": "XMF-hrtzwav-06",
+            "label": "HRTZWAV · nineteen · 이미지 C"
+          },
+          {
+            "src": "XMF-hrtzwav-07",
+            "label": "HRTZWAV · nineteen · 이미지 D"
+          },
+          {
+            "src": "XMF-hrtzwav-08",
+            "label": "HRTZWAV · nineteen · 이미지 E"
+          },
+          {
+            "src": "XMF-hrtzwav-09",
+            "label": "HRTZWAV · mind · 이미지 A"
+          },
+          {
+            "src": "XMF-hrtzwav-10",
+            "label": "HRTZWAV · mind · 이미지 B"
+          },
+          {
+            "src": "XMF-hrtzwav-11",
+            "label": "HRTZWAV · mind · 이미지 C"
+          },
+          {
+            "src": "XMF-hrtzwav-12",
+            "label": "HRTZWAV · mind · 이미지 D"
+          },
+          {
+            "src": "XMF-hrtzwav-13",
+            "label": "HRTZWAV · mind · 이미지 E"
+          },
+          {
+            "src": "XMF-hrtzwav-14",
+            "label": "HRTZWAV · mind · 이미지 F"
+          },
+          {
+            "src": "XMF-hrtzwav-15",
+            "label": "HRTZWAV · play my guitar · 이미지 A"
+          },
+          {
+            "src": "XMF-hrtzwav-16",
+            "label": "HRTZWAV · play my guitar · 이미지 B"
+          },
+          {
+            "src": "XMF-hrtzwav-17",
+            "label": "HRTZWAV · play my guitar · 이미지 C"
+          },
+          {
+            "src": "XMF-hrtzwav-18",
+            "label": "HRTZWAV · play my guitar · 이미지 D"
+          },
+          {
+            "src": "XMF-hrtzwav-19",
+            "label": "HRTZWAV · 어리버리 · 이미지 C"
+          },
+          {
+            "src": "XMF-hrtzwav-20",
+            "label": "HRTZWAV · i am so fine · 이미지 A"
+          },
+          {
+            "src": "XMF-hrtzwav-21",
+            "label": "HRTZWAV · i am so fine · 이미지 B"
+          },
+          {
+            "src": "XMF-hrtzwav-22",
+            "label": "HRTZWAV · i am so fine · 이미지 C"
+          },
+          {
+            "src": "XMF-hrtzwav-23",
+            "label": "HRTZWAV · i am so fine · 이미지 D"
+          },
+          {
+            "src": "XMF-hrtzwav-24",
+            "label": "HRTZWAV · alive · 이미지 A"
+          },
+          {
+            "src": "XMF-hrtzwav-25",
+            "label": "HRTZWAV · alive · 이미지 B"
+          },
+          {
+            "src": "XMF-hrtzwav-26",
+            "label": "HRTZWAV · alive · 이미지 C"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "id": "XMF2026-LUCY",
+      "title": "XMF 2026 · LUCY",
+      "fullTitle": "XMF 2026 — LUCY",
+      "context": "XMF FESTIVAL · 공연 비주얼 프리비즈",
+      "year": "2026",
+      "discipline": "media",
+      "awards": [],
+      "cover": "XMF-LUCY-01",
+      "lead": "XMF 2026 LUCY 무대를 위해 제작한 곡별 비주얼 이미지와 오디오 리액티브 영상 작업을 정리했다.",
+      "caseStudy": {
+        "problem": {
+          "summary": "곡별 분위기에 맞는 공연 비주얼 구성",
+          "body": [
+            "LUCY의 곡마다 다른 분위기를 무대 화면에 담기 위해 곡별 비주얼을 제작했다."
+          ]
+        },
+        "solution": {
+          "summary": "곡별 이미지와 오디오 리액티브 영상 제작",
+          "body": [
+            "곡별 장면을 이미지로 정리하고, 사운드에 반응하는 영상 작업을 함께 구성했다."
+          ]
+        },
+        "result": {
+          "summary": "무대 비주얼 프리비즈와 영상 작업물 정리",
+          "body": [
+            "아래에서 오디오 리액티브 영상과 곡별 비주얼 이미지를 볼 수 있다. 이미지는 실제 공연 촬영본이 아닌 무대 비주얼 자료다."
+          ]
+        }
+      },
+      "details": [
+        {
+          "k": "프로젝트 유형",
+          "v": "페스티벌 공연 비주얼 · 무대 프리비즈"
+        },
+        {
+          "k": "역할",
+          "v": "한국 아티스트 비주얼 총괄 · 사운드 인터랙티브 비주얼 제작"
+        },
+        {
+          "k": "아티스트",
+          "v": "LUCY"
+        }
+      ],
+      "media": {
+        "films": [
+          {
+            "kind": "local",
+            "src": "assets/video/XMF-LUCY-reactive-01.mp4",
+            "label": "LUCY · 오디오 리액티브 영상 01"
+          },
+          {
+            "kind": "local",
+            "src": "assets/video/XMF-LUCY-reactive-02.mp4",
+            "label": "LUCY · 오디오 리액티브 영상 02"
+          },
+          {
+            "kind": "local",
+            "src": "assets/video/XMF-LUCY-reactive-03.mp4",
+            "label": "LUCY · 오디오 리액티브 영상 03"
+          },
+          {
+            "kind": "local",
+            "src": "assets/video/XMF-LUCY-reactive-04.mp4",
+            "label": "LUCY · 오디오 리액티브 영상 04"
+          }
+        ],
+        "decks": [],
+        "images": [
+          {
+            "src": "XMF-LUCY-01",
+            "label": "LUCY · 개화 · 이미지 A"
+          },
+          {
+            "src": "XMF-LUCY-02",
+            "label": "LUCY · 개화 · 이미지 B"
+          },
+          {
+            "src": "XMF-LUCY-03",
+            "label": "LUCY · 개화 · 이미지 C"
+          },
+          {
+            "src": "XMF-LUCY-04",
+            "label": "LUCY · 개화 · 이미지 D"
+          },
+          {
+            "src": "XMF-LUCY-05",
+            "label": "LUCY · 개화 · 이미지 E"
+          },
+          {
+            "src": "XMF-LUCY-06",
+            "label": "LUCY · 개화 · 이미지 F"
+          },
+          {
+            "src": "XMF-LUCY-07",
+            "label": "LUCY · 개화 · 이미지 G"
+          },
+          {
+            "src": "XMF-LUCY-08",
+            "label": "LUCY · 개화 · 이미지 H"
+          },
+          {
+            "src": "XMF-LUCY-09",
+            "label": "LUCY · 아지랑이 · 이미지 A"
+          },
+          {
+            "src": "XMF-LUCY-10",
+            "label": "LUCY · 아지랑이 · 이미지 B"
+          },
+          {
+            "src": "XMF-LUCY-11",
+            "label": "LUCY · 아지랑이 · 이미지 C"
+          },
+          {
+            "src": "XMF-LUCY-12",
+            "label": "LUCY · 아지랑이 · 이미지 D"
+          },
+          {
+            "src": "XMF-LUCY-13",
+            "label": "LUCY · 아지랑이 · 이미지 E"
+          },
+          {
+            "src": "XMF-LUCY-14",
+            "label": "LUCY · 아지랑이 · 이미지 F"
+          },
+          {
+            "src": "XMF-LUCY-15",
+            "label": "LUCY · 아지랑이 · 이미지 G"
+          },
+          {
+            "src": "XMF-LUCY-16",
+            "label": "LUCY · 아지랑이 · 이미지 H"
+          },
+          {
+            "src": "XMF-LUCY-17",
+            "label": "LUCY · 아니 근데 진짜 · 이미지 A"
+          },
+          {
+            "src": "XMF-LUCY-18",
+            "label": "LUCY · 아니 근데 진짜 · 이미지 B"
+          },
+          {
+            "src": "XMF-LUCY-19",
+            "label": "LUCY · 아니 근데 진짜 · 이미지 D"
+          },
+          {
+            "src": "XMF-LUCY-20",
+            "label": "LUCY · 아니 근데 진짜 · 이미지 E"
+          },
+          {
+            "src": "XMF-LUCY-21",
+            "label": "LUCY · 아니 근데 진짜 · 이미지 F"
+          },
+          {
+            "src": "XMF-LUCY-22",
+            "label": "LUCY · 맞네 · 이미지 A"
+          },
+          {
+            "src": "XMF-LUCY-23",
+            "label": "LUCY · 맞네 · 이미지 B"
+          },
+          {
+            "src": "XMF-LUCY-24",
+            "label": "LUCY · 맞네 · 이미지 C"
+          },
+          {
+            "src": "XMF-LUCY-25",
+            "label": "LUCY · 맞네 · 이미지 D"
+          },
+          {
+            "src": "XMF-LUCY-26",
+            "label": "LUCY · 맞네 · 이미지 E"
+          },
+          {
+            "src": "XMF-LUCY-27",
+            "label": "LUCY · 맞네 · 이미지 F"
+          },
+          {
+            "src": "XMF-LUCY-28",
+            "label": "LUCY · 맞네 · 이미지 G"
+          },
+          {
+            "src": "XMF-LUCY-29",
+            "label": "LUCY · 맞네 · 이미지 H"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "id": "XMF2026-THEFIX",
+      "title": "XMF 2026 · THE FIX",
+      "fullTitle": "XMF 2026 — THE FIX",
+      "context": "XMF FESTIVAL · 공연 비주얼 프리비즈",
+      "year": "2026",
+      "discipline": "media",
+      "awards": [],
+      "cover": "XMF-THEFIX-01",
+      "lead": "XMF 2026 THE FIX 무대를 위해 제작한 곡별 비주얼 이미지와 오디오 리액티브 영상 작업을 정리했다.",
+      "caseStudy": {
+        "problem": {
+          "summary": "곡별 분위기에 맞는 공연 비주얼 구성",
+          "body": [
+            "THE FIX의 곡마다 다른 분위기를 무대 화면에 담기 위해 곡별 비주얼을 제작했다."
+          ]
+        },
+        "solution": {
+          "summary": "곡별 이미지와 오디오 리액티브 영상 제작",
+          "body": [
+            "곡별 장면을 이미지로 정리하고, 사운드에 반응하는 영상 작업을 함께 구성했다."
+          ]
+        },
+        "result": {
+          "summary": "무대 비주얼 프리비즈와 영상 작업물 정리",
+          "body": [
+            "아래에서 오디오 리액티브 영상과 곡별 비주얼 이미지를 볼 수 있다. 이미지는 실제 공연 촬영본이 아닌 무대 비주얼 자료다."
+          ]
+        }
+      },
+      "details": [
+        {
+          "k": "프로젝트 유형",
+          "v": "페스티벌 공연 비주얼 · 무대 프리비즈"
+        },
+        {
+          "k": "역할",
+          "v": "한국 아티스트 비주얼 총괄 · 사운드 인터랙티브 비주얼 제작"
+        },
+        {
+          "k": "아티스트",
+          "v": "THE FIX"
+        }
+      ],
+      "media": {
+        "films": [
+          {
+            "kind": "local",
+            "src": "assets/video/XMF-THEFIX-reactive-01.mp4",
+            "label": "THE FIX · 오디오 리액티브 영상 01"
+          },
+          {
+            "kind": "local",
+            "src": "assets/video/XMF-THEFIX-reactive-02.mp4",
+            "label": "THE FIX · 오디오 리액티브 영상 02"
+          },
+          {
+            "kind": "local",
+            "src": "assets/video/XMF-THEFIX-reactive-03.mp4",
+            "label": "THE FIX · 오디오 리액티브 영상 03"
+          }
+        ],
+        "decks": [],
+        "images": [
+          {
+            "src": "XMF-THEFIX-01",
+            "label": "THE FIX · Intro · 이미지"
+          },
+          {
+            "src": "XMF-THEFIX-02",
+            "label": "THE FIX · Moonrise · 이미지 A"
+          },
+          {
+            "src": "XMF-THEFIX-03",
+            "label": "THE FIX · Moonrise · 이미지 B"
+          },
+          {
+            "src": "XMF-THEFIX-04",
+            "label": "THE FIX · Moonrise · 이미지 C"
+          },
+          {
+            "src": "XMF-THEFIX-05",
+            "label": "THE FIX · Oddventure · 이미지 A"
+          },
+          {
+            "src": "XMF-THEFIX-06",
+            "label": "THE FIX · Oddventure · 이미지 B"
+          },
+          {
+            "src": "XMF-THEFIX-07",
+            "label": "THE FIX · Oddventure · 이미지 C"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "id": "XMF2026-YOUNHA",
+      "title": "XMF 2026 · 윤하",
+      "fullTitle": "XMF 2026 — 윤하",
+      "context": "XMF FESTIVAL · 공연 비주얼 프리비즈",
+      "year": "2026",
+      "discipline": "media",
+      "awards": [],
+      "cover": "XMF-YOUNHA-01",
+      "lead": "XMF 2026 윤하 무대를 위해 제작한 곡별 비주얼 이미지와 오디오 리액티브 영상 작업을 정리했다.",
+      "caseStudy": {
+        "problem": {
+          "summary": "곡별 분위기에 맞는 공연 비주얼 구성",
+          "body": [
+            "윤하의 곡마다 다른 분위기를 무대 화면에 담기 위해 곡별 비주얼을 제작했다."
+          ]
+        },
+        "solution": {
+          "summary": "곡별 이미지와 오디오 리액티브 영상 제작",
+          "body": [
+            "곡별 장면을 이미지로 정리하고, 사운드에 반응하는 영상 작업을 함께 구성했다."
+          ]
+        },
+        "result": {
+          "summary": "무대 비주얼 프리비즈와 영상 작업물 정리",
+          "body": [
+            "아래에서 오디오 리액티브 영상과 곡별 비주얼 이미지를 볼 수 있다. 이미지는 실제 공연 촬영본이 아닌 무대 비주얼 자료다."
+          ]
+        }
+      },
+      "details": [
+        {
+          "k": "프로젝트 유형",
+          "v": "페스티벌 공연 비주얼 · 무대 프리비즈"
+        },
+        {
+          "k": "역할",
+          "v": "한국 아티스트 비주얼 총괄 · 사운드 인터랙티브 비주얼 제작"
+        },
+        {
+          "k": "아티스트",
+          "v": "윤하"
+        }
+      ],
+      "media": {
+        "films": [
+          {
+            "kind": "local",
+            "src": "assets/video/XMF-YOUNHA-reactive-01.mp4",
+            "label": "윤하 · 오디오 리액티브 영상 01"
+          },
+          {
+            "kind": "local",
+            "src": "assets/video/XMF-YOUNHA-reactive-02.mp4",
+            "label": "윤하 · 오디오 리액티브 영상 02"
+          },
+          {
+            "kind": "local",
+            "src": "assets/video/XMF-YOUNHA-reactive-03.mp4",
+            "label": "윤하 · 오디오 리액티브 영상 03"
+          }
+        ],
+        "decks": [],
+        "images": [
+          {
+            "src": "XMF-YOUNHA-01",
+            "label": "윤하 · Rock like star · 이미지 C"
+          },
+          {
+            "src": "XMF-YOUNHA-02",
+            "label": "윤하 · 비밀번호486 · 이미지 A"
+          },
+          {
+            "src": "XMF-YOUNHA-03",
+            "label": "윤하 · 비밀번호486 · 이미지 B"
+          },
+          {
+            "src": "XMF-YOUNHA-04",
+            "label": "윤하 · 비밀번호486 · 이미지 C"
+          },
+          {
+            "src": "XMF-YOUNHA-05",
+            "label": "윤하 · 비밀번호486 · 이미지 D"
+          },
+          {
+            "src": "XMF-YOUNHA-06",
+            "label": "윤하 · 비밀번호486 · 이미지 E"
+          },
+          {
+            "src": "XMF-YOUNHA-07",
+            "label": "윤하 · 비밀번호486 · 이미지 F"
+          },
+          {
+            "src": "XMF-YOUNHA-08",
+            "label": "윤하 · 비밀번호486 · 이미지 G"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
       "id": "MATMI",
       "title": "MATMI",
       "fullTitle": "MATMI",

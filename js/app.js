@@ -21,6 +21,76 @@
     supporters: 1920, TeamPL: 1920, TimeOfExtinction: 2000,
     'TimeOfExtinction-TouchDesigner': 2000, toss: 1920, XrStudio: 1440,
     YoungStars: 768,
+    'XMF-hrtzwav-01': 1600,
+    'XMF-hrtzwav-02': 1600,
+    'XMF-hrtzwav-03': 1600,
+    'XMF-hrtzwav-04': 1600,
+    'XMF-hrtzwav-05': 1600,
+    'XMF-hrtzwav-06': 1600,
+    'XMF-hrtzwav-07': 1600,
+    'XMF-hrtzwav-08': 1600,
+    'XMF-hrtzwav-09': 1600,
+    'XMF-hrtzwav-10': 1600,
+    'XMF-hrtzwav-11': 1600,
+    'XMF-hrtzwav-12': 1600,
+    'XMF-hrtzwav-13': 1600,
+    'XMF-hrtzwav-14': 1600,
+    'XMF-hrtzwav-15': 1600,
+    'XMF-hrtzwav-16': 1600,
+    'XMF-hrtzwav-17': 1600,
+    'XMF-hrtzwav-18': 1600,
+    'XMF-hrtzwav-19': 1600,
+    'XMF-hrtzwav-20': 1600,
+    'XMF-hrtzwav-21': 1600,
+    'XMF-hrtzwav-22': 1600,
+    'XMF-hrtzwav-23': 1600,
+    'XMF-hrtzwav-24': 1600,
+    'XMF-hrtzwav-25': 1600,
+    'XMF-hrtzwav-26': 1600,
+    'XMF-LUCY-01': 1600,
+    'XMF-LUCY-02': 1600,
+    'XMF-LUCY-03': 1600,
+    'XMF-LUCY-04': 1600,
+    'XMF-LUCY-05': 1600,
+    'XMF-LUCY-06': 1600,
+    'XMF-LUCY-07': 1600,
+    'XMF-LUCY-08': 1600,
+    'XMF-LUCY-09': 1600,
+    'XMF-LUCY-10': 1600,
+    'XMF-LUCY-11': 1600,
+    'XMF-LUCY-12': 1600,
+    'XMF-LUCY-13': 1600,
+    'XMF-LUCY-14': 1600,
+    'XMF-LUCY-15': 1600,
+    'XMF-LUCY-16': 1600,
+    'XMF-LUCY-17': 1600,
+    'XMF-LUCY-18': 1600,
+    'XMF-LUCY-19': 1600,
+    'XMF-LUCY-20': 1600,
+    'XMF-LUCY-21': 1600,
+    'XMF-LUCY-22': 1600,
+    'XMF-LUCY-23': 1600,
+    'XMF-LUCY-24': 1600,
+    'XMF-LUCY-25': 1600,
+    'XMF-LUCY-26': 1600,
+    'XMF-LUCY-27': 1600,
+    'XMF-LUCY-28': 1600,
+    'XMF-LUCY-29': 1600,
+    'XMF-THEFIX-01': 1600,
+    'XMF-THEFIX-02': 1600,
+    'XMF-THEFIX-03': 1600,
+    'XMF-THEFIX-04': 1600,
+    'XMF-THEFIX-05': 1600,
+    'XMF-THEFIX-06': 1600,
+    'XMF-THEFIX-07': 1600,
+    'XMF-YOUNHA-01': 1600,
+    'XMF-YOUNHA-02': 1600,
+    'XMF-YOUNHA-03': 1600,
+    'XMF-YOUNHA-04': 1600,
+    'XMF-YOUNHA-05': 1600,
+    'XMF-YOUNHA-06': 1600,
+    'XMF-YOUNHA-07': 1600,
+    'XMF-YOUNHA-08': 1600,
     'XMF-Intro': 2000, 'XMF-SuperDuper-Sunburst': 2000,
     'XMF-SuperDuper-Dreamland': 2000, 'XMF-StopIt-Mascot': 2000,
     'XMF-StopIt-Corridor': 2000, 'XMF-HungryHeart-Liquid': 2000,
@@ -265,10 +335,10 @@
     const isDeck = kind === 'deck';
     const num = count > 1 ? ` ${pad2(i + 1)}` : '';
     const label = item.label || (isDeck ? 'Presentation deck' : 'Film') + num;
-    const out = isDeck ? deckView(item) : item.kind === 'youtube' ? ytWatch(item.id) : driveView(item.id);
-    const host = isDeck ? deckHost(item) : item.kind === 'youtube' ? 'YouTube' : 'Google Drive';
+    const out = isDeck ? deckView(item) : item.kind === 'local' ? item.src : item.kind === 'youtube' ? ytWatch(item.id) : driveView(item.id);
+    const host = isDeck ? deckHost(item) : item.kind === 'local' ? 'Video' : item.kind === 'youtube' ? 'YouTube' : 'Google Drive';
     return `
-      <figure class="embed${isDeck ? ' embed--deck' : ''}" data-reveal>
+      <figure class="embed${isDeck ? ' embed--deck' : item.kind === 'local' ? ' embed--local' : ''}" data-reveal>
         <div class="card">
           <button class="poster" type="button" data-embed="${isDeck ? (item.src ? 'pdf' : 'drive') : item.kind}" data-id="${esc(item.src || item.id)}" aria-label="${isDeck ? 'Open' : 'Play'} ${esc(label)}">
             ${poster ? `<img src="${src(poster)}" alt="" loading="lazy" decoding="async">` : `<span class="poster-title" aria-hidden="true">${esc(count > 1 ? (item.label || (isDeck ? 'Deck' : 'Film') + num) : p.fullTitle)}</span>`}
@@ -277,7 +347,7 @@
             <span class="poster-center"><span class="play" aria-hidden="true"></span><span class="mono">${isDeck ? 'Open deck' : 'Play film'}</span></span>
           </button>
         </div>
-        <figcaption class="embed-cap"><span class="mono">${esc(label)}</span><a class="mono" href="${esc(out)}" target="_blank" rel="noopener noreferrer">Open ${isDeck && item.src ? 'PDF' : `in ${host}`} ↗</a></figcaption>
+        <figcaption class="embed-cap"><span class="mono">${esc(label)}</span><a class="mono" href="${esc(out)}" target="_blank" rel="noopener noreferrer">${item.kind === 'local' ? 'Open video' : `Open ${isDeck && item.src ? 'PDF' : `in ${host}`}`} ↗</a></figcaption>
       </figure>`;
   }
 
@@ -415,6 +485,17 @@
     const btn = e.target.closest('[data-embed]');
     if (!btn) return;
     const { embed, id } = btn.dataset;
+    if (embed === 'local' && /^assets\/video\/[\w.-]+\.mp4$/.test(id)) {
+      const video = document.createElement('video');
+      video.src = id;
+      video.controls = true;
+      video.playsInline = true;
+      video.preload = 'metadata';
+      video.setAttribute('aria-label', btn.getAttribute('aria-label') || 'Video');
+      btn.replaceWith(video);
+      video.play().catch(() => {});
+      return;
+    }
     const url = embed === 'youtube' && /^[\w-]{11}$/.test(id)
       ? `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`
       : embed === 'drive' && /^[\w-]{10,}$/.test(id)
