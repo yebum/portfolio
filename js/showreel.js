@@ -11,7 +11,7 @@
   const nowTitle = reel.querySelector('#showreel-now-title');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const duration = 6000;
-  let index = 4;
+  let index = 0;
   let timer = 0;
   let visible = true;
 
@@ -47,6 +47,10 @@
   };
 
   marks.forEach((mark, i) => {
+    mark.addEventListener('mouseenter', () => {
+      show(i);
+      schedule();
+    });
     mark.addEventListener('click', () => {
       show(i);
       schedule();
@@ -67,6 +71,6 @@
     }, { threshold: 0.2 }).observe(reel);
   }
   document.addEventListener('visibilitychange', schedule);
-  show(4);
+  show(0);
   schedule();
 })();
