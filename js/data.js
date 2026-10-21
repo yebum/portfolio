@@ -7,7 +7,7 @@ window.PORTFOLIO = {
       "fullTitle": "XMF 2026 — 윤하",
       "context": "XMF FESTIVAL · 공연 비주얼 프리비즈",
       "year": "2026",
-      "discipline": "media",
+      "disciplines": ["media", "motion"],
       "awards": [],
       "cover": "XMF-YOUNHA-05",
       "lead": "XMF 2026 윤하 무대를 위해 제작한 곡별 비주얼 이미지와 오디오 리액티브 영상 작업을 정리했다.",
@@ -107,7 +107,7 @@ window.PORTFOLIO = {
       "fullTitle": "XMF 2026 — LUCY",
       "context": "XMF FESTIVAL · 공연 비주얼 프리비즈",
       "year": "2026",
-      "discipline": "media",
+      "disciplines": ["media", "motion"],
       "awards": [],
       "cover": "XMF-LUCY-06",
       "lead": "XMF 2026 LUCY 무대를 위해 제작한 곡별 비주얼 이미지와 오디오 리액티브 영상 작업을 정리했다.",
@@ -296,7 +296,7 @@ window.PORTFOLIO = {
       "fullTitle": "XMF 2026 — HI-FI UN!CORN",
       "context": "XMF FESTIVAL · 공연 비주얼 프리비즈",
       "year": "2026",
-      "discipline": "media",
+      "disciplines": ["media", "motion"],
       "awards": [],
       "cover": "XMF-Intro",
       "lead": "XMF 2026의 HI-FI UN!CORN 무대를 위해 제작한 공연 비주얼 프리비즈다. Intro와 각 곡의 분위기에 맞춘 화면을 무대 전체와 클로즈업 시점에서 확인할 수 있도록 구성했다.",
@@ -356,7 +356,7 @@ window.PORTFOLIO = {
       "fullTitle": "XMF 2026 — HRTZWAV",
       "context": "XMF FESTIVAL · 공연 비주얼 프리비즈",
       "year": "2026",
-      "discipline": "media",
+      "disciplines": ["media", "motion"],
       "awards": [],
       "cover": "XMF-hrtzwav-13",
       "lead": "XMF 2026 HRTZWAV 무대를 위해 제작한 곡별 비주얼 이미지와 오디오 리액티브 영상 작업을 정리했다.",
@@ -528,7 +528,7 @@ window.PORTFOLIO = {
       "fullTitle": "XMF 2026 — THE FIX",
       "context": "XMF FESTIVAL · 공연 비주얼 프리비즈",
       "year": "2026",
-      "discipline": "media",
+      "disciplines": ["media", "motion"],
       "awards": [],
       "cover": "XMF-THEFIX-03",
       "lead": "XMF 2026 THE FIX 무대를 위해 제작한 곡별 비주얼 이미지와 오디오 리액티브 영상 작업을 정리했다.",
@@ -624,7 +624,7 @@ window.PORTFOLIO = {
       "fullTitle": "MATMI",
       "context": "2026 Global Start-up Design Thinking Hackathon · Team 13 Hexagon",
       "year": "2026",
-      "discipline": "ux",
+      "disciplines": ["ux", "xr"],
       "awards": [
         "Grand Award"
       ],
@@ -747,7 +747,7 @@ window.PORTFOLIO = {
       "fullTitle": "잠비나이 — 소멸의시간",
       "context": "KALEIDOSCOPE : 만화경",
       "year": "2026",
-      "discipline": "media",
+      "disciplines": ["media", "motion"],
       "awards": [],
       "cover": "TimeOfExtinction",
       "lead": "잠비나이의 공연 〈소멸의시간〉을 위해 제작한 오디오비주얼 프로젝트이다. 공연 음악의 밀도와 감정의 흐름을 시각적 움직임으로 확장하고, 무대 위의 사운드와 이미지가 하나의 장면처럼 느껴지도록 구성하였다.",
@@ -830,7 +830,7 @@ window.PORTFOLIO = {
       "fullTitle": "실감수제비",
       "context": "2026 SUMMER WEEK AI+XR 공모전",
       "year": "2026",
-      "discipline": "xr",
+      "disciplines": ["xr"],
       "awards": [],
       "cover": "SilgamSujevi",
       "lead": "실감수제비는 제주 바닷가에서 가족과 함께했던 물수제비의 기억을 MediaPipe 동작 인식과 실시간 3D 환경으로 재현한 Unity 6 기반의 체험형 게임이다. 사용자는 카메라 앞에서 양팔을 T자로 벌려 준비한 뒤 한쪽 팔을 옆으로 크게 스윙하며 직접 물수제비를 던진다.",
@@ -921,7 +921,7 @@ window.PORTFOLIO = {
       "fullTitle": "Get The Ocean Summer Ready",
       "context": "부산국제마케팅광고제 YOUNG STARS 경진대회",
       "year": "2026",
-      "discipline": "motion",
+      "disciplines": ["motion"],
       "awards": [],
       "cover": "GetTheOceanSummerReady",
       "lead": "GET THE OCEAN SUMMER READY는 매년 여름을 준비하는 사람들의 익숙한 행동을 바탕으로, 바다도 우리를 맞이할 준비가 필요하다는 질문을 던지는 캠페인이다. 운동과 산책을 해양 보호를 위한 일상의 행동으로 연결해, 거대하고 멀게 느껴지는 환경 문제를 누구나 반복할 수 있는 움직임으로 바꾸고자 하였다.",
@@ -1007,7 +1007,7 @@ window.PORTFOLIO = {
       "fullTitle": "연결",
       "context": "제주 바이오 AX 해커톤",
       "year": "2026",
-      "discipline": "ux",
+      "disciplines": ["ux"],
       "awards": [
         "제주 바이오 AX 해커톤 우수상"
       ],
@@ -1134,7 +1134,7 @@ window.PORTFOLIO = {
       "fullTitle": "Neuroscape",
       "context": "2026 BCM Academy AI X Media Startup Project",
       "year": "2026",
-      "discipline": "media",
+      "disciplines": ["media", "xr"],
       "awards": [
         "MAD STARS Gold Prize",
         "BCM Academy 창의상"
@@ -1274,7 +1274,7 @@ window.PORTFOLIO = {
       "fullTitle": "Beyond The Center",
       "context": "제 2회 이머시브 전시회",
       "year": "2026",
-      "discipline": "media",
+      "disciplines": ["media"],
       "awards": [],
       "cover": "BeyondTheCenter",
       "lead": "Beyond the Center는 포스트휴머니즘을 바탕으로 인간과 AI가 서로 연결되며 새로운 생태계를 형성하는 과정을 표현한 이머시브 미디어아트 프로젝트이다. 인간의 일상에서 발생하는 작은 행동 데이터를 하나의 ‘점’으로 시작해, 점들이 연결되어 시냅스와 도시의 네트워크를 이루고 다시 우주적 구조로 확장되는 과정을 3면 프로젝션 공간 안에 구현하였다.",
@@ -1362,7 +1362,7 @@ window.PORTFOLIO = {
       "fullTitle": "파국의 궤도",
       "context": "XR스튜디오 쇼케이스",
       "year": "2026",
-      "discipline": "media",
+      "disciplines": ["media"],
       "awards": [],
       "cover": "XrStudio",
       "lead": "파국의 궤도는 단테의 『신곡』 중 애욕, 폭력, 배신의 지옥을 현대적으로 재해석한 미디어아트 작품이다. 세 개의 지옥을 관계가 무너지는 과정으로 연결하여, 욕망에서 시작된 감정이 폭력과 배신으로 이어지며 결국 파국에 이르는 흐름을 시각적으로 표현하였다.",
@@ -1450,7 +1450,7 @@ window.PORTFOLIO = {
       "fullTitle": "Invader",
       "context": "유니티 프로그래밍",
       "year": "2026",
-      "discipline": "xr",
+      "disciplines": ["xr"],
       "awards": [
         "학과 우수작 연합PT"
       ],
@@ -1564,7 +1564,7 @@ window.PORTFOLIO = {
       "fullTitle": "잘타요VR",
       "context": "가상융합서비스개발자경진대회",
       "year": "2026",
-      "discipline": "xr",
+      "disciplines": ["xr"],
       "awards": [],
       "cover": "JalTayo",
       "lead": "잘타요VR은 VR 기술을 활용하여 어린이들이 안전하고 올바른 대중교통 이용 방법을 체험형 학습으로 익힐 수 있도록 돕는 교육용 VR 플랫폼 프로젝트이다. 특히 실제 버스 이용 경험이 부족한 어린이들도 가상 환경 속에서 직접 버스를 기다리고, 탑승하고, 교통카드를 태그하며, 하차벨을 누르고, 안전하게 하차하는 과정을 반복적으로 체험할 수 있도록 설계된 것이 특징이다.",
@@ -1652,7 +1652,7 @@ window.PORTFOLIO = {
       "fullTitle": "Pirates Storm",
       "context": "유니티 프로그래밍",
       "year": "2026",
-      "discipline": "xr",
+      "disciplines": ["xr"],
       "awards": [
         "학과 우수작 연합PT"
       ],
@@ -1774,7 +1774,7 @@ window.PORTFOLIO = {
       "fullTitle": "팀플!",
       "context": "제 3회 COSS 스타트업 경진대회",
       "year": "2026",
-      "discipline": "ux",
+      "disciplines": ["ux"],
       "awards": [
         "COSS 스타트업 경진대회 우수상"
       ],
@@ -1863,7 +1863,7 @@ window.PORTFOLIO = {
       "fullTitle": "든든AI",
       "context": "Y-Startup",
       "year": "2026",
-      "discipline": "ux",
+      "disciplines": ["ux"],
       "awards": [],
       "cover": "dndn",
       "lead": "든든 AI는 AI 기술을 활용하여 누구나 쉽게 콘텐츠를 제작하고 수익을 창출할 수 있도록 돕는 서비스 프로젝트이다. 특히 디지털 콘텐츠 제작 경험이 부족한 사용자들도 AI를 활용해 간단한 과정만으로 숏폼 영상 콘텐츠를 제작하고 업로드할 수 있도록 돕는 것을 목표로 한다. 이 프로젝트는 콘텐츠 제작의 진입 장벽을 낮추고, AI 기반 창작 환경을 통해 새로운 형태의 개인 수익 창출 모델을 제안한다.",
@@ -2005,7 +2005,7 @@ window.PORTFOLIO = {
       "fullTitle": "CITY: Civic Innovation Through You",
       "context": "NextGen Startup Challenge",
       "year": "2026",
-      "discipline": "ux",
+      "disciplines": ["ux"],
       "awards": [
         "NextGen Startup Challenge 3rd Prize"
       ],
@@ -2132,7 +2132,7 @@ window.PORTFOLIO = {
       "fullTitle": "Jeonger",
       "context": "Think City 2026 Hackathon",
       "year": "2026",
-      "discipline": "ux",
+      "disciplines": ["ux"],
       "awards": [
         "ThinkCity 2026 Community Impact Award"
       ],
@@ -2203,7 +2203,7 @@ window.PORTFOLIO = {
       "fullTitle": "토스증권 광고",
       "context": "3D모션그래픽스",
       "year": "2025",
-      "discipline": "motion",
+      "disciplines": ["motion"],
       "awards": [
         "학과 우수작 연합PT"
       ],
@@ -2291,7 +2291,7 @@ window.PORTFOLIO = {
       "fullTitle": "스대살: 스위스에서 대학생으로 살아남기",
       "context": "콘텐츠디자인",
       "year": "2025",
-      "discipline": "ux",
+      "disciplines": ["ux"],
       "awards": [],
       "cover": "sds",
       "lead": "스대살은 스위스에서 생활하는 대학생들이 현지 생활 정보를 쉽게 얻고 서로 경험을 공유할 수 있도록 기획한 웹 서비스 프로젝트이다. 유학생들이 겪는 정보 부족 문제를 해결하기 위해 생활 정보, 언어 교류, 커뮤니티 기능을 통합한 플랫폼을 제안하였다. 이를 통해 해외에서 생활하는 대학생들이 보다 쉽게 현지 생활에 적응할 수 있는 환경을 제공하는 것을 목표로 하였다.",
@@ -2377,7 +2377,7 @@ window.PORTFOLIO = {
       "fullTitle": "슈퍼플레이 서포터즈 2기",
       "context": "슈퍼플레이",
       "year": "2025",
-      "discipline": "motion",
+      "disciplines": ["motion"],
       "awards": [],
       "cover": "supporters",
       "lead": "슈퍼플레이 서포터즈 활동을 통해 e-sports 및 게임 문화 공간을 소개하는 콘텐츠를 제작하였다. 게임 팬들이 실제로 방문하거나 경험할 수 있는 공간을 직접 탐방하고 이를 카드뉴스와 영상 콘텐츠 형태로 제작하여 온라인 플랫폼에서 소개하는 활동을 진행하였다. 매장의 분위기, 체험 요소, 브랜드 아이덴티티 등을 콘텐츠로 전달하며 사용자들이 공간을 간접적으로 경험할 수 있도록 구성하였다.",
@@ -2481,7 +2481,7 @@ window.PORTFOLIO = {
       "fullTitle": "가치 제주, 고치 제주",
       "context": "제주가치 공감, 런케이션 해커톤",
       "year": "2025",
-      "discipline": "ux",
+      "disciplines": ["ux"],
       "awards": [
         "런케이션 해커톤 장려상"
       ],
@@ -2559,7 +2559,7 @@ window.PORTFOLIO = {
       "fullTitle": "Fill The [ ], Feel My [ ]",
       "context": "제3회 하나카드 plate 디자인 공모전",
       "year": "2025",
-      "discipline": "motion",
+      "disciplines": ["motion"],
       "awards": [],
       "cover": "hana",
       "lead": "‘Fill The [ ], Feel My [ ]’는 하나카드 Plate 공모전에 출품한 카드 디자인 프로젝트로, 사용자가 자신의 취향과 감정을 카드 디자인에 반영할 수 있는 Young Premium Card 컨셉을 제안하였다.",
@@ -2639,7 +2639,7 @@ window.PORTFOLIO = {
       "fullTitle": "기후동행카드 광고",
       "context": "3D모션그래픽스",
       "year": "2025",
-      "discipline": "motion",
+      "disciplines": ["motion"],
       "awards": [],
       "cover": "climate",
       "lead": "기후동행카드는 서울시에서 도입한 대중교통 무제한 이용 카드로, 대중교통 이용을 장려하고 친환경 이동을 촉진하기 위한 정책이다.",
@@ -2725,7 +2725,7 @@ window.PORTFOLIO = {
       "fullTitle": "네이버지도 광고",
       "context": "영상기초",
       "year": "2025",
-      "discipline": "motion",
+      "disciplines": ["motion"],
       "awards": [
         "학과 우수작 연합PT"
       ],
@@ -2809,7 +2809,7 @@ window.PORTFOLIO = {
       "fullTitle": "디미디, 우주를 닮다",
       "context": "기획기초",
       "year": "2025",
-      "discipline": "media",
+      "disciplines": ["media", "motion"],
       "awards": [],
       "cover": "dmd",
       "lead": "‘디지털미디어디자인과, 우주를 닮다’는 디지털미디어디자인과 학생들의 성향을 조사하고, 그 결과를 시각적 스토리로 표현한 모션 영상 프로젝트이다. 설문에 나타난 학생들의 특성을 MBTI 요소로 분석한 결과 INTP 성향과 유사한 경향을 발견하였고, 이를 영상 콘텐츠로 제작하였다.",

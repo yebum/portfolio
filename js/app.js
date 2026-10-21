@@ -114,6 +114,7 @@
 
   const byId = Object.fromEntries(D.projects.map((p, i) => [p.id, { ...p, n: i + 1 }]));
   const disc = Object.fromEntries(D.disciplines.map(d => [d.key, d]));
+  const projectDiscs = p => p.disciplines.map(key => disc[key]);
   const TOTAL = D.projects.length;
 
   const home = $('#home');
@@ -134,19 +135,22 @@
 
   function renderIndex() {
     const list = $('#index-list'), filters = $('#filters'), section = $('#index');
-    const counts = D.projects.reduce((m, p) => (m[p.discipline] = (m[p.discipline] || 0) + 1, m), {});
+    const counts = D.projects.reduce((m, p) => {
+      p.disciplines.forEach(key => { m[key] = (m[key] || 0) + 1; });
+      return m;
+    }, {});
     const tabs = [{ key: 'all', label: 'All', n: TOTAL }, ...D.disciplines.map(d => ({ key: d.key, label: d.label, n: counts[d.key] || 0 }))];
     filters.innerHTML = tabs.map((t, i) =>
       `<button type="button" class="filter" role="tab" data-filter="${t.key}" aria-selected="${i === 0}">${esc(t.label)}<sup>${pad2(t.n)}</sup></button>`).join('');
 
     const ordered = [...D.projects].sort((a, b) => Number(b.year) - Number(a.year));
     list.innerHTML = ordered.map((p, i) => `
-      <li data-disc="${p.discipline}" data-cover="${esc(p.cover)}" data-search="${esc([p.fullTitle, p.context, p.year, disc[p.discipline].label, disc[p.discipline].ko].join(' ').toLowerCase())}">
+      <li data-disc="${esc(p.disciplines.join(' '))}" data-cover="${esc(p.cover)}" data-search="${esc([p.fullTitle, p.context, p.year, ...projectDiscs(p).flatMap(d => [d.label, d.ko])].join(' ').toLowerCase())}">
         <a class="row-link" href="#/work/${p.id}" data-thumb="${src(p.cover, true)}">
           <span class="row-thumb card"><img src="${src(p.cover)}"${responsive(p.cover, '(max-width: 560px) 100vw, (max-width: 820px) 50vw, 25vw')} alt="" loading="lazy" decoding="async"></span>
           <span class="row-no mono">${pad2(i + 1)}</span>
           <span class="row-title"><span class="t">${esc(p.fullTitle)}</span>${p.awards.length ? `<span class="row-award" title="${esc(p.awards.join(' · '))}" aria-label="Award"></span>` : ''}</span>
-          <span class="row-disc">${esc(disc[p.discipline].label)}</span>
+          <span class="row-disc">${esc(projectDiscs(p).map(d => d.label).join(' / '))}</span>
           <span class="row-ctx">${esc(p.context)}</span>
           <span class="row-year mono">${esc(p.year)}</span>
           <span class="row-go chip">View</span>
@@ -160,7 +164,7 @@
       let visible = 0;
       $$('.filter', filters).forEach(b => b.setAttribute('aria-selected', b.dataset.filter === activeFilter));
       $$('li', list).forEach(li => {
-        li.hidden = (activeFilter !== 'all' && li.dataset.disc !== activeFilter) || !li.dataset.search.includes(query);
+        li.hidden = (activeFilter !== 'all' && !li.dataset.disc.split(' ').includes(activeFilter)) || !li.dataset.search.includes(query);
         if (!li.hidden) visible++;
       });
       $('#work-count').textContent = visible + ' / ' + TOTAL + ' projects · 최신 연도순';
@@ -360,7 +364,7 @@
 
     const facts = [
       ['Year', esc(p.year)],
-      ['Discipline', esc(disc[p.discipline].ko)],
+      ['Discipline', esc(projectDiscs(p).map(d => d.ko).join(' / '))],
       ...p.details.map(d => [esc(d.k), esc(d.v)]),
       ...(p.media.decks.length ? [['Attachment', `<a class="fact-link" href="#cs-pdf" data-jump="cs-pdf">PDF ${pad2(p.media.decks.length)} — 발표 자료 보기</a>`]] : []),
       ...(p.awards.length ? [['Awards', `<div class="chips">${p.awards.map(a => `<a class="chip chip--award" href="#/recognition" aria-label="${esc(a)} 수상 이력 보기">${esc(a)}</a>`).join('')}</div>`]] : []),
@@ -423,7 +427,7 @@
             <img src="${src(p.cover)}" alt="${esc(p.fullTitle)}" fetchpriority="high" decoding="async">
             <div class="hero-scrim" aria-hidden="true"></div>
             <div class="ticks ticks--light" aria-hidden="true"></div>
-            <div class="card-top"><span class="mono">${esc(disc[p.discipline].label)}</span><span class="mono">${esc(p.year)}</span></div>
+            <div class="card-top"><span class="mono">${esc(projectDiscs(p).map(d => d.label).join(' / '))}</span><span class="mono">${esc(p.year)}</span></div>
             <div class="hero-copy">
               <h1 class="display" id="pd-title">${esc(p.fullTitle)}</h1>
               <p class="pd-ctx">${esc(p.context)}</p>
