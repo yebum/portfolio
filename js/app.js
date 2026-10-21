@@ -148,7 +148,7 @@
     list.innerHTML = ordered.map((p, i) => `
       <li data-disc="${esc(p.disciplines.join(' '))}" data-cover="${esc(p.cover)}" data-search="${esc([p.fullTitle, p.context, p.year, ...projectDiscs(p).flatMap(d => [d.label, d.ko])].join(' ').toLowerCase())}">
         <a class="row-link" href="#/work/${p.id}" data-thumb="${src(p.cover, true)}">
-          <span class="row-thumb"><img src="${src(p.cover)}"${responsive(p.cover, '(max-width: 820px) 50vw, (max-width: 1100px) 33vw, 25vw')} alt="" loading="lazy" decoding="async"></span>
+          <span class="row-thumb card"><img src="${src(p.cover)}"${responsive(p.cover, '(max-width: 560px) 100vw, (max-width: 820px) 50vw, 25vw')} alt="" loading="lazy" decoding="async"></span>
           <span class="row-no mono">${pad2(i + 1)}</span>
           <span class="row-title"><span class="t">${esc(p.fullTitle)}</span>${p.awards.length ? `<span class="row-award" title="${esc(p.awards.join(' · '))}" aria-label="Award"></span>` : ''}</span>
           <span class="row-disc">${esc(projectDiscs(p).map(d => d.label).join(' / '))}</span>
