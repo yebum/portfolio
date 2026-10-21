@@ -304,7 +304,7 @@
   }
 
   function renderDetail(id) {
-    const p = byId[id];
+    const p = Object.hasOwn(byId, id) ? byId[id] : null;
     if (!p) { location.hash = '#/index'; return; }
     clearDetail();
     const prevP = byId[D.projects[(p.n - 2 + TOTAL) % TOTAL].id], nextP = byId[D.projects[p.n % TOTAL].id];
@@ -491,7 +491,7 @@
       else if (current !== 'detail') cameFromHome = false;
       let id;
       try { id = decodeURIComponent(parts[1]); } catch (_) { location.hash = '#/index'; return; }
-      if (!byId[id]) { location.hash = '#/index'; return; }
+      if (!Object.hasOwn(byId, id)) { location.hash = '#/index'; return; }
       renderDetail(id);
       home.hidden = true; detail.hidden = false;
       detail.classList.remove('view'); void detail.offsetWidth; detail.classList.add('view');

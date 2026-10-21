@@ -57,6 +57,8 @@ try {
     assert.equal(await page.evaluate(() => [...window.testObserved].filter(el => !el.isConnected).length), 0, 'no detached reveal observers');
     await page.goto(base + '/' + language + '#/work/%ZZ');
     await page.waitForFunction(() => location.hash === '#/index' && !document.querySelector('#home').hidden);
+    await page.goto(base + '/' + language + '#/work/__proto__');
+    await page.waitForFunction(() => location.hash === '#/index');
     await page.locator('#work-search').fill('');
     assert.equal(await page.locator('#index-list > li:not([hidden])').count(), total);
     assert.equal(await page.locator('html').getAttribute('lang'), language ? 'en' : 'ko');
