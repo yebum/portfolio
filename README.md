@@ -25,7 +25,7 @@ Open http://localhost:5178. Use a local server instead of opening the file direc
 ## Editing content
 
 - **Add or edit a project**: add an object to `projects` in `js/data.js`. Media goes in `media.films` (YouTube or Drive ID), `media.decks` (Drive PDF ID), `media.images` (WebP filename without the extension) and `media.links`.
-- **Project order and visibility**: all projects in `js/data.js` appear in Work; their array order controls the default display.
+- **Project order and visibility**: all projects in `js/data.js` appear in Work; the grid sorts by newest year first, preserving array order within each year.
 - **Problem / Solution / Result and metrics**: edit `caseStudy` and `metrics` in `js/data.js`. The `_work/` data builder is a legacy helper and does not include every later addition, including MATMI and Recognition updates. Running it over the current `js/data.js` would discard those additions.
 - **Attached PDFs**: Drive file IDs in `media.decks` appear automatically in the panel next to the Overview. The Drive file must be shared as "Anyone with the link" for preview and download to work.
 - **New images**: put the originals in `_source/img/` and run `python _work/opt.py` (it creates WebP files and fixes EXIF rotation).
@@ -36,3 +36,12 @@ Open http://localhost:5178. Use a local server instead of opening the file direc
 
 Upload the root folder as-is to GitHub Pages, Netlify or similar (you can leave out `_source` and `_work`).
 Each project has its own shareable URL, for example `/#/work/Neuroscape`.
+
+## Performance and regression checks
+
+- Reel images load on demand: the first scene and next scene are prepared first. Scene changes wait for image decoding; rapid selections keep the latest choice. Hidden tabs and reduced-motion preferences pause playback.
+- Search caches project metadata; detail navigation releases reveal observers and cancels stale scroll callbacks.
+- Responsive image candidates cover the 1/2/3/4-column grid and detail covers. Source artwork and CSS layout are unchanged.
+- Guestbook submission has an in-flight guard. Server-side Firebase rules remain responsible for access and abuse prevention; client validation is not an authorization boundary.
+- Run `node tests/regression.mjs` with Playwright installed and Microsoft Edge available. `PLAYWRIGHT_PATH` can point to an existing Playwright package. The test starts its own temporary local server and never submits guestbook entries.
+- After changing JavaScript, update its version query in `index.html` before publishing to invalidate browser caches.

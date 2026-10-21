@@ -16,7 +16,8 @@
   const form = $('#gb-form'), message = $('#gb-message'), name = $('#gb-name');
   const wall = $('#gb-wall'), more = $('#gb-more'), submit = $('#gb-submit');
   const status = (text, kind = '') => { $('#gb-status').textContent = text; $('#gb-status').dataset.kind = kind; };
-  let notes = [], shown = 9, user, api, ref;
+  let notes = [], shown = 9, user, api, ref, submitting = false;
+  const dateFormat = new Intl.DateTimeFormat(english ? 'en-US' : 'ko-KR', {year:'numeric',month:'2-digit',day:'2-digit'});
   const count = () => { $('#gb-count').textContent = `${message.value.length} / 200`; };
   message.addEventListener('input', count);
   try { name.value = localStorage.getItem('gbNickname') || ''; } catch (_) {}
@@ -28,7 +29,7 @@
       const author = document.createElement('strong'); author.textContent = d.nickname || 'Anonymous';
       const time = document.createElement('time'); time.className = 'mono dim';
       const date = d.createdAt?.toDate?.();
-      if (date) { time.dateTime = date.toISOString(); time.textContent = new Intl.DateTimeFormat(english ? 'en-US' : 'ko-KR', {year:'numeric',month:'2-digit',day:'2-digit'}).format(date); }
+      if (date) { time.dateTime = date.toISOString(); time.textContent = dateFormat.format(date); }
       else time.textContent = t('방금 전', 'Just now');
       const text = document.createElement('p'); text.className = 'gb-text'; text.textContent = d.message;
       head.append(author, time); li.append(head, text); return li;
@@ -60,7 +61,7 @@
   observer.observe(document.getElementById('guestbook'));
   form.addEventListener('submit', async e => {
     e.preventDefault();
-    if (form.elements.website.value || !user || !api) return;
+    if (submitting || form.elements.website.value || !user || !api) return;
     const nickname = name.value.trim(), text = message.value.trim();
     if (!nickname || nickname.length > 20) { name.focus(); status(t('이름을 1–20자로 적어주세요.', 'Please enter a name of 1–20 characters.'), 'error'); return; }
     if (!text || text.length > 200) { message.focus(); status(t('메시지를 1–200자로 적어주세요.', 'Please enter a message of 1–200 characters.'), 'error'); return; }
@@ -68,12 +69,12 @@
     try { last = Number(localStorage.getItem('gbLastSentAt') || 0); } catch (_) {}
     const wait = Math.ceil((60000 - (Date.now() - last)) / 1000);
     if (wait > 0) return status(t(`${wait}초 뒤에 다시 남길 수 있어요.`, `You can post again in ${wait} seconds.`), 'error');
-    submit.disabled = true; status(t('남기는 중…', 'Posting…'));
+    submitting = true; submit.disabled = true; status(t('남기는 중…', 'Posting…'));
     try {
       await api.addDoc(ref, {nickname, message:text, authorId:user.uid, createdAt:api.serverTimestamp()});
       try { localStorage.setItem('gbLastSentAt', String(Date.now())); localStorage.setItem('gbNickname', nickname); } catch (_) {}
       message.value = ''; count(); render(); status(t('남겨주셔서 고맙습니다.', 'Thanks for your note.'), 'ok');
     } catch (_) { status(t('저장하지 못했어요. 내용을 그대로 두었으니 다시 시도해 주세요.', 'Could not save your note. Your text is still here; please try again.'), 'error'); }
-    finally { submit.disabled = false; }
+    finally { submitting = false; submit.disabled = false; }
   });
 })();

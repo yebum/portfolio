@@ -9,25 +9,45 @@
   const marks = [...timeline.querySelectorAll('button[data-slide]')];
   const count = reel.querySelector('#showreel-count');
   const nowTitle = reel.querySelector('#showreel-now-title');
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  const images = slides.map(slide => slide.querySelector('img'));
+  const titles = slides.map(slide => slide.querySelector('.showreel-caption strong').textContent);
   const duration = 6000;
   let index = 0;
+  let requestedIndex = 0;
   let timer = 0;
   let visible = true;
+  let request = 0;
+  const loads = new WeakMap();
+  const load = i => {
+    const img = images[i];
+    if (!loads.has(img)) {
+      img.loading = 'eager';
+      if (img.dataset.srcset) { img.srcset = img.dataset.srcset; delete img.dataset.srcset; }
+      if (img.dataset.src) { img.src = img.dataset.src; delete img.dataset.src; }
+      loads.set(img, img.decode().catch(() => {}));
+    }
+    return loads.get(img);
+  };
 
   const schedule = () => {
     clearTimeout(timer);
-    const playing = !reduced && visible && !document.hidden;
+    const playing = !motion.matches && visible && !document.hidden;
     timeline.classList.toggle('is-paused', !playing);
     if (!playing) return;
     timer = setTimeout(() => {
       show((index + 1) % slides.length);
-      schedule();
     }, duration);
   };
 
-  const show = next => {
-    index = (next + slides.length) % slides.length;
+  const show = async next => {
+    clearTimeout(timer);
+    const ticket = ++request;
+    const target = (next + slides.length) % slides.length;
+    requestedIndex = target;
+    await load(target);
+    if (ticket !== request) return;
+    index = target;
     slides.forEach((slide, i) => {
       const active = i === index;
       slide.classList.toggle('is-active', active);
@@ -43,17 +63,17 @@
     void timeline.offsetWidth;
     marks[index].classList.add('is-active');
     count.textContent = `${String(index + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
-    nowTitle.textContent = slides[index].querySelector('.showreel-caption strong').textContent;
+    nowTitle.textContent = titles[index];
+    if (!motion.matches && visible && !document.hidden) load((index + 1) % slides.length);
+    schedule();
   };
 
   marks.forEach((mark, i) => {
     mark.addEventListener('mouseenter', () => {
-      show(i);
-      schedule();
+      if (requestedIndex !== i) show(i);
     });
     mark.addEventListener('click', () => {
-      show(i);
-      schedule();
+      if (requestedIndex !== i) show(i);
     });
     mark.addEventListener('keydown', event => {
       if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
@@ -61,7 +81,6 @@
       const next = (i + (event.key === 'ArrowRight' ? 1 : -1) + marks.length) % marks.length;
       marks[next].focus();
       show(next);
-      schedule();
     });
   });
   if ('IntersectionObserver' in window) {
@@ -71,6 +90,6 @@
     }, { threshold: 0.2 }).observe(reel);
   }
   document.addEventListener('visibilitychange', schedule);
+  motion.addEventListener('change', schedule);
   show(0);
-  schedule();
 })();

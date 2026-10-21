@@ -22,76 +22,6 @@
     supporters: 1920, TeamPL: 1920, TimeOfExtinction: 2000,
     'TimeOfExtinction-TouchDesigner': 2000, toss: 1920, XrStudio: 1440,
     YoungStars: 768,
-    'XMF-hrtzwav-01': 1600,
-    'XMF-hrtzwav-02': 1600,
-    'XMF-hrtzwav-03': 1600,
-    'XMF-hrtzwav-04': 1600,
-    'XMF-hrtzwav-05': 1600,
-    'XMF-hrtzwav-06': 1600,
-    'XMF-hrtzwav-07': 1600,
-    'XMF-hrtzwav-08': 1600,
-    'XMF-hrtzwav-09': 1600,
-    'XMF-hrtzwav-10': 1600,
-    'XMF-hrtzwav-11': 1600,
-    'XMF-hrtzwav-12': 1600,
-    'XMF-hrtzwav-13': 1600,
-    'XMF-hrtzwav-14': 1600,
-    'XMF-hrtzwav-15': 1600,
-    'XMF-hrtzwav-16': 1600,
-    'XMF-hrtzwav-17': 1600,
-    'XMF-hrtzwav-18': 1600,
-    'XMF-hrtzwav-19': 1600,
-    'XMF-hrtzwav-20': 1600,
-    'XMF-hrtzwav-21': 1600,
-    'XMF-hrtzwav-22': 1600,
-    'XMF-hrtzwav-23': 1600,
-    'XMF-hrtzwav-24': 1600,
-    'XMF-hrtzwav-25': 1600,
-    'XMF-hrtzwav-26': 1600,
-    'XMF-LUCY-01': 1600,
-    'XMF-LUCY-02': 1600,
-    'XMF-LUCY-03': 1600,
-    'XMF-LUCY-04': 1600,
-    'XMF-LUCY-05': 1600,
-    'XMF-LUCY-06': 1600,
-    'XMF-LUCY-07': 1600,
-    'XMF-LUCY-08': 1600,
-    'XMF-LUCY-09': 1600,
-    'XMF-LUCY-10': 1600,
-    'XMF-LUCY-11': 1600,
-    'XMF-LUCY-12': 1600,
-    'XMF-LUCY-13': 1600,
-    'XMF-LUCY-14': 1600,
-    'XMF-LUCY-15': 1600,
-    'XMF-LUCY-16': 1600,
-    'XMF-LUCY-17': 1600,
-    'XMF-LUCY-18': 1600,
-    'XMF-LUCY-19': 1600,
-    'XMF-LUCY-20': 1600,
-    'XMF-LUCY-21': 1600,
-    'XMF-LUCY-22': 1600,
-    'XMF-LUCY-23': 1600,
-    'XMF-LUCY-24': 1600,
-    'XMF-LUCY-25': 1600,
-    'XMF-LUCY-26': 1600,
-    'XMF-LUCY-27': 1600,
-    'XMF-LUCY-28': 1600,
-    'XMF-LUCY-29': 1600,
-    'XMF-THEFIX-01': 1600,
-    'XMF-THEFIX-02': 1600,
-    'XMF-THEFIX-03': 1600,
-    'XMF-THEFIX-04': 1600,
-    'XMF-THEFIX-05': 1600,
-    'XMF-THEFIX-06': 1600,
-    'XMF-THEFIX-07': 1600,
-    'XMF-YOUNHA-01': 1600,
-    'XMF-YOUNHA-02': 1600,
-    'XMF-YOUNHA-03': 1600,
-    'XMF-YOUNHA-04': 1600,
-    'XMF-YOUNHA-05': 1600,
-    'XMF-YOUNHA-06': 1600,
-    'XMF-YOUNHA-07': 1600,
-    'XMF-YOUNHA-08': 1600,
     'XMF-Intro': 2000, 'XMF-SuperDuper-Sunburst': 2000,
     'XMF-SuperDuper-Dreamland': 2000, 'XMF-StopIt-Mascot': 2000,
     'XMF-StopIt-Corridor': 2000, 'XMF-HungryHeart-Liquid': 2000,
@@ -99,6 +29,9 @@
     'XMF-Butterfly-Visit': 2000, 'XMF-Butterfly-Bloom': 2000,
     'XMF-CottonCandy-Bubble': 2000, 'XMF-CottonCandy-Glitch': 2000
   };
+  for (const [artist, count] of Object.entries({ hrtzwav: 26, LUCY: 29, THEFIX: 7, YOUNHA: 8 })) {
+    for (let i = 1; i <= count; i++) imageWidths[`XMF-${artist}-${pad2(i)}`] = 1600;
+  }
   const responsive = (name, sizes) => imageWidths[name] > 900
     ? ` srcset="${src(name, true)} 900w, ${src(name)} ${imageWidths[name]}w" sizes="${sizes}"`
     : '';
@@ -111,7 +44,14 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   
   // run after layout; rAF alone never fires in background tabs, so race it with a timeout
-  const afterLayout = fn => { let done = false; const run = () => { if (!done) { done = true; fn(); } }; requestAnimationFrame(run); setTimeout(run, 60); };
+  const afterLayout = fn => {
+    let frame, timer;
+    const cancel = () => { cancelAnimationFrame(frame); clearTimeout(timer); };
+    const run = () => { cancel(); fn(); };
+    frame = requestAnimationFrame(run);
+    timer = setTimeout(run, 60);
+    return cancel;
+  };
 
   const byId = Object.fromEntries(D.projects.map((p, i) => [p.id, { ...p, n: i + 1 }]));
   const disc = Object.fromEntries(D.disciplines.map(d => [d.key, d]));
@@ -125,6 +65,10 @@
   const revealIO = new IntersectionObserver(entries => {
     for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); revealIO.unobserve(e.target); }
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.01 });
+  const clearDetail = () => {
+    $$('[data-reveal]', detail).forEach(el => revealIO.unobserve(el));
+    detail.replaceChildren();
+  };
   const observeReveals = root => $$('[data-reveal]:not(.in)', root).forEach(el => revealIO.observe(el));
 
   const toast = (() => {
@@ -148,7 +92,7 @@
     list.innerHTML = ordered.map((p, i) => `
       <li data-disc="${esc(p.disciplines.join(' '))}" data-cover="${esc(p.cover)}" data-search="${esc([p.fullTitle, p.context, p.year, ...projectDiscs(p).flatMap(d => [d.label, d.ko])].join(' ').toLowerCase())}">
         <a class="row-link" href="#/work/${p.id}" data-thumb="${src(p.cover, true)}">
-          <span class="row-thumb card"><img src="${src(p.cover)}"${responsive(p.cover, '(max-width: 560px) 100vw, (max-width: 820px) 50vw, 25vw')} alt="" loading="lazy" decoding="async"></span>
+          <span class="row-thumb card"><img src="${src(p.cover)}"${responsive(p.cover, '(max-width: 560px) 100vw, (max-width: 820px) 50vw, (max-width: 1100px) 33vw, 25vw')} alt="" loading="lazy" decoding="async"></span>
           <span class="row-no mono">${pad2(i + 1)}</span>
           <span class="row-title"><span class="t">${esc(p.fullTitle)}</span>${p.awards.length ? `<span class="row-award" title="${esc(p.awards.join(' · '))}" aria-label="Award"></span>` : ''}</span>
           <span class="row-disc">${esc(projectDiscs(p).map(d => d.label).join(' / '))}</span>
@@ -158,18 +102,21 @@
         </a>
       </li>`).join('');
 
+    const filterButtons = $$('.filter', filters);
+    const rows = $$('li', list).map(el => ({ el, disciplines: new Set(el.dataset.disc.split(' ')), search: el.dataset.search }));
+    const workCount = $('#work-count'), workEmpty = $('#work-empty');
     let activeFilter = 'all';
     const search = $('#work-search');
     const applyFilter = () => {
       const query = search.value.trim().toLowerCase();
       let visible = 0;
-      $$('.filter', filters).forEach(b => b.setAttribute('aria-selected', b.dataset.filter === activeFilter));
-      $$('li', list).forEach(li => {
-        li.hidden = (activeFilter !== 'all' && !li.dataset.disc.split(' ').includes(activeFilter)) || !li.dataset.search.includes(query);
-        if (!li.hidden) visible++;
+      filterButtons.forEach(b => b.setAttribute('aria-selected', b.dataset.filter === activeFilter));
+      rows.forEach(({ el, disciplines, search }) => {
+        el.hidden = (activeFilter !== 'all' && !disciplines.has(activeFilter)) || !search.includes(query);
+        if (!el.hidden) visible++;
       });
-      $('#work-count').textContent = visible + ' / ' + TOTAL + t(' projects · 최신 연도순', ' projects · newest first');
-      $('#work-empty').hidden = visible !== 0;
+      workCount.textContent = visible + ' / ' + TOTAL + t(' projects · 최신 연도순', ' projects · newest first');
+      workEmpty.hidden = visible !== 0;
     };
     filters.addEventListener('click', e => { const b = e.target.closest('.filter'); if (b) { activeFilter = b.dataset.filter; applyFilter(); } });
     search.addEventListener('input', applyFilter);
@@ -359,6 +306,7 @@
   function renderDetail(id) {
     const p = byId[id];
     if (!p) { location.hash = '#/index'; return; }
+    clearDetail();
     const prevP = byId[D.projects[(p.n - 2 + TOTAL) % TOTAL].id], nextP = byId[D.projects[p.n % TOTAL].id];
     const m = p.media;
     const gallery = m.images.filter(im => im.src !== p.cover);
@@ -425,7 +373,7 @@
 
         <section class="pd-hero site-pad">
           <div class="card">
-            <img src="${src(p.cover)}" alt="${esc(p.fullTitle)}" fetchpriority="high" decoding="async">
+            <img src="${src(p.cover)}"${responsive(p.cover, '100vw')} alt="${esc(p.fullTitle)}" fetchpriority="high" decoding="async">
             <div class="hero-scrim" aria-hidden="true"></div>
             <div class="ticks ticks--light" aria-hidden="true"></div>
             <div class="card-top"><span class="mono">${esc(projectDiscs(p).map(d => d.label).join(' / '))}</span><span class="mono">${esc(p.year)}</span></div>
@@ -530,7 +478,9 @@
     scrollTo({ top: y, behavior: smooth && !reduced ? 'smooth' : 'auto' });
   }
 
+  let cancelRouteLayout = () => {};
   function route() {
+    cancelRouteLayout();
     const h = location.hash.replace(/^#\/?/, '');
     const parts = h.split('/').filter(Boolean);
     $('#nav').classList.remove('is-open');
@@ -539,7 +489,10 @@
     if (parts[0] === 'work' && parts[1]) {
       if (current === 'home') { homeScroll = scrollY; cameFromHome = true; }
       else if (current !== 'detail') cameFromHome = false;
-      renderDetail(decodeURIComponent(parts[1]));
+      let id;
+      try { id = decodeURIComponent(parts[1]); } catch (_) { location.hash = '#/index'; return; }
+      if (!byId[id]) { location.hash = '#/index'; return; }
+      renderDetail(id);
       home.hidden = true; detail.hidden = false;
       detail.classList.remove('view'); void detail.offsetWidth; detail.classList.add('view');
       scrollTo({ top: 0, behavior: 'auto' });
@@ -552,7 +505,7 @@
     const wasDetail = current === 'detail';
     document.title = 'Yebum Ko — Art × Technology';
     if (wasDetail) {
-      detail.hidden = true; detail.innerHTML = '';
+      detail.hidden = true; clearDetail();
       home.hidden = false;
       home.classList.remove('view'); void home.offsetWidth; home.classList.add('view');
     }
@@ -561,9 +514,9 @@
     sectionClick = false;
     if (wasDetail && cameFromHome && !explicit) {
       // browser back / "← Index": land on the row you left from
-      afterLayout(() => scrollTo({ top: homeScroll, behavior: 'auto' }));
+      cancelRouteLayout = afterLayout(() => scrollTo({ top: homeScroll, behavior: 'auto' }));
     } else if (parts.length || wasDetail) {
-      afterLayout(() => scrollToSection(section, !wasDetail));
+      cancelRouteLayout = afterLayout(() => scrollToSection(section, !wasDetail));
     }
   }
 
@@ -631,7 +584,7 @@
   /* ── keyboard: ← → between projects, Esc back to index ── */
   addEventListener('keydown', e => {
     const t = e.target;
-    if (current !== 'detail' || modal.open || (t instanceof Element && t.closest('input, textarea, iframe')) || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (current !== 'detail' || modal.open || (t instanceof Element && t.closest('input, textarea, select, button, iframe, [contenteditable]')) || e.metaKey || e.ctrlKey || e.altKey) return;
     const a = $('.pd-step a' + (e.key === 'ArrowLeft' ? ':first-child' : e.key === 'ArrowRight' ? ':last-child' : '.none'));
     if (a) { location.hash = a.getAttribute('href'); return; }
     if (e.key === 'Escape') $('[data-back]').click();
@@ -644,11 +597,14 @@
     catch (e) { toast(mail); }
   });
   const clock = $('#clock');
+  const clockFormat = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Seoul', hour: '2-digit', minute: '2-digit', hour12: false });
   const tick = () => {
-    const t = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Seoul', hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date());
+    if (document.hidden) return;
+    const t = clockFormat.format(new Date());
     clock.textContent = `Seoul ${t} KST`;
   };
-  tick(); setInterval(tick, 15000);
+  tick(); setInterval(tick, 60000);
+  document.addEventListener('visibilitychange', tick);
 
   /* ── boot ─────────────────────────────────────────── */
 
