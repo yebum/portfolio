@@ -144,16 +144,7 @@
     filters.innerHTML = tabs.map((t, i) =>
       `<button type="button" class="filter" role="tab" data-filter="${t.key}" aria-selected="${i === 0}">${esc(t.label)}<sup>${pad2(t.n)}</sup></button>`).join('');
 
-    const galleryOrder = [
-      'XMF2026-YOUNHA', 'MATMI', 'Neuroscape', 'SilgamSujevi',
-      'XMF2026-LUCY', 'BioAx', 'TimeOfExtinction', 'GetTheOceanSummerReady',
-      'XMF2026', 'BeyondTheCenter', 'XrStudio', 'Invader',
-      'XMF2026-hrtzwav', 'JalTayo', 'TeamPL', 'dndn',
-      'XMF2026-THEFIX', 'CITY', 'PiratesStorm', 'Jeonger',
-    ];
-    const rank = new Map(galleryOrder.map((id, i) => [id, i]));
-    const ordered = [...D.projects].sort((a, b) =>
-      Number(b.year) - Number(a.year) || (rank.get(a.id) ?? 999) - (rank.get(b.id) ?? 999));
+    const ordered = [...D.projects].sort((a, b) => Number(b.year) - Number(a.year));
     list.innerHTML = ordered.map((p, i) => `
       <li data-disc="${esc(p.disciplines.join(' '))}" data-cover="${esc(p.cover)}" data-search="${esc([p.fullTitle, p.context, p.year, ...projectDiscs(p).flatMap(d => [d.label, d.ko])].join(' ').toLowerCase())}">
         <a class="row-link" href="#/work/${p.id}" data-thumb="${src(p.cover, true)}">
