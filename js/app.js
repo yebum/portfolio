@@ -7,6 +7,7 @@
   'use strict';
 
   const D = window.PORTFOLIO;
+  const t = window.PORTFOLIO_T || ((ko) => ko);
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -167,7 +168,7 @@
         li.hidden = (activeFilter !== 'all' && !li.dataset.disc.split(' ').includes(activeFilter)) || !li.dataset.search.includes(query);
         if (!li.hidden) visible++;
       });
-      $('#work-count').textContent = visible + ' / ' + TOTAL + ' projects · 최신 연도순';
+      $('#work-count').textContent = visible + ' / ' + TOTAL + t(' projects · 최신 연도순', ' projects · newest first');
       $('#work-empty').hidden = visible !== 0;
     };
     filters.addEventListener('click', e => { const b = e.target.closest('.filter'); if (b) { activeFilter = b.dataset.filter; applyFilter(); } });
@@ -193,12 +194,12 @@
   function renderAbout() {
     $('#caps').innerHTML = D.capabilities.map(c => `
       <article class="cap" data-reveal>
-        <a class="card cap-link" href="#/index" data-cap-filter="${esc(c.filter)}" aria-label="${esc(c.title)} 분야의 프로젝트 보기"${c.pos ? ` style="--pos:${c.pos}"` : ''}><img src="${src(c.cover, true)}" alt="" loading="lazy" decoding="async">
+        <a class="card cap-link" href="#/index" data-cap-filter="${esc(c.filter)}" aria-label="${esc(c.title)} ${t('분야의 프로젝트 보기', 'projects')}"${c.pos ? ` style="--pos:${c.pos}"` : ''}><img src="${src(c.cover, true)}" alt="" loading="lazy" decoding="async">
           <div class="card-top"><span class="mono">${c.n}</span></div>
-          <span class="cap-link-label">이 분야 프로젝트 보기 <span aria-hidden="true">↗</span></span>
+          <span class="cap-link-label">${t('이 분야 프로젝트 보기', 'Explore projects')} <span aria-hidden="true">↗</span></span>
         </a>
         <div class="cap-text">
-          <h3><span class="cap-type mono">작업 분야</span>${esc(c.title)}</h3>
+          <h3><span class="cap-type mono">${t('작업 분야', 'Discipline')}</span>${esc(c.title)}</h3>
           <p>${esc(c.body)}</p>
           <span class="mono">${esc(c.tools)}</span>
         </div>
@@ -213,8 +214,8 @@
         <span class="award-project">${esc(a.project)}</span>
         <span class="award-prize chip chip--award">${esc(a.prize)}</span>
         <span class="award-actions">
-          ${a.id ? `<a class="chip chip--light" href="#/work/${esc(a.id)}" aria-label="${esc(a.project)} 프로젝트 보기">프로젝트 ↗</a>` : ''}
-          ${externalUrl(a.source) ? `<a class="chip" href="${esc(externalUrl(a.source))}" target="_blank" rel="noopener noreferrer" aria-label="${esc(a.title)} 관련 보도 자료: ${esc(a.sourceLabel)}">보도 자료 ↗</a>` : '<span class="award-unverified">관련 공개 자료 확인 중</span>'}
+          ${a.id ? `<a class="chip chip--light" href="#/work/${esc(a.id)}" aria-label="${esc(a.project)} ${t('프로젝트 보기', 'project')}">${t('프로젝트', 'Project')} ↗</a>` : ''}
+          ${externalUrl(a.source) ? `<a class="chip" href="${esc(externalUrl(a.source))}" target="_blank" rel="noopener noreferrer" aria-label="${esc(a.title)} ${t('관련 보도 자료', 'source')}: ${esc(a.sourceLabel)}">${t('보도 자료', 'Source')} ↗</a>` : `<span class="award-unverified">${t('관련 공개 자료 확인 중', 'Public source being verified')}</span>`}
         </span>
       </div>`;
     }).join('');
@@ -252,7 +253,7 @@
   function caseStudyHTML(p) {
     const cs = p.caseStudy, decks = p.media.decks;
     if (!cs) return '';
-    const deckName = (d, i) => d.label || (decks.length > 1 ? `PDF 자료 ${pad2(i + 1)}` : '발표 자료');
+    const deckName = (d, i) => d.label || (decks.length > 1 ? `PDF ${pad2(i + 1)}` : t('발표 자료', 'Presentation'));
     const strip = CASE.map(([key, name], i) => `
       <a class="card cs-card" href="#cs-${key}" data-jump="cs-${key}" data-reveal>
         <div class="ticks ticks--top" aria-hidden="true"></div>
@@ -278,8 +279,8 @@
             <span class="pdf-ico" aria-hidden="true">PDF</span>
             <span class="pdf-name"><b>${esc(deckName(d, i))}</b><span>${esc(p.fullTitle)} · ${deckHost(d)}</span></span>
             <span class="chips">
-              <a class="chip chip--light" href="${esc(deckView(d))}" target="_blank" rel="noopener noreferrer" aria-label="${esc(deckName(d, i))} 새 창에서 보기">Open ↗</a>
-              <a class="chip" href="${esc(deckDownload(d))}" ${d.src ? 'download' : 'target="_blank" rel="noopener noreferrer"'} aria-label="${esc(deckName(d, i))} 다운로드">Download ↓</a>
+              <a class="chip chip--light" href="${esc(deckView(d))}" target="_blank" rel="noopener noreferrer" aria-label="${esc(deckName(d, i))} ${t('새 창에서 보기', 'open in a new tab')}">Open ↗</a>
+              <a class="chip" href="${esc(deckDownload(d))}" ${d.src ? 'download' : 'target="_blank" rel="noopener noreferrer"'} aria-label="${esc(deckName(d, i))} ${t('다운로드', 'download')}">Download ↓</a>
             </span>
           </li>`).join('')}
         </ul>
@@ -312,7 +313,7 @@
           g.items.map((it, i) => "<i class=\"s" + i + "\" style=\"--w:" + it.value + "%\"></i>").join("") + "</div>" +
           "<ul class=\"m-legend\">" + g.items.map((it, i) =>
             "<li><span class=\"m-dot s" + i + "\" aria-hidden=\"true\"></span><b>" + esc(it.label) + "</b><span class=\"m-val tabular\">" + fmt(it.value) + "<small>%</small></span>" +
-            "<span class=\"mono dim\">" + (it.n != null ? it.n + "명" : "") + "</span>" + (it.sub ? "<p>" + esc(it.sub) + "</p>" : "") + "</li>").join("") + "</ul>";
+            "<span class=\"mono dim\">" + (it.n != null ? it.n + t("명", " people") : "") + "</span>" + (it.sub ? "<p>" + esc(it.sub) + "</p>" : "") + "</li>").join("") + "</ul>";
       } else {
         body = "<ul class=\"m-stats m-stats--" + Math.min(g.items.length, 3) + "\">" + g.items.map(it =>
           "<li><span class=\"m-num tabular\">" + esc(it.value) + (it.unit ? "<small>" + esc(it.unit) + "</small>" : "") + "</span><span class=\"m-cap\">" + esc(it.label) + "</span></li>").join("") + "</ul>";
@@ -321,13 +322,13 @@
         (g.sample ? "<p>" + esc(g.sample) + "</p>" : "") + "</div><div class=\"m-body\">" + body + "</div></div>";
     };
     return "<section class=\"metrics\" id=\"metrics\" aria-label=\"Results in numbers\">" +
-      "<div class=\"sec-label\"><span class=\"mono\">Results in numbers</span><span class=\"ctx dim\">" + esc(M.title) + " · 출처: " + esc(M.source) + "</span></div>" +
+      "<div class=\"sec-label\"><span class=\"mono\">Results in numbers</span><span class=\"ctx dim\">" + esc(M.title) + t(" · 출처: ", " · Source: ") + esc(M.source) + "</span></div>" +
       M.groups.map(group).join("") + "</section>";
   }
 
   function pdfPoster(p, d, name) {
     return `
-      <button class="poster" type="button" data-embed="${d.src ? 'pdf' : 'drive'}" data-id="${esc(d.src || d.id)}" aria-label="${esc(name)} 미리보기">
+      <button class="poster" type="button" data-embed="${d.src ? 'pdf' : 'drive'}" data-id="${esc(d.src || d.id)}" aria-label="${esc(name)} ${t('미리보기', 'preview')}">
         <div class="ticks ticks--top" aria-hidden="true"></div>
         <div class="card-top"><span class="mono">PDF</span><span class="mono dim">${deckHost(d)}</span></div>
         <span class="poster-title" aria-hidden="true">${esc(name)}</span>
@@ -366,8 +367,8 @@
       ['Year', esc(p.year)],
       ['Discipline', esc(projectDiscs(p).map(d => d.ko).join(' / '))],
       ...p.details.map(d => [esc(d.k), esc(d.v)]),
-      ...(p.media.decks.length ? [['Attachment', `<a class="fact-link" href="#cs-pdf" data-jump="cs-pdf">PDF ${pad2(p.media.decks.length)} — 발표 자료 보기</a>`]] : []),
-      ...(p.awards.length ? [['Awards', `<div class="chips">${p.awards.map(a => `<a class="chip chip--award" href="#/recognition" aria-label="${esc(a)} 수상 이력 보기">${esc(a)}</a>`).join('')}</div>`]] : []),
+      ...(p.media.decks.length ? [['Attachment', `<a class="fact-link" href="#cs-pdf" data-jump="cs-pdf">PDF ${pad2(p.media.decks.length)} — ${t('발표 자료 보기', 'View presentation')}</a>`]] : []),
+      ...(p.awards.length ? [['Awards', `<div class="chips">${p.awards.map(a => `<a class="chip chip--award" href="#/recognition" aria-label="${esc(a)} ${t('수상 이력 보기', 'award details')}">${esc(a)}</a>`).join('')}</div>`]] : []),
     ];
 
     const films = m.films.length ? `
@@ -431,7 +432,7 @@
             <div class="hero-copy">
               <h1 class="display" id="pd-title">${esc(p.fullTitle)}</h1>
               <p class="pd-ctx">${esc(p.context)}</p>
-              ${p.awards.length ? `<div class="chips">${p.awards.map(a => `<a class="chip chip--award" href="#/recognition" aria-label="${esc(a)} 수상 이력 보기">${esc(a)}</a>`).join('')}</div>` : ''}
+              ${p.awards.length ? `<div class="chips">${p.awards.map(a => `<a class="chip chip--award" href="#/recognition" aria-label="${esc(a)} ${t('수상 이력 보기', 'award details')}">${esc(a)}</a>`).join('')}</div>` : ''}
             </div>
           </div>
         </section>
@@ -483,7 +484,7 @@
       $$('[data-pdf-tab]', detail).forEach(b => b.setAttribute('aria-selected', b === tab));
       const view = $('#pdf-view'), frame = $('iframe', view);
       if (frame) frame.src = deckEmbed(d);
-      else view.innerHTML = pdfPoster(p, d, d.label || `PDF 자료 ${pad2(i + 1)}`);
+      else view.innerHTML = pdfPoster(p, d, d.label || `PDF ${pad2(i + 1)}`);
       return;
     }
     const btn = e.target.closest('[data-embed]');
@@ -505,7 +506,7 @@
       : embed === 'drive' && /^[\w-]{10,}$/.test(id)
         ? `https://drive.google.com/file/d/${id}/preview`
         : embed === 'pdf' && /^assets\/pdf\/[\w.-]+\.pdf$/.test(id) ? id : null;
-    if (!url) { toast('미디어 주소를 확인해 주세요.'); return; }
+    if (!url) { toast(t('미디어 주소를 확인해 주세요.', 'Please check the media URL.')); return; }
     const f = document.createElement('iframe');
     f.src = url;
     f.referrerPolicy = 'strict-origin-when-cross-origin';

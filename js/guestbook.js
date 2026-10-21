@@ -1,6 +1,8 @@
 /* Simple guestbook, retaining every existing note in the same collection. */
 (function () {
   'use strict';
+  const t = window.PORTFOLIO_T || ((ko) => ko);
+  const english = window.PORTFOLIO_LANG === 'en';
   const SDK = 'https://www.gstatic.com/firebasejs/12.15.0/';
   const config = {
     apiKey: 'AIzaSyA8onEy9P7irpJ1V1sufKl1JOabNZn7J1E',
@@ -26,12 +28,12 @@
       const author = document.createElement('strong'); author.textContent = d.nickname || 'Anonymous';
       const time = document.createElement('time'); time.className = 'mono dim';
       const date = d.createdAt?.toDate?.();
-      if (date) { time.dateTime = date.toISOString(); time.textContent = new Intl.DateTimeFormat('ko-KR', {year:'numeric',month:'2-digit',day:'2-digit'}).format(date); }
-      else time.textContent = '방금 전';
+      if (date) { time.dateTime = date.toISOString(); time.textContent = new Intl.DateTimeFormat(english ? 'en-US' : 'ko-KR', {year:'numeric',month:'2-digit',day:'2-digit'}).format(date); }
+      else time.textContent = t('방금 전', 'Just now');
       const text = document.createElement('p'); text.className = 'gb-text'; text.textContent = d.message;
       head.append(author, time); li.append(head, text); return li;
     }));
-    if (!notes.length) { const li = document.createElement('li'); li.className = 'gb-empty'; li.textContent = '첫 번째 인사를 남겨주세요.'; wall.append(li); }
+    if (!notes.length) { const li = document.createElement('li'); li.className = 'gb-empty'; li.textContent = t('첫 번째 인사를 남겨주세요.', 'Be the first to leave a note.'); wall.append(li); }
     more.hidden = notes.length <= shown;
   }
   more.addEventListener('click', () => { shown += 9; render(); });
@@ -44,10 +46,10 @@
         fs.onSnapshot(fs.query(ref, fs.orderBy('createdAt','desc')), snapshot => {
           notes = snapshot.docs.map(doc => doc.data()).filter(d => typeof d.message === 'string');
           render();
-        }, () => { status('방명록을 불러오지 못했어요. 잠시 후 다시 열어주세요.', 'error'); });
-        try { user = (await auth.signInAnonymously(auth.getAuth(app))).user; submit.disabled = false; status('남긴 글은 공개됩니다. 연락처 등 개인정보는 적지 말아주세요.'); }
-        catch (_) { status('지금은 글을 남길 수 없어요. 잠시 후 다시 열어주세요.', 'error'); }
-      }).catch(() => { status('연결하지 못했어요. 네트워크를 확인해 주세요.', 'error'); });
+        }, () => { status(t('방명록을 불러오지 못했어요. 잠시 후 다시 열어주세요.', 'Could not load the guestbook. Please try again later.'), 'error'); });
+        try { user = (await auth.signInAnonymously(auth.getAuth(app))).user; submit.disabled = false; status(t('남긴 글은 공개됩니다. 연락처 등 개인정보는 적지 말아주세요.', 'Posts are public. Please do not include contact details or private information.')); }
+        catch (_) { status(t('지금은 글을 남길 수 없어요. 잠시 후 다시 열어주세요.', 'Posting is unavailable right now. Please try again later.'), 'error'); }
+      }).catch(() => { status(t('연결하지 못했어요. 네트워크를 확인해 주세요.', 'Could not connect. Please check your network.'), 'error'); });
   }
   // Keep Firebase off the critical path until the guestbook is near the viewport.
   const observer = new IntersectionObserver((entries, current) => {
@@ -60,18 +62,18 @@
     e.preventDefault();
     if (form.elements.website.value || !user || !api) return;
     const nickname = name.value.trim(), text = message.value.trim();
-    if (!nickname || nickname.length > 20) { name.focus(); status('이름을 1–20자로 적어주세요.', 'error'); return; }
-    if (!text || text.length > 200) { message.focus(); status('메시지를 1–200자로 적어주세요.', 'error'); return; }
+    if (!nickname || nickname.length > 20) { name.focus(); status(t('이름을 1–20자로 적어주세요.', 'Please enter a name of 1–20 characters.'), 'error'); return; }
+    if (!text || text.length > 200) { message.focus(); status(t('메시지를 1–200자로 적어주세요.', 'Please enter a message of 1–200 characters.'), 'error'); return; }
     let last = 0;
     try { last = Number(localStorage.getItem('gbLastSentAt') || 0); } catch (_) {}
     const wait = Math.ceil((60000 - (Date.now() - last)) / 1000);
-    if (wait > 0) return status(`${wait}초 뒤에 다시 남길 수 있어요.`, 'error');
-    submit.disabled = true; status('남기는 중…');
+    if (wait > 0) return status(t(`${wait}초 뒤에 다시 남길 수 있어요.`, `You can post again in ${wait} seconds.`), 'error');
+    submit.disabled = true; status(t('남기는 중…', 'Posting…'));
     try {
       await api.addDoc(ref, {nickname, message:text, authorId:user.uid, createdAt:api.serverTimestamp()});
       try { localStorage.setItem('gbLastSentAt', String(Date.now())); localStorage.setItem('gbNickname', nickname); } catch (_) {}
-      message.value = ''; count(); render(); status('남겨주셔서 고맙습니다.', 'ok');
-    } catch (_) { status('저장하지 못했어요. 내용을 그대로 두었으니 다시 시도해 주세요.', 'error'); }
+      message.value = ''; count(); render(); status(t('남겨주셔서 고맙습니다.', 'Thanks for your note.'), 'ok');
+    } catch (_) { status(t('저장하지 못했어요. 내용을 그대로 두었으니 다시 시도해 주세요.', 'Could not save your note. Your text is still here; please try again.'), 'error'); }
     finally { submit.disabled = false; }
   });
 })();
