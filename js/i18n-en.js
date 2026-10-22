@@ -34,6 +34,14 @@
     'Stage visual design and audio-reactive video production'
   );
   const projects = {
+    AllAllowed: P(
+      'Allow All', 'Real-time audiovisual work · TouchDesigner',
+      'An audiovisual work about people who hand over judgement, choices and finally every permission until they begin to resemble the machines they rely on. Repeated gestures and smooth surfaces give way to the warmth still left in the body.',
+      ['What remains after we give away control?', 'The figures look human at first, but their joints, surfaces and repeated movements reveal people who have surrendered their decisions.'],
+      ['A sequence of control and resistance', 'Walking bodies, falling figures, hands pressing against an unseen wall and bodies held by radiating lines become a purple audiovisual sequence. TouchDesigner scenes respond to musical beats through cuts, camera moves and light.'],
+      ['A three-minute audiovisual film', 'From nearby, a crowd moves like a machine. From a distance, it resolves into one warm human silhouette. The work asks what we have allowed before that warmth disappears.'],
+      'Visual concept and TouchDesigner production'
+    ),
     'XMF2026-YOUNHA': artist('Younha', 'Password 486'),
     'XMF2026-LUCY': artist('LUCY', 'Flowering'),
     'XMF2026-hrtzwav': artist('HRTZWAV', 'mind'),

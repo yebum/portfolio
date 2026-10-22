@@ -2,6 +2,92 @@
 window.PORTFOLIO = {
   "projects": [
     {
+      "id": "AllAllowed",
+      "title": "모두 허용",
+      "fullTitle": "모두 허용",
+      "context": "실시간 오디오비주얼 · TouchDesigner",
+      "year": "2026",
+      "disciplines": [
+        "media",
+        "motion"
+      ],
+      "awards": [],
+      "cover": "AllAllowed",
+      "lead": "판단과 선택을 기계에 맡기다 스스로 AI가 되어가는 인간을 그린 오디오비주얼 작품. 반복되는 몸짓과 차가운 표면 아래 남은 체온을 따라가며, 우리가 무엇을 허용했는지 묻는다.",
+      "caseStudy": {
+        "problem": {
+          "summary": "모든 권한을 넘긴 뒤에도 인간은 남아 있을까",
+          "body": [
+            "화면 속 존재들은 언뜻 사람처럼 보이지만 가까이 보면 관절의 이음새, 매끈한 표면, 반복되는 몸짓이 드러난다. 기계처럼 보이는 그들은 판단과 선택을 맡기고 마지막에는 모든 권한을 내어준 사람들이다."
+          ]
+        },
+        "solution": {
+          "summary": "몸의 움직임으로 통제와 저항을 표현한 실시간 장면들",
+          "body": [
+            "정해진 방향으로 걷는 사람, 발 디딜 곳 없이 떨어지는 몸, 보이지 않는 벽을 미는 손, 사방의 선에 매달린 형체를 보라빛 오디오비주얼 시퀀스로 연결했다.",
+            "TouchDesigner에서 인물 실루엣과 GLSL 비주얼을 구성하고, 음악의 킥에 반응하는 장면 전환·카메라 움직임·빛의 변화를 설계했다."
+          ]
+        },
+        "result": {
+          "summary": "차가운 반복 속에 남은 체온을 보여주는 3분 영상",
+          "body": [
+            "가까이에서는 기계적으로 반복하는 군중이 멀어지며 한 사람의 따뜻한 실루엣으로 보인다. 작품은 AI 자체보다 스스로 AI가 되어가는 인간을 바라본다."
+          ]
+        }
+      },
+      "details": [
+        {
+          "k": "프로젝트 유형",
+          "v": "오디오비주얼 미디어아트"
+        },
+        {
+          "k": "사용 툴",
+          "v": "TouchDesigner · GLSL"
+        },
+        {
+          "k": "역할",
+          "v": "비주얼 기획 및 TouchDesigner 제작"
+        }
+      ],
+      "media": {
+        "films": [
+          {
+            "kind": "local",
+            "src": "assets/video/AllAllowed-film.mp4",
+            "label": "모두 허용 · 3분 영상"
+          }
+        ],
+        "decks": [],
+        "images": [
+          {
+            "src": "AllAllowed",
+            "label": "몸에 남은 온기"
+          },
+          {
+            "src": "AllAllowed-Corridor",
+            "label": "정해진 방향으로 걷는 사람들"
+          },
+          {
+            "src": "AllAllowed-Frost",
+            "label": "보이지 않는 벽을 미는 사람"
+          },
+          {
+            "src": "AllAllowed-Dive",
+            "label": "선에 매달린 몸"
+          },
+          {
+            "src": "AllAllowed-Melt",
+            "label": "녹아내리는 얼굴"
+          },
+          {
+            "src": "AllAllowed-Crowd",
+            "label": "군중의 흐름"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
       "id": "XMF2026-YOUNHA",
       "title": "XMF 2026 · 윤하",
       "fullTitle": "XMF 2026 — 윤하",
