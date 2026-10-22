@@ -2,6 +2,175 @@
 window.PORTFOLIO = {
   "projects": [
     {
+      "id": "FEELD",
+      "title": "FEELD",
+      "fullTitle": "FEELD",
+      "context": "캡스톤디자인 · 인터랙티브 미디어아트",
+      "year": "2026",
+      "disciplines": [
+        "media",
+        "xr"
+      ],
+      "awards": [],
+      "cover": "FEELD",
+      "lead": "실제 산에서 채집한 풍경과 소리를 디지털 공간에 다시 조립하고, 관객의 손짓에 따라 달라지는 자연을 경험하게 하는 인터랙티브 미디어아트 작품.",
+      "caseStudy": {
+        "problem": {
+          "summary": "같은 목적지에 이르는 서로 다른 과정과 감각",
+          "body": [
+            "같은 산을 오르더라도 각자가 지나온 길과 그 길에서 만난 풍경·소리·질감은 다르다. FEELD는 하나의 완성된 풍경을 보여주는 대신, 관객의 움직임에 따라 각기 다르게 형성되는 경험을 만들고자 했다."
+          ]
+        },
+        "solution": {
+          "summary": "현장에서 채집한 자연을 손짓에 반응하는 공간으로 재구성",
+          "body": [
+            "실제 산에서 촬영한 장면을 Gaussian Splatting으로 재구성하고, 현장의 소리를 Field Recording으로 담았다. 손 입력은 Unity의 스플랫 변형과 장면 전환에 연결했다.",
+            "돌은 파동, 풀은 손 방향의 흔들림, 흙은 손을 따라 모이는 입자로 반응한다. 같은 공간이라도 손의 움직임과 머무는 시간에 따라 다른 장면이 생긴다."
+          ]
+        },
+        "result": {
+          "summary": "손의 움직임으로 풍경이 드러나고 변화하는 체험 프로토타입",
+          "body": [
+            "Unity에서 Gaussian Splatting 장면을 손 입력에 맞춰 실시간 변형하고, 장면 전환과 카메라 반응을 연결했다. 관객이 자연을 바라보는 데서 그치지 않고 자신만의 경로로 풍경을 발견하도록 설계했다."
+          ]
+        }
+      },
+      "details": [
+        {
+          "k": "프로젝트 유형",
+          "v": "인터랙티브 미디어아트 · 캡스톤디자인"
+        },
+        {
+          "k": "사용 툴",
+          "v": "Unity · C# · Gaussian Splatting · Leap Motion · TouchDesigner"
+        },
+        {
+          "k": "역할",
+          "v": "테크 리드 · Unity 인터랙션 및 Gaussian Splatting 비주얼 개발"
+        }
+      ],
+      "media": {
+        "films": [
+          {
+            "kind": "local",
+            "src": "assets/video/FEELD-film.mp4",
+            "label": "FEELD · 프로젝트 영상"
+          }
+        ],
+        "decks": [
+          {
+            "src": "assets/pdf/FEELD.pdf",
+            "label": "FEELD · 프로젝트 발표 자료"
+          }
+        ],
+        "images": [
+          {
+            "src": "FEELD",
+            "label": "FEELD · 체험 인트로"
+          },
+          {
+            "src": "FEELD-Forest",
+            "label": "FEELD · 숲 장면"
+          },
+          {
+            "src": "FEELD-Path",
+            "label": "FEELD · 숲길"
+          },
+          {
+            "src": "FEELD-Reveal",
+            "label": "FEELD · 손짓에 반응하는 풍경"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "id": "AllAllowed",
+      "title": "모두 허용",
+      "fullTitle": "모두 허용",
+      "context": "실시간 오디오비주얼 · TouchDesigner",
+      "year": "2026",
+      "disciplines": [
+        "media",
+        "motion"
+      ],
+      "awards": [],
+      "cover": "AllAllowed",
+      "lead": "판단과 선택을 기계에 맡기다 스스로 AI가 되어가는 인간을 그린 오디오비주얼 작품. 반복되는 몸짓과 차가운 표면 아래 남은 체온을 따라가며, 우리가 무엇을 허용했는지 묻는다.",
+      "caseStudy": {
+        "problem": {
+          "summary": "모든 권한을 넘긴 뒤에도 인간은 남아 있을까",
+          "body": [
+            "화면 속 존재들은 언뜻 사람처럼 보이지만 가까이 보면 관절의 이음새, 매끈한 표면, 반복되는 몸짓이 드러난다. 기계처럼 보이는 그들은 판단과 선택을 맡기고 마지막에는 모든 권한을 내어준 사람들이다."
+          ]
+        },
+        "solution": {
+          "summary": "몸의 움직임으로 통제와 저항을 표현한 실시간 장면들",
+          "body": [
+            "정해진 방향으로 걷는 사람, 발 디딜 곳 없이 떨어지는 몸, 보이지 않는 벽을 미는 손, 사방의 선에 매달린 형체를 보라빛 오디오비주얼 시퀀스로 연결했다.",
+            "TouchDesigner에서 인물 실루엣과 GLSL 비주얼을 구성하고, 음악의 킥에 반응하는 장면 전환·카메라 움직임·빛의 변화를 설계했다."
+          ]
+        },
+        "result": {
+          "summary": "차가운 반복 속에 남은 체온을 보여주는 3분 영상",
+          "body": [
+            "가까이에서는 기계적으로 반복하는 군중이 멀어지며 한 사람의 따뜻한 실루엣으로 보인다. 작품은 AI 자체보다 스스로 AI가 되어가는 인간을 바라본다."
+          ]
+        }
+      },
+      "details": [
+        {
+          "k": "프로젝트 유형",
+          "v": "오디오비주얼 미디어아트"
+        },
+        {
+          "k": "사용 툴",
+          "v": "TouchDesigner · GLSL"
+        },
+        {
+          "k": "역할",
+          "v": "비주얼 기획 및 TouchDesigner 제작"
+        }
+      ],
+      "media": {
+        "films": [
+          {
+            "kind": "local",
+            "src": "assets/video/AllAllowed-film.mp4",
+            "label": "모두 허용 · 3분 영상"
+          }
+        ],
+        "decks": [],
+        "images": [
+          {
+            "src": "AllAllowed",
+            "label": "몸에 남은 온기"
+          },
+          {
+            "src": "AllAllowed-Corridor",
+            "label": "정해진 방향으로 걷는 사람들"
+          },
+          {
+            "src": "AllAllowed-Frost",
+            "label": "보이지 않는 벽을 미는 사람"
+          },
+          {
+            "src": "AllAllowed-Dive",
+            "label": "선에 매달린 몸"
+          },
+          {
+            "src": "AllAllowed-Melt",
+            "label": "녹아내리는 얼굴"
+          },
+          {
+            "src": "AllAllowed-Crowd",
+            "label": "군중의 흐름"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
       "id": "XMF2026-YOUNHA",
       "title": "XMF 2026 · 윤하",
       "fullTitle": "XMF 2026 — 윤하",
