@@ -34,6 +34,14 @@
     'Stage visual design and audio-reactive video production'
   );
   const projects = {
+    FEELD: P(
+      'FEELD', 'Capstone project · interactive media art',
+      'An interactive artwork that reconstructs the sights and sounds recorded on a real mountain, then lets each visitor discover a different landscape through hand movement.',
+      ['One destination, different paths and sensations', 'People can reach the same summit by different routes, encountering different sights, sounds and textures. FEELD makes those differences part of the experience rather than showing one fixed landscape.'],
+      ['A recorded landscape that responds to the hand', 'Mountain imagery becomes a Gaussian Splatting space and field recordings carry its sound. Hand input changes the splats and transitions between scenes: stone creates ripples, vegetation bends and soil gathers along the path of movement.'],
+      ['An interactive landscape prototype', 'The Unity prototype transforms splat scenes in real time and connects hand movement to the camera and scene transitions, allowing visitors to discover the landscape in their own way.'],
+      'Tech lead · Unity interaction and Gaussian Splatting visual development'
+    ),
     AllAllowed: P(
       'Allow All', 'Real-time audiovisual work · TouchDesigner',
       'An audiovisual work about people who hand over judgement, choices and finally every permission until they begin to resemble the machines they rely on. Repeated gestures and smooth surfaces give way to the warmth still left in the body.',

@@ -2,6 +2,89 @@
 window.PORTFOLIO = {
   "projects": [
     {
+      "id": "FEELD",
+      "title": "FEELD",
+      "fullTitle": "FEELD",
+      "context": "캡스톤디자인 · 인터랙티브 미디어아트",
+      "year": "2026",
+      "disciplines": [
+        "media",
+        "xr"
+      ],
+      "awards": [],
+      "cover": "FEELD",
+      "lead": "실제 산에서 채집한 풍경과 소리를 디지털 공간에 다시 조립하고, 관객의 손짓에 따라 달라지는 자연을 경험하게 하는 인터랙티브 미디어아트 작품.",
+      "caseStudy": {
+        "problem": {
+          "summary": "같은 목적지에 이르는 서로 다른 과정과 감각",
+          "body": [
+            "같은 산을 오르더라도 각자가 지나온 길과 그 길에서 만난 풍경·소리·질감은 다르다. FEELD는 하나의 완성된 풍경을 보여주는 대신, 관객의 움직임에 따라 각기 다르게 형성되는 경험을 만들고자 했다."
+          ]
+        },
+        "solution": {
+          "summary": "현장에서 채집한 자연을 손짓에 반응하는 공간으로 재구성",
+          "body": [
+            "실제 산에서 촬영한 장면을 Gaussian Splatting으로 재구성하고, 현장의 소리를 Field Recording으로 담았다. 손 입력은 Unity의 스플랫 변형과 장면 전환에 연결했다.",
+            "돌은 파동, 풀은 손 방향의 흔들림, 흙은 손을 따라 모이는 입자로 반응한다. 같은 공간이라도 손의 움직임과 머무는 시간에 따라 다른 장면이 생긴다."
+          ]
+        },
+        "result": {
+          "summary": "손의 움직임으로 풍경이 드러나고 변화하는 체험 프로토타입",
+          "body": [
+            "Unity에서 Gaussian Splatting 장면을 손 입력에 맞춰 실시간 변형하고, 장면 전환과 카메라 반응을 연결했다. 관객이 자연을 바라보는 데서 그치지 않고 자신만의 경로로 풍경을 발견하도록 설계했다."
+          ]
+        }
+      },
+      "details": [
+        {
+          "k": "프로젝트 유형",
+          "v": "인터랙티브 미디어아트 · 캡스톤디자인"
+        },
+        {
+          "k": "사용 툴",
+          "v": "Unity · C# · Gaussian Splatting · Leap Motion · TouchDesigner"
+        },
+        {
+          "k": "역할",
+          "v": "테크 리드 · Unity 인터랙션 및 Gaussian Splatting 비주얼 개발"
+        }
+      ],
+      "media": {
+        "films": [
+          {
+            "kind": "local",
+            "src": "assets/video/FEELD-film.mp4",
+            "label": "FEELD · 프로젝트 영상"
+          }
+        ],
+        "decks": [
+          {
+            "src": "assets/pdf/FEELD.pdf",
+            "label": "FEELD · 프로젝트 발표 자료"
+          }
+        ],
+        "images": [
+          {
+            "src": "FEELD",
+            "label": "FEELD · 체험 인트로"
+          },
+          {
+            "src": "FEELD-Forest",
+            "label": "FEELD · 숲 장면"
+          },
+          {
+            "src": "FEELD-Path",
+            "label": "FEELD · 숲길"
+          },
+          {
+            "src": "FEELD-Reveal",
+            "label": "FEELD · 손짓에 반응하는 풍경"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
       "id": "AllAllowed",
       "title": "모두 허용",
       "fullTitle": "모두 허용",
