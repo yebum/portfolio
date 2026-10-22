@@ -39,6 +39,18 @@ try {
     await page.locator('[data-slide="8"]').click();
     await page.waitForFunction(() => document.querySelector('#showreel-count').textContent.startsWith('09'));
     assert.equal(await page.locator('.showreel-slide.is-active img').evaluate(img => img.naturalWidth > 0), true);
+    const thumbnails = await page.locator('.index.is-grid .row-thumb').evaluateAll(items => items.map(el => {
+      const r = el.getBoundingClientRect();
+      return [Math.round(r.width), Math.round(r.height)];
+    }));
+    assert.equal(new Set(thumbnails.map(size => size.join('x'))).size, 1, 'grid thumbnails share one size');
+    assert.ok(Math.abs(thumbnails[0][0] / thumbnails[0][1] - 1.6) < .02);
+    if (process.env.GALLERY_SCREENSHOT_DIR && !language) {
+      await page.locator('#index-list > li').nth(7).scrollIntoViewIfNeeded();
+      await page.waitForFunction(() => [...document.querySelectorAll('#index-list > li img')].slice(0, 8).every(img => img.complete && img.naturalWidth));
+      await page.locator('#index-list > li').first().scrollIntoViewIfNeeded();
+      await page.screenshot({ path: resolve(process.env.GALLERY_SCREENSHOT_DIR, 'gallery-desktop.png') });
+    }
     const total = await page.locator('#index-list > li').count();
     for (const filter of await page.locator('[data-filter]').all()) {
       const key = await filter.getAttribute('data-filter');
@@ -67,6 +79,7 @@ try {
   await page.goto(base + '/');
   await page.waitForFunction(() => document.querySelector('#index-list').children.length > 0);
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, 'no mobile overflow');
+  assert.equal(await page.locator('.index.is-grid .row-thumb').evaluateAll(items => new Set(items.map(el => Math.round(el.getBoundingClientRect().height))).size), 1, 'mobile thumbnails share one height');
   await page.route('**/Neuroscape*.webp', async route => {
     await new Promise(done => setTimeout(done, 300));
     await route.continue();
@@ -75,6 +88,12 @@ try {
   await page.locator('[data-slide="0"]').dispatchEvent('click');
   await page.waitForTimeout(600);
   assert.match(await page.locator('#showreel-count').textContent(), /^01/);
+  if (process.env.GALLERY_SCREENSHOT_DIR) {
+    await page.locator('#index-list > li').nth(2).scrollIntoViewIfNeeded();
+    await page.waitForFunction(() => [...document.querySelectorAll('#index-list > li img')].slice(0, 3).every(img => img.complete && img.naturalWidth));
+    await page.locator('#index-list > li').first().scrollIntoViewIfNeeded();
+    await page.screenshot({ path: resolve(process.env.GALLERY_SCREENSHOT_DIR, 'gallery-mobile.png') });
+  }
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.waitForTimeout(100);
   assert.equal(await page.locator('.showreel-timeline').evaluate(el => el.classList.contains('is-paused')), true);

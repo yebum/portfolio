@@ -1014,7 +1014,7 @@ h1, h2, h3, p { margin: 0; }
   .showreel-slide.is-active img { animation:none; }
 }
 
-/* Project index: equal image widths, original aspect ratios, no thumbnail frames. */
+/* Project index: consistent thumbnail dimensions without decorative frames. */
 .index.is-grid .index-list {
   grid-template-columns:repeat(4,minmax(0,1fr));
   align-items:start;
@@ -1040,21 +1040,21 @@ h1, h2, h3, p { margin: 0; }
   grid-column:1/-1;
   grid-row:1;
   width:100%;
-  height:auto;
-  aspect-ratio:auto;
+  aspect-ratio:16/10;
   margin:0 0 9px;
-  overflow:visible;
+  overflow:hidden;
   border:0;
   border-radius:0;
   background:transparent;
 }
 .index.is-grid .row-thumb img {
   display:block;
-  position:static;
+  position:absolute;
+  inset:0;
   width:100%;
-  height:auto;
-  max-width:100%;
-  object-fit:initial;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
   transform:none;
 }
 .index.is-grid .row-link:hover .row-thumb img { transform:none; }
