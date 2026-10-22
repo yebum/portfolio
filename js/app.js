@@ -108,7 +108,8 @@
     const layoutMasonry = () => {
       masonryFrame = 0;
       if (!section.classList.contains('is-grid')) return;
-      const sizes = rows.filter(({ el }) => !el.hidden).map(({ el }) => [el, Math.ceil(el.querySelector('.row-link').getBoundingClientRect().height + 28)]);
+      const gap = parseFloat(getComputedStyle(list).getPropertyValue('--masonry-gap')) || 40;
+      const sizes = rows.filter(({ el }) => !el.hidden).map(({ el }) => [el, Math.ceil(el.querySelector('.row-link').getBoundingClientRect().height + gap)]);
       sizes.forEach(([el, height]) => el.style.setProperty('--row-span', height));
     };
     const scheduleMasonry = () => {
