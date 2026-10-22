@@ -104,6 +104,25 @@
 
     const filterButtons = $$('.filter', filters);
     const rows = $$('li', list).map(el => ({ el, disciplines: new Set(el.dataset.disc.split(' ')), search: el.dataset.search }));
+    let masonryFrame = 0;
+    const layoutMasonry = () => {
+      masonryFrame = 0;
+      if (!section.classList.contains('is-grid')) return;
+      const gap = parseFloat(getComputedStyle(list).getPropertyValue('--masonry-gap')) || 40;
+      const sizes = rows.filter(({ el }) => !el.hidden).map(({ el }) => [el, Math.ceil(el.querySelector('.row-link').getBoundingClientRect().height + gap)]);
+      sizes.forEach(([el, height]) => el.style.setProperty('--row-span', height));
+    };
+    const scheduleMasonry = () => {
+      if (!masonryFrame) masonryFrame = requestAnimationFrame(layoutMasonry);
+    };
+    list.classList.add('is-masonry');
+    if ('ResizeObserver' in window) {
+      const observer = new ResizeObserver(scheduleMasonry);
+      rows.forEach(({ el }) => observer.observe(el.querySelector('.row-link')));
+    } else {
+      $$('img', list).forEach(img => img.addEventListener('load', scheduleMasonry));
+    }
+    window.addEventListener('resize', scheduleMasonry, { passive: true });
     const workCount = $('#work-count'), workEmpty = $('#work-empty');
     let activeFilter = 'all';
     const search = $('#work-search');
@@ -117,6 +136,7 @@
       });
       workCount.textContent = visible + ' / ' + TOTAL + t(' projects · 최신 연도순', ' projects · newest first');
       workEmpty.hidden = visible !== 0;
+      scheduleMasonry();
     };
     filters.addEventListener('click', e => { const b = e.target.closest('.filter'); if (b) { activeFilter = b.dataset.filter; applyFilter(); } });
     search.addEventListener('input', applyFilter);
@@ -131,6 +151,7 @@
 
     const setView = v => {
       section.classList.toggle('is-grid', v === 'grid');
+      if (v === 'grid') scheduleMasonry();
       $$('[data-view]', section).forEach(b => { const on = b.dataset.view === v; b.classList.toggle('is-on', on); b.setAttribute('aria-pressed', on); });
       try { localStorage.setItem('indexView', v); } catch (e) { /* storage unavailable */ }
     };
@@ -304,7 +325,7 @@
   }
 
   function renderDetail(id) {
-    const p = byId[id];
+    const p = Object.hasOwn(byId, id) ? byId[id] : null;
     if (!p) { location.hash = '#/index'; return; }
     clearDetail();
     const prevP = byId[D.projects[(p.n - 2 + TOTAL) % TOTAL].id], nextP = byId[D.projects[p.n % TOTAL].id];
@@ -491,7 +512,7 @@
       else if (current !== 'detail') cameFromHome = false;
       let id;
       try { id = decodeURIComponent(parts[1]); } catch (_) { location.hash = '#/index'; return; }
-      if (!byId[id]) { location.hash = '#/index'; return; }
+      if (!Object.hasOwn(byId, id)) { location.hash = '#/index'; return; }
       renderDetail(id);
       home.hidden = true; detail.hidden = false;
       detail.classList.remove('view'); void detail.offsetWidth; detail.classList.add('view');

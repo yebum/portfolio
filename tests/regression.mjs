@@ -34,11 +34,29 @@ try {
   for (const language of ['', '?lang=en']) {
     await page.goto(base + '/' + language);
     await page.waitForFunction(() => document.querySelector('#index-list').children.length > 0 && document.querySelector('.showreel-slide.is-active img').complete);
+    assert.equal(await page.locator('#index-list a[href="#/work/FEELD"]').count(), 1, 'FEELD appears in the project index');
+    assert.equal(await page.locator('#index-list a[href="#/work/AllAllowed"]').count(), 1, 'All Allowed appears in the project index');
     await page.waitForTimeout(300);
     assert.equal(await page.locator('.showreel-slide img[src]').count(), 2, 'only current and next reel images loaded');
     await page.locator('[data-slide="8"]').click();
     await page.waitForFunction(() => document.querySelector('#showreel-count').textContent.startsWith('09'));
     assert.equal(await page.locator('.showreel-slide.is-active img').evaluate(img => img.naturalWidth > 0), true);
+    await page.locator('#index-list > li').nth(7).scrollIntoViewIfNeeded();
+    await page.waitForFunction(() => [...document.querySelectorAll('#index-list > li img')].slice(0, 8).every(img => img.complete && img.naturalWidth));
+    await page.waitForTimeout(100);
+    const cards = await page.locator('.index.is-grid .index-list > li').evaluateAll(items => items.slice(0, 8).map(el => {
+      const img = el.querySelector('img');
+      const box = img.getBoundingClientRect(), card = el.getBoundingClientRect();
+      return { width: Math.round(box.width), height: Math.round(box.height), naturalRatio: img.naturalWidth / img.naturalHeight, left: Math.round(card.left), top: Math.round(card.top), bottom: Math.round(card.bottom) };
+    }));
+    assert.equal(new Set(cards.slice(0, 3).map(card => card.width)).size, 1, 'columns have equal widths');
+    assert.ok(new Set(cards.map(card => card.height)).size > 1, 'images retain varied heights');
+    assert.ok(cards.every(card => Math.abs(card.width / card.height - card.naturalRatio) < .02), 'images keep their natural proportions');
+    assert.equal(new Set(cards.slice(0, 3).map(card => card.top)).size, 1, 'newest three projects lead each column');
+    if (process.env.GALLERY_SCREENSHOT_DIR && !language) {
+      await page.locator('#index-list > li').first().evaluate(el => el.scrollIntoView({ block: 'start', behavior: 'instant' }));
+      await page.screenshot({ path: resolve(process.env.GALLERY_SCREENSHOT_DIR, 'gallery-desktop.png') });
+    }
     const total = await page.locator('#index-list > li').count();
     for (const filter of await page.locator('[data-filter]').all()) {
       const key = await filter.getAttribute('data-filter');
@@ -57,14 +75,24 @@ try {
     assert.equal(await page.evaluate(() => [...window.testObserved].filter(el => !el.isConnected).length), 0, 'no detached reveal observers');
     await page.goto(base + '/' + language + '#/work/%ZZ');
     await page.waitForFunction(() => location.hash === '#/index' && !document.querySelector('#home').hidden);
+    await page.goto(base + '/' + language + '#/work/__proto__');
+    await page.waitForFunction(() => location.hash === '#/index');
     await page.locator('#work-search').fill('');
     assert.equal(await page.locator('#index-list > li:not([hidden])').count(), total);
     assert.equal(await page.locator('html').getAttribute('lang'), language ? 'en' : 'ko');
+    for (const projectId of ['FEELD', 'AllAllowed']) {
+      await page.goto(base + '/' + language + '#/work/' + projectId);
+      await page.waitForFunction(() => !document.querySelector('#detail').hidden);
+      assert.ok(await page.locator('.pd-hero img').evaluate(img => img.complete && img.naturalWidth > 0), projectId + ' detail cover loads');
+    }
   }
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(base + '/');
   await page.waitForFunction(() => document.querySelector('#index-list').children.length > 0);
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, 'no mobile overflow');
+  await page.locator('#index-list > li').nth(2).scrollIntoViewIfNeeded();
+  await page.waitForFunction(() => [...document.querySelectorAll('#index-list > li img')].slice(0, 3).every(img => img.complete && img.naturalWidth));
+  assert.ok(await page.locator('.index.is-grid .row-thumb img').evaluateAll(items => items.slice(0, 3).every(img => Math.abs(img.getBoundingClientRect().width / img.getBoundingClientRect().height - img.naturalWidth / img.naturalHeight) < .02)), 'mobile images keep natural proportions');
   await page.route('**/Neuroscape*.webp', async route => {
     await new Promise(done => setTimeout(done, 300));
     await route.continue();
@@ -73,6 +101,12 @@ try {
   await page.locator('[data-slide="0"]').dispatchEvent('click');
   await page.waitForTimeout(600);
   assert.match(await page.locator('#showreel-count').textContent(), /^01/);
+  if (process.env.GALLERY_SCREENSHOT_DIR) {
+    await page.locator('#index-list > li').nth(2).scrollIntoViewIfNeeded();
+    await page.waitForFunction(() => [...document.querySelectorAll('#index-list > li img')].slice(0, 3).every(img => img.complete && img.naturalWidth));
+    await page.locator('#index-list > li').first().evaluate(el => el.scrollIntoView({ block: 'start', behavior: 'instant' }));
+    await page.screenshot({ path: resolve(process.env.GALLERY_SCREENSHOT_DIR, 'gallery-mobile.png') });
+  }
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.waitForTimeout(100);
   assert.equal(await page.locator('.showreel-timeline').evaluate(el => el.classList.contains('is-paused')), true);
