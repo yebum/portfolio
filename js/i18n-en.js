@@ -43,8 +43,8 @@
       'Tech lead · Unity interaction and Gaussian Splatting visual development'
     ),
     AllAllowed: P(
-      'Allow All', 'Real-time audiovisual work · TouchDesigner',
-      'An audiovisual work about people who hand over judgement, choices and finally every permission until they begin to resemble the machines they rely on. Repeated gestures and smooth surfaces give way to the warmth still left in the body.',
+      'Allow All', '2026 HCF Media Art Show · upcoming exhibition',
+      'An audiovisual work to be shown at the 2026 HCF Media Art Show. It portrays people who hand over judgement, choices and finally every permission until they begin to resemble the machines they rely on. Repeated gestures and smooth surfaces give way to the warmth still left in the body.',
       ['What remains after we give away control?', 'The figures look human at first, but their joints, surfaces and repeated movements reveal people who have surrendered their decisions.'],
       ['A sequence of control and resistance', 'Walking bodies, falling figures, hands pressing against an unseen wall and bodies held by radiating lines become a purple audiovisual sequence. TouchDesigner scenes respond to musical beats through cuts, camera moves and light.'],
       ['A three-minute audiovisual film', 'From nearby, a crowd moves like a machine. From a distance, it resolves into one warm human silhouette. The work asks what we have allowed before that warmth disappears.'],
@@ -356,6 +356,7 @@
     ['2019 — 2021', 'Daegi High School', ''],
   ];
   D.experience = [
+    ['2026', 'Participating artist, HCF Media Art Show', 'Allow All'],
     ['2026', 'Realistic Media Competition · finalist', 'Convergence & Open Sharing System for Immersive Media'],
     ['2026', 'Lead Korean-artist visuals and sound-interactive production for XMF Festival', 'XMF FESTIVAL'],
     ['2026', 'Audiovisual production for Jambinai — Time of Extinction', 'KALEIDOSCOPE'],
