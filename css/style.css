@@ -1014,17 +1014,26 @@ h1, h2, h3, p { margin: 0; }
   .showreel-slide.is-active img { animation:none; }
 }
 
-/* Project index: consistent thumbnail dimensions without decorative frames. */
+/* Project index: equal column widths, original image proportions, staggered rows. */
 .index.is-grid .index-list {
   grid-template-columns:repeat(4,minmax(0,1fr));
   align-items:start;
-  gap:48px 16px;
+  gap:28px 16px;
   border:0;
+}
+.index.is-grid .index-list.is-masonry {
+  grid-auto-flow:row dense;
+  grid-auto-rows:1px;
+  row-gap:0;
 }
 .index.is-grid .index-list > li {
   min-width:0;
   align-self:start;
   border:0;
+}
+.index.is-grid .index-list.is-masonry > li:not([hidden]) {
+  grid-row-end:span var(--row-span, 400);
+  padding-bottom:28px;
 }
 .index.is-grid .row-link {
   height:auto;
@@ -1040,21 +1049,19 @@ h1, h2, h3, p { margin: 0; }
   grid-column:1/-1;
   grid-row:1;
   width:100%;
-  aspect-ratio:16/10;
+  aspect-ratio:auto;
   margin:0 0 9px;
-  overflow:hidden;
+  overflow:visible;
   border:0;
   border-radius:0;
   background:transparent;
 }
 .index.is-grid .row-thumb img {
   display:block;
-  position:absolute;
-  inset:0;
+  position:static;
   width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center;
+  height:auto;
+  aspect-ratio:auto 4/3;
   transform:none;
 }
 .index.is-grid .row-link:hover .row-thumb img { transform:none; }
@@ -1112,7 +1119,7 @@ h1, h2, h3, p { margin: 0; }
   .index.is-grid .index-list { grid-template-columns:repeat(2,minmax(0,1fr)); }
 }
 @media(max-width:560px) {
-  .index.is-grid .index-list { grid-template-columns:1fr; gap:36px; }
+  .index.is-grid .index-list { grid-template-columns:1fr; gap:28px; }
 }
 
 /* Full-viewport opening reel. The image treatment follows each project's medium. */
