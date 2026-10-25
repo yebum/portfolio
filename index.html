@@ -7,9 +7,19 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Yebum Ko — Art × Technology</title>
   <meta name="description" content="고예범 포트폴리오 2026 — 미디어아트, XR, UX, 모션을 넘나들며 기술과 예술이 만나는 지점을 디자인합니다.">
+  <link rel="canonical" href="https://yebumko.com/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yebumko.com/">
+  <meta property="og:site_name" content="Yebum Ko">
   <meta property="og:title" content="Yebum Ko — Art × Technology">
   <meta property="og:description" content="Media Art · XR · UX · Motion — Portfolio 2026, Seoul">
-  <meta property="og:image" content="assets/img/TimeOfExtinction.webp">
+  <meta property="og:image" content="https://yebumko.com/assets/img/AllAllowed.webp">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="900">
+  <meta property="og:image:alt" content="Yebum Ko — 모두 허용 오디오비주얼 프로젝트">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"고예범","alternateName":"Yebum Ko","url":"https://yebumko.com/","sameAs":["https://github.com/yebum"],"knowsAbout":["Media Art","XR","UX Design","Motion Design"]}</script>
   <meta name="theme-color" content="#ffffff">
   <link rel="icon" type="image/png" href="apple-touch-icon.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -19,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=gallery-readable-20261022">
+  <link rel="stylesheet" href="css/style.css?v=gallery-viewer-20261026">
 </head>
 <body>
   <a class="skip" href="#index">Skip to work</a>
@@ -254,12 +264,26 @@
     <div class="modal-frame" id="modal-frame"></div>
   </dialog>
 
+  <dialog class="gallery-viewer" id="gallery-viewer" aria-label="프로젝트 이미지 갤러리">
+    <div class="gallery-viewer-bar">
+      <span class="mono" id="gallery-viewer-count"></span>
+      <button class="gallery-viewer-close" type="button" data-gallery-close aria-label="이미지 갤러리 닫기">✕</button>
+    </div>
+    <div class="gallery-viewer-stage"><img id="gallery-viewer-image" alt="" decoding="async"></div>
+    <div class="gallery-viewer-foot">
+      <button type="button" data-gallery-prev aria-label="이전 이미지">←</button>
+      <p id="gallery-viewer-caption"></p>
+      <button type="button" data-gallery-next aria-label="다음 이미지">→</button>
+    </div>
+  </dialog>
+
   <div class="toast mono" id="toast" role="status" aria-live="polite"></div>
 
   <script src="js/data.js?v=hcf-20261022"></script>
-  <script src="js/i18n-en.js?v=hcf-20261022"></script>
+  <script src="js/image-sizes.js?v=20261026"></script>
+  <script src="js/i18n-en.js?v=gallery-viewer-20261026"></script>
   <script src="js/showreel.js?v=perf-20261022"></script>
-  <script src="js/app.js?v=gallery-readable-20261022"></script>
+  <script src="js/app.js?v=gallery-viewer-20261026"></script>
   <script src="js/guestbook.js?v=perf-20261022"></script>
 </body>
 </html>

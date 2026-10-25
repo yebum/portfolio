@@ -319,6 +319,10 @@
   };
   Object.entries(staticCopy).forEach(([selector, copy]) => set(selector, copy));
   attr('meta[name="description"]', 'content', 'Yebum Ko portfolio — media art, XR, UX and motion at the intersection of art and technology.');
+  attr('#gallery-viewer', 'aria-label', 'Project image gallery');
+  attr('[data-gallery-close]', 'aria-label', 'Close image gallery');
+  attr('[data-gallery-prev]', 'aria-label', 'Previous image');
+  attr('[data-gallery-next]', 'aria-label', 'Next image');
   attr('.showreel', 'aria-label', 'Featured project reel');
   attr('.showreel-timeline', 'aria-label', 'Choose a reel scene');
   attr('#filters', 'aria-label', 'Filter by discipline');

@@ -30,12 +30,14 @@ try {
   });
   const errors = [];
   page.on('pageerror', e => errors.push(e.message));
+  page.on('console', message => { if (message.text().includes('Content Security Policy')) errors.push(message.text()); });
   const base = `http://127.0.0.1:${server.address().port}`;
   for (const language of ['', '?lang=en']) {
     await page.goto(base + '/' + language);
     await page.waitForFunction(() => document.querySelector('#index-list').children.length > 0 && document.querySelector('.showreel-slide.is-active img').complete);
     assert.equal(await page.locator('#index-list a[href="#/work/FEELD"]').count(), 1, 'FEELD appears in the project index');
     assert.equal(await page.locator('#index-list a[href="#/work/AllAllowed"]').count(), 1, 'All Allowed appears in the project index');
+    assert.deepEqual(await page.evaluate(() => window.PORTFOLIO.projects.flatMap(project => [project.cover, ...project.media.images.map(image => image.src)]).filter(name => !window.PORTFOLIO_IMAGE_SIZES[name])), [], 'all project images have intrinsic dimensions');
     await page.waitForTimeout(300);
     assert.equal(await page.locator('.showreel-slide img[src]').count(), 2, 'only current and next reel images loaded');
     await page.locator('[data-slide="8"]').click();
@@ -80,10 +82,26 @@ try {
     await page.locator('#work-search').fill('');
     assert.equal(await page.locator('#index-list > li:not([hidden])').count(), total);
     assert.equal(await page.locator('html').getAttribute('lang'), language ? 'en' : 'ko');
+    assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://yebumko.com/');
+    assert.equal(await page.locator('meta[property="og:image"]').getAttribute('content'), 'https://yebumko.com/assets/img/AllAllowed.webp');
     for (const projectId of ['FEELD', 'AllAllowed']) {
       await page.goto(base + '/' + language + '#/work/' + projectId);
       await page.waitForFunction(() => !document.querySelector('#detail').hidden);
       assert.ok(await page.locator('.pd-hero img').evaluate(img => img.complete && img.naturalWidth > 0), projectId + ' detail cover loads');
+      if (projectId === 'FEELD') {
+        await page.locator('.pd-gallery-open').first().click();
+        await page.waitForFunction(() => document.querySelector('#gallery-viewer').open && document.querySelector('#gallery-viewer-image').naturalWidth > 0);
+        assert.equal(await page.locator('#gallery-viewer-count').textContent(), '01 / 03');
+        if (process.env.GALLERY_SCREENSHOT_DIR && !language) {
+          await page.screenshot({ path: resolve(process.env.GALLERY_SCREENSHOT_DIR, 'project-gallery-viewer.png') });
+        }
+        await page.locator('[data-gallery-next]').click();
+        assert.equal(await page.locator('#gallery-viewer-count').textContent(), '02 / 03');
+        await page.keyboard.press('ArrowLeft');
+        assert.equal(await page.locator('#gallery-viewer-count').textContent(), '01 / 03');
+        await page.keyboard.press('Escape');
+        assert.equal(await page.locator('#gallery-viewer').evaluate(el => el.open), false);
+      }
     }
   }
   await page.setViewportSize({ width: 390, height: 844 });
@@ -110,6 +128,21 @@ try {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.waitForTimeout(100);
   assert.equal(await page.locator('.showreel-timeline').evaluate(el => el.classList.contains('is-paused')), true);
+  await page.goto(base + '/#/work/FEELD');
+  await page.locator('.pd-gallery-open').first().click();
+  await page.waitForFunction(() => document.querySelector('#gallery-viewer-image').naturalWidth > 0);
+  await page.locator('#gallery-viewer-image').evaluate(img => img.decode());
+  if (process.env.GALLERY_SCREENSHOT_DIR) {
+    await page.screenshot({ path: resolve(process.env.GALLERY_SCREENSHOT_DIR, 'project-gallery-viewer-mobile.png') });
+  }
+  await page.evaluate(() => {
+    const stage = document.querySelector('.gallery-viewer-stage');
+    const point = x => new Touch({ identifier: 1, target: stage, clientX: x, clientY: 300 });
+    stage.dispatchEvent(new TouchEvent('touchstart', { bubbles: true, touches: [point(300)] }));
+    stage.dispatchEvent(new TouchEvent('touchend', { bubbles: true, changedTouches: [point(180)] }));
+  });
+  assert.equal(await page.locator('#gallery-viewer-count').textContent(), '02 / 03', 'mobile swipe moves to the next image');
+  await page.keyboard.press('Escape');
   assert.deepEqual(errors, []);
-  console.log('PASS: KO/EN, deferred reel images, direct scene selection, all overlapping filters, search, detail images, malformed routes, mobile width, reduced motion; no runtime errors.');
+  console.log('PASS: KO/EN, deferred reel images, filters, search, project details, image gallery controls and swipe, SEO metadata, mobile width, reduced motion; no runtime or CSP errors.');
 } finally { await browser?.close(); server.close(); }

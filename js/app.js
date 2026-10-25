@@ -13,27 +13,12 @@
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const pad2 = n => String(n).padStart(2, '0');
   const src = (name, sm) => `assets/img/${encodeURIComponent(name)}${sm ? '-sm' : ''}.webp`;
-  const imageWidths = {
-    BeyondTheCenter: 2000, BioAx: 1920, CITY01: 1280, climate: 1920, dmd: 1280,
-    dndn: 2000, GetTheOceanSummerReady: 2000, hana: 1917, Invader: 1536,
-    'Invader-success': 1536, JalTayo: 1920, Jeonger: 1920, learncation: 1920,
-    MATMI: 1800, naver: 1920, Neuroscape: 2000, PiratesStorm: 1672,
-    'PiratesStorm-success': 1920, sds: 1920, SilgamSujevi: 2000,
-    supporters: 1920, TeamPL: 1920, TimeOfExtinction: 2000,
-    'TimeOfExtinction-TouchDesigner': 2000, toss: 1920, XrStudio: 1440,
-    YoungStars: 768,
-    'XMF-Intro': 2000, 'XMF-SuperDuper-Sunburst': 2000,
-    'XMF-SuperDuper-Dreamland': 2000, 'XMF-StopIt-Mascot': 2000,
-    'XMF-StopIt-Corridor': 2000, 'XMF-HungryHeart-Liquid': 2000,
-    'XMF-HungryHeart-Inferno': 2000, 'XMF-LeftOrRight': 2000,
-    'XMF-Butterfly-Visit': 2000, 'XMF-Butterfly-Bloom': 2000,
-    'XMF-CottonCandy-Bubble': 2000, 'XMF-CottonCandy-Glitch': 2000
-  };
-  for (const [artist, count] of Object.entries({ hrtzwav: 26, LUCY: 29, THEFIX: 7, YOUNHA: 8 })) {
-    for (let i = 1; i <= count; i++) imageWidths[`XMF-${artist}-${pad2(i)}`] = 1600;
-  }
-  const responsive = (name, sizes) => imageWidths[name] > 900
-    ? ` srcset="${src(name, true)} 900w, ${src(name)} ${imageWidths[name]}w" sizes="${sizes}"`
+  const imageSizes = window.PORTFOLIO_IMAGE_SIZES || {};
+  const imageDimensions = name => Object.hasOwn(imageSizes, name)
+    ? ` width="${imageSizes[name][0]}" height="${imageSizes[name][1]}"`
+    : '';
+  const responsive = (name, sizes) => Object.hasOwn(imageSizes, name) && Object.hasOwn(imageSizes, `${name}-sm`)
+    ? ` srcset="${src(name, true)} ${imageSizes[`${name}-sm`][0]}w, ${src(name)} ${imageSizes[name][0]}w" sizes="${sizes}"`
     : '';
   const externalUrl = value => {
     try {
@@ -92,7 +77,7 @@
     list.innerHTML = ordered.map((p, i) => `
       <li data-disc="${esc(p.disciplines.join(' '))}" data-cover="${esc(p.cover)}" data-search="${esc([p.fullTitle, p.context, p.year, ...projectDiscs(p).flatMap(d => [d.label, d.ko])].join(' ').toLowerCase())}">
         <a class="row-link" href="#/work/${p.id}" data-thumb="${src(p.cover, true)}">
-          <span class="row-thumb card"><img src="${src(p.cover)}"${responsive(p.cover, '(max-width: 560px) 100vw, (max-width: 820px) 50vw, (max-width: 1100px) 33vw, 25vw')} alt="" loading="lazy" decoding="async"></span>
+          <span class="row-thumb card"><img src="${src(p.cover)}"${imageDimensions(p.cover)}${responsive(p.cover, '(max-width: 580px) 100vw, (max-width: 900px) 50vw, (max-width: 1600px) 33vw, 25vw')} alt="" loading="lazy" decoding="async"></span>
           <span class="row-no mono">${pad2(i + 1)}</span>
           <span class="row-title"><span class="t">${esc(p.fullTitle)}</span>${p.awards.length ? `<span class="row-award" title="${esc(p.awards.join(' · '))}" aria-label="Award"></span>` : ''}</span>
           <span class="row-disc">${esc(projectDiscs(p).map(d => d.label).join(' / '))}</span>
@@ -162,7 +147,7 @@
   function renderAbout() {
     $('#caps').innerHTML = D.capabilities.map(c => `
       <article class="cap" data-reveal>
-        <a class="card cap-link" href="#/index" data-cap-filter="${esc(c.filter)}" aria-label="${esc(c.title)} ${t('분야의 프로젝트 보기', 'projects')}"${c.pos ? ` style="--pos:${c.pos}"` : ''}><img src="${src(c.cover, true)}" alt="" loading="lazy" decoding="async">
+        <a class="card cap-link" href="#/index" data-cap-filter="${esc(c.filter)}" aria-label="${esc(c.title)} ${t('분야의 프로젝트 보기', 'projects')}"${c.pos ? ` style="--pos:${c.pos}"` : ''}><img src="${src(c.cover, true)}"${imageDimensions(`${c.cover}-sm`)} alt="" loading="lazy" decoding="async">
           <div class="card-top"><span class="mono">${c.n}</span></div>
           <span class="cap-link-label">${t('이 분야 프로젝트 보기', 'Explore projects')} <span aria-hidden="true">↗</span></span>
         </a>
@@ -324,6 +309,58 @@
       </figure>`;
   }
 
+  const galleryViewer = $('#gallery-viewer');
+  const galleryViewerImage = $('#gallery-viewer-image');
+  let galleryItems = [], galleryIndex = 0, galleryProject = '';
+  const showGalleryImage = () => {
+    const item = galleryItems[galleryIndex];
+    if (!item) return;
+    const full = src(item.src);
+    const preview = detail.querySelector(`[data-gallery-index="${galleryIndex}"] img`);
+    galleryViewerImage.src = preview?.naturalWidth ? preview.currentSrc : full;
+    galleryViewerImage.alt = item.label || galleryProject;
+    $('#gallery-viewer-caption').textContent = item.label || galleryProject;
+    $('#gallery-viewer-count').textContent = `${pad2(galleryIndex + 1)} / ${pad2(galleryItems.length)}`;
+    $('[data-gallery-prev]').disabled = galleryIndex === 0;
+    $('[data-gallery-next]').disabled = galleryIndex === galleryItems.length - 1;
+    if (galleryViewerImage.src !== new URL(full, location.href).href) {
+      const index = galleryIndex, project = galleryProject, highRes = new Image();
+      highRes.src = full;
+      highRes.decode().then(() => {
+        if (galleryIndex === index && galleryProject === project) galleryViewerImage.src = full;
+      }).catch(() => {});
+    }
+  };
+  const stepGallery = direction => {
+    const next = galleryIndex + direction;
+    if (next < 0 || next >= galleryItems.length) return;
+    galleryIndex = next;
+    showGalleryImage();
+  };
+  galleryViewer.addEventListener('click', e => {
+    if (e.target === galleryViewer || e.target.closest('[data-gallery-close]')) galleryViewer.close();
+    else if (e.target.closest('[data-gallery-prev]')) stepGallery(-1);
+    else if (e.target.closest('[data-gallery-next]')) stepGallery(1);
+  });
+  galleryViewer.addEventListener('close', () => { galleryViewerImage.removeAttribute('src'); });
+  let touchStart = null;
+  $('.gallery-viewer-stage').addEventListener('touchstart', e => {
+    if (e.touches.length === 1) touchStart = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  }, { passive: true });
+  $('.gallery-viewer-stage').addEventListener('touchend', e => {
+    if (!touchStart || !e.changedTouches.length) return;
+    const dx = e.changedTouches[0].clientX - touchStart.x;
+    const dy = e.changedTouches[0].clientY - touchStart.y;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.2) stepGallery(dx < 0 ? 1 : -1);
+    touchStart = null;
+  }, { passive: true });
+  galleryViewer.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+      e.preventDefault();
+      stepGallery(e.key === 'ArrowRight' ? 1 : -1);
+    }
+  });
+
   function renderDetail(id) {
     const p = Object.hasOwn(byId, id) ? byId[id] : null;
     if (!p) { location.hash = '#/index'; return; }
@@ -331,6 +368,8 @@
     const prevP = byId[D.projects[(p.n - 2 + TOTAL) % TOTAL].id], nextP = byId[D.projects[p.n % TOTAL].id];
     const m = p.media;
     const gallery = m.images.filter(im => im.src !== p.cover);
+    galleryItems = gallery;
+    galleryProject = p.fullTitle;
 
     const facts = [
       ['Year', esc(p.year)],
@@ -355,8 +394,8 @@
     const imgs = gallery.length ? `
       <section class="pd-block" aria-label="Images">
         <div class="sec-label"><span class="mono">Images</span><span class="mono dim">${pad2(gallery.length)}</span></div>
-        <div class="pd-gallery">${gallery.map(im => `
-          <figure data-reveal><div class="card"><img src="${src(im.src)}"${responsive(im.src, '(max-width: 760px) 100vw, 50vw')} alt="${esc(im.label || p.fullTitle)}" loading="lazy" decoding="async"></div>
+        <div class="pd-gallery">${gallery.map((im, i) => `
+          <figure data-reveal><button class="pd-gallery-open" type="button" data-gallery-index="${i}" aria-label="${esc(im.label || p.fullTitle)} ${t('크게 보기', 'view enlarged')}"><img src="${src(im.src)}"${imageDimensions(im.src)}${responsive(im.src, '(max-width: 760px) 100vw, 50vw')} alt="" loading="lazy" decoding="async"><span aria-hidden="true">↗</span></button>
           ${im.label ? `<figcaption class="mono dim">${esc(im.label)}</figcaption>` : ''}</figure>`).join('')}
         </div>
       </section>` : '';
@@ -373,7 +412,7 @@
 
     const nav = (q, dir) => `
       <a class="next-card mono-hover" href="#/work/${q.id}" data-reveal>
-        <div class="card mono-img"><img src="${src(q.cover, true)}" alt="" loading="lazy" decoding="async">
+        <div class="card mono-img"><img src="${src(q.cover, true)}"${imageDimensions(`${q.cover}-sm`)} alt="" loading="lazy" decoding="async">
           <div class="hero-scrim" aria-hidden="true"></div>
           <div class="ticks ticks--light" aria-hidden="true"></div>
           <div class="card-top"><span class="mono">${dir}</span><span class="mono">${pad2(q.n)} / ${TOTAL}</span></div>
@@ -394,7 +433,7 @@
 
         <section class="pd-hero site-pad">
           <div class="card">
-            <img src="${src(p.cover)}"${responsive(p.cover, '100vw')} alt="${esc(p.fullTitle)}" fetchpriority="high" decoding="async">
+            <img src="${src(p.cover)}"${imageDimensions(p.cover)}${responsive(p.cover, '100vw')} alt="${esc(p.fullTitle)}" fetchpriority="high" decoding="async">
             <div class="hero-scrim" aria-hidden="true"></div>
             <div class="ticks ticks--light" aria-hidden="true"></div>
             <div class="card-top"><span class="mono">${esc(projectDiscs(p).map(d => d.label).join(' / '))}</span><span class="mono">${esc(p.year)}</span></div>
@@ -440,6 +479,13 @@
 
   // click-to-load embeds (keeps first paint light)
   detail.addEventListener('click', e => {
+    const imageButton = e.target.closest('[data-gallery-index]');
+    if (imageButton) {
+      galleryIndex = Number(imageButton.dataset.galleryIndex);
+      showGalleryImage();
+      galleryViewer.showModal();
+      return;
+    }
     const jump = e.target.closest('[data-jump]');
     if (jump) {
       e.preventDefault();
@@ -502,6 +548,7 @@
   let cancelRouteLayout = () => {};
   function route() {
     cancelRouteLayout();
+    if (galleryViewer.open) galleryViewer.close();
     const h = location.hash.replace(/^#\/?/, '');
     const parts = h.split('/').filter(Boolean);
     $('#nav').classList.remove('is-open');
@@ -605,7 +652,7 @@
   /* ── keyboard: ← → between projects, Esc back to index ── */
   addEventListener('keydown', e => {
     const t = e.target;
-    if (current !== 'detail' || modal.open || (t instanceof Element && t.closest('input, textarea, select, button, iframe, [contenteditable]')) || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (current !== 'detail' || modal.open || galleryViewer.open || (t instanceof Element && t.closest('input, textarea, select, button, iframe, [contenteditable]')) || e.metaKey || e.ctrlKey || e.altKey) return;
     const a = $('.pd-step a' + (e.key === 'ArrowLeft' ? ':first-child' : e.key === 'ArrowRight' ? ':last-child' : '.none'));
     if (a) { location.hash = a.getAttribute('href'); return; }
     if (e.key === 'Escape') $('[data-back]').click();
