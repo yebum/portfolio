@@ -313,12 +313,27 @@
     '.gb-bar .ctx': 'Newest first',
     '#gb-more': 'More posts',
     '.contact-body .sec-sub': 'I welcome opportunities in live and exhibition visuals, XR content, service design and full-time roles.',
+    '#open-inquiry': 'Write a project inquiry ↗',
+    '#inquiry-title': 'Project inquiry',
+    '#inquiry-note': 'Fill in the details to open a draft in your mail app. This site does not send it automatically. Attach files in your mail app.',
+    '#inquiry-form label:nth-child(1) span': 'Project title *',
+    '#inquiry-form label:nth-child(2) span': 'Name / team *',
+    '#inquiry-form label:nth-child(3) span': 'Reply email *',
+    '#inquiry-form label:nth-child(4) span': 'Project details *',
+    '#inquiry-form label:nth-child(5) span': 'Project type',
+    '#inquiry-form label:nth-child(6) span': 'Preferred schedule',
+    '#inquiry-form label:nth-child(7) span': 'Budget',
+    '#inquiry-form label:nth-child(8) span': 'Phone',
+    '#copy-inquiry': 'Copy details',
+    '#inquiry-mail-link': 'Open mail app ↗',
     '.footer-line': 'Made by hand, between art and technology.',
     '.to-top': 'Back to top ↑',
     '[data-close]': 'Close',
   };
   Object.entries(staticCopy).forEach(([selector, copy]) => set(selector, copy));
-  attr('meta[name="description"]', 'content', 'Yebum Ko portfolio — media art, XR, UX and motion at the intersection of art and technology.');
+  if (!location.pathname.startsWith('/work/')) attr('meta[name="description"]', 'content', 'Yebum Ko portfolio — media art, XR, UX and motion at the intersection of art and technology.');
+  attr('.inquiry-close', 'aria-label', 'Close inquiry');
+  attr('#inquiry-form [name="type"]', 'placeholder', 'e.g. live visuals, XR, UX');
   attr('#gallery-viewer', 'aria-label', 'Project image gallery');
   attr('[data-gallery-close]', 'aria-label', 'Close image gallery');
   attr('[data-gallery-prev]', 'aria-label', 'Previous image');

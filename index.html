@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=gallery-viewer-20261026">
+  <link rel="stylesheet" href="css/style.css?v=project-pages-20261026">
 </head>
 <body>
   <a class="skip" href="#index">Skip to work</a>
@@ -238,6 +238,7 @@
         <div class="contact-actions">
           <a class="email" href="mailto:koyebum1@naver.com">koyebum1@naver.com</a>
           <div class="chips">
+            <button class="chip chip--light" type="button" id="open-inquiry">프로젝트 문의 작성 ↗</button>
             <button class="chip" type="button" id="copy-email">Copy email</button>
             <a class="chip chip--light" href="https://github.com/yebum" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
           </div>
@@ -277,13 +278,30 @@
     </div>
   </dialog>
 
+  <dialog class="inquiry-dialog" id="inquiry-dialog" aria-labelledby="inquiry-title">
+    <div class="inquiry-head"><div><span class="mono dim">Project inquiry</span><h2 id="inquiry-title">프로젝트 문의</h2></div><button type="button" class="inquiry-close" aria-label="문의창 닫기">✕</button></div>
+    <p class="inquiry-note" id="inquiry-note">내용을 작성하면 메일 앱에 초안이 열립니다. 사이트에서 자동 전송되지는 않습니다. 파일은 메일 앱에서 첨부해 주세요.</p>
+    <form id="inquiry-form" class="inquiry-form">
+      <label><span>프로젝트 제목 *</span><input name="title" maxlength="100" required autocomplete="off"></label>
+      <label><span>이름 / 팀 *</span><input name="introduction" maxlength="100" required autocomplete="name"></label>
+      <label><span>회신받을 이메일 *</span><input name="email" type="email" maxlength="120" required autocomplete="email"></label>
+      <label class="inquiry-wide"><span>프로젝트 상세 내용 *</span><textarea name="content" rows="5" maxlength="800" required></textarea></label>
+      <label><span>프로젝트 유형</span><input name="type" maxlength="100" placeholder="예: 공연 비주얼, XR, UX"></label>
+      <label><span>희망 일정</span><input name="schedule" maxlength="100"></label>
+      <label><span>예산</span><input name="budget" maxlength="100"></label>
+      <label><span>연락처</span><input name="phone" type="tel" maxlength="40" autocomplete="tel"></label>
+      <div class="inquiry-actions inquiry-wide"><button type="button" id="copy-inquiry">내용 복사</button><a id="inquiry-mail-link" href="mailto:koyebum1@naver.com">메일 앱에서 보내기 ↗</a></div>
+    </form>
+  </dialog>
+
   <div class="toast mono" id="toast" role="status" aria-live="polite"></div>
 
   <script src="js/data.js?v=hcf-20261022"></script>
   <script src="js/image-sizes.js?v=20261026"></script>
-  <script src="js/i18n-en.js?v=gallery-viewer-20261026"></script>
+  <script src="js/i18n-en.js?v=project-pages-20261026"></script>
   <script src="js/showreel.js?v=perf-20261022"></script>
-  <script src="js/app.js?v=gallery-viewer-20261026"></script>
+  <script src="js/app.js?v=project-pages-20261026"></script>
+  <script src="js/inquiry.js?v=20261026"></script>
   <script src="js/guestbook.js?v=perf-20261022"></script>
 </body>
 </html>

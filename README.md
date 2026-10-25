@@ -1,6 +1,6 @@
 # Yebum Ko — Portfolio 2026
 
-A static site with no build step. Projects, awards and profile content are maintained in `js/data.js` in this repository.
+A static site with one small build step for shareable project pages. Projects, awards and profile content are maintained in `js/data.js` in this repository.
 See `DESIGN.md` for the user flow, site structure, design tokens and the review-loop log.
 
 ## Run locally
@@ -19,6 +19,8 @@ Open http://localhost:5178. Use a local server instead of opening the file direc
 | `js/data.js` | **All content**: projects, awards, experience, capabilities |
 | `js/image-sizes.js` | Generated intrinsic dimensions for stable image layout and responsive sources |
 | `js/app.js` | Hash router (`#/`, `#/index`, `#/work/<id>`), renderers, interactions |
+| `js/inquiry.js` | Project inquiry draft for the visitor's mail app |
+| `work/<id>/index.html` | Generated project page with static HTML and unique social/search metadata |
 | `assets/img/*.webp` | Optimized images (`-sm` = 900px thumbnails) |
 | `_work/` | Helper scripts: data extraction, image conversion, headless screenshots |
 | `_source/` | Clone of the original repo (reference only; not needed to deploy) |
@@ -31,14 +33,14 @@ Open http://localhost:5178. Use a local server instead of opening the file direc
 - **Attached PDFs**: Drive file IDs in `media.decks` appear automatically in the panel next to the Overview. The Drive file must be shared as "Anyone with the link" for preview and download to work.
 - **New images**: put the originals in `_source/img/` and run `python _work/opt.py` (it creates WebP files and fixes EXIF rotation).
 - **Image dimensions**: after generating WebP files, run `python _work/generate-image-sizes.py` so cards reserve the correct space before images load.
+- **Project pages**: after editing `js/data.js` or `index.html`, run `node _work/build-project-pages.mjs`. It updates all `/work/<id>/` pages and `sitemap.xml`. Commit those generated files with the source changes.
 - **New external services**: update the Content Security Policy in `index.html` only for the domains the service needs.
 
 ## Deploy
 
-Upload the root folder as-is to GitHub Pages, Netlify or similar (you can leave out `_source` and `_work`).
-Each project has its own shareable URL, for example `/#/work/Neuroscape`.
-The homepage has a canonical URL, social preview metadata, `robots.txt` and `sitemap.xml`. Hash routes use the same HTML document, so project-specific social previews and search indexing would require static project pages or a different hosting/router setup.
-The contact area uses an email link. In-page email delivery needs a configured server or mail provider; there is no client-side SMTP credential.
+Run `node _work/build-project-pages.mjs` and upload the root folder as-is to GitHub Pages, Netlify or similar (you can leave out `_source` and `_work`).
+Every project has a shareable, pre-rendered URL such as `/work/Neuroscape/` with its own canonical URL, image and description. The in-site gallery still uses fast hash navigation. `sitemap.xml` includes all pre-rendered pages.
+The contact form prepares a structured draft in the visitor's mail app. The visitor must send it there and attach files there. In-page email delivery and file upload need a configured server or mail provider; there is no client-side SMTP credential.
 
 ## Performance and regression checks
 

@@ -104,10 +104,41 @@ try {
       }
     }
   }
+  const staticPage = await readFile(resolve(root, 'work', 'FEELD', 'index.html'), 'utf8');
+  assert.match(staticPage, /<link rel="canonical" href="https:\/\/yebumko\.com\/work\/FEELD\/">/);
+  assert.match(staticPage, /<main id="detail" class="view"><article/);
+  assert.match(await readFile(resolve(root, 'sitemap.xml'), 'utf8'), /https:\/\/yebumko\.com\/work\/AllAllowed\//);
+  await page.goto(base + '/work/FEELD/');
+  await page.waitForFunction(() => !document.querySelector('#detail').hidden && document.querySelector('#pd-title')?.textContent === 'FEELD');
+  assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://yebumko.com/work/FEELD/');
+  assert.ok(await page.locator('.pd-hero img').evaluate(img => img.complete && img.naturalWidth > 0), 'clean project route loads the cover');
+  if (process.env.GALLERY_SCREENSHOT_DIR) {
+    await page.waitForTimeout(800);
+    await page.screenshot({ path: resolve(process.env.GALLERY_SCREENSHOT_DIR, 'project-direct.png') });
+  }
+  await page.locator('#open-inquiry').click();
+  await page.locator('[name="title"]').fill('새 전시 비주얼');
+  await page.locator('[name="introduction"]').fill('테스트 팀');
+  await page.locator('[name="email"]').fill('hello@example.com');
+  await page.locator('[name="content"]').fill('공연 비주얼 협업 문의입니다.');
+  const mailto = await page.locator('#inquiry-mail-link').getAttribute('href');
+  assert.match(decodeURIComponent(mailto), /^mailto:koyebum1@naver\.com\?subject=\[Portfolio\] 새 전시 비주얼&body=/);
+  assert.match(decodeURIComponent(mailto), /회신받을 이메일: hello@example\.com/);
+  assert.equal(await page.locator('#inquiry-dialog').evaluate(dialog => dialog.open), true);
+  if (process.env.GALLERY_SCREENSHOT_DIR) await page.screenshot({ path: resolve(process.env.GALLERY_SCREENSHOT_DIR, 'project-inquiry.png') });
+  await page.locator('.inquiry-close').click();
+  await page.goto(base + '/work/AllAllowed/?lang=en');
+  await page.waitForFunction(() => !document.querySelector('#detail').hidden);
+  assert.equal(await page.locator('html').getAttribute('lang'), 'en');
+  assert.equal(await page.locator('#inquiry-title').textContent(), 'Project inquiry');
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(base + '/');
   await page.waitForFunction(() => document.querySelector('#index-list').children.length > 0);
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, 'no mobile overflow');
+  await page.locator('#open-inquiry').click();
+  assert.equal(await page.locator('#inquiry-dialog').evaluate(dialog => dialog.getBoundingClientRect().width <= innerWidth), true, 'inquiry fits mobile viewport');
+  if (process.env.GALLERY_SCREENSHOT_DIR) await page.screenshot({ path: resolve(process.env.GALLERY_SCREENSHOT_DIR, 'project-inquiry-mobile.png') });
+  await page.locator('.inquiry-close').click();
   await page.locator('#index-list > li').nth(2).scrollIntoViewIfNeeded();
   await page.waitForFunction(() => [...document.querySelectorAll('#index-list > li img')].slice(0, 3).every(img => img.complete && img.naturalWidth));
   assert.ok(await page.locator('.index.is-grid .row-thumb img').evaluateAll(items => items.slice(0, 3).every(img => Math.abs(img.getBoundingClientRect().width / img.getBoundingClientRect().height - img.naturalWidth / img.naturalHeight) < .02)), 'mobile images keep natural proportions');
@@ -144,5 +175,5 @@ try {
   assert.equal(await page.locator('#gallery-viewer-count').textContent(), '02 / 03', 'mobile swipe moves to the next image');
   await page.keyboard.press('Escape');
   assert.deepEqual(errors, []);
-  console.log('PASS: KO/EN, deferred reel images, filters, search, project details, image gallery controls and swipe, SEO metadata, mobile width, reduced motion; no runtime or CSP errors.');
+  console.log('PASS: KO/EN, project pages and metadata, inquiry draft, filters, image gallery, mobile layout, reduced motion; no runtime or CSP errors.');
 } finally { await browser?.close(); server.close(); }

@@ -1,6 +1,6 @@
 /* ════════════════════════════════════════════════════════════
    Yebum Ko — Portfolio 2026 · app.js
-   Hash router (#/, #/<section>, #/work/<id>) + renderers.
+   Hash router (#/, #/<section>, #/work/<id>) and prerendered /work/<id>/ pages.
    All content lives in js/data.js.
    ════════════════════════════════════════════════════════════ */
 (function () {
@@ -425,6 +425,7 @@
         <div class="pd-bar">
           <a class="back mono" href="#/index" data-back><span aria-hidden="true">←</span> Index</a>
           <div class="pd-step mono">
+            <button type="button" class="pd-share" data-share-project aria-label="${t('프로젝트 주소 복사', 'Copy project link')}">${t('공유', 'Share')} ↗</button>
             <a href="#/work/${prevP.id}" aria-label="Previous project">Prev</a>
             <span class="tabular">${pad2(p.n)} / ${TOTAL}</span>
             <a href="#/work/${nextP.id}" aria-label="Next project">Next</a>
@@ -479,6 +480,13 @@
 
   // click-to-load embeds (keeps first paint light)
   detail.addEventListener('click', e => {
+    if (e.target.closest('[data-share-project]')) {
+      const id = location.hash.startsWith('#/work/') ? location.hash.slice(7).split('/')[0] : location.pathname.split('/')[2];
+      const url = `${location.origin}/work/${encodeURIComponent(id)}/`;
+      if (navigator.clipboard?.writeText) navigator.clipboard.writeText(url).then(() => toast(t('프로젝트 주소를 복사했습니다.', 'Project link copied.'))).catch(() => toast(url));
+      else toast(url);
+      return;
+    }
     const imageButton = e.target.closest('[data-gallery-index]');
     if (imageButton) {
       galleryIndex = Number(imageButton.dataset.galleryIndex);
@@ -551,6 +559,10 @@
     if (galleryViewer.open) galleryViewer.close();
     const h = location.hash.replace(/^#\/?/, '');
     const parts = h.split('/').filter(Boolean);
+    if (!parts.length) {
+      const match = location.pathname.match(/^\/work\/([^/]+)\/?$/);
+      if (match) parts.push('work', match[1]);
+    }
     $('#nav').classList.remove('is-open');
     $('#nav-menu').setAttribute('aria-expanded', 'false');
 
@@ -558,8 +570,8 @@
       if (current === 'home') { homeScroll = scrollY; cameFromHome = true; }
       else if (current !== 'detail') cameFromHome = false;
       let id;
-      try { id = decodeURIComponent(parts[1]); } catch (_) { location.hash = '#/index'; return; }
-      if (!Object.hasOwn(byId, id)) { location.hash = '#/index'; return; }
+      try { id = decodeURIComponent(parts[1]); } catch (_) { location.replace(`/${location.search}#/index`); return; }
+      if (!Object.hasOwn(byId, id)) { location.replace(`/${location.search}#/index`); return; }
       renderDetail(id);
       home.hidden = true; detail.hidden = false;
       detail.classList.remove('view'); void detail.offsetWidth; detail.classList.add('view');
