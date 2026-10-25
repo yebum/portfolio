@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebaseapp.com; frame-src 'self' https://drive.google.com https://www.youtube-nocookie.com https://portfolio2026-987e6.firebaseapp.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebaseapp.com; frame-src 'self' https://drive.google.com https://www.youtube-nocookie.com https://portfolio2026-987e6.firebaseapp.com; object-src 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>CITY: Civic Innovation Through You — Yebum Ko</title>
   <meta name="description" content="CITY는 시민과 행정 간의 소통 구조를 개선하기 위해 기획된 시민 참여 플랫폼 프로젝트이다. 단순한 민원 시스템을 넘어 시민들이 도시 문제에 대해 의견을 제안하고 토론하며 해결 과정에 참여할 수 있는 디지털 커뮤니티 환경을 만드는 것을 목표로 한다. 이 프로젝트는 온라인 플랫폼을 통해 시민 참여를 활성화하고 도시 정책 ">
@@ -30,7 +30,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=project-pages-20261026">
+  <link rel="stylesheet" href="css/style.css?v=direct-send-20261026">
 </head>
 <body>
   <a class="skip" href="#index">Skip to work</a>
@@ -281,8 +281,12 @@
 
   <dialog class="inquiry-dialog" id="inquiry-dialog" aria-labelledby="inquiry-title">
     <div class="inquiry-head"><div><span class="mono dim">Project inquiry</span><h2 id="inquiry-title">프로젝트 문의</h2></div><button type="button" class="inquiry-close" aria-label="문의창 닫기">✕</button></div>
-    <p class="inquiry-note" id="inquiry-note">내용을 작성하면 메일 앱에 초안이 열립니다. 사이트에서 자동 전송되지는 않습니다. 파일은 메일 앱에서 첨부해 주세요.</p>
-    <form id="inquiry-form" class="inquiry-form">
+    <p class="inquiry-note" id="inquiry-note"><span id="inquiry-note-copy">보내기를 누르면 FormSubmit에서 보안 확인 후 메일로 전달합니다. 최초 1회 수신 이메일의 활성화 확인이 필요합니다. 입력 내용과 첨부파일은</span> <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">FormSubmit을 거쳐 전송됩니다 ↗</a></p>
+    <form id="inquiry-form" class="inquiry-form" action="https://formsubmit.co/koyebum1@naver.com" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_subject" id="inquiry-subject" value="[Portfolio] 프로젝트 문의">
+      <input type="hidden" name="_replyto" id="inquiry-replyto" value="">
+      <input type="hidden" name="_template" value="table">
+      <input type="text" name="_honey" class="gb-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <label><span>프로젝트 제목 *</span><input name="title" maxlength="100" required autocomplete="off"></label>
       <label><span>이름 / 팀 *</span><input name="introduction" maxlength="100" required autocomplete="name"></label>
       <label><span>회신받을 이메일 *</span><input name="email" type="email" maxlength="120" required autocomplete="email"></label>
@@ -291,7 +295,9 @@
       <label><span>희망 일정</span><input name="schedule" maxlength="100"></label>
       <label><span>예산</span><input name="budget" maxlength="100"></label>
       <label><span>연락처</span><input name="phone" type="tel" maxlength="40" autocomplete="tel"></label>
-      <div class="inquiry-actions inquiry-wide"><button type="button" id="copy-inquiry">내용 복사</button><a id="inquiry-mail-link" href="mailto:koyebum1@naver.com">메일 앱에서 보내기 ↗</a></div>
+      <label class="inquiry-wide" for="inquiry-file"><span>참고 파일 (선택, 이미지·PDF 1개, 최대 10MB)</span><input id="inquiry-file" name="attachment" type="file" accept="image/png,image/jpeg,application/pdf"></label>
+      <p class="inquiry-status inquiry-wide" id="inquiry-status" role="status" aria-live="polite"></p>
+      <div class="inquiry-actions inquiry-wide"><button type="button" id="copy-inquiry">내용 복사</button><button type="submit" id="inquiry-submit">문의 전송 ↗</button></div>
     </form>
   </dialog>
 
@@ -299,10 +305,10 @@
 
   <script src="js/data.js?v=hcf-20261022"></script>
   <script src="js/image-sizes.js?v=20261026"></script>
-  <script src="js/i18n-en.js?v=project-pages-20261026"></script>
+  <script src="js/i18n-en.js?v=direct-send-20261026"></script>
   <script src="js/showreel.js?v=perf-20261022"></script>
   <script src="js/app.js?v=project-pages-20261026"></script>
-  <script src="js/inquiry.js?v=20261026"></script>
+  <script src="js/inquiry.js?v=direct-send-20261026"></script>
   <script src="js/guestbook.js?v=perf-20261022"></script>
 </body>
 </html>

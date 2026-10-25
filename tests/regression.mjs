@@ -121,12 +121,33 @@ try {
   await page.locator('[name="introduction"]').fill('테스트 팀');
   await page.locator('[name="email"]').fill('hello@example.com');
   await page.locator('[name="content"]').fill('공연 비주얼 협업 문의입니다.');
-  const mailto = await page.locator('#inquiry-mail-link').getAttribute('href');
-  assert.match(decodeURIComponent(mailto), /^mailto:koyebum1@naver\.com\?subject=\[Portfolio\] 새 전시 비주얼&body=/);
-  assert.match(decodeURIComponent(mailto), /회신받을 이메일: hello@example\.com/);
+  assert.equal(await page.locator('#inquiry-form').getAttribute('action'), 'https://formsubmit.co/koyebum1@naver.com');
+  assert.equal(await page.locator('#inquiry-form').getAttribute('enctype'), 'multipart/form-data');
+  assert.equal(await page.locator('#inquiry-subject').inputValue(), '[Portfolio] 새 전시 비주얼');
+  assert.equal(await page.locator('#inquiry-replyto').inputValue(), 'hello@example.com');
   assert.equal(await page.locator('#inquiry-dialog').evaluate(dialog => dialog.open), true);
   if (process.env.GALLERY_SCREENSHOT_DIR) await page.screenshot({ path: resolve(process.env.GALLERY_SCREENSHOT_DIR, 'project-inquiry.png') });
-  await page.locator('.inquiry-close').click();
+  await page.locator('#inquiry-file').setInputFiles({ name: 'wrong.txt', mimeType: 'text/plain', buffer: Buffer.from('test') });
+  await page.locator('#inquiry-submit').click();
+  assert.match(await page.locator('#inquiry-status').textContent(), /PNG, JPG 또는 PDF/);
+  assert.equal(await page.locator('#inquiry-dialog').evaluate(dialog => dialog.open), true, 'invalid attachment does not submit');
+  await page.locator('#inquiry-file').setInputFiles({ name: 'oversize.png', mimeType: 'image/png', buffer: Buffer.alloc(10 * 1024 * 1024 + 1) });
+  await page.locator('#inquiry-submit').click();
+  assert.match(await page.locator('#inquiry-status').textContent(), /10MB/);
+  await page.locator('#inquiry-file').setInputFiles({ name: 'reference.png', mimeType: 'image/png', buffer: Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]) });
+  let submission;
+  await page.route('https://formsubmit.co/koyebum1@naver.com', async route => {
+    submission = { method: route.request().method(), contentType: route.request().headers()['content-type'], body: route.request().postDataBuffer().toString('utf8') };
+    await route.fulfill({ status: 200, contentType: 'text/html', body: '<title>Mock FormSubmit</title>' });
+  });
+  await page.locator('#inquiry-submit').click();
+  await page.waitForURL('https://formsubmit.co/koyebum1@naver.com');
+  assert.equal(submission.method, 'POST');
+  assert.match(submission.contentType, /^multipart\/form-data; boundary=/);
+  assert.match(submission.body, /hello@example\.com/);
+  assert.match(submission.body, /\[Portfolio\] 새 전시 비주얼/);
+  assert.match(submission.body, /filename="reference\.png"/);
+  await page.unroute('https://formsubmit.co/koyebum1@naver.com');
   await page.goto(base + '/work/AllAllowed/?lang=en');
   await page.waitForFunction(() => !document.querySelector('#detail').hidden);
   assert.equal(await page.locator('html').getAttribute('lang'), 'en');
@@ -175,5 +196,5 @@ try {
   assert.equal(await page.locator('#gallery-viewer-count').textContent(), '02 / 03', 'mobile swipe moves to the next image');
   await page.keyboard.press('Escape');
   assert.deepEqual(errors, []);
-  console.log('PASS: KO/EN, project pages and metadata, inquiry draft, filters, image gallery, mobile layout, reduced motion; no runtime or CSP errors.');
+  console.log('PASS: KO/EN, project pages and metadata, intercepted FormSubmit POST, file validation, filters, image gallery, mobile layout, reduced motion; no runtime or CSP errors.');
 } finally { await browser?.close(); server.close(); }

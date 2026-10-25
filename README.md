@@ -19,7 +19,7 @@ Open http://localhost:5178. Use a local server instead of opening the file direc
 | `js/data.js` | **All content**: projects, awards, experience, capabilities |
 | `js/image-sizes.js` | Generated intrinsic dimensions for stable image layout and responsive sources |
 | `js/app.js` | Hash router (`#/`, `#/index`, `#/work/<id>`), renderers, interactions |
-| `js/inquiry.js` | Project inquiry draft for the visitor's mail app |
+| `js/inquiry.js` | Project inquiry validation and FormSubmit form submission |
 | `work/<id>/index.html` | Generated project page with static HTML and unique social/search metadata |
 | `assets/img/*.webp` | Optimized images (`-sm` = 900px thumbnails) |
 | `_work/` | Helper scripts: data extraction, image conversion, headless screenshots |
@@ -40,7 +40,7 @@ Open http://localhost:5178. Use a local server instead of opening the file direc
 
 Run `node _work/build-project-pages.mjs` and upload the root folder as-is to GitHub Pages, Netlify or similar (you can leave out `_source` and `_work`).
 Every project has a shareable, pre-rendered URL such as `/work/Neuroscape/` with its own canonical URL, image and description. The in-site gallery still uses fast hash navigation. `sitemap.xml` includes all pre-rendered pages.
-The contact form prepares a structured draft in the visitor's mail app. The visitor must send it there and attach files there. In-page email delivery and file upload need a configured server or mail provider; there is no client-side SMTP credential.
+The contact form submits directly to FormSubmit (no visitor mail app). FormSubmit first sends an activation email to `koyebum1@naver.com`; the recipient must confirm it before inquiries are forwarded. The service may show a CAPTCHA and thank-you page. PNG/JPG/PDF uploads are limited to one file of at most 10 MB. Form contents and attachments pass through FormSubmit; its privacy notice is linked in the form. The site contains no SMTP credentials. Do not publish this change until the recipient is ready to activate the endpoint and send a test inquiry from the production domain.
 
 ## Performance and regression checks
 
