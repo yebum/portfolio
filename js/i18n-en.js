@@ -313,12 +313,31 @@
     '.gb-bar .ctx': 'Newest first',
     '#gb-more': 'More posts',
     '.contact-body .sec-sub': 'I welcome opportunities in live and exhibition visuals, XR content, service design and full-time roles.',
+    '#open-inquiry': 'Write a project inquiry ↗',
+    '#inquiry-title': 'Project inquiry',
+    '#inquiry-form label:nth-of-type(1) span': 'Project title *',
+    '#inquiry-form label:nth-of-type(2) span': 'Name / team *',
+    '#inquiry-form label:nth-of-type(3) span': 'Reply email *',
+    '#inquiry-form label:nth-of-type(4) span': 'Project details *',
+    '#inquiry-form label:nth-of-type(5) span': 'Project type',
+    '#inquiry-form label:nth-of-type(6) span': 'Preferred schedule',
+    '#inquiry-form label:nth-of-type(7) span': 'Budget',
+    '#inquiry-form label:nth-of-type(8) span': 'Phone',
+    '#inquiry-form label:nth-of-type(9) span': 'Reference file (optional, one PNG/JPG/PDF, up to 10 MB)',
+    '#copy-inquiry': 'Copy details',
+    '#inquiry-submit': 'Send inquiry ↗',
     '.footer-line': 'Made by hand, between art and technology.',
     '.to-top': 'Back to top ↑',
     '[data-close]': 'Close',
   };
   Object.entries(staticCopy).forEach(([selector, copy]) => set(selector, copy));
-  attr('meta[name="description"]', 'content', 'Yebum Ko portfolio — media art, XR, UX and motion at the intersection of art and technology.');
+  if (!location.pathname.startsWith('/work/')) attr('meta[name="description"]', 'content', 'Yebum Ko portfolio — media art, XR, UX and motion at the intersection of art and technology.');
+  attr('.inquiry-close', 'aria-label', 'Close inquiry');
+  attr('#inquiry-form [name="type"]', 'placeholder', 'e.g. live visuals, XR, UX');
+  attr('#gallery-viewer', 'aria-label', 'Project image gallery');
+  attr('[data-gallery-close]', 'aria-label', 'Close image gallery');
+  attr('[data-gallery-prev]', 'aria-label', 'Previous image');
+  attr('[data-gallery-next]', 'aria-label', 'Next image');
   attr('.showreel', 'aria-label', 'Featured project reel');
   attr('.showreel-timeline', 'aria-label', 'Choose a reel scene');
   attr('#filters', 'aria-label', 'Filter by discipline');
