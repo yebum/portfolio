@@ -40,7 +40,7 @@ Open http://localhost:5178. Use a local server instead of opening the file direc
 
 Run `node _work/build-project-pages.mjs` and upload the root folder as-is to GitHub Pages, Netlify or similar (you can leave out `_source` and `_work`).
 Every project has a shareable, pre-rendered URL such as `/work/Neuroscape/` with its own canonical URL, image and description. The in-site gallery still uses fast hash navigation. `sitemap.xml` includes all pre-rendered pages.
-The contact form submits directly to FormSubmit (no visitor mail app). FormSubmit first sends an activation email to `koyebum1@naver.com`; the recipient must confirm it before inquiries are forwarded. The service may show a CAPTCHA and thank-you page. PNG/JPG/PDF uploads are limited to one file of at most 10 MB. Form contents and attachments pass through FormSubmit; its privacy notice is linked in the form. The site contains no SMTP credentials. Do not publish this change until the recipient is ready to activate the endpoint and send a test inquiry from the production domain.
+The contact form submits directly to FormSubmit (no visitor mail app). FormSubmit first sends an activation email to `koyebum1@naver.com`; the recipient must confirm it before inquiries are forwarded. The service may show a CAPTCHA and thank-you page. PNG/JPG/PDF uploads are limited to one file of at most 10 MB. Form contents and attachments pass through FormSubmit. The site contains no SMTP credentials. After publishing, activate the endpoint and send a test inquiry from the production domain.
 
 ## Performance and regression checks
 

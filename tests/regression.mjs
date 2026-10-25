@@ -117,6 +117,7 @@ try {
     await page.screenshot({ path: resolve(process.env.GALLERY_SCREENSHOT_DIR, 'project-direct.png') });
   }
   await page.locator('#open-inquiry').click();
+  assert.equal(await page.locator('#inquiry-note').count(), 0, 'instruction paragraph is removed');
   await page.locator('[name="title"]').fill('새 전시 비주얼');
   await page.locator('[name="introduction"]').fill('테스트 팀');
   await page.locator('[name="email"]').fill('hello@example.com');
@@ -152,6 +153,7 @@ try {
   await page.waitForFunction(() => !document.querySelector('#detail').hidden);
   assert.equal(await page.locator('html').getAttribute('lang'), 'en');
   assert.equal(await page.locator('#inquiry-title').textContent(), 'Project inquiry');
+  assert.equal(await page.locator('#inquiry-note').count(), 0);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(base + '/');
   await page.waitForFunction(() => document.querySelector('#index-list').children.length > 0);

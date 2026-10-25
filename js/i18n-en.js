@@ -315,8 +315,6 @@
     '.contact-body .sec-sub': 'I welcome opportunities in live and exhibition visuals, XR content, service design and full-time roles.',
     '#open-inquiry': 'Write a project inquiry ↗',
     '#inquiry-title': 'Project inquiry',
-    '#inquiry-note-copy': 'FormSubmit may ask for a security check before forwarding your inquiry. The recipient must activate the form by email once. Your details and attachment are processed by',
-    '#inquiry-note a': 'FormSubmit ↗',
     '#inquiry-form label:nth-of-type(1) span': 'Project title *',
     '#inquiry-form label:nth-of-type(2) span': 'Name / team *',
     '#inquiry-form label:nth-of-type(3) span': 'Reply email *',
