@@ -1,5 +1,6 @@
 import { createWorkIndex } from './components/work-index.js?v=scroll-20261027';
 import { createScrollReveal } from './components/scroll-reveal.js';
+import { createAsciiBackground } from './components/ascii-background.js';
 import { createAbout } from './components/about.js';
 import { createRecognition } from './components/recognition.js';
 import { createProjectDetail } from './components/project-detail.js';
@@ -224,6 +225,7 @@ import { createProjectDetail } from './components/project-detail.js';
 
 
   renderIndex();
+  createAsciiBackground();
   renderAbout();
   renderRecognition();
   observeReveals(document);

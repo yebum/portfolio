@@ -36,6 +36,16 @@ try {
     await page.goto(base + '/' + language);
     await page.waitForFunction(() => document.querySelector('#index-list').children.length > 0 && document.querySelector('.showreel-slide.is-active img').complete);
     assert.equal(await page.locator('#index-list [data-reveal]').last().evaluate(el => el.classList.contains('in')), false, 'offscreen cards wait for scrolling');
+    const background = page.locator('.ascii-background');
+    assert.equal(await background.getAttribute('aria-hidden'), 'true');
+    const initialArt = await background.evaluate(el => el.toDataURL());
+    await page.waitForTimeout(180);
+    assert.notEqual(await background.evaluate(el => el.toDataURL()), initialArt, 'ASCII artwork animates');
+    await page.locator('.ascii-toggle').dispatchEvent('click');
+    const pausedArt = await background.evaluate(el => el.toDataURL());
+    await page.waitForTimeout(180);
+    assert.equal(await background.evaluate(el => el.toDataURL()), pausedArt, 'ASCII pause stops rendering');
+    await page.locator('.ascii-toggle').dispatchEvent('click');
     if (process.env.UI_SCREENSHOT_DIR) await page.screenshot({ path: resolve(process.env.UI_SCREENSHOT_DIR, language ? 'reel-en.png' : 'reel-ko.png') });
     if (language) {
       const feeld = await page.evaluate(() => window.PORTFOLIO.projects.find(p => p.id === 'FEELD'));
