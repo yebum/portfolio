@@ -43,6 +43,13 @@ body {
   overflow-wrap: break-word;
 }
 img { display: block; max-width: 100%; }
+body { isolation: isolate; }
+.ascii-background { position:fixed; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none; opacity:.19; }
+.ascii-toggle { display:block; margin-top:24px; color:var(--mute); min-height:32px; }
+.ascii-toggle:hover { color:var(--ink); }
+.ascii-toggle:disabled { cursor:default; }
+@media(max-width:560px) { .ascii-background { opacity:.13; } }
+@media print { .ascii-background,.ascii-toggle { display:none; } }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
 ol, ul, dl, dd, figure { margin: 0; padding: 0; list-style: none; }
