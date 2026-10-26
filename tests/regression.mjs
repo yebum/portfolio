@@ -60,16 +60,20 @@ try {
       await page.screenshot({ path: resolve(process.env.GALLERY_SCREENSHOT_DIR, 'gallery-desktop.png') });
     }
     const total = await page.locator('#index-list > li').count();
+    assert.equal(await page.locator('#work-search').count(), 0, 'project search is removed');
+    let checkedFilterMotion = false;
     for (const filter of await page.locator('[data-filter]').all()) {
       const key = await filter.getAttribute('data-filter');
       await filter.click();
       const expected = await page.evaluate(key => window.PORTFOLIO.projects.filter(p => key === 'all' || p.disciplines.includes(key)).length, key);
       assert.equal(await page.locator('#index-list > li:not([hidden])').count(), expected);
+      if (!language && key !== 'all' && !checkedFilterMotion) {
+        assert.equal(await page.locator('#index-list').evaluate(list => list.getAnimations({ subtree: true }).length > 0), true, 'filter change animates cards');
+        checkedFilterMotion = true;
+      }
     }
     await page.locator('[data-filter="all"]').click();
-    await page.locator('#work-search').fill('Neuroscape');
-    assert.equal(await page.locator('#index-list > li:not([hidden])').count(), 1);
-    await page.locator('#index-list > li:not([hidden]) a').click();
+    await page.locator('#index-list a[href="#/work/Neuroscape"]').click();
     await page.waitForFunction(() => !document.querySelector('#detail').hidden);
     assert.ok(await page.locator('.pd-hero img').getAttribute('srcset'));
     await page.locator('.pd-step a').last().click();
@@ -79,7 +83,6 @@ try {
     await page.waitForFunction(() => location.hash === '#/index' && !document.querySelector('#home').hidden);
     await page.goto(base + '/' + language + '#/work/__proto__');
     await page.waitForFunction(() => location.hash === '#/index');
-    await page.locator('#work-search').fill('');
     assert.equal(await page.locator('#index-list > li:not([hidden])').count(), total);
     assert.equal(await page.locator('html').getAttribute('lang'), language ? 'en' : 'ko');
     assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://yebumko.com/');
@@ -182,6 +185,8 @@ try {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.waitForTimeout(100);
   assert.equal(await page.locator('.showreel-timeline').evaluate(el => el.classList.contains('is-paused')), true);
+  await page.locator('[data-filter]').nth(1).evaluate(button => button.click());
+  assert.equal(await page.locator('#index-list').evaluate(list => list.getAnimations({ subtree: true }).length), 0, 'reduced motion disables filter animation');
   await page.goto(base + '/#/work/FEELD');
   await page.locator('.pd-gallery-open').first().click();
   await page.waitForFunction(() => document.querySelector('#gallery-viewer-image').naturalWidth > 0);
