@@ -161,8 +161,12 @@ h1, h2, h3, p { margin: 0; }
 @media (hover: none) { .mono-img img { filter: none; } }
 
 /* reveal */
-[data-reveal] { opacity: 0; transform: translateY(14px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
-[data-reveal].in { opacity: 1; transform: none; }
+[data-reveal].reveal-ready { opacity:0; transform:translate3d(0,var(--reveal-distance,32px),0); transition:opacity .68s cubic-bezier(.22,1,.36,1) var(--reveal-delay,0ms), transform .68s cubic-bezier(.22,1,.36,1) var(--reveal-delay,0ms); }
+[data-reveal='card'],.pd-gallery [data-reveal] { --reveal-distance:64px; }
+[data-reveal].in { opacity:1; transform:none; }
+[data-reveal].reveal-settled { opacity:1; transform:none; transition:none; }
+@media(max-width:560px) { [data-reveal].reveal-ready { transform:translate3d(0,24px,0); } [data-reveal].in { transform:none; } }
+@media(prefers-reduced-motion:reduce) { [data-reveal].reveal-ready { opacity:1; transform:none; transition:none; } }
 
 /* ── nav ──────────────────────────────────────────────── */
 .nav {

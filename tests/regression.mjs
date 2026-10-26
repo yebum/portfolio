@@ -35,6 +35,7 @@ try {
   for (const language of ['', '?lang=en']) {
     await page.goto(base + '/' + language);
     await page.waitForFunction(() => document.querySelector('#index-list').children.length > 0 && document.querySelector('.showreel-slide.is-active img').complete);
+    assert.equal(await page.locator('#index-list [data-reveal]').last().evaluate(el => el.classList.contains('in')), false, 'offscreen cards wait for scrolling');
     if (process.env.UI_SCREENSHOT_DIR) await page.screenshot({ path: resolve(process.env.UI_SCREENSHOT_DIR, language ? 'reel-en.png' : 'reel-ko.png') });
     if (language) {
       const feeld = await page.evaluate(() => window.PORTFOLIO.projects.find(p => p.id === 'FEELD'));
@@ -60,6 +61,11 @@ try {
     await page.locator('[data-slide="4"]').click();
     await page.waitForFunction(() => document.querySelector('#showreel-count').textContent.startsWith('05'));
     assert.equal(await page.locator('.showreel-slide.is-active img').evaluate(img => img.naturalWidth > 0), true);
+    await page.locator('#index').evaluate(el => el.scrollIntoView({ behavior: 'instant', block: 'start' }));
+    await page.waitForFunction(() => [...document.querySelectorAll('#index-list [data-reveal]')].slice(0, 3).every(el => el.classList.contains('in')));
+    await page.waitForTimeout(950);
+    assert.equal(await page.locator('#index-list [data-reveal]').first().evaluate(el => getComputedStyle(el).transform), 'none', 'scroll entrance finishes without leaving cards displaced');
+    if (process.env.SCROLL_SCREENSHOT && !language) await page.screenshot({ path: process.env.SCROLL_SCREENSHOT });
     await page.locator('#index-list > li').nth(7).scrollIntoViewIfNeeded();
     await page.waitForFunction(() => [...document.querySelectorAll('#index-list > li img')].slice(0, 8).every(img => img.complete && img.naturalWidth));
     await page.waitForTimeout(100);
