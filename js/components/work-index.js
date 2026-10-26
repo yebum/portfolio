@@ -1,5 +1,5 @@
 // createWorkIndex owns its markup and DOM interactions.
-export function createWorkIndex({ D, t, $, $$, esc, pad2, src, imageDimensions, responsive, projectDiscs, TOTAL }) {
+export function createWorkIndex({ D, t, $, $$, esc, pad2, src, imageDimensions, responsive, projectDiscs, TOTAL, settleReveals }) {
   function renderIndex() {
     const list = $('#index-list'), filters = $('#filters'), section = $('#index');
     const counts = D.projects.reduce((m, p) => {
@@ -13,7 +13,7 @@ export function createWorkIndex({ D, t, $, $$, esc, pad2, src, imageDimensions, 
     const ordered = [...D.projects].sort((a, b) => Number(b.year) - Number(a.year));
     list.innerHTML = ordered.map((p, i) => `
       <li data-disc="${esc(p.disciplines.join(' '))}" data-cover="${esc(p.cover)}">
-        <a class="row-link" href="#/work/${p.id}" data-thumb="${src(p.cover, true)}">
+        <a class="row-link" href="#/work/${p.id}" data-reveal="card" data-thumb="${src(p.cover, true)}">
           <span class="row-thumb card"><img src="${src(p.cover)}"${imageDimensions(p.cover)}${responsive(p.cover, '(max-width: 580px) 100vw, (max-width: 900px) 50vw, (max-width: 1600px) 33vw, 25vw')} alt="" loading="lazy" decoding="async"></span>
           <span class="row-no mono">${pad2(i + 1)}</span>
           <span class="row-title"><span class="t">${esc(p.fullTitle)}</span>${p.awards.length ? `<span class="row-award" title="${esc(p.awards.join(' · '))}" aria-label="Award"></span>` : ''}</span>
@@ -64,11 +64,13 @@ export function createWorkIndex({ D, t, $, $$, esc, pad2, src, imageDimensions, 
       workCount.textContent = visible + ' / ' + TOTAL + t(' projects · 최신 연도순', ' projects · newest first');
       workEmpty.hidden = visible !== 0;
       layoutMasonry();
+      if (filtering) settleReveals(list);
     };
     const animateFilter = async nextFilter => {
       const moving = !matchMedia('(prefers-reduced-motion: reduce)').matches && typeof Element.prototype.animate === 'function';
       if (!moving) { updateFilterState(nextFilter); return; }
       const visible = rows.filter(({ el }) => !el.hidden);
+      settleReveals(list);
       const before = new Map(visible.map(({ el }) => [el, el.getBoundingClientRect()]));
       const leaving = visible.filter(({ el, disciplines }) => nextFilter !== 'all' && !disciplines.has(nextFilter) && inViewport(before.get(el)));
       const exits = leaving.map(({ el }) => el.animate([

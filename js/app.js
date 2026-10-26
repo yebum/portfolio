@@ -1,4 +1,5 @@
-import { createWorkIndex } from './components/work-index.js?v=refined-20261026';
+import { createWorkIndex } from './components/work-index.js?v=scroll-20261027';
+import { createScrollReveal } from './components/scroll-reveal.js';
 import { createAbout } from './components/about.js';
 import { createRecognition } from './components/recognition.js';
 import { createProjectDetail } from './components/project-detail.js';
@@ -52,14 +53,13 @@ import { createProjectDetail } from './components/project-detail.js';
   const detail = $('#detail');
 
   /* ── reveal on scroll ─────────────────────────────── */
-  const revealIO = new IntersectionObserver(entries => {
-    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); revealIO.unobserve(e.target); }
-  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.01 });
+  const reveals = createScrollReveal();
   const clearDetail = () => {
-    $$('[data-reveal]', detail).forEach(el => revealIO.unobserve(el));
+    reveals.release(detail);
     detail.replaceChildren();
   };
-  const observeReveals = root => $$('[data-reveal]:not(.in)', root).forEach(el => revealIO.observe(el));
+  const observeReveals = reveals.observe;
+  const settleReveals = reveals.settle;
 
   const toast = (() => {
     const el = $('#toast'); let t;
@@ -67,7 +67,7 @@ import { createProjectDetail } from './components/project-detail.js';
   })();
 
   /* Dynamic page components share content and small view helpers. */
-  const view = { D, t, $, $$, esc, pad2, src, imageDimensions, responsive, externalUrl, reduced, byId, projectDiscs, TOTAL, clearDetail, observeReveals, toast };
+  const view = { D, t, $, $$, esc, pad2, src, imageDimensions, responsive, externalUrl, reduced, byId, projectDiscs, TOTAL, clearDetail, observeReveals, settleReveals, toast };
   const renderIndex = createWorkIndex(view);
   const renderAbout = createAbout(view);
   const renderRecognition = createRecognition(view);
