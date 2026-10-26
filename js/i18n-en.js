@@ -293,9 +293,8 @@
   const staticCopy = {
     '#intro-title': 'Yebum Ko portfolio',
     '.intro-after-copy a': 'Explore all projects ↗',
-    '.index .sec-head .sec-sub': 'Explore the work through images and key information. Browse by discipline or search for a project.',
-    '.work-search .visually-hidden': 'Search projects',
-    '#work-empty': 'No projects found. Try a different search term or discipline.',
+    '.index .sec-head .sec-sub': 'Explore the work through images and key information. Browse by discipline.',
+    '#work-empty': 'No projects found in this discipline.',
     '.index-head span:nth-child(3)': 'Discipline',
     '.about-labels .dim': 'Yebum Ko',
     '#about-h': 'Every project has a language of its own.',
@@ -341,7 +340,6 @@
   attr('.showreel', 'aria-label', 'Featured project reel');
   attr('.showreel-timeline', 'aria-label', 'Choose a reel scene');
   attr('#filters', 'aria-label', 'Filter by discipline');
-  attr('#work-search', 'placeholder', 'Search projects, disciplines or keywords');
   attr('#gb-name', 'placeholder', 'Up to 20 characters');
   attr('#gb-message', 'placeholder', 'Say hello or share a thought.');
   attr('.nav-menu', 'aria-label', 'Open navigation menu');

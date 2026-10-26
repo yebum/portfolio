@@ -18,7 +18,11 @@ Open http://localhost:5178. Use a local server instead of opening the file direc
 | `css/style.css` | Design tokens (`:root`), components, responsive rules |
 | `js/data.js` | **All content**: projects, awards, experience, capabilities |
 | `js/image-sizes.js` | Generated intrinsic dimensions for stable image layout and responsive sources |
-| `js/app.js` | Hash router (`#/`, `#/index`, `#/work/<id>`), renderers, interactions |
+| `js/app.js` | Composition root, hash router (`#/`, `#/index`, `#/work/<id>`), shared navigation and contact interactions |
+| `js/components/work-index.js` | Project list component: cards, animated discipline filters and layout control |
+| `js/components/about.js` | Capability cards component |
+| `js/components/recognition.js` | Awards, experience and education component |
+| `js/components/project-detail.js` | Project detail, case study, media and image viewer component |
 | `js/inquiry.js` | Project inquiry validation and FormSubmit form submission |
 | `work/<id>/index.html` | Generated project page with static HTML and unique social/search metadata |
 | `assets/img/*.webp` | Optimized images (`-sm` = 900px thumbnails) |
@@ -34,6 +38,7 @@ Open http://localhost:5178. Use a local server instead of opening the file direc
 - **New images**: put the originals in `_source/img/` and run `python _work/opt.py` (it creates WebP files and fixes EXIF rotation).
 - **Image dimensions**: after generating WebP files, run `python _work/generate-image-sizes.py` so cards reserve the correct space before images load.
 - **Project pages**: after editing `js/data.js` or `index.html`, run `node _work/build-project-pages.mjs`. It updates all `/work/<id>/` pages and `sitemap.xml`. Commit those generated files with the source changes.
+- **Component changes**: edit the matching file in `js/components/`. Each component receives content and shared helpers from `js/app.js` and owns its own rendering and DOM events. The site uses native ES modules, with no runtime framework or bundler. Regenerate the project pages if the HTML shell or script URL changes.
 - **New external services**: update the Content Security Policy in `index.html` only for the domains the service needs.
 
 ## Deploy
@@ -45,7 +50,7 @@ The contact form submits directly to FormSubmit (no visitor mail app). FormSubmi
 ## Performance and regression checks
 
 - Reel images load on demand: the first scene and next scene are prepared first. Scene changes wait for image decoding; rapid selections keep the latest choice. Hidden tabs and reduced-motion preferences pause playback.
-- Search caches project metadata; detail navigation releases reveal observers and cancels stale scroll callbacks.
+- Project filters animate card exits and position changes, with reduced-motion support; detail navigation releases reveal observers and cancels stale scroll callbacks.
 - Responsive image candidates and intrinsic dimensions come from the generated image-size inventory. Project galleries support keyboard controls and touch swipes.
 - Guestbook submission has an in-flight guard. Server-side Firebase rules remain responsible for access and abuse prevention; client validation is not an authorization boundary.
 - Run `node tests/regression.mjs` with Playwright installed and Microsoft Edge available. `PLAYWRIGHT_PATH` can point to an existing Playwright package. The test starts its own temporary local server and never submits guestbook entries.

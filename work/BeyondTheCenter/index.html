@@ -30,7 +30,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=live-inquiry-20261026">
+  <link rel="stylesheet" href="css/style.css?v=component-filters-20261026">
 </head>
 <body>
   <a class="skip" href="#index">Skip to work</a>
@@ -105,16 +105,12 @@
     <section class="index site-pad is-grid" id="index" aria-labelledby="index-h">
       <div class="sec-head">
         <h2 class="h2" id="index-h" data-reveal>All projects.</h2>
-        <p class="sec-sub" data-reveal>프로젝트를 이미지와 핵심 정보로 살펴보세요. 최신 연도부터 정렬하며, 분야와 프로젝트명으로 찾아볼 수 있습니다.</p>
-      </div>
-
-      <div class="work-search-row">
-        <label class="work-search"><span class="visually-hidden">프로젝트 검색</span><input id="work-search" type="search" placeholder="프로젝트명, 분야, 키워드 검색" autocomplete="off"></label>
-        <p class="mono dim" id="work-count" role="status" aria-live="polite"></p>
+        <p class="sec-sub" data-reveal>프로젝트를 이미지와 핵심 정보로 살펴보세요. 분야별로 작업을 둘러볼 수 있습니다.</p>
       </div>
       <div class="index-bar">
         <div class="filters" id="filters" role="tablist" aria-label="작업 분야 필터"></div>
         <div class="index-tools">
+          <p class="mono dim" id="work-count" role="status" aria-live="polite"></p>
           <span class="legend mono dim"><span class="legend-dot" aria-hidden="true"></span>Awarded</span>
           <div class="view-toggle" role="group" aria-label="Layout">
             <button type="button" class="mono" data-view="list" aria-pressed="false">List</button>
@@ -304,9 +300,9 @@
 
   <script src="js/data.js?v=hcf-20261022"></script>
   <script src="js/image-sizes.js?v=20261026"></script>
-  <script src="js/i18n-en.js?v=live-inquiry-20261026"></script>
+  <script src="js/i18n-en.js?v=component-filters-20261026"></script>
   <script src="js/showreel.js?v=perf-20261022"></script>
-  <script src="js/app.js?v=project-pages-20261026"></script>
+  <script type="module" src="js/app.js?v=components-20261026"></script>
   <script src="js/inquiry.js?v=direct-send-20261026"></script>
   <script src="js/guestbook.js?v=perf-20261022"></script>
 </body>
