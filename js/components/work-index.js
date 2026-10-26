@@ -47,61 +47,75 @@ export function createWorkIndex({ D, t, $, $$, esc, pad2, src, imageDimensions, 
     window.addEventListener('resize', scheduleMasonry, { passive: true });
     const workCount = $('#work-count'), workEmpty = $('#work-empty');
     let activeFilter = 'all';
-    let animations = [], ghosts = [];
-    const stopAnimations = () => {
-      animations.forEach(animation => animation.cancel());
-      ghosts.forEach(ghost => ghost.remove());
-      animations = []; ghosts = [];
-    };
+    let filtering = false, queuedFilter = null;
     const inViewport = rect => rect.bottom > 0 && rect.top < innerHeight;
-    const applyFilter = (nextFilter, animate = true) => {
-      if (animate && nextFilter === activeFilter) return;
-      stopAnimations();
-      const moving = animate && !matchMedia('(prefers-reduced-motion: reduce)').matches && section.classList.contains('is-grid') && typeof Element.prototype.animate === 'function';
-      const before = moving ? new Map(rows.filter(({ el }) => !el.hidden).map(({ el }) => [el, el.getBoundingClientRect()])) : new Map();
+    const updateFilterState = nextFilter => {
       activeFilter = nextFilter;
       let visible = 0;
       filterButtons.forEach(b => b.setAttribute('aria-selected', b.dataset.filter === activeFilter));
       rows.forEach(({ el, disciplines }) => {
-        const show = activeFilter === 'all' || disciplines.has(activeFilter);
-        const oldRect = before.get(el);
-        if (moving && !show && oldRect && inViewport(oldRect)) {
-          const ghost = el.querySelector('.row-link').cloneNode(true);
-          ghost.setAttribute('aria-hidden', 'true');
-          ghost.tabIndex = -1;
-          ghost.style.cssText = `position:fixed;left:${oldRect.left}px;top:${oldRect.top}px;width:${oldRect.width}px;height:${oldRect.height}px;z-index:20;pointer-events:none;margin:0;`;
-          section.append(ghost);
-          ghosts.push(ghost);
-          const exit = ghost.animate([{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(.97)' }], { duration: 180, easing: 'ease-out', fill: 'forwards' });
-          animations.push(exit);
-          exit.finished.then(() => ghost.remove()).catch(() => {});
-        }
-        el.hidden = !show;
+        el.hidden = activeFilter !== 'all' && !disciplines.has(activeFilter);
         if (!el.hidden) visible++;
       });
       workCount.textContent = visible + ' / ' + TOTAL + t(' projects · 최신 연도순', ' projects · newest first');
       workEmpty.hidden = visible !== 0;
       layoutMasonry();
-      if (moving) rows.filter(({ el }) => !el.hidden).forEach(({ el }) => {
+    };
+    const animateFilter = async nextFilter => {
+      const moving = !matchMedia('(prefers-reduced-motion: reduce)').matches && typeof Element.prototype.animate === 'function';
+      if (!moving) { updateFilterState(nextFilter); return; }
+      const visible = rows.filter(({ el }) => !el.hidden);
+      const before = new Map(visible.map(({ el }) => [el, el.getBoundingClientRect()]));
+      const leaving = visible.filter(({ el, disciplines }) => nextFilter !== 'all' && !disciplines.has(nextFilter) && inViewport(before.get(el)));
+      const exits = leaving.map(({ el }) => el.animate([
+        { opacity: 1, transform: 'scale(1)' },
+        { opacity: 0, transform: 'scale(.985)' },
+      ], { duration: 140, easing: 'ease-out', fill: 'both' }));
+      await Promise.all(exits.map(animation => animation.finished));
+      updateFilterState(nextFilter);
+      exits.forEach(animation => animation.cancel());
+      const moves = rows.filter(({ el }) => !el.hidden).map(({ el }) => {
         const after = el.getBoundingClientRect();
         const old = before.get(el);
         const dx = old ? old.left - after.left : 0;
-        const dy = old ? old.top - after.top : 18;
+        const dy = old ? old.top - after.top : 16;
         if (!old || Math.abs(dx) > 1 || Math.abs(dy) > 1) {
-          animations.push(el.animate([
+          return el.animate([
             { transform: `translate3d(${dx}px, ${dy}px, 0)`, opacity: old ? 1 : 0 },
             { transform: 'translate3d(0, 0, 0)', opacity: 1 },
-          ], { duration: 440, easing: 'cubic-bezier(.22, 1, .36, 1)' }));
+          ], { duration: old ? 380 : 260, easing: 'cubic-bezier(.22, 1, .36, 1)', fill: 'both' });
         }
-      });
+        return null;
+      }).filter(Boolean);
+      await Promise.all(moves.map(animation => animation.finished));
+      moves.forEach(animation => animation.cancel());
     };
-    filters.addEventListener('click', e => { const b = e.target.closest('.filter'); if (b) applyFilter(b.dataset.filter); });
+    const selectFilter = nextFilter => {
+      queuedFilter = nextFilter;
+      if (filtering) return;
+      filtering = true;
+      filters.setAttribute('aria-busy', 'true');
+      const run = async () => {
+        try {
+          while (queuedFilter !== null) {
+            const target = queuedFilter;
+            queuedFilter = null;
+            if (target !== activeFilter) await animateFilter(target);
+          }
+        } finally {
+          filtering = false;
+          filters.removeAttribute('aria-busy');
+        }
+      };
+      void run();
+    };
+    filters.addEventListener('click', e => { const b = e.target.closest('.filter'); if (b) selectFilter(b.dataset.filter); });
     $('#caps').addEventListener('click', e => {
       const link = e.target.closest('[data-cap-filter]');
       if (!link) return;
-      applyFilter(link.dataset.capFilter);
+      selectFilter(link.dataset.capFilter);
     });
-    applyFilter('all', false);
+    updateFilterState('all');
 
     const setView = v => {
       section.classList.toggle('is-grid', v === 'grid');
