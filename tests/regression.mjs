@@ -35,13 +35,22 @@ try {
   for (const language of ['', '?lang=en']) {
     await page.goto(base + '/' + language);
     await page.waitForFunction(() => document.querySelector('#index-list').children.length > 0 && document.querySelector('.showreel-slide.is-active img').complete);
+    if (!language) {
+      const prize = page.locator('#awards .award-prize').first();
+      const prizeStyle = await prize.evaluate(el => ({ color: getComputedStyle(el).color, background: getComputedStyle(el).backgroundColor }));
+      await prize.hover();
+      assert.deepEqual(await prize.evaluate(el => ({ color: getComputedStyle(el).color, background: getComputedStyle(el).backgroundColor })), prizeStyle, 'noninteractive prize badges do not change on hover');
+    }
     assert.equal(await page.locator('#index-list a[href="#/work/FEELD"]').count(), 1, 'FEELD appears in the project index');
     assert.equal(await page.locator('#index-list a[href="#/work/AllAllowed"]').count(), 1, 'All Allowed appears in the project index');
     assert.deepEqual(await page.evaluate(() => window.PORTFOLIO.projects.flatMap(project => [project.cover, ...project.media.images.map(image => image.src)]).filter(name => !window.PORTFOLIO_IMAGE_SIZES[name])), [], 'all project images have intrinsic dimensions');
     await page.waitForTimeout(300);
     assert.equal(await page.locator('.showreel-slide img[src]').count(), 2, 'only current and next reel images loaded');
-    await page.locator('[data-slide="8"]').click();
-    await page.waitForFunction(() => document.querySelector('#showreel-count').textContent.startsWith('09'));
+    assert.deepEqual(await page.locator('.showreel-slide').evaluateAll(slides => slides.map(slide => slide.getAttribute('href').split('/').pop())),
+      ['Neuroscape', 'FEELD', 'XMF2026-YOUNHA', 'MATMI', 'GetTheOceanSummerReady'],
+      'featured reel covers recent, documented work across disciplines without repeating XMF artists');
+    await page.locator('[data-slide="4"]').click();
+    await page.waitForFunction(() => document.querySelector('#showreel-count').textContent.startsWith('05'));
     assert.equal(await page.locator('.showreel-slide.is-active img').evaluate(img => img.naturalWidth > 0), true);
     await page.locator('#index-list > li').nth(7).scrollIntoViewIfNeeded();
     await page.waitForFunction(() => [...document.querySelectorAll('#index-list > li img')].slice(0, 8).every(img => img.complete && img.naturalWidth));
@@ -183,11 +192,11 @@ try {
   await page.locator('#index-list > li').nth(2).scrollIntoViewIfNeeded();
   await page.waitForFunction(() => [...document.querySelectorAll('#index-list > li img')].slice(0, 3).every(img => img.complete && img.naturalWidth));
   assert.ok(await page.locator('.index.is-grid .row-thumb img').evaluateAll(items => items.slice(0, 3).every(img => Math.abs(img.getBoundingClientRect().width / img.getBoundingClientRect().height - img.naturalWidth / img.naturalHeight) < .02)), 'mobile images keep natural proportions');
-  await page.route('**/Neuroscape*.webp', async route => {
+  await page.route('**/GetTheOceanSummerReady*.webp', async route => {
     await new Promise(done => setTimeout(done, 300));
     await route.continue();
   });
-  await page.locator('[data-slide="8"]').dispatchEvent('click');
+  await page.locator('[data-slide="4"]').dispatchEvent('click');
   await page.locator('[data-slide="0"]').dispatchEvent('click');
   await page.waitForTimeout(600);
   assert.match(await page.locator('#showreel-count').textContent(), /^01/);
