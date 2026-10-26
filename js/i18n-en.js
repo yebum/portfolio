@@ -31,7 +31,7 @@
     ['A distinct visual language for each song', `The stage needed visuals that followed the mood and rhythm of ${name}'s set.`],
     ['Images and audio-reactive motion', `I developed song-specific imagery and reactive video studies, including visuals for “${track}.”`],
     ['Stage previews and finished visual studies', 'The project brings the imagery and reactive clips together as a record of the proposed stage experience.'],
-    'Stage visual design and audio-reactive video production'
+    'Visual direction for Korean artists and audio-reactive visual production'
   );
   const projects = {
     FEELD: P(
@@ -255,6 +255,29 @@
     '런케이션 해커톤 장려상': 'Learncation Hackathon · Encouragement Award',
   };
   const hasKorean = value => /[가-힣]/.test(value || '');
+  const captionCopy = {
+    'FEELD · 체험 인트로': 'FEELD · Experience introduction',
+    'FEELD · 숲 장면': 'FEELD · Reconstructed forest',
+    'FEELD · 숲길': 'FEELD · Forest path',
+    'FEELD · 손짓에 반응하는 풍경': 'FEELD · Landscape responding to hand movement',
+    '몸에 남은 온기': 'Warmth remaining in the body',
+    '정해진 방향으로 걷는 사람들': 'Figures walking in a prescribed direction',
+    '보이지 않는 벽을 미는 사람': 'Pushing against an invisible wall',
+    '선에 매달린 몸': 'A body suspended by threads',
+    '녹아내리는 얼굴': 'A face dissolving',
+    '군중의 흐름': 'The flow of the crowd',
+    '모두 허용 · 3분 영상': 'Allow All · Three-minute audiovisual film',
+    'FEELD · 프로젝트 영상': 'FEELD · Project film',
+    '참가 증명서': 'Certificate of participation',
+  };
+  const translateCaption = label => {
+    if (captionCopy[label]) return captionCopy[label];
+    return String(label || '').replace(/오디오 리액티브 영상/g, 'Audio-reactive study')
+      .replace(/프리비즈/g, 'Stage preview').replace(/이미지/g, 'Visual')
+      .replace(/비밀번호486/g, 'Password 486').replace(/윤하/g, 'Younha')
+      .replace(/개화/g, 'Flowering').replace(/아지랑이/g, 'Ajirangi')
+      .replace(/아니 근데 진짜/g, 'Ani Geunde Jinjja').replace(/맞네/g, 'Matne').replace(/어리버리/g, 'Eoribeori');
+  };
   for (const p of D.projects) {
     const copy = projects[p.id];
     if (!copy) throw new Error(`Missing English project copy: ${p.id}`);
@@ -266,15 +289,19 @@
     p.details = [
       { k: 'Project type', v: copy.context },
       { k: 'Role', v: copy.role },
+      ...p.details.filter(d => ['사용 툴', '사용 도구', '사용 기술'].includes(d.k)).map(d => ({ k: 'Tools & technology', v: d.v })),
+      ...(p.id === 'MATMI' ? [{ k: 'Duration', v: 'Four days · 2026' }] : []),
     ];
     p.awards = p.awards.map(a => awardNames[a] || a);
     p.media.films.forEach((item, i) => {
+      item.label = translateCaption(item.label);
       if (hasKorean(item.label)) item.label = `${copy.title} · Film ${String(i + 1).padStart(2, '0')}`;
     });
     p.media.decks.forEach((item, i) => {
       if (hasKorean(item.label)) item.label = `${copy.title} · Presentation ${String(i + 1).padStart(2, '0')} (Korean PDF)`;
     });
     p.media.images.forEach((item, i) => {
+      item.label = translateCaption(item.label);
       if (hasKorean(item.label)) item.label = `${copy.title} · Image ${String(i + 1).padStart(2, '0')}`;
     });
     p.media.links.forEach((item, i) => {
@@ -293,12 +320,12 @@
   const staticCopy = {
     '#intro-title': 'Yebum Ko portfolio',
     '.intro-after-copy a': 'Explore all projects ↗',
-    '.index .sec-head .sec-sub': 'Explore the work through images and key information. Browse by discipline.',
+    '.index .sec-head .sec-sub': 'From live visuals to interactive systems. Explore projects by discipline.',
     '#work-empty': 'No projects found in this discipline.',
     '.index-head span:nth-child(3)': 'Discipline',
     '.about-labels .dim': 'Yebum Ko',
     '#about-h': 'Every project has a language of its own.',
-    '.about-body .sec-sub': 'I began in telecommunications engineering and moved into digital media design. I use an understanding of signals and systems to create images and interactions, balancing careful detail with a clear conceptual direction.',
+    '.about-body .sec-sub': 'I create at the intersection of art and technology. My background in telecommunications engineering shapes how I work with signals, systems and interaction; digital media design gives those ideas a visual language. I develop live visuals, immersive experiences and digital services, from the first concept to a working prototype.',
     '.about-body .facts > div:nth-child(2) dd': 'Digital Media Design, Kaywon University of Art & Design',
     '.about-docs .chips a:first-child': 'Resume PDF (Korean) ↓',
     '.about-docs .chips a:last-child': 'Cover letter PDF (Korean) ↓',
@@ -311,7 +338,7 @@
     '#gb-submit': 'Post ↗',
     '.gb-bar .ctx': 'Newest first',
     '#gb-more': 'More posts',
-    '.contact-body .sec-sub': 'I welcome opportunities in live and exhibition visuals, XR content, service design and full-time roles.',
+    '.contact-body .sec-sub': 'Have a project in mind? I’m open to collaborations and full-time opportunities in live visuals, immersive experiences and digital product design.',
     '#open-inquiry': 'Write a project inquiry ↗',
     '#inquiry-title': 'Project inquiry',
     '#inquiry-form label:nth-of-type(1) span': 'Project title *',

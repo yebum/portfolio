@@ -17,6 +17,7 @@
   let requestedIndex = 0;
   let timer = 0;
   let visible = true;
+  let focused = false;
   let request = 0;
   const loads = new WeakMap();
   const load = i => {
@@ -32,7 +33,7 @@
 
   const schedule = () => {
     clearTimeout(timer);
-    const playing = !motion.matches && visible && !document.hidden;
+    const playing = !motion.matches && visible && !document.hidden && !focused;
     timeline.classList.toggle('is-paused', !playing);
     if (!playing) return;
     timer = setTimeout(() => {
@@ -69,9 +70,7 @@
   };
 
   marks.forEach((mark, i) => {
-    mark.addEventListener('mouseenter', () => {
-      if (requestedIndex !== i) show(i);
-    });
+    mark.dataset.title = titles[i];
     mark.addEventListener('click', () => {
       if (requestedIndex !== i) show(i);
     });
@@ -83,6 +82,30 @@
       show(next);
     });
   });
+  reel.addEventListener('focusin', () => { focused = true; schedule(); });
+  reel.addEventListener('focusout', event => {
+    if (!reel.contains(event.relatedTarget)) { focused = false; schedule(); }
+  });
+  let touchStart = null, suppressClick = false;
+  const stage = reel.querySelector('.showreel-stage');
+  stage.addEventListener('touchstart', event => {
+    suppressClick = false;
+    const touch = event.touches[0];
+    touchStart = event.touches.length === 1 ? { x: touch.clientX, y: touch.clientY } : null;
+  }, { passive: true });
+  stage.addEventListener('touchend', event => {
+    if (!touchStart) return;
+    const touch = event.changedTouches[0];
+    const dx = touch.clientX - touchStart.x, dy = touch.clientY - touchStart.y;
+    touchStart = null;
+    if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+    suppressClick = true;
+    show(requestedIndex + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+  stage.addEventListener('touchcancel', () => { touchStart = null; }, { passive: true });
+  stage.addEventListener('click', event => {
+    if (suppressClick) { event.preventDefault(); event.stopPropagation(); suppressClick = false; }
+  }, true);
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;

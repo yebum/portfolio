@@ -52,7 +52,11 @@ export function createWorkIndex({ D, t, $, $$, esc, pad2, src, imageDimensions, 
     const updateFilterState = nextFilter => {
       activeFilter = nextFilter;
       let visible = 0;
-      filterButtons.forEach(b => b.setAttribute('aria-selected', b.dataset.filter === activeFilter));
+      filterButtons.forEach(b => {
+        const selected = b.dataset.filter === activeFilter;
+        b.setAttribute('aria-selected', selected);
+        b.tabIndex = selected ? 0 : -1;
+      });
       rows.forEach(({ el, disciplines }) => {
         el.hidden = activeFilter !== 'all' && !disciplines.has(activeFilter);
         if (!el.hidden) visible++;
@@ -110,6 +114,15 @@ export function createWorkIndex({ D, t, $, $$, esc, pad2, src, imageDimensions, 
       void run();
     };
     filters.addEventListener('click', e => { const b = e.target.closest('.filter'); if (b) selectFilter(b.dataset.filter); });
+    filters.addEventListener('keydown', event => {
+      const current = filterButtons.indexOf(event.target);
+      if (current < 0 || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      const next = event.key === 'Home' ? 0 : event.key === 'End' ? filterButtons.length - 1
+        : (current + (event.key === 'ArrowRight' ? 1 : -1) + filterButtons.length) % filterButtons.length;
+      filterButtons[next].focus({ preventScroll: true });
+      selectFilter(filterButtons[next].dataset.filter);
+    });
     $('#caps').addEventListener('click', e => {
       const link = e.target.closest('[data-cap-filter]');
       if (!link) return;
