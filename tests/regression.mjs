@@ -66,13 +66,28 @@ try {
       const key = await filter.getAttribute('data-filter');
       await filter.click();
       const expected = await page.evaluate(key => window.PORTFOLIO.projects.filter(p => key === 'all' || p.disciplines.includes(key)).length, key);
+      await page.waitForFunction(({ key, expected }) => document.querySelector(`[data-filter="${key}"]`)?.getAttribute('aria-selected') === 'true' && document.querySelectorAll('#index-list > li:not([hidden])').length === expected, { key, expected });
       assert.equal(await page.locator('#index-list > li:not([hidden])').count(), expected);
       if (!language && key !== 'all' && !checkedFilterMotion) {
         assert.equal(await page.locator('#index-list').evaluate(list => list.getAnimations({ subtree: true }).length > 0), true, 'filter change animates cards');
         checkedFilterMotion = true;
       }
     }
+    await page.evaluate(() => {
+      const filters = [...document.querySelectorAll('[data-filter]')];
+      filters[1].click(); filters[2].click(); filters[3].click();
+    });
+    await page.waitForFunction(() => document.querySelectorAll('#index-list > li:not([hidden])').length === 8 && !document.querySelector('#filters').hasAttribute('aria-busy'));
+    assert.equal(await page.locator('#index > .row-link').count(), 0, 'filtering does not duplicate cards');
+    assert.equal(await page.locator('#index-list > li:not([hidden])').evaluateAll(items => items.every(item => getComputedStyle(item).opacity === '1')), true, 'cards finish fully visible');
     await page.locator('[data-filter="all"]').click();
+    await page.waitForFunction(() => document.querySelectorAll('#index-list > li:not([hidden])').length === 30 && !document.querySelector('#filters').hasAttribute('aria-busy'));
+    await page.locator('[data-view="list"]').click();
+    await page.locator('[data-filter]').nth(1).click();
+    await page.waitForFunction(() => document.querySelectorAll('#index-list > li:not([hidden])').length === 12 && !document.querySelector('#filters').hasAttribute('aria-busy'));
+    await page.locator('[data-filter="all"]').click();
+    await page.waitForFunction(() => document.querySelectorAll('#index-list > li:not([hidden])').length === 30 && !document.querySelector('#filters').hasAttribute('aria-busy'));
+    await page.locator('[data-view="grid"]').click();
     await page.locator('#index-list a[href="#/work/Neuroscape"]').click();
     await page.waitForFunction(() => !document.querySelector('#detail').hidden);
     assert.ok(await page.locator('.pd-hero img').getAttribute('srcset'));
