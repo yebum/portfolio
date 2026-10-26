@@ -35,6 +35,14 @@ try {
   for (const language of ['', '?lang=en']) {
     await page.goto(base + '/' + language);
     await page.waitForFunction(() => document.querySelector('#index-list').children.length > 0 && document.querySelector('.showreel-slide.is-active img').complete);
+    if (process.env.UI_SCREENSHOT_DIR) await page.screenshot({ path: resolve(process.env.UI_SCREENSHOT_DIR, language ? 'reel-en.png' : 'reel-ko.png') });
+    if (language) {
+      const feeld = await page.evaluate(() => window.PORTFOLIO.projects.find(p => p.id === 'FEELD'));
+      assert.ok(feeld.details.some(d => d.k === 'Tools & technology' && d.v.includes('Unity')), 'English retains technical information');
+      assert.equal(feeld.media.images[1].label, 'FEELD · Reconstructed forest', 'English gallery descriptions retain their meaning');
+    }
+    await page.locator('[data-slide="2"]').dispatchEvent('mouseenter');
+    assert.equal(await page.locator('#showreel-count').textContent(), '01 / 05', 'hover previews a scene name without changing the reel');
     if (!language) {
       const prize = page.locator('#awards .award-prize').first();
       const prizeStyle = await prize.evaluate(el => ({ color: getComputedStyle(el).color, background: getComputedStyle(el).backgroundColor }));
@@ -69,6 +77,12 @@ try {
       await page.screenshot({ path: resolve(process.env.GALLERY_SCREENSHOT_DIR, 'gallery-desktop.png') });
     }
     const total = await page.locator('#index-list > li').count();
+    await page.locator('[data-filter="all"]').focus();
+    await page.keyboard.press('ArrowRight');
+    await page.waitForFunction(() => document.querySelector('[data-filter="media"]').getAttribute('aria-selected') === 'true' && !document.querySelector('#filters').hasAttribute('aria-busy'));
+    assert.equal(await page.locator('[data-filter="media"]').getAttribute('tabindex'), '0', 'keyboard navigation selects and focuses the category');
+    await page.keyboard.press('Home');
+    await page.waitForFunction(() => document.querySelector('[data-filter="all"]').getAttribute('aria-selected') === 'true' && !document.querySelector('#filters').hasAttribute('aria-busy'));
     assert.equal(await page.locator('#work-search').count(), 0, 'project search is removed');
     let checkedFilterMotion = false;
     for (const filter of await page.locator('[data-filter]').all()) {
@@ -209,6 +223,14 @@ try {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.waitForTimeout(100);
   assert.equal(await page.locator('.showreel-timeline').evaluate(el => el.classList.contains('is-paused')), true);
+  await page.evaluate(() => {
+    const stage = document.querySelector('.showreel-stage');
+    const point = x => new Touch({ identifier: 1, target: stage, clientX: x, clientY: 300 });
+    stage.dispatchEvent(new TouchEvent('touchstart', { bubbles: true, touches: [point(300)] }));
+    stage.dispatchEvent(new TouchEvent('touchend', { bubbles: true, changedTouches: [point(180)] }));
+  });
+  await page.waitForFunction(() => document.querySelector('#showreel-count').textContent === '02 / 05');
+  assert.equal(await page.locator('.showreel-slide.is-active').evaluate(el => el.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }))), false, 'a swipe does not accidentally open a project');
   await page.locator('[data-filter]').nth(1).evaluate(button => button.click());
   assert.equal(await page.locator('#index-list').evaluate(list => list.getAnimations({ subtree: true }).length), 0, 'reduced motion disables filter animation');
   await page.goto(base + '/#/work/FEELD');

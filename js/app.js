@@ -1,4 +1,4 @@
-import { createWorkIndex } from './components/work-index.js?v=smooth-filter-20261026';
+import { createWorkIndex } from './components/work-index.js?v=refined-20261026';
 import { createAbout } from './components/about.js';
 import { createRecognition } from './components/recognition.js';
 import { createProjectDetail } from './components/project-detail.js';
