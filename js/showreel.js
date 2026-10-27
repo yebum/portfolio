@@ -16,7 +16,7 @@
   let index = 0;
   let requestedIndex = 0;
   let timer = 0;
-  let visible = true;
+  let visible = !reel.closest('[hidden]');
   let focused = false;
   let request = 0;
   const loads = new WeakMap();
@@ -109,10 +109,11 @@
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
+      if (visible && images[index].dataset.src) { show(index); return; }
       schedule();
     }, { threshold: 0.2 }).observe(reel);
   }
   document.addEventListener('visibilitychange', schedule);
   motion.addEventListener('change', schedule);
-  show(0);
+  if (visible) show(0);
 })();

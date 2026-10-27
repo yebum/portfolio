@@ -35,8 +35,13 @@ for (const project of projects) {
     ? ['problem', 'solution', 'result'].map(key => project.caseStudy[key]).filter(Boolean)
       .map(item => `<section><h2>${escape(item.summary)}</h2>${(item.body || []).map(line => `<p>${escape(line)}</p>`).join('')}</section>`).join('')
     : (project.sections || []).map(item => `<section><h2>${escape(item.label)}</h2><p>${escape(item.body)}</p></section>`).join('');
-  const staticDetail = `<article class="pd static-project" aria-labelledby="pd-title"><div class="pd-bar"><a class="back mono" href="/#/index">← Index</a></div><section class="pd-hero site-pad"><div class="card"><img src="/assets/img/${encodeURIComponent(project.cover)}.webp" alt="${escape(project.fullTitle)}" fetchpriority="high"><div class="hero-scrim" aria-hidden="true"></div><div class="hero-copy"><h1 class="display" id="pd-title">${escape(project.fullTitle)}</h1><p class="pd-ctx">${escape(project.context)}</p></div></div></section><div class="static-project-copy"><p class="pd-lead">${escape(project.lead)}</p>${staticStory}</div></article>`;
+  const dimensions = imageSizes[project.cover];
+  const small = imageSizes[`${project.cover}-sm`];
+  const heroAttributes = dimensions ? ` width="${dimensions[0]}" height="${dimensions[1]}"${small ? ` srcset="/assets/img/${encodeURIComponent(project.cover)}-sm.webp ${small[0]}w, /assets/img/${encodeURIComponent(project.cover)}.webp ${dimensions[0]}w" sizes="100vw"` : ''}` : '';
+  const staticDetail = `<article class="pd static-project" aria-labelledby="pd-title"><div class="pd-bar"><a class="back mono" href="/#/index">← Index</a></div><section class="pd-hero site-pad"><div class="card"><img src="/assets/img/${encodeURIComponent(project.cover)}.webp" alt="${escape(project.fullTitle)}"${heroAttributes} fetchpriority="high" decoding="async"><div class="hero-scrim" aria-hidden="true"></div><div class="hero-copy"><h1 class="display" id="pd-title">${escape(project.fullTitle)}</h1><p class="pd-ctx">${escape(project.context)}</p></div></div></section><div class="static-project-copy"><p class="pd-lead">${escape(project.lead)}</p>${staticStory}</div></article>`;
   let html = template
+    // The home reel is hidden on direct project URLs; do not fetch its hero image.
+    .replace(/(<img )src="assets\/img\/Neuroscape.webp" srcset=/, '$1data-src="assets/img/Neuroscape.webp" data-srcset=')
     .replace('<meta charset="UTF-8">', '<meta charset="UTF-8">\n  <base href="/">')
     .replace('<main id="home" class="view">', '<main id="home" class="view" hidden>')
     .replace('<main id="detail" class="view" hidden></main>', `<main id="detail" class="view">${staticDetail}</main>`)

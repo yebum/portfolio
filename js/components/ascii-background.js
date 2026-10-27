@@ -28,7 +28,7 @@ export async function createAsciiBackground() {
   const button = document.createElement('button');
   button.className = 'ascii-toggle mono';
   document.querySelector('.footer').append(button);
-  let paused = false, frame = 0, last = 0, time = 0, width, height, cols, rows, depth, cells;
+  let paused = false, frame = 0, timer = 0, last = 0, time = 0, width, height, cols, rows, depth, cells;
   const chars = ' .:-=+*#%@';
   const points = [];
   const unit = 2 / (right - left);
@@ -77,6 +77,7 @@ export async function createAsciiBackground() {
     }
   };
   const resize = () => {
+    if (width === innerWidth && height === innerHeight) return;
     width = innerWidth; height = innerHeight;
     // One CSS pixel per bitmap pixel is enough for this deliberately soft background.
     canvas.width = width; canvas.height = height;
@@ -88,13 +89,14 @@ export async function createAsciiBackground() {
     draw();
   };
   const tick = now => {
-    frame = requestAnimationFrame(tick);
-    if (now - last < 65) return;
+    frame = 0;
     time += Math.min(now - last, 100) / 1000; last = now;
     draw();
+    // Wake only for an actual update, then align that update to the display frame.
+    timer = setTimeout(() => { frame = requestAnimationFrame(tick); }, 65);
   };
   const sync = () => {
-    cancelAnimationFrame(frame); frame = 0; last = performance.now(); label();
+    clearTimeout(timer); cancelAnimationFrame(frame); frame = 0; last = performance.now(); label();
     if (!paused && !motion.matches && !document.hidden) frame = requestAnimationFrame(tick);
   };
   button.addEventListener('click', () => { paused = !paused; sync(); });
