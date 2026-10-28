@@ -32,6 +32,18 @@ try {
   page.on('pageerror', e => errors.push(e.message));
   page.on('console', message => { if (message.text().includes('Content Security Policy')) errors.push(message.text()); });
   const base = `http://127.0.0.1:${server.address().port}`;
+  // Hold the app module to inspect the actual pre-initialization header state.
+  let releaseApp;
+  const appGate = new Promise(resolve => { releaseApp = resolve; });
+  await page.route('**/js/app.js*', async route => { await appGate; await route.continue(); });
+  await page.goto(base + '/', { waitUntil: 'commit' });
+  await page.locator('#nav').waitFor({ state: 'attached' });
+  await page.waitForFunction(() => getComputedStyle(document.querySelector('#nav')).position === 'sticky');
+  assert.equal(await page.locator('#nav').evaluate(el => getComputedStyle(el).opacity), '0', 'header is hidden before app initialization');
+  releaseApp();
+  await page.waitForLoadState('load');
+  await page.unroute('**/js/app.js*');
+  assert.equal(await page.locator('#nav').evaluate(el => getComputedStyle(el).opacity), '0', 'header stays hidden after initialization');
   for (const language of ['', '?lang=en']) {
     await page.goto(base + '/' + language);
     await page.waitForFunction(() => document.querySelector('#index-list').children.length > 0 && document.querySelector('.showreel-slide.is-active img').complete);

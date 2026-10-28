@@ -61,6 +61,7 @@ body { isolation: isolate; }
 .arrival-scroll span { font-size:18px; color:var(--ink); }
 .arrival-active .nav:not(:focus-within):not(.is-open) { opacity:0; pointer-events:none; }
 body .nav { transition:opacity .35s ease,box-shadow .3s var(--ease); }
+.arrival-pending .nav:not(:focus-within):not(.is-open) { opacity:0; pointer-events:none; transition:none; }
 .intro .showreel { transform-origin:50% 0; }
 @media(max-width:560px) {
   .arrival { min-height:360px; }
