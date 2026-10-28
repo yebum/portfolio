@@ -48,6 +48,13 @@ try {
     assert.equal(await background.evaluate(el => el.toDataURL()), pausedArt, 'ASCII pause stops rendering');
     await page.locator('.ascii-toggle').dispatchEvent('click');
     if (process.env.UI_SCREENSHOT_DIR) await page.screenshot({ path: resolve(process.env.UI_SCREENSHOT_DIR, language ? 'reel-en.png' : 'reel-ko.png') });
+    assert.ok(await page.locator('#reel').evaluate(el => el.getBoundingClientRect().top >= innerHeight - 2), 'first screen reserves the viewport for the name and ASCII');
+    assert.equal(await page.locator('#arrival-title').textContent(), 'Yebum Ko');
+    await page.locator('.arrival-scroll').click();
+    await page.waitForFunction(() => document.querySelector('#reel').getBoundingClientRect().top < 150);
+    await page.waitForTimeout(900);
+    assert.equal(await page.locator('body').evaluate(el => el.classList.contains('arrival-active')), false, 'navigation appears after scrolling to reel');
+    if (process.env.UI_SCREENSHOT_DIR && !language) await page.screenshot({path:resolve(process.env.UI_SCREENSHOT_DIR,'arrival-reel.png')});
     if (language) {
       const feeld = await page.evaluate(() => window.PORTFOLIO.projects.find(p => p.id === 'FEELD'));
       assert.ok(feeld.details.some(d => d.k === 'Tools & technology' && d.v.includes('Unity')), 'English retains technical information');

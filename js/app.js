@@ -1,5 +1,6 @@
 import { createWorkIndex } from './components/work-index.js?v=scroll-20261027';
 import { createScrollReveal } from './components/scroll-reveal.js';
+import { createArrival } from './components/arrival.js';
 import { createAsciiBackground } from './components/ascii-background.js?v=perf-20261028';
 import { createAbout } from './components/about.js';
 import { createRecognition } from './components/recognition.js';
@@ -231,4 +232,5 @@ import { createProjectDetail } from './components/project-detail.js';
   observeReveals(document);
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   route();
+  createArrival();
 })();
