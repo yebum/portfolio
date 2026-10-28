@@ -319,6 +319,7 @@
   };
   const staticCopy = {
     '#intro-title': 'Yebum Ko portfolio',
+    '.arrival-introduction': 'I’m Yebum Ko, a developer connecting art and technology.',
     '.intro-after-copy a': 'Explore all projects ↗',
     '.index .sec-head .sec-sub': 'From live visuals to interactive systems. Explore projects by discipline.',
     '#work-empty': 'No projects found in this discipline.',
