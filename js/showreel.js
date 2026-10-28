@@ -16,7 +16,7 @@
   let index = 0;
   let requestedIndex = 0;
   let timer = 0;
-  let visible = !reel.closest('[hidden]');
+  let visible = !reel.closest('[hidden]') && reel.getBoundingClientRect().top < innerHeight;
   let focused = false;
   let request = 0;
   const loads = new WeakMap();
@@ -109,7 +109,7 @@
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
-      if (visible && images[index].dataset.src) { show(index); return; }
+      if (visible && !loads.has(images[index])) { show(index); return; }
       schedule();
     }, { threshold: 0.2 }).observe(reel);
   }

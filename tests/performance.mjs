@@ -30,14 +30,25 @@ try {
   const start = await page.evaluate(() => window.asciiFrames);
   await page.waitForTimeout(1200);
   const fps = Math.round((await page.evaluate(() => window.asciiFrames) - start) / 1.2);
+  const initialReelImages = await page.locator('.showreel-slide img[src]').count();
+  await page.locator('#index').evaluate(el => el.scrollIntoView({behavior:'instant'}));
+  await page.waitForTimeout(500);
+  await page.evaluate(() => {
+    window.arrivalWrites = 0;
+    new MutationObserver(records => { window.arrivalWrites += records.length; }).observe(document.querySelector('.arrival-copy'), {attributes:true,attributeFilter:['style']});
+  });
+  for (let i = 0; i < 5; i++) { await page.evaluate(() => scrollBy(0, 100)); await page.waitForTimeout(80); }
+  const offscreenArrivalWrites = await page.evaluate(() => window.arrivalWrites);
   const requests = [];
   page.on('request', req => { if (req.resourceType() === 'image') requests.push(req.url()); });
   await page.goto(base + '/work/AllAllowed/');
   await page.waitForTimeout(800);
   const hiddenReelImages = requests.filter(url => /\/(Neuroscape|FEELD)(-sm)?\.webp/.test(url));
-  console.log(JSON.stringify({asciiCallbacksPerSecond:fps, hiddenReelImages}, null, 2));
+  console.log(JSON.stringify({asciiCallbacksPerSecond:fps, initialReelImages, offscreenArrivalWrites, hiddenReelImages}, null, 2));
   if (process.env.CHECK_PERFORMANCE) {
     assert.ok(fps <= 20, 'background should not wake on every display frame');
+    assert.equal(initialReelImages, 1, 'only the first reel image is warmed before scrolling');
+    assert.equal(offscreenArrivalWrites, 0, 'scrolling after the entrance does not rewrite its styles');
     assert.equal(hiddenReelImages.length, 0, 'detail pages do not download hidden reel images');
     await page.emulateMedia({reducedMotion:'reduce'});
     const still = await page.locator('.ascii-background').evaluate(el => el.toDataURL());
