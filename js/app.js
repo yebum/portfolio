@@ -94,7 +94,7 @@ import { createProjectDetail } from './components/project-detail.js';
     if (galleryViewer.open) galleryViewer.close();
     const h = location.hash.replace(/^#\/?/, '');
     const parts = h.split('/').filter(Boolean);
-    if (!parts.length) {
+    if (!parts.length && !location.hash) {
       const match = location.pathname.match(/^\/work\/([^/]+)\/?$/);
       if (match) parts.push('work', match[1]);
     }
@@ -150,7 +150,7 @@ import { createProjectDetail } from './components/project-detail.js';
     if (target === '#/contact') { e.preventDefault(); scrollToSection('contact', true); closeMenu(); return; }
     if (!target.startsWith('#/work/')) sectionClick = true;
     // same-hash clicks don't fire hashchange: scroll manually
-    if (target === location.hash || (target === '#/' && !location.hash)) { e.preventDefault(); route(); if (target === '#/') scrollToSection('top', true); }
+    if (target === location.hash || (target === '#/' && !location.hash && current === 'home')) { e.preventDefault(); route(); if (target === '#/') scrollToSection('top', true); }
   });
   addEventListener('hashchange', route);
 
