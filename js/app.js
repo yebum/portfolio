@@ -31,7 +31,7 @@ import { createProjectDetail } from './components/project-detail.js?v=delivery-2
   const externalUrl = value => {
     try {
       const url = new URL(value);
-      return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : null;
+      return url.protocol === 'https:' ? url.href : null;
     } catch (_) { return null; }
   };
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
