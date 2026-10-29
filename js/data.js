@@ -52,8 +52,8 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
-            "kind": "local",
-            "src": "assets/video/FEELD-film.mp4",
+            "kind": "youtube",
+            "id": "kct4n-Z3w1A",
             "label": "FEELD · 프로젝트 영상"
           }
         ],
@@ -221,18 +221,18 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
-            "kind": "local",
-            "src": "assets/video/XMF-YOUNHA-reactive-01.mp4",
+            "kind": "youtube",
+            "id": "wxKWAmbJP9c",
             "label": "윤하 · 오디오 리액티브 영상 01"
           },
           {
-            "kind": "local",
-            "src": "assets/video/XMF-YOUNHA-reactive-02.mp4",
+            "kind": "youtube",
+            "id": "iNRbCWRgl9k",
             "label": "윤하 · 오디오 리액티브 영상 02"
           },
           {
-            "kind": "local",
-            "src": "assets/video/XMF-YOUNHA-reactive-03.mp4",
+            "kind": "youtube",
+            "id": "3XmZn50R7sk",
             "label": "윤하 · 오디오 리액티브 영상 03"
           }
         ],
@@ -321,23 +321,23 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
-            "kind": "local",
-            "src": "assets/video/XMF-LUCY-reactive-01.mp4",
+            "kind": "youtube",
+            "id": "goaGQ2QL6uc",
             "label": "LUCY · 오디오 리액티브 영상 01"
           },
           {
-            "kind": "local",
-            "src": "assets/video/XMF-LUCY-reactive-02.mp4",
+            "kind": "youtube",
+            "id": "8Ft9amaR4Rg",
             "label": "LUCY · 오디오 리액티브 영상 02"
           },
           {
-            "kind": "local",
-            "src": "assets/video/XMF-LUCY-reactive-03.mp4",
+            "kind": "youtube",
+            "id": "Eas6KYp2h1I",
             "label": "LUCY · 오디오 리액티브 영상 03"
           },
           {
-            "kind": "local",
-            "src": "assets/video/XMF-LUCY-reactive-04.mp4",
+            "kind": "youtube",
+            "id": "ouYcTYhB5Vw",
             "label": "LUCY · 오디오 리액티브 영상 04"
           }
         ],
@@ -570,8 +570,8 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
-            "kind": "local",
-            "src": "assets/video/XMF-hrtzwav-reactive-01.mp4",
+            "kind": "youtube",
+            "id": "acpRG-9LG_8",
             "label": "HRTZWAV · 오디오 리액티브 영상 01"
           },
           {
