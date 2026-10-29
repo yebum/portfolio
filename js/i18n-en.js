@@ -408,7 +408,6 @@
     ['2026', 'YOUNG STARS Competition · finalist', 'MAD STARS'],
     ['2026', 'PRISM 2026 Convergence Startup Camp', 'Convergence & Open Sharing System for Immersive Media'],
     ['2026', 'MAP Public-Space Media Art Project', 'Hwaseong City Cultural Foundation'],
-    ['2026', 'Ai.zip⑤ TouchDesigner', 'Iyo House'],
     ['2026', 'Immersive Media Social Living Lab PBL', 'Convergence & Open Sharing System for Immersive Media'],
     ['2026', '2nd Immersive Exhibition', 'Kaywon University of Art & Design'],
     ['2026', 'XR Studio Showcase', 'Chung-Ang University'],
