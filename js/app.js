@@ -4,7 +4,7 @@ import { createArrival } from './components/arrival.js?v=perf-20261028';
 import { createAsciiBackground } from './components/ascii-background.js?v=perf-20261028';
 import { createAbout } from './components/about.js';
 import { createRecognition } from './components/recognition.js?v=materials-20261029';
-import { createProjectDetail } from './components/project-detail.js';
+import { createProjectDetail } from './components/project-detail.js?v=delivery-20261030';
 
 /* ════════════════════════════════════════════════════════════
    Yebum Ko — Portfolio 2026 · app.js
@@ -58,6 +58,11 @@ import { createProjectDetail } from './components/project-detail.js';
   const reveals = createScrollReveal();
   const clearDetail = () => {
     reveals.release(detail);
+    detail.querySelectorAll('video').forEach(video => {
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
+    });
     detail.replaceChildren();
   };
   const observeReveals = reveals.observe;

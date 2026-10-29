@@ -109,7 +109,7 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
       <figure class="embed${isDeck ? ' embed--deck' : item.kind === 'local' ? ' embed--local' : ''}" data-reveal>
         <div class="card">
           <button class="poster" type="button" data-embed="${isDeck ? (item.src ? 'pdf' : 'drive') : item.kind}" data-id="${esc(item.src || item.id)}" aria-label="${isDeck ? 'Open' : 'Play'} ${esc(label)}">
-            ${poster ? `<img src="${src(poster)}" alt="" loading="lazy" decoding="async">` : `<span class="poster-title" aria-hidden="true">${esc(count > 1 ? (item.label || (isDeck ? 'Deck' : 'Film') + num) : p.fullTitle)}</span>`}
+            ${poster ? `<img src="${src(poster)}"${imageDimensions(poster)}${responsive(poster, '(max-width: 760px) 100vw, 50vw')} alt="" loading="lazy" decoding="async">` : `<span class="poster-title" aria-hidden="true">${esc(count > 1 ? (item.label || (isDeck ? 'Deck' : 'Film') + num) : p.fullTitle)}</span>`}
             <div class="ticks ticks--top${isDeck ? '' : ' ticks--light'}" aria-hidden="true"></div>
             <div class="card-top"><span class="mono">${isDeck ? 'Deck' : 'Film'}${num}</span><span class="mono dim">${host}</span></div>
             <span class="poster-center"><span class="play" aria-hidden="true"></span><span class="mono">${isDeck ? 'Open deck' : 'Play film'}</span></span>
@@ -121,7 +121,7 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
 
   const galleryViewer = $('#gallery-viewer');
   const galleryViewerImage = $('#gallery-viewer-image');
-  let galleryItems = [], galleryIndex = 0, galleryProject = '';
+  let galleryItems = [], galleryIndex = 0, galleryProject = '', activeProject = null;
   const showGalleryImage = () => {
     const item = galleryItems[galleryIndex];
     if (!item) return;
@@ -137,7 +137,7 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
       const index = galleryIndex, project = galleryProject, highRes = new Image();
       highRes.src = full;
       highRes.decode().then(() => {
-        if (galleryIndex === index && galleryProject === project) galleryViewerImage.src = full;
+        if (galleryViewer.open && galleryIndex === index && galleryProject === project) galleryViewerImage.src = full;
       }).catch(() => {});
     }
   };
@@ -175,6 +175,7 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
     const p = Object.hasOwn(byId, id) ? byId[id] : null;
     if (!p) { location.hash = '#/index'; return; }
     clearDetail();
+    activeProject = p;
     const prevP = byId[D.projects[(p.n - 2 + TOTAL) % TOTAL].id], nextP = byId[D.projects[p.n % TOTAL].id];
     const m = p.media;
     const gallery = m.images.filter(im => im.src !== p.cover);
@@ -313,7 +314,8 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
     }
     const tab = e.target.closest('[data-pdf-tab]');
     if (tab) {
-      const p = byId[location.hash.split('/').pop()], i = +tab.dataset.pdfTab, d = p.media.decks[i];
+      const i = Number(tab.dataset.pdfTab), d = activeProject?.media.decks[i];
+      if (!d) return;
       $$('[data-pdf-tab]', detail).forEach(b => b.setAttribute('aria-selected', b === tab));
       const view = $('#pdf-view'), frame = $('iframe', view);
       if (frame) frame.src = deckEmbed(d);
