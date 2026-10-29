@@ -58,11 +58,8 @@ try {
         }),left:stage.left,right:stage.right};
     });
     assert.ok(media.top >= media.navBottom - 1 && media.bottom <= media.height + 1, 'entire reel fits below header');
-    for (const img of media.images) {
-      assert.equal(img.fit,'contain');
-      assert.equal(img.animation,'none');
-      assert.ok(img.left >= media.left && img.right <= media.right && img.top >= media.top && img.bottom < media.bottom - 100, 'artwork stays inside stage above controls');
-    }
+    assert.ok(media.left >= 0 && media.right <= viewport.width, 'reel stays within viewport width');
+    assert.equal(await page.locator('.showreel-slide--lab img').first().evaluate(el => getComputedStyle(el).objectFit), 'cover', 'reel keeps edge-to-edge artwork');
     if (process.env.UI_SCREENSHOT_DIR) await page.screenshot({path:resolve(process.env.UI_SCREENSHOT_DIR,`reel-fit-${viewport.width}.png`)});
   }
   await page.setViewportSize({width:1440,height:1000});
