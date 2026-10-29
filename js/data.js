@@ -3117,9 +3117,7 @@ window.PORTFOLIO = {
       "prize": "우수상",
       "project": "연결",
       "id": "BioAx",
-      "source": "https://www.picjeju.com/pages/single-view?category=mark&id=6309&sort=latest",
-      "sourceLabel": "제주 바이오 AX 해커톤 행사 안내",
-      "sourceKind": "event"
+      "sourceKind": "none"
     },
     {
       "year": "2026",

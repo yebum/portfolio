@@ -9,7 +9,7 @@ export function createRecognition({ D, t, $, $$, esc, pad2, externalUrl, TOTAL }
         <span class="award-prize chip chip--award">${esc(a.prize)}</span>
         <span class="award-actions">
           ${a.id ? `<a class="chip chip--light" href="#/work/${esc(a.id)}" aria-label="${esc(a.project)} ${t('프로젝트 보기', 'project')}">${t('프로젝트', 'Project')} ↗</a>` : ''}
-          ${externalUrl(a.source) ? `<a class="chip" href="${esc(externalUrl(a.source))}" target="_blank" rel="noopener noreferrer" aria-label="${esc(a.title)} ${t('관련 보도 자료', 'source')}: ${esc(a.sourceLabel)}">${t('보도 자료', 'Source')} ↗</a>` : `<span class="award-unverified">${t('관련 공개 자료 확인 중', 'Public source being verified')}</span>`}
+          ${externalUrl(a.source) ? `<a class="chip" href="${esc(externalUrl(a.source))}" target="_blank" rel="noopener noreferrer" aria-label="${esc(a.title)} ${t('관련 자료', 'Related materials')}: ${esc(a.sourceLabel)}">${t('관련 자료', 'Related materials')} ↗</a>` : a.sourceKind === 'none' ? '' : `<span class="award-unverified">${t('관련 공개 자료 확인 중', 'Public source being verified')}</span>`}
         </span>
       </div>`;
     }).join('');
