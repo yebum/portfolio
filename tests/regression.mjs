@@ -58,6 +58,8 @@ try {
         }),left:stage.left,right:stage.right};
     });
     assert.ok(media.top >= media.navBottom - 1 && media.bottom <= media.height + 1, 'entire reel fits below header');
+    const summary = await page.locator('.intro-after').evaluate(el => ({top:el.getBoundingClientRect().top,bottom:el.getBoundingClientRect().bottom}));
+    assert.ok(summary.top >= media.bottom - 1 && summary.bottom <= media.height, 'summary and every statistic fit below reel within viewport');
     assert.ok(media.left >= 0 && media.right <= viewport.width, 'reel stays within viewport width');
     assert.equal(await page.locator('.showreel-slide--lab img').first().evaluate(el => getComputedStyle(el).objectFit), 'cover', 'reel keeps edge-to-edge artwork');
     if (process.env.UI_SCREENSHOT_DIR) await page.screenshot({path:resolve(process.env.UI_SCREENSHOT_DIR,`reel-fit-${viewport.width}.png`)});
