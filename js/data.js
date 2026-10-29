@@ -139,8 +139,8 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
-            "kind": "local",
-            "src": "assets/video/AllAllowed-film.mp4",
+            "kind": "youtube",
+            "id": "as4urZ9caXc",
             "label": "모두 허용 · 3분 영상"
           }
         ],
