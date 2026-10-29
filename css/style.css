@@ -1736,3 +1736,45 @@ html[lang='en'] .cs-sum { letter-spacing:-.015em; }
 @media(prefers-reduced-motion:reduce) {
   .intro .showreel-timeline button::after,.index.is-grid .row-thumb::after { transition:none; transform:none; }
 }
+
+/* Keep complete artwork visible at every viewport size. */
+.intro .showreel-stage {
+  height:min(900px,calc(100svh - var(--nav-h) - 64px));
+  min-height:0;
+}
+.intro .showreel-slide img,
+.intro .showreel-slide--app img,
+.intro .showreel-slide--campaign img {
+  inset:12px 12px 116px;
+  width:calc(100% - 24px);
+  height:calc(100% - 128px);
+  object-fit:contain;
+  object-position:center;
+  background:transparent;
+  opacity:1;
+  transform:none;
+  animation:none;
+}
+.intro .showreel-slide.is-active img { animation:none; }
+.intro .showreel-slide::before,
+.intro .showreel-slide::after { background:none; }
+.showreel-now { bottom:70px; }
+.intro .showreel-controls { bottom:16px; }
+.showreel-topline { top:auto; bottom:78px; }
+.hero-slide img,
+.feat .card img,
+.index-preview img,
+.index .row-thumb img,
+.cap .card img,
+.poster img,
+.next-card img { object-fit:contain; object-position:center; }
+.mono-hover:hover .mono-img img,
+.mono-hover:focus-visible .mono-img img,
+.cap-link:hover img,
+.poster:hover img { transform:none; }
+.hero-slide img { transform:none; animation:none; }
+@media(max-width:560px) {
+  .intro .showreel-stage { height:min(calc(100svh - var(--nav-h) - 64px),calc((100vw - 56px) * .75 + 128px)); }
+  .showreel-now { left:20px; right:64px; bottom:70px; }
+  .showreel-topline { bottom:80px; }
+}

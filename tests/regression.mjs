@@ -44,6 +44,28 @@ try {
   await page.waitForLoadState('load');
   await page.unroute('**/js/app.js*');
   assert.equal(await page.locator('#nav').evaluate(el => getComputedStyle(el).opacity), '0', 'header stays hidden after initialization');
+  for (const viewport of [{width:1440,height:1000},{width:390,height:844},{width:844,height:390}]) {
+    await page.setViewportSize(viewport);
+    await page.locator('#reel').evaluate(el => el.scrollIntoView({block:'start',behavior:'instant'}));
+    await page.waitForTimeout(1100);
+    const media = await page.evaluate(() => {
+      const stage = document.querySelector('.showreel-stage').getBoundingClientRect();
+      const nav = document.querySelector('#nav').getBoundingClientRect();
+      return {top:stage.top,bottom:stage.bottom,navBottom:nav.bottom,height:innerHeight,
+        images:[...document.querySelectorAll('.showreel-slide img')].map(img => {
+          const box=img.getBoundingClientRect(), style=getComputedStyle(img);
+          return {fit:style.objectFit,animation:style.animationName,left:box.left,right:box.right,top:box.top,bottom:box.bottom};
+        }),left:stage.left,right:stage.right};
+    });
+    assert.ok(media.top >= media.navBottom - 1 && media.bottom <= media.height + 1, 'entire reel fits below header');
+    for (const img of media.images) {
+      assert.equal(img.fit,'contain');
+      assert.equal(img.animation,'none');
+      assert.ok(img.left >= media.left && img.right <= media.right && img.top >= media.top && img.bottom < media.bottom - 100, 'artwork stays inside stage above controls');
+    }
+    if (process.env.UI_SCREENSHOT_DIR) await page.screenshot({path:resolve(process.env.UI_SCREENSHOT_DIR,`reel-fit-${viewport.width}.png`)});
+  }
+  await page.setViewportSize({width:1440,height:1000});
   for (const language of ['', '?lang=en']) {
     await page.goto(base + '/' + language);
     await page.waitForFunction(() => document.querySelector('#index-list').children.length > 0 && document.querySelector('.showreel-slide.is-active img').complete);
