@@ -575,13 +575,13 @@ window.PORTFOLIO = {
             "label": "HRTZWAV · 오디오 리액티브 영상 01"
           },
           {
-            "kind": "local",
-            "src": "assets/video/XMF-hrtzwav-reactive-02.mp4",
+            "kind": "youtube",
+            "id": "ENCqru3BxpM",
             "label": "HRTZWAV · 오디오 리액티브 영상 02"
           },
           {
-            "kind": "local",
-            "src": "assets/video/XMF-hrtzwav-reactive-03.mp4",
+            "kind": "youtube",
+            "id": "ievkp4UASfk",
             "label": "HRTZWAV · 오디오 리액티브 영상 03"
           }
         ],
@@ -742,18 +742,18 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
-            "kind": "local",
-            "src": "assets/video/XMF-THEFIX-reactive-01.mp4",
+            "kind": "youtube",
+            "id": "7aTukKpvQtA",
             "label": "THE FIX · 오디오 리액티브 영상 01"
           },
           {
-            "kind": "local",
-            "src": "assets/video/XMF-THEFIX-reactive-02.mp4",
+            "kind": "youtube",
+            "id": "Lymi5xGcOTw",
             "label": "THE FIX · 오디오 리액티브 영상 02"
           },
           {
-            "kind": "local",
-            "src": "assets/video/XMF-THEFIX-reactive-03.mp4",
+            "kind": "youtube",
+            "id": "IX0Gb-b-izw",
             "label": "THE FIX · 오디오 리액티브 영상 03"
           }
         ],
