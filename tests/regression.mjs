@@ -180,8 +180,8 @@ try {
     await page.waitForFunction(() => location.hash === '#/index');
     assert.equal(await page.locator('#index-list > li:not([hidden])').count(), total);
     assert.equal(await page.locator('html').getAttribute('lang'), language ? 'en' : 'ko');
-    assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://yebumko.com/');
-    assert.equal(await page.locator('meta[property="og:image"]').getAttribute('content'), 'https://yebumko.com/assets/img/AllAllowed.webp');
+    assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://www.yebumko.com/');
+    assert.equal(await page.locator('meta[property="og:image"]').getAttribute('content'), 'https://www.yebumko.com/assets/img/AllAllowed.webp');
     for (const projectId of ['FEELD', 'AllAllowed']) {
       await page.goto(base + '/' + language + '#/work/' + projectId);
       await page.waitForFunction(() => !document.querySelector('#detail').hidden);
@@ -203,12 +203,12 @@ try {
     }
   }
   const staticPage = await readFile(resolve(root, 'work', 'FEELD', 'index.html'), 'utf8');
-  assert.match(staticPage, /<link rel="canonical" href="https:\/\/yebumko\.com\/work\/FEELD\/">/);
+  assert.match(staticPage, /<link rel="canonical" href="https:\/\/www\.yebumko\.com\/work\/FEELD\/">/);
   assert.match(staticPage, /<main id="detail" class="view"><article/);
-  assert.match(await readFile(resolve(root, 'sitemap.xml'), 'utf8'), /https:\/\/yebumko\.com\/work\/AllAllowed\//);
+  assert.match(await readFile(resolve(root, 'sitemap.xml'), 'utf8'), /https:\/\/www\.yebumko\.com\/work\/AllAllowed\//);
   await page.goto(base + '/work/FEELD/');
   await page.waitForFunction(() => !document.querySelector('#detail').hidden && document.querySelector('#pd-title')?.textContent === 'FEELD');
-  assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://yebumko.com/work/FEELD/');
+  assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://www.yebumko.com/work/FEELD/');
   assert.ok(await page.locator('.pd-hero img').evaluate(img => img.complete && img.naturalWidth > 0), 'clean project route loads the cover');
   if (process.env.GALLERY_SCREENSHOT_DIR) {
     await page.waitForTimeout(800);

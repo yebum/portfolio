@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { runInNewContext } from 'node:vm';
 
 const root = resolve(import.meta.dirname, '..');
-const origin = 'https://yebumko.com';
+const origin = 'https://www.yebumko.com';
 const source = await readFile(resolve(root, 'js/data.js'), 'utf8');
 const context = { window: {} };
 runInNewContext(source, context, { filename: 'js/data.js', timeout: 1000 });
