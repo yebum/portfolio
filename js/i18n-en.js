@@ -47,7 +47,7 @@
       'An audiovisual work to be shown at the 2026 HCF Media Art Show. It portrays people who hand over judgement, choices and finally every permission until they begin to resemble the machines they rely on. Repeated gestures and smooth surfaces give way to the warmth still left in the body.',
       ['What remains after we give away control?', 'The figures look human at first, but their joints, surfaces and repeated movements reveal people who have surrendered their decisions.'],
       ['A sequence of control and resistance', 'Walking bodies, falling figures, hands pressing against an unseen wall and bodies held by radiating lines become a purple audiovisual sequence. TouchDesigner scenes respond to musical beats through cuts, camera moves and light.'],
-      ['A three-minute audiovisual film', 'From nearby, a crowd moves like a machine. From a distance, it resolves into one warm human silhouette. The work asks what we have allowed before that warmth disappears.'],
+      ['A 3-minute 27-second audiovisual film', 'From nearby, a crowd moves like a machine. From a distance, it resolves into one warm human silhouette. The work asks what we have allowed before that warmth disappears.'],
       'Visual concept and TouchDesigner production'
     ),
     'XMF2026-YOUNHA': artist('Younha', 'Password 486'),
@@ -266,7 +266,7 @@
     '선에 매달린 몸': 'A body suspended by threads',
     '녹아내리는 얼굴': 'A face dissolving',
     '군중의 흐름': 'The flow of the crowd',
-    '모두 허용 · 3분 영상': 'Allow All · Three-minute audiovisual film',
+    '모두 허용 · 3분 27초 영상': 'Allow All · 3:27 audiovisual film',
     'FEELD · 프로젝트 영상': 'FEELD · Project film',
     '참가 증명서': 'Certificate of participation',
   };

@@ -112,7 +112,7 @@ window.PORTFOLIO = {
           ]
         },
         "result": {
-          "summary": "차가운 반복 속에 남은 체온을 보여주는 3분 영상",
+          "summary": "차가운 반복 속에 남은 체온을 보여주는 3분 27초 영상",
           "body": [
             "가까이에서는 기계적으로 반복하는 군중이 멀어지며 한 사람의 따뜻한 실루엣으로 보인다. 작품은 AI 자체보다 스스로 AI가 되어가는 인간을 바라본다."
           ]
@@ -140,8 +140,8 @@ window.PORTFOLIO = {
         "films": [
           {
             "kind": "youtube",
-            "id": "as4urZ9caXc",
-            "label": "모두 허용 · 3분 영상"
+            "id": "APZy_vtx5nM",
+            "label": "모두 허용 · 3분 27초 영상"
           }
         ],
         "decks": [],
