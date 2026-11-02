@@ -339,7 +339,6 @@
     '.about-labels .dim': 'Yebum Ko',
     '#about-h': 'Every project has a language of its own.',
     '.about-body .sec-sub': 'I create at the intersection of art and technology. My background in telecommunications engineering shapes how I work with signals, systems and interaction; digital media design gives those ideas a visual language. I develop live visuals, immersive experiences and digital services, from the first concept to a working prototype.',
-    '.about-body .facts > div:nth-child(2) dd': 'Digital Media Design, Kaywon University of Art & Design',
     '.about-docs .chips a:first-child': 'Resume PDF (Korean) ↓',
     '.about-docs .chips a:last-child': 'Cover letter PDF (Korean) ↓',
     '.recognition .sec-head .sec-sub': 'Awards from advertising, hackathons, startup competitions and digital-art projects, with links to the related work and public sources.',
@@ -400,13 +399,6 @@
   set('#showreel-now-title', document.querySelector('.showreel-slide.is-active .showreel-caption strong').textContent);
 
   D.disciplines.forEach(d => { d.ko = d.label; });
-  const capabilityBodies = {
-    media: 'Real-time audiovisuals in TouchDesigner, projection mapping and LED-wall content. I make images that work at the scale of live stages and exhibition spaces.',
-    xr: 'VR learning, gesture-controlled games and EEG-responsive content built with Unity. Movement and live signals become part of the interface.',
-    ux: 'From problem definition to service structure, interface design and presentation. I shape ideas into experiences that can be tested and used.',
-    motion: '3D motion ads, brand campaigns, editorial cards and short-form video. I translate messages into movement.',
-  };
-  D.capabilities.forEach(c => { c.body = capabilityBodies[c.filter]; });
   D.education = [
     ['2023 — Present', 'Kaywon University of Art & Design', 'Digital Media Design'],
     ['2022', 'Jeju National University', 'Telecommunications Engineering'],

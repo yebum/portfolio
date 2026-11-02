@@ -125,11 +125,6 @@ export function createWorkIndex({ D, t, $, $$, esc, pad2, src, imageDimensions, 
       filterButtons[next].focus({ preventScroll: true });
       selectFilter(filterButtons[next].dataset.filter);
     });
-    $('#caps').addEventListener('click', e => {
-      const link = e.target.closest('[data-cap-filter]');
-      if (!link) return;
-      selectFilter(link.dataset.capFilter);
-    });
     updateFilterState('all');
 
     const setView = v => {

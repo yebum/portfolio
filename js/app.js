@@ -1,8 +1,7 @@
-import { createWorkIndex } from './components/work-index.js?v=scroll-20261027';
+import { createWorkIndex } from './components/work-index.js?v=about-simplify-20261103';
 import { createScrollReveal } from './components/scroll-reveal.js';
 import { createArrival } from './components/arrival.js?v=perf-20261028';
 import { createAsciiBackground } from './components/ascii-background.js?v=perf-20261028';
-import { createAbout } from './components/about.js';
 import { createRecognition } from './components/recognition.js?v=materials-20261029';
 import { createProjectDetail } from './components/project-detail.js?v=allallowed-20261102';
 
@@ -76,7 +75,6 @@ import { createProjectDetail } from './components/project-detail.js?v=allallowed
   /* Dynamic page components share content and small view helpers. */
   const view = { D, t, $, $$, esc, pad2, src, imageDimensions, responsive, externalUrl, reduced, byId, projectDiscs, TOTAL, clearDetail, observeReveals, settleReveals, toast };
   const renderIndex = createWorkIndex(view);
-  const renderAbout = createAbout(view);
   const renderRecognition = createRecognition(view);
   const { renderDetail, galleryViewer } = createProjectDetail(view);
 
@@ -232,7 +230,6 @@ import { createProjectDetail } from './components/project-detail.js?v=allallowed
 
   renderIndex();
   createAsciiBackground().then(() => dispatchEvent(new Event('portfolio:ascii-ready')));
-  renderAbout();
   renderRecognition();
   observeReveals(document);
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
