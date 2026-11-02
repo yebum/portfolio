@@ -167,48 +167,47 @@ window.PORTFOLIO = {
       "id": "AllAllowed",
       "title": "모두 허용",
       "fullTitle": "모두 허용",
-      "context": "2026 HCF 미디어아트쇼 · 전시 예정",
+      "context": "2026 HCF 미디어아트쇼 · 영상 기반 미디어아트",
       "year": "2026",
       "disciplines": [
         "media",
         "motion"
       ],
       "awards": [],
-      "cover": "AllAllowed",
-      "lead": "2026 HCF 미디어아트쇼에서 선보일 오디오비주얼 작품. 판단과 선택을 기계에 맡기다 스스로 AI가 되어가는 인간을 그린다. 반복되는 몸짓과 차가운 표면 아래 남은 체온을 따라가며, 우리가 무엇을 허용했는지 묻는다.",
+      "cover": "AllAllowed-Stage",
+      "lead": "「모두 허용」은 판단과 선택을 AI에 위임하며 기계처럼 변해가는 인간을 다룬다. 차갑고 반복적인 군상 속에서도 마지막에는 붉게 빛나는 심장을 통해 아직 남아 있는 감정과 인간성을 보여준다.",
       "caseStudy": {
         "problem": {
-          "summary": "모든 권한을 넘긴 뒤에도 인간은 남아 있을까",
+          "summary": "우리는 무엇을, 어디까지 허용했는가?",
           "body": [
-            "화면 속 존재들은 언뜻 사람처럼 보이지만 가까이 보면 관절의 이음새, 매끈한 표면, 반복되는 몸짓이 드러난다. 기계처럼 보이는 그들은 판단과 선택을 맡기고 마지막에는 모든 권한을 내어준 사람들이다."
+            "편리함을 위해 판단과 선택을 맡기다 보면, 어느 순간 스스로 생각하는 힘까지 내어줄 수 있다. 작품은 AI 자체보다 AI에 의존하며 기계처럼 변해가는 인간을 바라본다."
           ]
         },
         "solution": {
-          "summary": "몸의 움직임으로 통제와 저항을 표현한 실시간 장면들",
+          "summary": "반복되는 몸짓과 통제된 공간",
           "body": [
-            "정해진 방향으로 걷는 사람, 발 디딜 곳 없이 떨어지는 몸, 보이지 않는 벽을 미는 손, 사방의 선에 매달린 형체를 보라빛 오디오비주얼 시퀀스로 연결했다.",
-            "TouchDesigner에서 인물 실루엣과 GLSL 비주얼을 구성하고, 음악의 킥에 반응하는 장면 전환·카메라 움직임·빛의 변화를 설계했다."
+            "같은 방향으로 걷는 군중, 추락하는 몸, 보이지 않는 벽을 미는 손, 선에 매달린 존재를 차가운 보랏빛 영상으로 연결했다. 인물의 기계적인 움직임이 자율성을 잃어가는 과정을 드러낸다."
           ]
         },
         "result": {
-          "summary": "차가운 반복 속에 남은 체온을 보여주는 3분 27초 영상",
+          "summary": "군중이 만든 인간 형상, 그리고 붉은 심장",
           "body": [
-            "가까이에서는 기계적으로 반복하는 군중이 멀어지며 한 사람의 따뜻한 실루엣으로 보인다. 작품은 AI 자체보다 스스로 AI가 되어가는 인간을 바라본다."
+            "마지막에는 같은 동작을 반복하던 존재들이 위에서 하나의 사람 형태로 보인다. 심장 부근에 남은 붉은 빛은 감정과 인간성이 완전히 사라지지 않았음을 말한다."
           ]
         }
       },
       "details": [
         {
           "k": "프로젝트 유형",
-          "v": "오디오비주얼 미디어아트"
+          "v": "디지털 미디어아트 · 영상 기반 작품"
         },
         {
           "k": "전시",
-          "v": "2026 HCF 미디어아트쇼 · 전시 예정"
+          "v": "2026 HCF 미디어아트쇼"
         },
         {
-          "k": "사용 툴",
-          "v": "TouchDesigner · GLSL"
+          "k": "제작 도구",
+          "v": "TouchDesigner"
         },
         {
           "k": "역할",
@@ -218,36 +217,43 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
-            "kind": "youtube",
-            "id": "APZy_vtx5nM",
-            "label": "모두 허용 · 3분 27초 영상"
+            "kind": "local",
+            "src": "assets/video/AllAllowed-StagePreview.mp4",
+            "label": "모두 허용 · 무대 프리뷰 (3분 18초)",
+            "poster": "AllAllowed-Stage"
+          },
+          {
+            "kind": "local",
+            "src": "assets/video/AllAllowed-LiveDocumentation.mp4",
+            "label": "모두 허용 · 현장 촬영 (3분 24초)",
+            "poster": "AllAllowed-Live"
           }
         ],
         "decks": [],
         "images": [
           {
-            "src": "AllAllowed",
-            "label": "몸에 남은 온기"
+            "src": "AllAllowed-Stage",
+            "label": "모두 허용 · 중심 인물"
           },
           {
-            "src": "AllAllowed-Corridor",
-            "label": "정해진 방향으로 걷는 사람들"
+            "src": "AllAllowed-Sequence",
+            "label": "모두 허용 · 장면 구성"
           },
           {
-            "src": "AllAllowed-Frost",
-            "label": "보이지 않는 벽을 미는 사람"
+            "src": "AllAllowed-Corridor-2026",
+            "label": "같은 방향으로 걷는 존재들"
           },
           {
-            "src": "AllAllowed-Dive",
-            "label": "선에 매달린 몸"
+            "src": "AllAllowed-Crowd-2026",
+            "label": "반복되는 군중"
           },
           {
-            "src": "AllAllowed-Melt",
-            "label": "녹아내리는 얼굴"
+            "src": "AllAllowed-Figure",
+            "label": "인간 형상"
           },
           {
-            "src": "AllAllowed-Crowd",
-            "label": "군중의 흐름"
+            "src": "AllAllowed-Live",
+            "label": "HCF 미디어아트쇼 현장"
           }
         ],
         "links": []

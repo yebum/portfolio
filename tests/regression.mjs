@@ -6,7 +6,7 @@ import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.PLAYWRIGHT_PATH || 'playwright');
 const root = resolve('.');
-const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.webp': 'image/webp', '.png': 'image/png' };
+const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.webp': 'image/webp', '.png': 'image/png', '.mp4': 'video/mp4' };
 const server = createServer(async (req, res) => {
   try {
     const path = resolve(root, '.' + decodeURIComponent(new URL(req.url, 'http://localhost').pathname).replace(/\/$/, '/index.html'));
@@ -181,11 +181,20 @@ try {
     assert.equal(await page.locator('#index-list > li:not([hidden])').count(), total);
     assert.equal(await page.locator('html').getAttribute('lang'), language ? 'en' : 'ko');
     assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://www.yebumko.com/');
-    assert.equal(await page.locator('meta[property="og:image"]').getAttribute('content'), 'https://www.yebumko.com/assets/img/AllAllowed.webp');
+    assert.equal(await page.locator('meta[property="og:image"]').getAttribute('content'), 'https://www.yebumko.com/assets/img/AllAllowed-Stage.webp');
     for (const projectId of ['FEELD', 'AllAllowed']) {
       await page.goto(base + '/' + language + '#/work/' + projectId);
       await page.waitForFunction(() => !document.querySelector('#detail').hidden);
       assert.ok(await page.locator('.pd-hero img').evaluate(img => img.complete && img.naturalWidth > 0), projectId + ' detail cover loads');
+      if (projectId === 'AllAllowed') {
+        assert.equal(await page.locator('[data-embed="local"]').count(), 2, 'updated project shows two locally hosted videos');
+        assert.equal(await page.locator('a[href*="APZy_vtx5nM"]').count(), 0, 'old YouTube video is removed');
+        if (!language) {
+          await page.locator('[data-embed="local"]').first().click();
+          await page.waitForFunction(() => document.querySelector('.embed video')?.readyState >= 1);
+          assert.ok(await page.locator('.embed video').evaluate(video => video.duration > 197 && video.duration < 199), 'stage preview video metadata loads');
+        }
+      }
       if (projectId === 'FEELD') {
         await page.locator('.pd-gallery-open').first().click();
         await page.waitForFunction(() => document.querySelector('#gallery-viewer').open && document.querySelector('#gallery-viewer-image').naturalWidth > 0);

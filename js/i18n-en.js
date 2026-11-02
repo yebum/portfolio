@@ -51,11 +51,11 @@
       'houseCall team member'
     ),
     AllAllowed: P(
-      'Allow All', '2026 HCF Media Art Show · upcoming exhibition',
-      'An audiovisual work to be shown at the 2026 HCF Media Art Show. It portrays people who hand over judgement, choices and finally every permission until they begin to resemble the machines they rely on. Repeated gestures and smooth surfaces give way to the warmth still left in the body.',
-      ['What remains after we give away control?', 'The figures look human at first, but their joints, surfaces and repeated movements reveal people who have surrendered their decisions.'],
-      ['A sequence of control and resistance', 'Walking bodies, falling figures, hands pressing against an unseen wall and bodies held by radiating lines become a purple audiovisual sequence. TouchDesigner scenes respond to musical beats through cuts, camera moves and light.'],
-      ['A 3-minute 27-second audiovisual film', 'From nearby, a crowd moves like a machine. From a distance, it resolves into one warm human silhouette. The work asks what we have allowed before that warmth disappears.'],
+      'All Allowed', '2026 HCF Media Art Show · video-based media art',
+      'All Allowed portrays people who hand over judgement and choice to AI until they begin to move like machines. A red glow at the heart of the final human figure suggests that emotion and humanity have not entirely disappeared.',
+      ['What, and how much, have we allowed?', 'Convenience can slowly become dependence. The work looks at the human tendency to surrender independent thought rather than portraying AI itself.'],
+      ['Repeated bodies in a controlled space', 'Crowds walk in one direction; figures fall, push against invisible walls or hang from lines. Their mechanical gestures unfold in a cold purple audiovisual sequence.'],
+      ['One human figure, one remaining heart', 'Seen from above, the synchronized crowd forms a single human shape. A red glow near its heart leaves open the possibility that feeling remains.'],
       'Visual concept and TouchDesigner production'
     ),
     'XMF2026-YOUNHA': artist('Younha', 'Password 486'),
@@ -274,7 +274,8 @@
     '선에 매달린 몸': 'A body suspended by threads',
     '녹아내리는 얼굴': 'A face dissolving',
     '군중의 흐름': 'The flow of the crowd',
-    '모두 허용 · 3분 27초 영상': 'Allow All · 3:27 audiovisual film',
+    '모두 허용 · 무대 프리뷰 (3분 18초)': 'All Allowed · Stage preview (3:18)',
+    '모두 허용 · 현장 촬영 (3분 24초)': 'All Allowed · Live documentation (3:24)',
     'FEELD · 프로젝트 영상': 'FEELD · Project film',
     '참가 증명서': 'Certificate of participation',
   };
@@ -297,7 +298,7 @@
     p.details = [
       { k: 'Project type', v: copy.context },
       { k: 'Role', v: copy.role },
-      ...p.details.filter(d => ['사용 툴', '사용 도구', '사용 기술'].includes(d.k)).map(d => ({ k: 'Tools & technology', v: d.v })),
+      ...p.details.filter(d => ['사용 툴', '사용 도구', '사용 기술', '제작 도구'].includes(d.k)).map(d => ({ k: 'Tools & technology', v: d.v })),
       ...(p.id === 'MATMI' ? [{ k: 'Duration', v: 'Four days · 2026' }] : []),
     ];
     p.awards = p.awards.map(a => awardNames[a] || a);

@@ -582,7 +582,7 @@ h1, h2, h3, p { margin: 0; }
 .embeds--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .embed { display: grid; gap: 12px; }
 .embed .card { aspect-ratio: 16 / 9; background: #131313; }
-.embed--local .card { aspect-ratio: 3 / 4; }
+.embed--local .card { aspect-ratio: 16 / 9; }
 .embed--deck .card { background: var(--card); }
 .poster-title {
   position: absolute; z-index: 3; left: var(--inset); bottom: calc(var(--inset) + 10px); right: var(--inset);

@@ -193,7 +193,7 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
     const films = m.films.length ? `
       <section class="pd-block" aria-label="Film">
         <div class="sec-label"><span class="mono">Film</span><span class="mono dim">${pad2(m.films.length)}</span></div>
-        <div class="embeds${m.films.length > 1 ? ' embeds--2' : ''}">${m.films.map((f, i) => embedHTML('film', f, p, i, m.films.length, null)).join('')}</div>
+        <div class="embeds${m.films.length > 1 ? ' embeds--2' : ''}">${m.films.map((f, i) => embedHTML('film', f, p, i, m.films.length, f.poster || null)).join('')}</div>
       </section>` : '';
 
     const decks = m.decks.length ? `
