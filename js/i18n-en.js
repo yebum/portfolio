@@ -42,6 +42,14 @@
       ['An interactive landscape prototype', 'The Unity prototype transforms splat scenes in real time and connects hand movement to the camera and scene transitions, allowing visitors to discover the landscape in their own way.'],
       'Tech lead · Unity interaction and Gaussian Splatting visual development'
     ),
+    Seungmu: P(
+      'Seungmu', '2026 HCF Media Art Show · houseCall',
+      'A performance presented at the HCF Media Art Show with the houseCall team, bringing the movement of Seungmu together with stage visuals.',
+      ['Traditional dance meets media art', 'The work presents the movement of Seungmu alongside a visual language for the stage.'],
+      ['A stage that follows the dance', 'Changing imagery accompanies the performers and the space around them.'],
+      ['Presented at the HCF Media Art Show', 'I participated in the work as a member of houseCall.'],
+      'houseCall team member'
+    ),
     AllAllowed: P(
       'Allow All', '2026 HCF Media Art Show · upcoming exhibition',
       'An audiovisual work to be shown at the 2026 HCF Media Art Show. It portrays people who hand over judgement, choices and finally every permission until they begin to resemble the machines they rely on. Repeated gestures and smooth surfaces give way to the warmth still left in the body.',

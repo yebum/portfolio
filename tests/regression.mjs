@@ -161,12 +161,12 @@ try {
     assert.equal(await page.locator('#index > .row-link').count(), 0, 'filtering does not duplicate cards');
     assert.equal(await page.locator('#index-list > li:not([hidden])').evaluateAll(items => items.every(item => getComputedStyle(item).opacity === '1')), true, 'cards finish fully visible');
     await page.locator('[data-filter="all"]').click();
-    await page.waitForFunction(() => document.querySelectorAll('#index-list > li:not([hidden])').length === 30 && !document.querySelector('#filters').hasAttribute('aria-busy'));
+    await page.waitForFunction(() => document.querySelectorAll('#index-list > li:not([hidden])').length === window.PORTFOLIO.projects.length && !document.querySelector('#filters').hasAttribute('aria-busy'));
     await page.locator('[data-view="list"]').click();
     await page.locator('[data-filter]').nth(1).click();
-    await page.waitForFunction(() => document.querySelectorAll('#index-list > li:not([hidden])').length === 12 && !document.querySelector('#filters').hasAttribute('aria-busy'));
+    await page.waitForFunction(() => document.querySelectorAll('#index-list > li:not([hidden])').length === window.PORTFOLIO.projects.filter(p => p.disciplines.includes('media')).length && !document.querySelector('#filters').hasAttribute('aria-busy'));
     await page.locator('[data-filter="all"]').click();
-    await page.waitForFunction(() => document.querySelectorAll('#index-list > li:not([hidden])').length === 30 && !document.querySelector('#filters').hasAttribute('aria-busy'));
+    await page.waitForFunction(() => document.querySelectorAll('#index-list > li:not([hidden])').length === window.PORTFOLIO.projects.length && !document.querySelector('#filters').hasAttribute('aria-busy'));
     await page.locator('[data-view="grid"]').click();
     await page.locator('#index-list a[href="#/work/Neuroscape"]').click();
     await page.waitForFunction(() => !document.querySelector('#detail').hidden);

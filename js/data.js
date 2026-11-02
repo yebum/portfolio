@@ -85,6 +85,85 @@ window.PORTFOLIO = {
       }
     },
     {
+      "id": "Seungmu",
+      "title": "승무",
+      "fullTitle": "승무",
+      "context": "2026 HCF 미디어아트쇼 · houseCall",
+      "year": "2026",
+      "disciplines": [
+        "media",
+        "motion"
+      ],
+      "awards": [],
+      "cover": "Seungmu",
+      "lead": "houseCall 팀원으로 참여한 HCF 미디어아트쇼 작품. 승무의 움직임과 무대 영상이 어우러진 공연 장면을 담았다.",
+      "caseStudy": {
+        "problem": {
+          "summary": "전통 춤과 미디어아트의 만남",
+          "body": [
+            "승무의 움직임을 무대 위 시각 언어와 함께 선보이는 작품이다."
+          ]
+        },
+        "solution": {
+          "summary": "춤의 흐름을 따라 펼쳐지는 무대",
+          "body": [
+            "공연의 몸짓과 공간에 맞춰 변화하는 영상이 장면을 이룬다."
+          ]
+        },
+        "result": {
+          "summary": "HCF 미디어아트쇼 참가",
+          "body": [
+            "houseCall 팀원으로 작품에 참여했다."
+          ]
+        }
+      },
+      "details": [
+        {
+          "k": "프로젝트 유형",
+          "v": "공연 · 미디어아트"
+        },
+        {
+          "k": "전시",
+          "v": "2026 HCF 미디어아트쇼"
+        },
+        {
+          "k": "참여",
+          "v": "houseCall 팀원"
+        }
+      ],
+      "media": {
+        "films": [],
+        "decks": [],
+        "images": [
+          {
+            "src": "Seungmu",
+            "label": "승무 · 공연 장면"
+          },
+          {
+            "src": "Seungmu-Performance",
+            "label": "승무 · 무대 전경"
+          },
+          {
+            "src": "Seungmu-Calligraphy",
+            "label": "승무 · 서예 장면"
+          },
+          {
+            "src": "Seungmu-Dancer",
+            "label": "승무 · 무용 장면"
+          },
+          {
+            "src": "Seungmu-Spiral",
+            "label": "승무 · 흑백 장면"
+          },
+          {
+            "src": "Seungmu-Garden",
+            "label": "승무 · 녹색 장면"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
       "id": "AllAllowed",
       "title": "모두 허용",
       "fullTitle": "모두 허용",
