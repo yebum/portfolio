@@ -187,6 +187,9 @@ try {
       await page.waitForFunction(() => !document.querySelector('#detail').hidden);
       assert.ok(await page.locator('.pd-hero img').evaluate(img => img.complete && img.naturalWidth > 0), projectId + ' detail cover loads');
       if (projectId === 'AllAllowed') {
+        assert.equal(await page.locator('.cs').count(), 0, 'media artwork has no problem/solution/result case study');
+        assert.equal(await page.locator('.pd-sections .pd-sec').count(), 3, 'media artwork uses three narrative sections');
+        assert.match(await page.locator('.pd-sections .pd-sec h3').first().textContent(), language ? /About the work/ : /작품 소개/);
         assert.equal(await page.locator('[data-embed="local"]').count(), 2, 'updated project shows two locally hosted videos');
         assert.equal(await page.locator('a[href*="APZy_vtx5nM"]').count(), 0, 'old YouTube video is removed');
         if (!language) {

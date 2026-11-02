@@ -50,14 +50,17 @@
       ['Presented at the HCF Media Art Show', 'I participated in the work as a member of houseCall.'],
       'houseCall team member'
     ),
-    AllAllowed: P(
-      'All Allowed', '2026 HCF Media Art Show · video-based media art',
-      'All Allowed portrays people who hand over judgement and choice to AI until they begin to move like machines. A red glow at the heart of the final human figure suggests that emotion and humanity have not entirely disappeared.',
-      ['What, and how much, have we allowed?', 'Convenience can slowly become dependence. The work looks at the human tendency to surrender independent thought rather than portraying AI itself.'],
-      ['Repeated bodies in a controlled space', 'Crowds walk in one direction; figures fall, push against invisible walls or hang from lines. Their mechanical gestures unfold in a cold purple audiovisual sequence.'],
-      ['One human figure, one remaining heart', 'Seen from above, the synchronized crowd forms a single human shape. A red glow near its heart leaves open the possibility that feeling remains.'],
-      'Visual concept and TouchDesigner production'
-    ),
+    AllAllowed: {
+      title: 'All Allowed',
+      context: '2026 HCF Media Art Show · video-based media art',
+      lead: 'All Allowed portrays people who gradually hand over judgement and choice to AI until they begin to move like machines.',
+      role: 'Visual concept and TouchDesigner production',
+      sections: [
+        { label: 'About the work', body: 'A small permission becomes a habit of dependence. Rather than depicting AI itself, the work looks at what happens when people let go of their own capacity to think and choose. What, and how much, have we allowed?' },
+        { label: 'Figures on screen', body: 'Human-shaped figures walk in one direction, fall, push against an invisible wall and hang from lines. Their smooth surfaces and repeated gestures suggest a loss of autonomy and individuality.' },
+        { label: 'Final scene', body: 'Seen from above, the synchronized crowd forms one enormous human figure. A red glow near its heart suggests that feeling and humanity still remain within the mechanical movement.' },
+      ],
+    },
     'XMF2026-YOUNHA': artist('Younha', 'Password 486'),
     'XMF2026-LUCY': artist('LUCY', 'Flowering'),
     'XMF2026-hrtzwav': artist('HRTZWAV', 'mind'),
@@ -295,6 +298,7 @@
     p.context = copy.context;
     p.lead = copy.lead;
     p.caseStudy = copy.caseStudy;
+    if (copy.sections) p.sections = copy.sections;
     p.details = [
       { k: 'Project type', v: copy.context },
       { k: 'Role', v: copy.role },
