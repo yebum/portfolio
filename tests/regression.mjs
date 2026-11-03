@@ -182,10 +182,14 @@ try {
     assert.equal(await page.locator('html').getAttribute('lang'), language ? 'en' : 'ko');
     assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://www.yebumko.com/');
     assert.equal(await page.locator('meta[property="og:image"]').getAttribute('content'), 'https://www.yebumko.com/assets/img/AllAllowed-Stage.webp');
-    for (const projectId of ['FEELD', 'AllAllowed']) {
+    for (const projectId of ['FEELD', 'AllAllowed', 'Seungmu']) {
       await page.goto(base + '/' + language + '#/work/' + projectId);
       await page.waitForFunction(() => !document.querySelector('#detail').hidden);
       assert.ok(await page.locator('.pd-hero img').evaluate(img => img.complete && img.naturalWidth > 0), projectId + ' detail cover loads');
+      if (projectId === 'Seungmu') {
+        assert.equal(await page.locator('.cs').count(), 0, 'Seungmu uses artwork story instead of case study');
+        assert.equal(await page.locator('.pd-sections .pd-sec').count(), 2, 'Seungmu has concept and visual story sections');
+      }
       if (projectId === 'AllAllowed') {
         assert.equal(await page.locator('.cs').count(), 0, 'media artwork has no problem/solution/result case study');
         assert.equal(await page.locator('.pd-sections .pd-sec').count(), 3, 'media artwork uses three narrative sections');
