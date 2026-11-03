@@ -223,9 +223,9 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
 
     const nav = (q, direction) => `
       <a class="next-card next-card--${direction}" href="#/work/${q.id}" data-reveal>
-        <span class="next-card-top mono"><span>${direction === 'prev' ? `← ${t('이전 프로젝트', 'Previous project')}` : `${t('다음 프로젝트', 'Next project')} →`}</span><span>${pad2(q.n)} / ${TOTAL}</span></span>
+        <span class="next-card-label mono">${direction === 'prev' ? `← ${t('이전', 'Previous')}` : `${t('다음', 'Next')} →`}</span>
         <span class="next-card-title">${esc(q.fullTitle)}</span>
-        <span class="next-card-bottom"><span>${esc(q.context)}</span><span class="next-card-arrow" aria-hidden="true">${direction === 'prev' ? '↖' : '↗'}</span></span>
+        <span class="next-card-arrow" aria-hidden="true">↗</span>
       </a>`;
 
     detail.innerHTML = `
@@ -278,7 +278,7 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
         ${links}
 
         <nav class="pd-next" aria-label="${t('다른 프로젝트로 이동', 'Browse other projects')}">
-          <div class="pd-next-heading"><span class="mono">${t('다음으로 둘러보기', 'Keep exploring')}</span><span class="mono dim">${pad2(p.n)} / ${TOTAL}</span></div>
+          <div class="pd-next-heading"><span class="mono">${t('다른 프로젝트', 'More projects')}</span><span class="mono dim">${pad2(p.n)} / ${TOTAL}</span></div>
           ${nav(prevP, 'prev')}
           ${nav(nextP, 'next')}
         </nav>

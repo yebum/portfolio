@@ -185,6 +185,7 @@ try {
     for (const projectId of ['FEELD', 'AllAllowed', 'Seungmu']) {
       await page.goto(base + '/' + language + '#/work/' + projectId);
       await page.waitForFunction(() => !document.querySelector('#detail').hidden);
+      await page.waitForFunction(() => document.querySelector('.pd-hero img')?.complete && document.querySelector('.pd-hero img')?.naturalWidth > 0);
       assert.ok(await page.locator('.pd-hero img').evaluate(img => img.complete && img.naturalWidth > 0), projectId + ' detail cover loads');
       assert.equal(await page.locator('.pd-next .next-card').count(), 2, 'previous and next links are both visible');
       assert.equal(await page.locator('.pd-next .next-card img').count(), 0, 'project navigation is visually distinct from image gallery');
