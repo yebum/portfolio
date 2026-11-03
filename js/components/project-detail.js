@@ -221,14 +221,11 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
         </div>
       </section>` : '';
 
-    const nav = (q, dir) => `
-      <a class="next-card mono-hover" href="#/work/${q.id}" data-reveal>
-        <div class="card mono-img"><img src="${src(q.cover, true)}"${imageDimensions(`${q.cover}-sm`)} alt="" loading="lazy" decoding="async">
-          <div class="hero-scrim" aria-hidden="true"></div>
-          <div class="ticks ticks--light" aria-hidden="true"></div>
-          <div class="card-top"><span class="mono">${dir}</span><span class="mono">${pad2(q.n)} / ${TOTAL}</span></div>
-          <div class="hero-copy"><span class="ctx">${esc(q.context)}</span><h2 class="h2">${esc(q.fullTitle)}</h2></div>
-        </div>
+    const nav = (q, direction) => `
+      <a class="next-card next-card--${direction}" href="#/work/${q.id}" data-reveal>
+        <span class="next-card-top mono"><span>${direction === 'prev' ? `← ${t('이전 프로젝트', 'Previous project')}` : `${t('다음 프로젝트', 'Next project')} →`}</span><span>${pad2(q.n)} / ${TOTAL}</span></span>
+        <span class="next-card-title">${esc(q.fullTitle)}</span>
+        <span class="next-card-bottom"><span>${esc(q.context)}</span><span class="next-card-arrow" aria-hidden="true">${direction === 'prev' ? '↖' : '↗'}</span></span>
       </a>`;
 
     detail.innerHTML = `
@@ -280,9 +277,10 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
         ${imgs}
         ${links}
 
-        <nav class="pd-next" aria-label="More projects">
-          ${nav(prevP, 'Previous')}
-          ${nav(nextP, 'Next project')}
+        <nav class="pd-next" aria-label="${t('다른 프로젝트로 이동', 'Browse other projects')}">
+          <div class="pd-next-heading"><span class="mono">${t('다음으로 둘러보기', 'Keep exploring')}</span><span class="mono dim">${pad2(p.n)} / ${TOTAL}</span></div>
+          ${nav(prevP, 'prev')}
+          ${nav(nextP, 'next')}
         </nav>
       </article>`;
     document.title = `${p.fullTitle} — Yebum Ko`;

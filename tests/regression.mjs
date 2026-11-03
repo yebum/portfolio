@@ -186,6 +186,8 @@ try {
       await page.goto(base + '/' + language + '#/work/' + projectId);
       await page.waitForFunction(() => !document.querySelector('#detail').hidden);
       assert.ok(await page.locator('.pd-hero img').evaluate(img => img.complete && img.naturalWidth > 0), projectId + ' detail cover loads');
+      assert.equal(await page.locator('.pd-next .next-card').count(), 2, 'previous and next links are both visible');
+      assert.equal(await page.locator('.pd-next .next-card img').count(), 0, 'project navigation is visually distinct from image gallery');
       if (projectId === 'Seungmu') {
         assert.equal(await page.locator('.cs').count(), 0, 'Seungmu uses artwork story instead of case study');
         assert.equal(await page.locator('.pd-sections .pd-sec').count(), 2, 'Seungmu has concept and visual story sections');
