@@ -10,7 +10,7 @@
   const count = reel.querySelector('#showreel-count');
   const nowTitle = reel.querySelector('#showreel-now-title');
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
-  const images = slides.map(slide => slide.querySelector('img'));
+  const images = slides.map(slide => [...slide.querySelectorAll('img')]);
   const titles = slides.map(slide => slide.querySelector('.showreel-caption strong').textContent);
   const duration = 6000;
   let index = 0;
@@ -21,14 +21,15 @@
   let request = 0;
   const loads = new WeakMap();
   const load = i => {
-    const img = images[i];
-    if (!loads.has(img)) {
-      img.loading = 'eager';
-      if (img.dataset.srcset) { img.srcset = img.dataset.srcset; delete img.dataset.srcset; }
-      if (img.dataset.src) { img.src = img.dataset.src; delete img.dataset.src; }
-      loads.set(img, img.decode().catch(() => {}));
-    }
-    return loads.get(img);
+    return Promise.all(images[i].map(img => {
+      if (!loads.has(img)) {
+        img.loading = 'eager';
+        if (img.dataset.srcset) { img.srcset = img.dataset.srcset; delete img.dataset.srcset; }
+        if (img.dataset.src) { img.src = img.dataset.src; delete img.dataset.src; }
+        loads.set(img, img.decode().catch(() => {}));
+      }
+      return loads.get(img);
+    }));
   };
 
   const schedule = () => {
@@ -109,7 +110,7 @@
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
-      if (visible && !loads.has(images[index])) { show(index); return; }
+      if (visible && images[index].some(img => !loads.has(img))) { show(index); return; }
       schedule();
     }, { threshold: 0.2 }).observe(reel);
   }

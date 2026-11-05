@@ -109,6 +109,20 @@ try {
     assert.deepEqual(await page.locator('.showreel-slide').evaluateAll(slides => slides.map(slide => slide.getAttribute('href').split('/').pop())),
       ['Neuroscape', 'FEELD', 'XMF2026-YOUNHA', 'MATMI', 'GetTheOceanSummerReady'],
       'featured reel covers recent, documented work across disciplines without repeating XMF artists');
+    await page.locator('[data-slide="3"]').click();
+    await page.waitForFunction(() => document.querySelector('#showreel-count').textContent.startsWith('04'));
+    assert.equal(await page.locator('.showreel-slide--app img').evaluateAll(images => images.filter(img => img.complete && img.naturalWidth > 0).length), 3, 'MATMI reel shows all three app screens');
+    if (process.env.UI_SCREENSHOT_DIR && !language) {
+      await page.locator('#reel').evaluate(el => el.scrollIntoView({block:'start',behavior:'instant'}));
+      await page.waitForTimeout(900);
+      await page.screenshot({path:resolve(process.env.UI_SCREENSHOT_DIR,'matmi-reel.png')});
+      await page.setViewportSize({width:390,height:844});
+      await page.locator('#nav').evaluate(el => el.classList.remove('is-open'));
+      await page.locator('#reel').evaluate(el => el.scrollIntoView({block:'start',behavior:'instant'}));
+      await page.waitForTimeout(350);
+      await page.screenshot({path:resolve(process.env.UI_SCREENSHOT_DIR,'matmi-reel-mobile.png')});
+      await page.setViewportSize({width:1440,height:1000});
+    }
     await page.locator('[data-slide="4"]').click();
     await page.waitForFunction(() => document.querySelector('#showreel-count').textContent.startsWith('05'));
     assert.equal(await page.locator('.showreel-slide.is-active img').evaluate(img => img.naturalWidth > 0), true);
