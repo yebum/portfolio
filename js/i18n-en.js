@@ -45,11 +45,11 @@
     Seungmu: {
       title: 'Seungmu',
       context: '2026 HCF Media Art Show · houseCall',
-      lead: 'A media art performance created with the houseCall team for the 2026 HCF Media Art Show, bringing the movements of Seungmu together with stage imagery.',
+      lead: 'A media art performance created with the houseCall team for the 2026 HCF Media Art Show. Two dancers perform Seungmu, a dance that prays for the peace of the departed, alongside stage visuals.',
       role: 'houseCall team member',
       sections: [
-        { label: 'Concept', body: 'The visuals extend the stillness and tension in Seungmu through light and imagery. Rather than explaining the dance, they follow the lines left by the body and the atmosphere of the space.' },
-        { label: 'Visual story', body: 'Monochrome scenes recalling brushstrokes and calligraphy alternate with vivid colour. As the imagery changes around the dancers, the same stage takes on a different mood.' },
+        { label: 'Performance', body: 'The video sequence and its transitions were designed around the two dancers’ paths, the drum at the centre of the stage and the rhythm of the performance. Movement and imagery together convey Seungmu’s wish for the peace of the departed.' },
+        { label: 'Visual sequence', body: 'The film opens with a night view of Yongjusa Temple, one of Hwaseong’s Eight Scenic Views and the setting of Jo Ji-hun’s poem “Seungmu,” and closes there in daylight. Monochrome ink scenes give way to the colours of dancheong, the traditional five colours and saekdong stripes before returning to colourless ink. The shift between black and white and vivid colour marks the boundary between death and life.' },
       ],
     },
     AllAllowed: {

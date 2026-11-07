@@ -205,7 +205,9 @@ try {
       assert.equal(await page.locator('.pd-next .next-card img').count(), 0, 'project navigation is visually distinct from image gallery');
       if (projectId === 'Seungmu') {
         assert.equal(await page.locator('.cs').count(), 0, 'Seungmu uses artwork story instead of case study');
-        assert.equal(await page.locator('.pd-sections .pd-sec').count(), 2, 'Seungmu has concept and visual story sections');
+        assert.equal(await page.locator('.pd-sections .pd-sec').count(), 2, 'Seungmu has performance and visual sequence sections');
+        assert.match(await page.locator('.pd-sections').textContent(), language ? /Yongjusa Temple/ : /용주사/);
+        assert.match(await page.locator('.pd-sections').textContent(), language ? /two dancers/ : /두 무용수/);
       }
       if (projectId === 'AllAllowed') {
         assert.equal(await page.locator('.cs').count(), 0, 'media artwork has no problem/solution/result case study');
