@@ -196,7 +196,7 @@ try {
     assert.equal(await page.locator('html').getAttribute('lang'), language ? 'en' : 'ko');
     assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://www.yebumko.com/');
     assert.equal(await page.locator('meta[property="og:image"]').getAttribute('content'), 'https://www.yebumko.com/assets/img/AllAllowed-Stage.webp');
-    for (const projectId of ['FEELD', 'AllAllowed', 'Seungmu']) {
+    for (const projectId of ['FEELD', 'AllAllowed', 'Seungmu', 'TimeOfExtinction']) {
       await page.goto(base + '/' + language + '#/work/' + projectId);
       await page.waitForFunction(() => !document.querySelector('#detail').hidden);
       await page.waitForFunction(() => document.querySelector('.pd-hero img')?.complete && document.querySelector('.pd-hero img')?.naturalWidth > 0);
@@ -208,6 +208,11 @@ try {
         assert.equal(await page.locator('.pd-sections .pd-sec').count(), 2, 'Seungmu has performance and visual sequence sections');
         assert.match(await page.locator('.pd-sections').textContent(), language ? /Yongjusa Temple/ : /용주사/);
         assert.match(await page.locator('.pd-sections').textContent(), language ? /two dancers/ : /두 무용수/);
+      }
+      if (projectId === 'TimeOfExtinction') {
+        assert.doesNotMatch(await page.locator('#detail').textContent(), /\bMCP\b/i, 'Jambinai page does not mention MCP');
+        assert.equal(await page.locator('.pd-gallery figure').count(), 5, 'Jambinai gallery adds five artwork stills beside the performance cover');
+        assert.equal(await page.locator('.pd-gallery img[src*="TouchDesigner"]').count(), 0, 'old tool screenshot is removed');
       }
       if (projectId === 'AllAllowed') {
         assert.equal(await page.locator('.cs').count(), 0, 'media artwork has no problem/solution/result case study');

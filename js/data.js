@@ -1004,8 +1004,8 @@ window.PORTFOLIO = {
         "solution": {
           "summary": "TouchDesigner로 만든 잉크 스톰 실시간 비주얼",
           "body": [
-            "고정된 이미지를 보여주는 대신 잉크가 퍼지고 서로 충돌하며 형태를 바꾸는 추상적 풍경을 택해, 음악이 공간 안에서 번져 나가는 듯한 감각을 만들었다. 어두운 무대 위에서 청록과 백색의 흐름이 강하게 대비되도록 구성해 공연의 몰입도를 높였다.",
-            "TouchDesigner의 노드 기반 네트워크에서 잉크가 번지고 폭발하는 듯한 유기적 이미지를 만들고, 장면의 밀도와 색 변화를 음악의 흐름에 맞춰 사용할 수 있도록 제작했다. 오디오비주얼 기획, 제작, 공연 송출을 맡았으며 TouchDesigner와 MCP를 사용했다."
+            "고정된 이미지를 보여주는 대신 잉크가 퍼지고 서로 충돌하며 형태를 바꾸는 추상적 풍경을 택해, 음악이 공간 안에서 번져 나가는 듯한 감각을 만들었다. 차가운 청록에서 붉은색과 분홍색을 거쳐 다시 청록으로 돌아오는 흐름으로 장면의 감정 변화를 표현했다.",
+            "TouchDesigner의 노드 기반 네트워크에서 잉크가 번지고 폭발하는 듯한 유기적 이미지를 만들고, 장면의 밀도와 색 변화를 음악의 흐름에 맞춰 사용할 수 있도록 제작했다. 오디오비주얼 기획, 제작, 공연 송출을 맡았다."
           ],
           "points": [
             {
@@ -1037,7 +1037,7 @@ window.PORTFOLIO = {
         },
         {
           "k": "사용 도구",
-          "v": "TouchDesigner · MCP"
+          "v": "TouchDesigner"
         },
         {
           "k": "역할",
@@ -1056,11 +1056,27 @@ window.PORTFOLIO = {
         "images": [
           {
             "src": "TimeOfExtinction",
-            "label": "Live Performance"
+            "label": "잠비나이 · 공연 현장"
           },
           {
-            "src": "TimeOfExtinction-TouchDesigner",
-            "label": "TouchDesigner Network"
+            "src": "TimeOfExtinction-IceOpen",
+            "label": "소멸의시간 · 차가운 시작"
+          },
+          {
+            "src": "TimeOfExtinction-RedTurn",
+            "label": "소멸의시간 · 붉은 전환"
+          },
+          {
+            "src": "TimeOfExtinction-PinkStorm",
+            "label": "소멸의시간 · 분홍빛 폭풍"
+          },
+          {
+            "src": "TimeOfExtinction-AngerPeak",
+            "label": "소멸의시간 · 절정"
+          },
+          {
+            "src": "TimeOfExtinction-IceReturn",
+            "label": "소멸의시간 · 차가운 귀환"
           }
         ],
         "links": []

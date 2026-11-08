@@ -87,7 +87,7 @@
       'Jambinai — Time of Extinction', 'KALEIDOSCOPE · live audiovisual performance',
       'An audiovisual work made for Jambinai’s performance Time of Extinction. Visual motion extends the density and emotional arc of the music across the stage.',
       ['Make sound visible at stage scale', 'The piece needed to carry the music’s intensity and changing emotion on a large LED screen.'],
-      ['Real-time visuals in TouchDesigner', 'An ink-storm visual system responds to the performance and ties image, rhythm and stage atmosphere together.'],
+      ['Real-time visuals in TouchDesigner', 'Ink-like forms spread and collide as the palette moves from icy cyan through red and pink, then returns to cyan. The changing colour and density follow the music and stage atmosphere.'],
       ['Presented during the live performance', 'The visuals were shown on the LED screen as part of Jambinai’s stage production.'],
       'Audiovisual concept, production and live visuals'
     ),
@@ -281,6 +281,12 @@
     '군중의 흐름': 'The flow of the crowd',
     '모두 허용 · 무대 프리뷰 (3분 18초)': 'All Allowed · Stage preview (3:18)',
     '모두 허용 · 현장 촬영 (3분 24초)': 'All Allowed · Live documentation (3:24)',
+    '잠비나이 · 공연 현장': 'Jambinai · Live performance',
+    '소멸의시간 · 차가운 시작': 'Time of Extinction · Cold opening',
+    '소멸의시간 · 붉은 전환': 'Time of Extinction · Turning red',
+    '소멸의시간 · 분홍빛 폭풍': 'Time of Extinction · Pink storm',
+    '소멸의시간 · 절정': 'Time of Extinction · Climax',
+    '소멸의시간 · 차가운 귀환': 'Time of Extinction · Cold return',
     'FEELD · 프로젝트 영상': 'FEELD · Project film',
     '참가 증명서': 'Certificate of participation',
   };
