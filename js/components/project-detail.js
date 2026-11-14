@@ -266,6 +266,23 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
 
         ${metricsHTML(p)}
         ${films}
+        ${p.id === 'FEELD' ? `<section class="feeld-system" aria-label="FEELD system" data-reveal>
+          <div class="sec-label"><span class="mono">System / Interaction</span><span class="mono dim">Unity · OSC · Pure Data</span></div>
+          <ol class="feeld-system-flow" aria-label="Experience states">
+            <li><span class="mono">01</span>Intro</li><li><span class="mono">02</span>Dive</li><li><span class="mono">03</span>Explore</li><li><span class="mono">04</span>Return</li>
+          </ol>
+          <details class="feeld-system-detail">
+            <summary>${t('구조와 신호 흐름', 'Architecture and signal flow')}</summary>
+            <div class="feeld-signal-flow">
+              <div><span class="mono">Input</span><strong>Leap Motion</strong><small>Hand · Position · Grab</small></div>
+              <span aria-hidden="true">→</span>
+              <div><span class="mono">Experience</span><strong>Unity / C#</strong><small>Gaussian Splatting · Reveal · Walk</small></div>
+              <span aria-hidden="true">⇄</span>
+              <div><span class="mono">Sound</span><strong>Pure Data</strong><small>OSC 9200 → / ← 9201</small></div>
+            </div>
+            <div class="feeld-system-feedback mono">Pure Data → FeeldPdIn → FeeldPdVine / FeeldTopoBand</div>
+          </details>
+        </section>` : ''}
 
         ${p.caseStudy ? caseStudyHTML(p) : `<section class="pd-sections" aria-label="Story">
           ${p.sections.map((s, i) => `
