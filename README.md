@@ -43,6 +43,21 @@ Open http://localhost:5178. Use a local server instead of opening the file direc
 
 ## Deploy
 
+### Git workflow
+
+`main` is the published source of truth. Start each change from the current `origin/main` on a short-lived branch; do not keep developing on an older `codex/*` branch or push it directly to `main`.
+
+```bash
+git fetch origin main
+git switch main
+git pull --ff-only origin main
+git switch -c change/short-description
+```
+
+Before opening a pull request, fetch `main` again, rebase the change branch if needed, then run `node _work/build-project-pages.mjs` and commit the generated `work/*/index.html` pages and `sitemap.xml` with the source. Run `git diff --check` and the regression test before merging. Merge one change at a time, then start the next branch from the new `main`. Keep uncommitted work in its own branch or worktree rather than switching a dirty `main`.
+
+GitHub Pages publishes `main`. The generated project pages are derived files: resolve source changes in `js/data.js` and `index.html` first, then regenerate pages from the resolved version. Do not manually resolve each generated page or use a blanket `merge=ours` rule, which can drop content.
+
 Run `node _work/build-project-pages.mjs` and upload the root folder as-is to GitHub Pages, Netlify or similar (you can leave out `_source` and `_work`).
 Every project has a shareable, pre-rendered URL such as `/work/Neuroscape/` with its own canonical URL, image and description. The in-site gallery still uses fast hash navigation. `sitemap.xml` includes all pre-rendered pages.
 The contact form submits directly to FormSubmit (no visitor mail app). FormSubmit first sends an activation email to `koyebum1@naver.com`; the recipient must confirm it before inquiries are forwarded. The service may show a CAPTCHA and thank-you page. PNG/JPG/PDF uploads are limited to one file of at most 10 MB. Form contents and attachments pass through FormSubmit. The site contains no SMTP credentials. After publishing, activate the endpoint and send a test inquiry from the production domain.
