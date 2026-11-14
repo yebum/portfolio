@@ -261,6 +261,8 @@
     ),
   };
   const awardNames = {
+    '제33회 계원조형예술제 학과우수작': '33rd Kaywon Arts Festival · Outstanding Department Work',
+    '2026 GLOBAL STARTUP COMPETITION 중앙대학교 가상융합대학장상': '2026 Global Startup Competition · Dean’s Award, Chung-Ang University College of Virtual Convergence',
     '제주 바이오 AX 해커톤 우수상': 'Jeju Bio AX Hackathon · Excellence Award',
     'BCM Academy 창의상': 'BCM Academy · Creativity Award',
     '학과 우수작 연합PT': 'Outstanding Department Project',
@@ -349,7 +351,7 @@
     '.about-body .sec-sub': 'I create at the intersection of art and technology. My background in telecommunications engineering shapes how I work with signals, systems and interaction; digital media design gives those ideas a visual language. I develop live visuals, immersive experiences and digital services, from the first concept to a working prototype.',
     '.about-docs .chips a:first-child': 'Resume PDF (Korean) ↓',
     '.about-docs .chips a:last-child': 'Cover letter PDF (Korean) ↓',
-    '.recognition .sec-head .sec-sub': 'Awards from advertising, hackathons, startup competitions and digital-art projects, with links to the related work and public sources.',
+    '.recognition .sec-head .sec-sub': 'Awards from art festivals, advertising, hackathons, startup competitions and digital-art projects, with links to the related work and public sources.',
     '#gb-h': 'Leave a note.',
     '.gb-head .sec-sub': 'Share a thought after browsing the portfolio.',
     '.gb-name-field span': 'Name / nickname',
@@ -444,6 +446,9 @@
   };
   D.awards.forEach(a => {
     let copy = awardCopy[a.id];
+    if (a.id === 'FEELD') copy = ['33rd Kaywon Arts Festival', 'FEELD', 'Outstanding Department Work', ''];
+    if (a.id === 'MATMI' && a.title.includes('GLOBAL STARTUP COMPETITION')) copy =
+      ['2026 Global Startup Competition', 'MATMI', 'Dean’s Award, Chung-Ang University College of Virtual Convergence', ''];
     if (a.id === 'Neuroscape') copy = a.title.includes('MAD STARS')
       ? ['MAD STARS', 'Neuroscape', 'Gold Prize', 'MAD STARS website']
       : ['2026 BCM Academy AI X Media Startup Project', 'Neuroscape', 'Creativity Award', 'BCM Academy post'];

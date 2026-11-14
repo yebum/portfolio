@@ -11,7 +11,7 @@ window.PORTFOLIO = {
         "media",
         "xr"
       ],
-      "awards": [],
+      "awards": ["제33회 계원조형예술제 학과우수작"],
       "cover": "FEELD",
       "lead": "같은 산에서도 사람마다 다르게 기억하는 풍경을, 현장 기록과 손동작으로 다시 만나는 인터랙티브 미디어아트. 실제 산의 장면과 소리를 디지털 공간으로 옮겨 관객의 움직임에 따라 변화하도록 구성했다.",
       "caseStudy": {
@@ -882,7 +882,8 @@ window.PORTFOLIO = {
       "year": "2026",
       "disciplines": ["ux", "xr"],
       "awards": [
-        "Grand Award"
+        "Grand Award",
+        "2026 GLOBAL STARTUP COMPETITION 중앙대학교 가상융합대학장상"
       ],
       "cover": "MATMI",
       "lead": "MATMI는 낯선 음식의 이름을 번역해도 맛과 식감, 재료, 문화적 맥락까지 알기는 어렵다는 문제에서 출발한 푸드 경험 서비스이다. 메뉴에 카메라를 비추면 음식을 인식하고 3D 모습과 맛·식감·재료 정보, 개인 취향과의 적합도를 보여주어 주문 전 선택을 돕는다.",
@@ -3191,6 +3192,22 @@ window.PORTFOLIO = {
     }
   ],
   "awards": [
+    {
+      "year": "2026",
+      "title": "제33회 계원조형예술제",
+      "prize": "학과우수작",
+      "project": "FEELD",
+      "id": "FEELD",
+      "sourceKind": "none"
+    },
+    {
+      "year": "2026",
+      "title": "2026 GLOBAL STARTUP COMPETITION",
+      "prize": "중앙대학교 가상융합대학장상",
+      "project": "MATMI",
+      "id": "MATMI",
+      "sourceKind": "none"
+    },
     {
       "year": "2026",
       "title": "2026 Global Start-up Design Thinking Hackathon",
