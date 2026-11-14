@@ -66,6 +66,12 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
+            "kind": "local",
+            "src": "assets/video/FEELD-intro-20261114.mp4",
+            "poster": "FEELD",
+            "label": "FEELD · Unity capture · 2026.11.14 (silent)"
+          },
+          {
             "kind": "youtube",
             "id": "kct4n-Z3w1A",
             "label": "FEELD · 프로젝트 영상"

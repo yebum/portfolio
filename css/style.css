@@ -1747,3 +1747,22 @@ html[lang='en'] .cs-sum { letter-spacing:-.015em; }
   .showreel-topline { top:12px; }
 }
 .intro > .intro-after { width:100%; min-width:0; }
+
+/* FEELD: runtime structure, scoped to its project detail. */
+.feeld-system { margin-block: 0 4rem; padding-inline: calc(var(--pad) + var(--inset)); }
+.feeld-system-flow { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); list-style: none; padding: 0; margin: 1.5rem 0; border-block: 1px solid currentColor; }
+.feeld-system-flow li { display: flex; flex-direction: column; gap: 1rem; padding: 1.5rem; border-inline-end: 1px solid currentColor; }
+.feeld-system-flow li:last-child { border: 0; }
+.feeld-system-flow .mono { opacity: .55; }
+.feeld-system-detail summary { cursor: pointer; padding: 1rem 0; }
+.feeld-signal-flow { display: grid; grid-template-columns: 1fr auto 1.4fr auto 1fr; align-items: center; gap: 1.5rem; padding-block: 1.5rem; }
+.feeld-signal-flow div { display: flex; flex-direction: column; gap: .7rem; min-width: 0; }
+.feeld-signal-flow small { line-height: 1.6; opacity: .7; }
+.feeld-system-feedback { padding-block: 1rem; line-height: 1.8; overflow-wrap: anywhere; }
+@media(max-width: 760px) {
+ .feeld-system-flow { grid-template-columns: repeat(2,minmax(0,1fr)); }
+ .feeld-system-flow li:nth-child(2) { border-inline-end: 0; }
+ .feeld-system-flow li:nth-child(-n+2) { border-bottom: 1px solid currentColor; }
+ .feeld-signal-flow { grid-template-columns: 1fr; gap: 1rem; }
+ .feeld-signal-flow > span { transform: rotate(90deg); justify-self: start; }
+}
