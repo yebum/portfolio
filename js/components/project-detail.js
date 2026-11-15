@@ -241,16 +241,18 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
         </div>
 
         <section class="pd-hero site-pad">
-          <div class="card">
-            <img src="${src(p.cover)}"${imageDimensions(p.cover)}${responsive(p.cover, '100vw')} alt="${esc(p.fullTitle)}" fetchpriority="high" decoding="async">
-            <div class="hero-scrim" aria-hidden="true"></div>
-            <div class="ticks ticks--light" aria-hidden="true"></div>
-            <div class="card-top"><span class="mono">${esc(projectDiscs(p).map(d => d.label).join(' / '))}</span><span class="mono">${esc(p.year)}</span></div>
-            <div class="hero-copy">
+          <div class="pd-hero-layout">
+            <div class="pd-hero-copy">
+              <div class="pd-hero-meta mono"><span>${esc(projectDiscs(p).map(d => d.label).join(' / '))}</span><span>${esc(p.year)}</span></div>
+              <div class="pd-hero-heading">
               <h1 class="display" id="pd-title">${esc(p.fullTitle)}</h1>
               <p class="pd-ctx">${esc(p.context)}</p>
               ${p.awards.length ? `<div class="chips">${p.awards.map(a => `<a class="chip chip--award" href="#/recognition" aria-label="${esc(a)} ${t('수상 이력 보기', 'award details')}">${esc(a)}</a>`).join('')}</div>` : ''}
+              </div>
             </div>
+            <figure class="pd-hero-media">
+              <img src="${src(p.cover)}"${imageDimensions(p.cover)}${responsive(p.cover, '(max-width: 820px) 100vw, 65vw')} alt="${esc(p.fullTitle)}" fetchpriority="high" decoding="async">
+            </figure>
           </div>
         </section>
 
