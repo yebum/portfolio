@@ -37,8 +37,19 @@ for (const project of projects) {
     : (project.sections || []).map(item => `<section><h2>${escape(item.label)}</h2><p>${escape(item.body)}</p></section>`).join('');
   const dimensions = imageSizes[project.cover];
   const small = imageSizes[`${project.cover}-sm`];
-  const heroAttributes = dimensions ? ` width="${dimensions[0]}" height="${dimensions[1]}"${small ? ` srcset="/assets/img/${encodeURIComponent(project.cover)}-sm.webp ${small[0]}w, /assets/img/${encodeURIComponent(project.cover)}.webp ${dimensions[0]}w" sizes="100vw"` : ''}` : '';
-  const staticDetail = `<article class="pd static-project" aria-labelledby="pd-title"><div class="pd-bar"><a class="back mono" href="/#/index">← Index</a></div><section class="pd-hero site-pad"><div class="card"><img src="/assets/img/${encodeURIComponent(project.cover)}.webp" alt="${escape(project.fullTitle)}"${heroAttributes} fetchpriority="high" decoding="async"><div class="hero-scrim" aria-hidden="true"></div><div class="hero-copy"><h1 class="display" id="pd-title">${escape(project.fullTitle)}</h1><p class="pd-ctx">${escape(project.context)}</p></div></div></section><div class="static-project-copy"><p class="pd-lead">${escape(project.lead)}</p>${staticStory}</div></article>`;
+  const heroAttributes = dimensions ? ` width="${dimensions[0]}" height="${dimensions[1]}"${small ? ` srcset="/assets/img/${encodeURIComponent(project.cover)}-sm.webp ${small[0]}w, /assets/img/${encodeURIComponent(project.cover)}.webp ${dimensions[0]}w" sizes="(max-width: 820px) 100vw, 65vw"` : ''}` : '';
+  const disciplineLabels = project.disciplines.map(key => context.window.PORTFOLIO.disciplines.find(item => item.key === key)?.label || key).join(' / ');
+  const staticDetail = `<article class="pd static-project" aria-labelledby="pd-title">
+    <div class="pd-bar"><a class="back mono" href="/#/index">← Index</a></div>
+    <section class="pd-hero site-pad"><div class="pd-hero-layout">
+      <div class="pd-hero-copy">
+        <div class="pd-hero-meta mono"><span>${escape(disciplineLabels)}</span><span>${escape(project.year)}</span></div>
+        <div class="pd-hero-heading"><h1 class="display" id="pd-title">${escape(project.fullTitle)}</h1><p class="pd-ctx">${escape(project.context)}</p></div>
+      </div>
+      <figure class="pd-hero-media"><img src="/assets/img/${encodeURIComponent(project.cover)}.webp" alt="${escape(project.fullTitle)}"${heroAttributes} fetchpriority="high" decoding="async"></figure>
+    </div></section>
+    <div class="static-project-copy"><p class="pd-lead">${escape(project.lead)}</p>${staticStory}</div>
+  </article>`;
   let html = template
     // The home reel is hidden on direct project URLs; do not fetch its hero image.
     .replace(/(<img )src="assets\/img\/Neuroscape.webp" srcset=/, '$1data-src="assets/img/Neuroscape.webp" data-srcset=')

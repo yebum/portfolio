@@ -30,7 +30,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=matmi-reel-20261105">
+  <link rel="stylesheet" href="css/style.css?v=editorial-hero-20261116">
   <script src="js/arrival-init.js?v=20261029"></script>
 </head>
 <body>
@@ -186,7 +186,17 @@
   </main>
 
   <!-- ─────────────────────────── DETAIL ─────────────────────────── -->
-  <main id="detail" class="view"><article class="pd static-project" aria-labelledby="pd-title"><div class="pd-bar"><a class="back mono" href="/#/index">← Index</a></div><section class="pd-hero site-pad"><div class="card"><img src="/assets/img/SilgamSujevi.webp" alt="실감수제비" width="2000" height="1250" srcset="/assets/img/SilgamSujevi-sm.webp 900w, /assets/img/SilgamSujevi.webp 2000w" sizes="100vw" fetchpriority="high" decoding="async"><div class="hero-scrim" aria-hidden="true"></div><div class="hero-copy"><h1 class="display" id="pd-title">실감수제비</h1><p class="pd-ctx">2026 SUMMER WEEK AI+XR 공모전</p></div></div></section><div class="static-project-copy"><p class="pd-lead">제주 바닷가에서 가족과 함께하던 물수제비를 몸으로 다시 경험하는 Unity 6 게임. 카메라가 읽은 준비 자세와 팔 스윙을 캐릭터의 투척, 돌의 바운스, 점수와 재도전으로 연결했다.</p><section><h2>화면으로 보는 기억을 몸으로 다시 경험하기</h2><p>어릴 때 제주 바닷가에서 가족과 함께 돌을 고르고 물수제비를 던지던 기억을, 관객이 화면으로 바라보는 콘텐츠가 아니라 직접 몸을 움직여 다시 경험하는 놀이로 만들고자 했다. 이를 위해 실제 팔 동작이 게임 속 투척으로 자연스럽게 이어져야 했고, 누구나 짧은 시간 안에 이해하고 참여할 수 있을 만큼 체험이 단순해야 했다.</p></section><section><h2>MediaPipe 동작 인식 기반 Unity 6 물수제비 게임</h2><p>관객이 카메라 앞에서 양팔을 T자로 벌려 준비하고 한쪽 팔을 옆으로 스윙하면, Python의 MediaPipe 포즈 브리지가 어깨·팔꿈치·손목 위치를 읽는다. 준비 단계와 투척 단계를 분리해 스윙을 게임 입력으로 전달했다.</p><p>인식 결과는 localhost UDP로 Unity 6에 전달한다. Unity에서는 수신한 동작을 캐릭터 팔 리깅과 돌 발사에 연결하고, 돌의 속도·각도·회전과 수면 충돌 조건으로 바운스를 계산한다. 플레이 결과는 점수와 로컬 TOP 10 리더보드로 이어진다.</p></section><section><h2>카메라 기반 인터랙티브 게임 프로토타입 완성</h2><p>실제 팔 동작이 캐릭터의 투척으로 이어지고, 돌의 바운스 결과가 점수와 리더보드에 반영되는 카메라 기반 게임 프로토타입을 완성했다.</p><p>동작 인식값을 게임 입력으로 전달하고 물리·상태 시스템에 연결하면서, 체험의 시작부터 재도전까지 한 동작이 끊기지 않게 설계하는 과정을 경험했다.</p></section></div></article></main>
+  <main id="detail" class="view"><article class="pd static-project" aria-labelledby="pd-title">
+    <div class="pd-bar"><a class="back mono" href="/#/index">← Index</a></div>
+    <section class="pd-hero site-pad"><div class="pd-hero-layout">
+      <div class="pd-hero-copy">
+        <div class="pd-hero-meta mono"><span>XR · Game</span><span>2026</span></div>
+        <div class="pd-hero-heading"><h1 class="display" id="pd-title">실감수제비</h1><p class="pd-ctx">2026 SUMMER WEEK AI+XR 공모전</p></div>
+      </div>
+      <figure class="pd-hero-media"><img src="/assets/img/SilgamSujevi.webp" alt="실감수제비" width="2000" height="1250" srcset="/assets/img/SilgamSujevi-sm.webp 900w, /assets/img/SilgamSujevi.webp 2000w" sizes="(max-width: 820px) 100vw, 65vw" fetchpriority="high" decoding="async"></figure>
+    </div></section>
+    <div class="static-project-copy"><p class="pd-lead">제주 바닷가에서 가족과 함께하던 물수제비를 몸으로 다시 경험하는 Unity 6 게임. 카메라가 읽은 준비 자세와 팔 스윙을 캐릭터의 투척, 돌의 바운스, 점수와 재도전으로 연결했다.</p><section><h2>화면으로 보는 기억을 몸으로 다시 경험하기</h2><p>어릴 때 제주 바닷가에서 가족과 함께 돌을 고르고 물수제비를 던지던 기억을, 관객이 화면으로 바라보는 콘텐츠가 아니라 직접 몸을 움직여 다시 경험하는 놀이로 만들고자 했다. 이를 위해 실제 팔 동작이 게임 속 투척으로 자연스럽게 이어져야 했고, 누구나 짧은 시간 안에 이해하고 참여할 수 있을 만큼 체험이 단순해야 했다.</p></section><section><h2>MediaPipe 동작 인식 기반 Unity 6 물수제비 게임</h2><p>관객이 카메라 앞에서 양팔을 T자로 벌려 준비하고 한쪽 팔을 옆으로 스윙하면, Python의 MediaPipe 포즈 브리지가 어깨·팔꿈치·손목 위치를 읽는다. 준비 단계와 투척 단계를 분리해 스윙을 게임 입력으로 전달했다.</p><p>인식 결과는 localhost UDP로 Unity 6에 전달한다. Unity에서는 수신한 동작을 캐릭터 팔 리깅과 돌 발사에 연결하고, 돌의 속도·각도·회전과 수면 충돌 조건으로 바운스를 계산한다. 플레이 결과는 점수와 로컬 TOP 10 리더보드로 이어진다.</p></section><section><h2>카메라 기반 인터랙티브 게임 프로토타입 완성</h2><p>실제 팔 동작이 캐릭터의 투척으로 이어지고, 돌의 바운스 결과가 점수와 리더보드에 반영되는 카메라 기반 게임 프로토타입을 완성했다.</p><p>동작 인식값을 게임 입력으로 전달하고 물리·상태 시스템에 연결하면서, 체험의 시작부터 재도전까지 한 동작이 끊기지 않게 설계하는 과정을 경험했다.</p></section></div>
+  </article></main>
 
   <section class="gb site-pad" id="guestbook" aria-labelledby="gb-h">
     <div class="gb-head">
@@ -289,7 +299,7 @@
   <script src="js/image-sizes.js?v=jambinai-gallery-20261108"></script>
   <script src="js/i18n-en.js?v=awards-20261114"></script>
   <script src="js/showreel.js?v=matmi-reel-20261105"></script>
-  <script type="module" src="js/app.js?v=square-nav-20261103"></script>
+  <script type="module" src="js/app.js?v=editorial-hero-20261116"></script>
   <script src="js/inquiry.js?v=direct-send-20261026"></script>
   <script src="js/guestbook.js?v=perf-20261022"></script>
 </body>
