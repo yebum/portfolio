@@ -300,6 +300,13 @@ try {
   assert.equal(await page.locator('#inquiry-title').textContent(), 'Project inquiry');
   assert.equal(await page.locator('#inquiry-note').count(), 0);
   await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(base + '/work/Neuroscape/');
+  await page.locator('#nav-menu').click();
+  assert.equal(await page.locator('#nav-menu').getAttribute('aria-expanded'), 'true', 'mobile menu opens');
+  assert.equal(await page.locator('#nav-menu span').textContent(), 'Close', 'menu action changes to Close');
+  assert.equal(await page.locator('#nav-links').isVisible(), true, 'mobile navigation links are visible');
+  await page.locator('#nav-menu').click();
+  assert.equal(await page.locator('#nav-menu').getAttribute('aria-expanded'), 'false', 'mobile menu closes');
   await page.goto(base + '/');
   await page.waitForFunction(() => document.querySelector('#index-list').children.length > 0);
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, 'no mobile overflow');

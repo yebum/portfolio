@@ -160,12 +160,14 @@ import { createProjectDetail } from './components/project-detail.js?v=inline-med
 
   /* ── nav ──────────────────────────────────────────── */
   const navEl = $('#nav'), menuBtn = $('#nav-menu');
-  const closeMenu = () => { navEl.classList.remove('is-open'); menuBtn.setAttribute('aria-expanded', 'false'); };
-  menuBtn.addEventListener('click', () => {
-    const open = !navEl.classList.contains('is-open');
+  const setMenuState = open => {
     navEl.classList.toggle('is-open', open);
     menuBtn.setAttribute('aria-expanded', open);
-  });
+    menuBtn.firstElementChild.textContent = open ? 'Close' : 'Menu';
+    menuBtn.setAttribute('aria-label', open ? t('메뉴 닫기', 'Close navigation menu') : t('메뉴 열기', 'Open navigation menu'));
+  };
+  const closeMenu = () => setMenuState(false);
+  menuBtn.addEventListener('click', () => setMenuState(!navEl.classList.contains('is-open')));
   addEventListener('scroll', () => navEl.classList.toggle('is-scrolled', scrollY > 8), { passive: true });
 
   function setActiveNav(key) { $$('[data-nav]').forEach(a => a.classList.toggle('is-active', a.dataset.nav === key)); }
