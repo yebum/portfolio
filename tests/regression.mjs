@@ -30,7 +30,11 @@ try {
   });
   const errors = [];
   page.on('pageerror', e => errors.push(e.message));
-  page.on('console', message => { if (message.text().includes('Content Security Policy')) errors.push(message.text()); });
+  page.on('console', message => {
+    const warning = message.text();
+    // Drive's PDF renders despite its optional Google sign-in subframe being blocked by Google.
+    if (warning.includes('Content Security Policy') && !warning.startsWith("Framing 'https://ogs.google.com/' violates")) errors.push(warning);
+  });
   const base = `http://127.0.0.1:${server.address().port}`;
   // Hold the app module to inspect the actual pre-initialization header state.
   let releaseApp;
@@ -218,15 +222,18 @@ try {
         assert.equal(await page.locator('.cs').count(), 0, 'media artwork has no problem/solution/result case study');
         assert.equal(await page.locator('.pd-sections .pd-sec').count(), 3, 'media artwork uses three narrative sections');
         assert.match(await page.locator('.pd-sections .pd-sec h3').first().textContent(), language ? /About the work/ : /작품 소개/);
-        assert.equal(await page.locator('[data-embed="local"]').count(), 2, 'updated project shows two locally hosted videos');
+        assert.equal(await page.locator('.embed video[controls]').count(), 2, 'local videos are visible without opening a preview');
         assert.equal(await page.locator('a[href*="APZy_vtx5nM"]').count(), 0, 'old YouTube video is removed');
         if (!language) {
-          await page.locator('[data-embed="local"]').first().click();
+          await page.locator('.embed video').first().scrollIntoViewIfNeeded();
           await page.waitForFunction(() => document.querySelector('.embed video')?.readyState >= 1);
-          assert.ok(await page.locator('.embed video').evaluate(video => video.duration > 197 && video.duration < 199), 'stage preview video metadata loads');
+          assert.ok(await page.locator('.embed video').first().evaluate(video => video.duration > 197 && video.duration < 199), 'stage preview video metadata loads');
         }
       }
       if (projectId === 'FEELD') {
+        assert.equal(await page.locator('.embed video[controls]').count(), 1, 'FEELD local video is visible without a preview click');
+        assert.equal(await page.locator('.embed iframe[src*="youtube-nocookie.com"]').count(), 1, 'YouTube film is embedded on render');
+        assert.equal(await page.locator('.pdf-view iframe[src$="FEELD.pdf"]').count(), 1, 'PDF is embedded on render');
         await page.locator('.pd-gallery-open').first().click();
         await page.waitForFunction(() => document.querySelector('#gallery-viewer').open && document.querySelector('#gallery-viewer-image').naturalWidth > 0);
         assert.equal(await page.locator('#gallery-viewer-count').textContent(), '01 / 03');

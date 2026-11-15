@@ -8,7 +8,9 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
   const driveDownload = id => `https://drive.google.com/uc?export=download&id=${id}`;
   const deckView = d => d.src || driveView(d.id);
   const deckDownload = d => d.src || driveDownload(d.id);
-  const deckEmbed = d => d.src || `https://drive.google.com/file/d/${d.id}/preview`;
+  const deckEmbed = d => d.src
+    ? /^assets\/pdf\/[\w.-]+\.pdf$/.test(d.src) ? d.src : ''
+    : /^[\w-]{10,}$/.test(d.id) ? `https://drive.google.com/file/d/${d.id}/preview` : '';
   const deckHost = d => d.src ? 'Portfolio PDF' : 'Google Drive';
   const CASE = [['problem', 'Problem'], ['solution', 'Solution'], ['result', 'Result']];
 
@@ -36,7 +38,7 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
       <aside class="cs-pdf" id="cs-pdf" aria-label="Attached PDF">
         <div class="sec-label"><span class="mono">Attached PDF</span><span class="mono dim">${pad2(decks.length)}</span></div>
         ${decks.length > 1 ? `<div class="pdf-tabs" role="tablist">${decks.map((d, i) => `<button type="button" class="mono" role="tab" aria-selected="${i === 0}" data-pdf-tab="${i}">PDF ${pad2(i + 1)}</button>`).join('')}</div>` : ''}
-        <div class="card pdf-view" id="pdf-view">${pdfPoster(p, decks[0], deckName(decks[0], 0))}</div>
+        <div class="card pdf-view" id="pdf-view">${pdfFrame(decks[0], deckName(decks[0], 0))}</div>
         <ul class="pdf-files">${decks.map((d, i) => `
           <li class="pdf-file">
             <span class="pdf-ico" aria-hidden="true">PDF</span>
@@ -89,32 +91,25 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
       M.groups.map(group).join("") + "</section>";
   }
 
-  function pdfPoster(p, d, name) {
-    return `
-      <button class="poster" type="button" data-embed="${d.src ? 'pdf' : 'drive'}" data-id="${esc(d.src || d.id)}" aria-label="${esc(name)} ${t('미리보기', 'preview')}">
-        <div class="ticks ticks--top" aria-hidden="true"></div>
-        <div class="card-top"><span class="mono">PDF</span><span class="mono dim">${deckHost(d)}</span></div>
-        <span class="poster-title" aria-hidden="true">${esc(name)}</span>
-        <span class="poster-center"><span class="play" aria-hidden="true"></span><span class="mono">Preview PDF</span></span>
-      </button>`;
-  }
+  const pdfFrame = (d, name) => `<iframe src="${esc(deckEmbed(d))}" title="${esc(name)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
 
-  function embedHTML(kind, item, p, i, count, poster) {
+  function embedHTML(kind, item, i, count, poster) {
     const isDeck = kind === 'deck';
     const num = count > 1 ? ` ${pad2(i + 1)}` : '';
     const label = item.label || (isDeck ? 'Presentation deck' : 'Film') + num;
     const out = isDeck ? deckView(item) : item.kind === 'local' ? item.src : item.kind === 'youtube' ? ytWatch(item.id) : driveView(item.id);
     const host = isDeck ? deckHost(item) : item.kind === 'local' ? 'Video' : item.kind === 'youtube' ? 'YouTube' : 'Google Drive';
+    const media = isDeck ? pdfFrame(item, label)
+      : item.kind === 'local' && /^assets\/video\/[\w.-]+\.mp4$/.test(item.src)
+        ? `<video src="${esc(item.src)}"${poster ? ` poster="${esc(src(poster))}"` : ''} controls playsinline preload="metadata" aria-label="${esc(label)}"></video>`
+        : item.kind === 'youtube' && /^[\w-]{11}$/.test(item.id)
+          ? `<iframe src="https://www.youtube-nocookie.com/embed/${esc(item.id)}?rel=0" title="${esc(label)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>`
+          : item.kind === 'drive' && /^[\w-]{10,}$/.test(item.id)
+            ? `<iframe src="https://drive.google.com/file/d/${esc(item.id)}/preview" title="${esc(label)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
+            : '';
     return `
       <figure class="embed${isDeck ? ' embed--deck' : item.kind === 'local' ? ' embed--local' : ''}" data-reveal>
-        <div class="card">
-          <button class="poster" type="button" data-embed="${isDeck ? (item.src ? 'pdf' : 'drive') : item.kind}" data-id="${esc(item.src || item.id)}" aria-label="${isDeck ? 'Open' : 'Play'} ${esc(label)}">
-            ${poster ? `<img src="${src(poster)}"${imageDimensions(poster)}${responsive(poster, '(max-width: 760px) 100vw, 50vw')} alt="" loading="lazy" decoding="async">` : `<span class="poster-title" aria-hidden="true">${esc(count > 1 ? (item.label || (isDeck ? 'Deck' : 'Film') + num) : p.fullTitle)}</span>`}
-            <div class="ticks ticks--top${isDeck ? '' : ' ticks--light'}" aria-hidden="true"></div>
-            <div class="card-top"><span class="mono">${isDeck ? 'Deck' : 'Film'}${num}</span><span class="mono dim">${host}</span></div>
-            <span class="poster-center"><span class="play" aria-hidden="true"></span><span class="mono">${isDeck ? 'Open deck' : 'Play film'}</span></span>
-          </button>
-        </div>
+        <div class="card">${media}</div>
         <figcaption class="embed-cap"><span class="mono">${esc(label)}</span><a class="mono" href="${esc(out)}" target="_blank" rel="noopener noreferrer">${item.kind === 'local' ? 'Open video' : `Open ${isDeck && item.src ? 'PDF' : `in ${host}`}`} ↗</a></figcaption>
       </figure>`;
   }
@@ -193,13 +188,13 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
     const films = m.films.length ? `
       <section class="pd-block" aria-label="Film">
         <div class="sec-label"><span class="mono">Film</span><span class="mono dim">${pad2(m.films.length)}</span></div>
-        <div class="embeds${m.films.length > 1 ? ' embeds--2' : ''}">${m.films.map((f, i) => embedHTML('film', f, p, i, m.films.length, f.poster || null)).join('')}</div>
+        <div class="embeds${m.films.length > 1 ? ' embeds--2' : ''}">${m.films.map((f, i) => embedHTML('film', f, i, m.films.length, f.poster || null)).join('')}</div>
       </section>` : '';
 
     const decks = m.decks.length ? `
       <section class="pd-block" aria-label="Deck">
         <div class="sec-label"><span class="mono">Deck</span><span class="mono dim">${pad2(m.decks.length)}</span></div>
-        <div class="embeds${m.decks.length > 1 ? ' embeds--2' : ''}">${m.decks.map((d, i) => embedHTML('deck', d, p, i, m.decks.length, null)).join('')}</div>
+        <div class="embeds${m.decks.length > 1 ? ' embeds--2' : ''}">${m.decks.map((d, i) => embedHTML('deck', d, i, m.decks.length, null)).join('')}</div>
       </section>` : '';
 
     const imgs = gallery.length ? `
@@ -306,7 +301,6 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
     observeReveals(detail);
   }
 
-  // click-to-load embeds (keeps first paint light)
   detail.addEventListener('click', e => {
     if (e.target.closest('[data-share-project]')) {
       const id = location.hash.startsWith('#/work/') ? location.hash.slice(7).split('/')[0] : location.pathname.split('/')[2];
@@ -334,38 +328,9 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
       const i = Number(tab.dataset.pdfTab), d = activeProject?.media.decks[i];
       if (!d) return;
       $$('[data-pdf-tab]', detail).forEach(b => b.setAttribute('aria-selected', b === tab));
-      const view = $('#pdf-view'), frame = $('iframe', view);
-      if (frame) frame.src = deckEmbed(d);
-      else view.innerHTML = pdfPoster(p, d, d.label || `PDF ${pad2(i + 1)}`);
-      return;
+      const view = $('#pdf-view');
+      if (view) view.innerHTML = pdfFrame(d, d.label || `PDF ${pad2(i + 1)}`);
     }
-    const btn = e.target.closest('[data-embed]');
-    if (!btn) return;
-    const { embed, id } = btn.dataset;
-    if (embed === 'local' && /^assets\/video\/[\w.-]+\.mp4$/.test(id)) {
-      const video = document.createElement('video');
-      video.src = id;
-      video.controls = true;
-      video.playsInline = true;
-      video.preload = 'metadata';
-      video.setAttribute('aria-label', btn.getAttribute('aria-label') || 'Video');
-      btn.replaceWith(video);
-      video.play().catch(() => {});
-      return;
-    }
-    const url = embed === 'youtube' && /^[\w-]{11}$/.test(id)
-      ? `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`
-      : embed === 'drive' && /^[\w-]{10,}$/.test(id)
-        ? `https://drive.google.com/file/d/${id}/preview`
-        : embed === 'pdf' && /^assets\/pdf\/[\w.-]+\.pdf$/.test(id) ? id : null;
-    if (!url) { toast(t('미디어 주소를 확인해 주세요.', 'Please check the media URL.')); return; }
-    const f = document.createElement('iframe');
-    f.src = url;
-    f.referrerPolicy = 'strict-origin-when-cross-origin';
-    f.title = btn.getAttribute('aria-label') || 'Embedded media';
-    f.allow = 'autoplay; encrypted-media; fullscreen; picture-in-picture';
-    f.allowFullscreen = true;
-    btn.replaceWith(f);
   });
 
   return { renderDetail, galleryViewer };
