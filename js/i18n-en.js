@@ -36,10 +36,10 @@
   const projects = {
     FEELD: P(
       'FEELD', 'Capstone project · interactive media art',
-      'An interactive artwork that reconstructs the sights and sounds recorded on a real mountain, then lets each visitor discover a different landscape through hand movement.',
-      ['One destination, different paths and sensations', 'People can reach the same summit by different routes, encountering different sights, sounds and textures. FEELD makes those differences part of the experience rather than showing one fixed landscape.'],
-      ['A recorded landscape that responds to the hand', 'Mountain imagery becomes a Gaussian Splatting space and field recordings carry its sound. Hand input changes the splats and transitions between scenes: stone creates ripples, vegetation bends and soil gathers along the path of movement.'],
-      ['An interactive landscape prototype', 'The Unity prototype transforms splat scenes in real time and connects hand movement to the camera and scene transitions, allowing visitors to discover the landscape in their own way.'],
+      'An interactive artwork built from a forest we filmed and recorded. Visitors open and move their hands above a tactile station of moss and bark, restoring colour and sound to the path.',
+      ['A way back into a recorded forest', 'Video and sound can convey a place, but not the softness of moss or the roughness of bark. FEELD combines our field recordings with physical materials so each visitor can rediscover the forest through touch.'],
+      ['A forest that responds to hand position', 'Footage from the forest was converted into a Gaussian Splatting scene. Leap Motion reads hand openness and position above the tactile station: a forest path made of colourless particles gradually regains colour from the nearest point. Pure Data responds to hand position with sound, while Unity controls the visual change and movement. The next splat scene is baked and prepared in advance to reduce transition latency.'],
+      ['A continuous walk shaped by the visitor', 'The prototype connects real materials, hand tracking, responsive colour and sound, and prepared scene transitions into one exploratory experience.'],
       'Tech lead · Unity interaction and Gaussian Splatting visual development'
     ),
     Seungmu: {
