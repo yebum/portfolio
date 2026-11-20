@@ -36,10 +36,10 @@
   const projects = {
     FEELD: P(
       'FEELD', 'Capstone project · interactive media art',
-      'An interactive artwork built from a forest we filmed and recorded. Visitors open and move their hands above a tactile station of moss and bark, restoring colour and sound to the path.',
-      ['A way back into a recorded forest', 'Video and sound can convey a place, but not the softness of moss or the roughness of bark. FEELD combines our field recordings with physical materials so each visitor can rediscover the forest through touch.'],
-      ['A forest that responds to hand position', 'Footage from the forest was converted into a Gaussian Splatting scene. Leap Motion reads hand openness and position above the tactile station: a forest path made of colourless particles gradually regains colour from the nearest point. Pure Data responds to hand position with sound, while Unity controls the visual change and movement. The next splat scene is baked and prepared in advance to reduce transition latency.'],
-      ['A continuous walk shaped by the visitor', 'The prototype connects real materials, hand tracking, responsive colour and sound, and prepared scene transitions into one exploratory experience.'],
+      'An interactive artwork made from six forests we visited, captured in 360 degrees, scanned, and recorded. Touching real natural materials awakens a colourless forest while sound responds to the visitor’s hand position.',
+      ['Feel, fill, and explore the forest', 'FEELD brings FEEL, FILL, and FIELD together: visitors feel natural materials, fill a forest with colour, and explore it at their own pace. Their touch changes the digital landscape rather than merely observing it.'],
+      ['Six recorded forests connected through touch', 'Our team visited six forests and combined 360-degree captures and scans with Gaussian Splatting to reconstruct the real locations. We used sounds recorded on site as the background. Placing a hand on the tactile station enters a colourless forest; touching moss and bark gradually restores its colour. Leap Motion tracks the hand, Pure Data changes the recorded sound in real time according to hand position, and Unity controls the visual response. When the colour gauge reaches 100%, the visitor closes a fist around a stone to move to the next forest. The next Gaussian Splatting scene is baked in advance to reduce transition latency.'],
+      ['Six forests to explore at your own pace', 'Visitors can stay with each forest and end the experience when they choose; there is no fixed playtime. Field recordings, physical textures, responsive colour and sound, and the stone gesture form one continuous journey.'],
       'Tech lead · Unity interaction and Gaussian Splatting visual development'
     ),
     Seungmu: {
