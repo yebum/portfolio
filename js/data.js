@@ -3152,8 +3152,8 @@ window.PORTFOLIO = {
       "media": {
         "films": [
           {
-            "kind": "drive",
-            "id": "1a9W1BuFLpUmypBl5pNI-FiQM22GfexPh",
+            "kind": "youtube",
+            "id": "0o5WdAOJBRo",
             "label": "2025 · 디미디, 우주를 닮다 · Video 01"
           }
         ],
