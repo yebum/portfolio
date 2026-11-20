@@ -266,6 +266,7 @@
     '제주 바이오 AX 해커톤 우수상': 'Jeju Bio AX Hackathon · Excellence Award',
     'BCM Academy 창의상': 'BCM Academy · Creativity Award',
     '2026 실감미디어 경진대회 최우수상 · 한국연구재단 이사장상': '2026 Immersive Media Competition · Top Prize, National Research Foundation of Korea Chairperson’s Award',
+    '부산국제마케팅광고제 MAD STARS IMMERSIVE MEDIA COMPETITION 2026 · GRAND PRIX': 'MAD STARS IMMERSIVE MEDIA COMPETITION 2026 · GRAND PRIX',
     '학과 우수작 연합PT': 'Outstanding Department Project',
     'COSS 스타트업 경진대회 우수상': 'COSS Startup Competition · Excellence Award',
     '런케이션 해커톤 장려상': 'Learncation Hackathon · Encouragement Award',
@@ -449,11 +450,11 @@
     let copy = awardCopy[a.id];
     if (a.id === 'FEELD') copy = ['33rd Kaywon Arts Festival', 'FEELD', 'Outstanding Department Work', ''];
     if (a.id === 'MATMI' && a.title.includes('GLOBAL STARTUP COMPETITION')) copy =
-      ['2026 Global Startup Competition', 'MATMI', 'Dean’s Award, Chung-Ang University College of Virtual Convergence', ''];
+      ['2026 Global Startup Competition', 'MATMI', 'Dean’s Award, Chung-Ang University College of Virtual Convergence', 'Chung-Ang University article'];
     if (a.id === 'Neuroscape') copy = a.title.includes('실감미디어 경진대회')
       ? ['2026 Immersive Media Competition', 'Neuroscape', 'Top Prize · National Research Foundation of Korea Chairperson’s Award', '']
       : a.title.includes('MAD STARS')
-        ? ['MAD STARS', 'Neuroscape', 'Gold Prize', 'MAD STARS website']
+        ? ['MAD STARS IMMERSIVE MEDIA COMPETITION 2026', 'Neuroscape', 'GRAND PRIX', 'MAD STARS website']
         : ['2026 BCM Academy AI X Media Startup Project', 'Neuroscape', 'Creativity Award', 'BCM Academy post'];
     if (copy) [a.title, a.project, a.prize, a.sourceLabel] = copy;
     else if (!a.id) [a.title, a.project, a.prize, a.sourceLabel] =

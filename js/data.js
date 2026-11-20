@@ -1421,7 +1421,7 @@ window.PORTFOLIO = {
       ],
       "awards": [
         "2026 실감미디어 경진대회 최우수상 · 한국연구재단 이사장상",
-        "MAD STARS Gold Prize",
+        "부산국제마케팅광고제 MAD STARS IMMERSIVE MEDIA COMPETITION 2026 · GRAND PRIX",
         "BCM Academy 창의상"
       ],
       "cover": "Neuroscape",
@@ -1510,7 +1510,7 @@ window.PORTFOLIO = {
         "result": {
           "summary": "EEG·VR 회복 콘텐츠 MVP, 실감미디어 경진대회 최우수상",
           "body": [
-            "EEG 입력에 반응하는 VR 미디어아트 명상 콘텐츠 MVP를 구현했다. 교사와 교육기관 관계자의 응답으로 문제와 도입 가능성을 검토했고, 팀 프로젝트로 2026 실감미디어 경진대회 최우수상(한국연구재단 이사장상), MAD STARS Gold Prize와 BCM Academy 창의상을 받았다. 이 조사 수치는 콘텐츠의 회복 효과를 입증하는 자료가 아니다.",
+            "EEG 입력에 반응하는 VR 미디어아트 명상 콘텐츠 MVP를 구현했다. 교사와 교육기관 관계자의 응답으로 문제와 도입 가능성을 검토했고, 팀 프로젝트로 2026 실감미디어 경진대회 최우수상(한국연구재단 이사장상), MAD STARS IMMERSIVE MEDIA COMPETITION 2026 GRAND PRIX와 BCM Academy 창의상을 받았다. 이 조사 수치는 콘텐츠의 회복 효과를 입증하는 자료가 아니다.",
             "기술 구현과 별개로, 누가 어떤 상황에서 짧은 체험을 필요로 하는지 먼저 확인해야 콘텐츠의 흐름과 도입 구조를 설계할 수 있다는 점을 배웠다."
           ]
         }
@@ -3225,7 +3225,8 @@ window.PORTFOLIO = {
       "prize": "중앙대학교 가상융합대학장상",
       "project": "MATMI",
       "id": "MATMI",
-      "sourceKind": "none"
+      "source": "https://news.cau.ac.kr/cms/FR_CON/BoardView.do?MENU_ID=10&CONTENTS_NO=&SITE_NO=5&BOARD_SEQ=1&BOARD_CATEGORY_NO=&BBS_SEQ=9867",
+      "sourceLabel": "중앙대학교 공식 기사"
     },
     {
       "year": "2026.10",
@@ -3238,8 +3239,8 @@ window.PORTFOLIO = {
     },
     {
       "year": "2026.08",
-      "title": "부산국제마케팅광고제 MAD STARS",
-      "prize": "Gold Prize",
+      "title": "부산국제마케팅광고제 MAD STARS IMMERSIVE MEDIA COMPETITION 2026",
+      "prize": "GRAND PRIX",
       "project": "Neuroscape",
       "id": "Neuroscape",
       "source": "https://www.madstars.org/",
