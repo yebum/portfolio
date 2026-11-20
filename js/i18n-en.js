@@ -120,7 +120,7 @@
       'An EEG-driven VR meditation experience designed around teachers’ short breaks. Live brainwave changes shape the motion and form of a personal immersive environment.',
       ['A break is not always restorative', 'Teachers may have short gaps in the day without a quiet space or an effective way to recover.'],
       ['A ten-minute responsive VR experience', 'VR reduces outside stimuli while EEG input drives generative media art for a different experience each time.'],
-      ['Validated MVP and Gold Prize', 'The team built an EEG and VR recovery-content MVP; Neuroscape also received a MAD STARS Gold Prize.'],
+      ['EEG and VR MVP, top prize', 'The team built an EEG and VR recovery-content MVP and won a top prize at the 2026 Immersive Media Competition, awarded by the National Research Foundation of Korea.'],
       'Concept and interactive content development'
     ),
     BeyondTheCenter: P(
@@ -265,6 +265,7 @@
     '2026 GLOBAL STARTUP COMPETITION 중앙대학교 가상융합대학장상': '2026 Global Startup Competition · Dean’s Award, Chung-Ang University College of Virtual Convergence',
     '제주 바이오 AX 해커톤 우수상': 'Jeju Bio AX Hackathon · Excellence Award',
     'BCM Academy 창의상': 'BCM Academy · Creativity Award',
+    '2026 실감미디어 경진대회 최우수상 · 한국연구재단 이사장상': '2026 Immersive Media Competition · Top Prize, National Research Foundation of Korea Chairperson’s Award',
     '학과 우수작 연합PT': 'Outstanding Department Project',
     'COSS 스타트업 경진대회 우수상': 'COSS Startup Competition · Excellence Award',
     '런케이션 해커톤 장려상': 'Learncation Hackathon · Encouragement Award',
@@ -415,24 +416,24 @@
     ['2019 — 2021', 'Daegi High School', ''],
   ];
   D.experience = [
-    ['2026', 'Participating artist, HCF Media Art Show', 'Allow All'],
-    ['2026', 'Realistic Media Competition · finalist', 'Convergence & Open Sharing System for Immersive Media'],
-    ['2026', 'Lead Korean-artist visuals and sound-interactive production for XMF Festival', 'XMF FESTIVAL'],
-    ['2026', 'Audiovisual production for Jambinai — Time of Extinction', 'KALEIDOSCOPE'],
-    ['2026', 'YOUNG STARS Competition · finalist', 'MAD STARS'],
-    ['2026', 'PRISM 2026 Convergence Startup Camp', 'Convergence & Open Sharing System for Immersive Media'],
-    ['2026', 'MAP Public-Space Media Art Project', 'Hwaseong City Cultural Foundation'],
-    ['2026', 'Immersive Media Social Living Lab PBL', 'Convergence & Open Sharing System for Immersive Media'],
-    ['2026', '2nd Immersive Exhibition', 'Kaywon University of Art & Design'],
-    ['2026', 'XR Studio Showcase', 'Chung-Ang University'],
-    ['2026', 'Joint presentation of outstanding department work', 'Unity Programming'],
-    ['2026', 'AI Product Planning Specialist, Level 1', 'MainContents Co., Ltd'],
-    ['2026', 'Immersive Media COSS Supporters, Season 5', 'Convergence & Open Sharing System for Immersive Media'],
-    ['2026', 'UI/UX team, Dundeun AI · Y-Startup Season 3', 'Y-Ventures'],
-    ['2026', 'Keimyung University Winter Global Programme', 'Convergence & Open Sharing System for Immersive Media'],
-    ['2026', 'Kyung Hee University Unity & Blender Programme', 'Convergence & Open Sharing System for Immersive Media'],
-    ['2025', 'Superplay Supporters, Season 2', 'Superplay'],
-    ['2025', 'Joint presentation of outstanding department work', 'Immersive Media Basics · Video Basics · 3D Motion Graphics'],
+    ['2026.10', 'Participating artist, HCF Media Art Show', 'Allow All'],
+    ['2026.10', 'Lead Korean-artist visuals and sound-interactive production for XMF Festival', 'XMF FESTIVAL'],
+    ['2026.08', 'Audiovisual production for Jambinai — Time of Extinction', 'KALEIDOSCOPE'],
+    ['2026.08', 'YOUNG STARS Competition · finalist', 'MAD STARS'],
+    ['2026.08', 'PRISM 2026 Convergence Startup Camp', 'Convergence & Open Sharing System for Immersive Media'],
+    ['2026.07–10', 'MAP Public-Space Media Art Project', 'Hwaseong City Cultural Foundation'],
+    ['2026.06–07', 'Immersive Media Social Living Lab PBL', 'Convergence & Open Sharing System for Immersive Media'],
+    ['2026.06', '2nd Immersive Exhibition', 'Kaywon University of Art & Design'],
+    ['2026.06', 'XR Studio Showcase', 'Chung-Ang University'],
+    ['2026.06', 'Joint presentation of outstanding department work', 'Unity Programming'],
+    ['2026.05', 'AI Product Planning Specialist, Level 1', 'MainContents Co., Ltd'],
+    ['2026.04–Present', 'Immersive Media COSS Supporters, Season 5', 'Convergence & Open Sharing System for Immersive Media'],
+    ['2026.01', 'UI/UX team, Dundeun AI · Y-Startup Season 3', 'Y-Ventures'],
+    ['2026.01', 'Keimyung University Winter Global Programme', 'Convergence & Open Sharing System for Immersive Media'],
+    ['2025.12', 'Kyung Hee University Unity & Blender Programme', 'Convergence & Open Sharing System for Immersive Media'],
+    ['2025.10–12', 'Superplay Supporters, Season 2', 'Superplay'],
+    ['2025.12', 'Joint presentation of outstanding department work', '3D Motion Graphics'],
+    ['2025.06', 'Joint presentation of outstanding department work', 'Immersive Media Basics · Video Basics'],
     ['2025', 'GTQ Photoshop & Illustrator, Level 1', 'Korea Productivity Center'],
   ];
   const awardCopy = {
@@ -449,9 +450,11 @@
     if (a.id === 'FEELD') copy = ['33rd Kaywon Arts Festival', 'FEELD', 'Outstanding Department Work', ''];
     if (a.id === 'MATMI' && a.title.includes('GLOBAL STARTUP COMPETITION')) copy =
       ['2026 Global Startup Competition', 'MATMI', 'Dean’s Award, Chung-Ang University College of Virtual Convergence', ''];
-    if (a.id === 'Neuroscape') copy = a.title.includes('MAD STARS')
-      ? ['MAD STARS', 'Neuroscape', 'Gold Prize', 'MAD STARS website']
-      : ['2026 BCM Academy AI X Media Startup Project', 'Neuroscape', 'Creativity Award', 'BCM Academy post'];
+    if (a.id === 'Neuroscape') copy = a.title.includes('실감미디어 경진대회')
+      ? ['2026 Immersive Media Competition', 'Neuroscape', 'Top Prize · National Research Foundation of Korea Chairperson’s Award', '']
+      : a.title.includes('MAD STARS')
+        ? ['MAD STARS', 'Neuroscape', 'Gold Prize', 'MAD STARS website']
+        : ['2026 BCM Academy AI X Media Startup Project', 'Neuroscape', 'Creativity Award', 'BCM Academy post'];
     if (copy) [a.title, a.project, a.prize, a.sourceLabel] = copy;
     else if (!a.id) [a.title, a.project, a.prize, a.sourceLabel] =
       ['Korea Game Society × Nexon Games National Student Digital Art Competition', 'Texture of White', 'Special Selection', 'Award winners PDF'];

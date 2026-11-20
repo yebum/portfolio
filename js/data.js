@@ -1420,6 +1420,7 @@ window.PORTFOLIO = {
         "xr"
       ],
       "awards": [
+        "2026 실감미디어 경진대회 최우수상 · 한국연구재단 이사장상",
         "MAD STARS Gold Prize",
         "BCM Academy 창의상"
       ],
@@ -1507,9 +1508,9 @@ window.PORTFOLIO = {
           ]
         },
         "result": {
-          "summary": "EEG·VR 회복 콘텐츠 MVP, MAD STARS Gold Prize",
+          "summary": "EEG·VR 회복 콘텐츠 MVP, 실감미디어 경진대회 최우수상",
           "body": [
-            "EEG 입력에 반응하는 VR 미디어아트 명상 콘텐츠 MVP를 구현했다. 교사와 교육기관 관계자의 응답으로 문제와 도입 가능성을 검토했고, 팀 프로젝트로 MAD STARS Gold Prize와 BCM Academy 창의상을 받았다. 이 조사 수치는 콘텐츠의 회복 효과를 입증하는 자료가 아니다.",
+            "EEG 입력에 반응하는 VR 미디어아트 명상 콘텐츠 MVP를 구현했다. 교사와 교육기관 관계자의 응답으로 문제와 도입 가능성을 검토했고, 팀 프로젝트로 2026 실감미디어 경진대회 최우수상(한국연구재단 이사장상), MAD STARS Gold Prize와 BCM Academy 창의상을 받았다. 이 조사 수치는 콘텐츠의 회복 효과를 입증하는 자료가 아니다.",
             "기술 구현과 별개로, 누가 어떤 상황에서 짧은 체험을 필요로 하는지 먼저 확인해야 콘텐츠의 흐름과 도입 구조를 설계할 수 있다는 점을 배웠다."
           ]
         }
@@ -3203,7 +3204,15 @@ window.PORTFOLIO = {
   ],
   "awards": [
     {
-      "year": "2026",
+      "year": "2026.11",
+      "title": "2026 실감미디어 경진대회",
+      "prize": "최우수상 · 한국연구재단 이사장상",
+      "project": "Neuroscape",
+      "id": "Neuroscape",
+      "sourceKind": "none"
+    },
+    {
+      "year": "2026.11",
       "title": "제33회 계원조형예술제",
       "prize": "학과우수작",
       "project": "FEELD",
@@ -3211,7 +3220,7 @@ window.PORTFOLIO = {
       "sourceKind": "none"
     },
     {
-      "year": "2026",
+      "year": "2026.11",
       "title": "2026 GLOBAL STARTUP COMPETITION",
       "prize": "중앙대학교 가상융합대학장상",
       "project": "MATMI",
@@ -3219,7 +3228,7 @@ window.PORTFOLIO = {
       "sourceKind": "none"
     },
     {
-      "year": "2026",
+      "year": "2026.10",
       "title": "2026 Global Start-up Design Thinking Hackathon",
       "prize": "GRAND AWARD",
       "project": "MATMI",
@@ -3228,7 +3237,7 @@ window.PORTFOLIO = {
       "sourceLabel": "조선에듀 기사"
     },
     {
-      "year": "2026",
+      "year": "2026.08",
       "title": "부산국제마케팅광고제 MAD STARS",
       "prize": "Gold Prize",
       "project": "Neuroscape",
@@ -3238,7 +3247,7 @@ window.PORTFOLIO = {
       "sourceKind": "event"
     },
     {
-      "year": "2026",
+      "year": "2026.07",
       "title": "제주 바이오 AX 해커톤",
       "prize": "우수상",
       "project": "연결",
@@ -3246,7 +3255,7 @@ window.PORTFOLIO = {
       "sourceKind": "none"
     },
     {
-      "year": "2026",
+      "year": "2026.07",
       "title": "2026 BCM Academy AI X Media Startup Project",
       "prize": "창의상",
       "project": "Neuroscape",
@@ -3256,7 +3265,7 @@ window.PORTFOLIO = {
       "sourceKind": "event"
     },
     {
-      "year": "2026",
+      "year": "2026.05",
       "title": "\"Let's Go!\" COSS 스타트업 경진대회",
       "prize": "우수상",
       "project": "팀플!",
@@ -3265,7 +3274,7 @@ window.PORTFOLIO = {
       "sourceLabel": "머니투데이 기사 · 수상팀명 숨뱉어"
     },
     {
-      "year": "2026",
+      "year": "2026.05",
       "title": "한국게임학회 × 넥슨게임즈 전국 대학생 디지털 아트 공모전",
       "prize": "특선",
       "project": "백색의 결",
@@ -3274,7 +3283,7 @@ window.PORTFOLIO = {
       "sourceLabel": "한국게임학회 수상자 명단 PDF"
     },
     {
-      "year": "2026",
+      "year": "2026.01",
       "title": "NextGen Startup Challenge",
       "prize": "3rd Prize",
       "project": "CITY",
@@ -3284,7 +3293,7 @@ window.PORTFOLIO = {
       "sourceKind": "event"
     },
     {
-      "year": "2026",
+      "year": "2026.01",
       "title": "Think City Hackathon 2026",
       "prize": "Community Impact Award",
       "project": "Jeonger",
@@ -3293,7 +3302,7 @@ window.PORTFOLIO = {
       "sourceLabel": "Devpost 수상 프로젝트"
     },
     {
-      "year": "2025",
+      "year": "2025.11",
       "title": "제주가치 공감 런케이션 해커톤",
       "prize": "장려상",
       "project": "가치 제주, 고치 제주",
@@ -3305,94 +3314,94 @@ window.PORTFOLIO = {
   ],
   "experience": [
     [
-      "2026",
+      "2026.10",
       "HCF 미디어아트쇼 참여작가",
       "모두 허용"
     ],
     [
-      "2026",
-      "실감미디어 경진대회 결선 진출",
-      "실감미디어 혁신융합대학사업단"
-    ],
-    [
-      "2026",
+      "2026.10",
       "XMF 페스티벌 한국 아티스트 총괄 사운드 인터랙티브 비주얼 제작",
       "XMF FESTIVAL"
     ],
     [
-      "2026",
+      "2026.08",
       "잠비나이 — 소멸의시간 오디오비주얼 제작",
       "KALEIDOSCOPE : 만화경"
     ],
     [
-      "2026",
+      "2026.08",
       "YOUNG STARS 경진대회 본선 진출",
       "부산국제마케팅광고제"
     ],
     [
-      "2026",
+      "2026.08",
       "융합창업캠프 PRISM 2026",
       "실감미디어 혁신융합대학사업단"
     ],
     [
-      "2026",
+      "2026.07–10",
       "2026 공공공간 미디어아트 프로젝트 MAP",
       "화성시문화관광재단"
     ],
     [
-      "2026",
+      "2026.06–07",
       "소셜리빙랩 실감미디어 PBL",
       "실감미디어 혁신융합대학사업단"
     ],
     [
-      "2026",
+      "2026.06",
       "제2회 이머시브 전시회",
       "계원예술대학교"
     ],
     [
-      "2026",
+      "2026.06",
       "XR스튜디오 쇼케이스",
       "중앙대학교"
     ],
     [
-      "2026",
+      "2026.06",
       "학과 우수작 연합PT",
       "유니티 프로그래밍"
     ],
     [
-      "2026",
+      "2026.05",
       "AI프로덕트 기획전문가 1급",
       "MainContents Co., Ltd"
     ],
     [
-      "2026",
+      "2026.04–현재",
       "실감미디어 COSS 서포터즈 5기",
       "실감미디어 혁신융합대학사업단"
     ],
     [
-      "2026",
+      "2026.01",
       "Y-Startup 3기 '든든AI' UI/UX 팀",
       "Y-Ventures"
     ],
     [
-      "2026",
+      "2026.01",
       "계명대 동계 글로벌 프로그램 수료",
       "실감미디어 혁신융합대학사업단"
     ],
     [
-      "2026",
+      "2025.12",
       "경희대 Unity · Blender 비교과 프로그램 수료",
       "실감미디어 혁신융합대학사업단"
     ],
     [
-      "2025",
+      "2025.10–12",
       "슈퍼플레이 서포터즈 2기",
       "슈퍼플레이"
     ],
     [
-      "2025",
+      "2025.12",
       "학과 우수작 연합PT",
-      "실감미디어기초 · 영상기초 · 3D모션그래픽스"
+      "3D모션그래픽스"
+    ],
+    [
+      "2025.06",
+      "학과 우수작 연합PT",
+      "실감미디어기초 · 영상기초"
     ],
     [
       "2025",
