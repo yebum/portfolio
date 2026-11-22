@@ -77,7 +77,9 @@ export async function createAsciiBackground() {
     }
   };
   const resize = () => {
-    if (width === innerWidth && height === innerHeight) return;
+    // Mobile browsers change innerHeight while the address bar slides in and out during
+    // scrolling; the fixed canvas simply stretches for those, so only rebuild for real resizes.
+    if (width === innerWidth && Math.abs(height - innerHeight) < 160) return;
     width = innerWidth; height = innerHeight;
     // One CSS pixel per bitmap pixel is enough for this deliberately soft background.
     canvas.width = width; canvas.height = height;

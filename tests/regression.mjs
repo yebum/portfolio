@@ -231,7 +231,8 @@ try {
         }
       }
       if (projectId === 'FEELD') {
-        assert.equal(await page.locator('.embed video[controls]').count(), 1, 'FEELD local video is visible without a preview click');
+        // FEELD's film moved from a local MP4 to YouTube (8662784).
+        assert.equal(await page.locator('.embed video').count(), 0, 'FEELD has no local video');
         assert.equal(await page.locator('.embed iframe[src*="youtube-nocookie.com"]').count(), 1, 'YouTube film is embedded on render');
         assert.equal(await page.locator('.pdf-view iframe[src$="FEELD.pdf"]').count(), 1, 'PDF is embedded on render');
         await page.locator('.pd-gallery-open').first().click();
@@ -304,7 +305,8 @@ try {
   await page.locator('#nav-menu').click();
   assert.equal(await page.locator('#nav-menu').getAttribute('aria-expanded'), 'true', 'mobile menu opens');
   assert.equal(await page.locator('#nav-menu span').textContent(), 'Close', 'menu action changes to Close');
-  assert.equal(await page.locator('#nav-links').isVisible(), true, 'mobile navigation links are visible');
+  // The menu fades in over .25s; wait for it instead of sampling the first frame.
+  await page.locator('#nav-links').waitFor({ state: 'visible', timeout: 2000 });
   await page.locator('#nav-menu').click();
   assert.equal(await page.locator('#nav-menu').getAttribute('aria-expanded'), 'false', 'mobile menu closes');
   await page.goto(base + '/');
