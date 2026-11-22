@@ -43,6 +43,8 @@ body {
   overflow-wrap: break-word;
 }
 img { display: block; max-width: 100%; }
+/* Safety net: never let one wide element add a horizontal scrollbar (clip keeps position: sticky working). */
+html, body { overflow-x: clip; }
 body { isolation: isolate; }
 .ascii-background { position:fixed; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none; opacity:.19; }
 .ascii-toggle { display:block; margin-top:24px; color:var(--mute); min-height:32px; }
@@ -170,6 +172,8 @@ h1, h2, h3, p { margin: 0; }
 .chip--light:is(a,button):hover { background: #dcdcd8; }
 .chip--award { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px rgba(10,10,10,.14); height: 24px; padding: 0 9px; font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: -0.01em; }
 .chip--award:is(a,button):hover { color:#fff; }
+/* Long award names wrap instead of widening the page on narrow screens. */
+.chip--award { max-width: 100%; height: auto; min-height: 24px; padding-block: 5px; line-height: 1.35; white-space: normal; text-align: left; }
 
 .sec-label {
   display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
@@ -868,12 +872,12 @@ h1, h2, h3, p { margin: 0; }
   .footer-links { flex-wrap: wrap; gap: 8px 20px; }
 
   .pd-bar { padding: 14px calc(var(--pad) + 4px); }
-  .pd-hero-layout { grid-template-columns: 1fr; gap: 24px; min-height: 0; }
+  .pd-hero-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; min-height: 0; }
   .pd-hero-copy { gap: 22px; padding: 16px 0 20px; }
   .pd-hero-heading { margin-block: 0; padding: 0; }
   .pd-hero .display { max-width: none; margin-bottom: 12px; font-size: clamp(38px, 7vw, 64px); }
   .pd-hero-media img { max-height: min(60svh, 650px); }
-  .pd-intro, .pd-sec { grid-template-columns: 1fr; }
+  .pd-intro, .pd-sec { grid-template-columns: minmax(0, 1fr); }
   .cs-strip { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .m-group { grid-template-columns: minmax(0, 1fr); }
   .m-stats--3 { --cols: 1; } .m-stats--2 { --cols: 2; }
@@ -886,7 +890,7 @@ h1, h2, h3, p { margin: 0; }
   .pdf-view { aspect-ratio: 3 / 4; }
   .pdf-file { grid-template-columns: auto minmax(0, 1fr); }
   .pdf-file .chips { grid-column: 2; }
-  .embeds--2, .pd-gallery, .pd-next { grid-template-columns: 1fr; }
+  .embeds--2, .pd-gallery, .pd-next { grid-template-columns: minmax(0, 1fr); }
   .embed .card { aspect-ratio: 4 / 3; }
   .embed-cap { flex-direction: column; gap: 6px; }
   .modal { width: calc(100vw - 16px); }
@@ -1772,4 +1776,22 @@ html[lang='en'] .cs-sum { letter-spacing:-.015em; }
  .feeld-system-flow li:nth-child(-n+2) { border-bottom: 1px solid currentColor; }
  .feeld-signal-flow { grid-template-columns: 1fr; gap: 1rem; }
  .feeld-signal-flow > span { transform: rotate(90deg); justify-self: start; }
+}
+
+/* ── Touch devices: larger hit areas, no input zoom ─────────────
+   iOS Safari zooms the page when a focused field is under 16px.
+   Small text links get invisible padding so they reach ~40px tall
+   without changing the layout. */
+@media (pointer: coarse) {
+  input, textarea, select { font-size: 16px !important; }
+  .chip { min-height: 40px; }
+  .chip--award { min-height: 32px; }
+  .pd-bar .back, .pd-step a, .footer-links a, .to-top, .embed-cap a, .intro-after-copy a, .fact-link {
+    position: relative;
+  }
+  .pd-bar .back::after, .pd-step a::after, .footer-links a::after, .to-top::after,
+  .embed-cap a::after, .intro-after-copy a::after, .fact-link::after {
+    content: ""; position: absolute; inset: -12px -6px;
+  }
+  .footer-links { row-gap: 14px; }
 }

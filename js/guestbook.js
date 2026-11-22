@@ -16,39 +16,54 @@
   const form = $('#gb-form'), message = $('#gb-message'), name = $('#gb-name');
   const wall = $('#gb-wall'), more = $('#gb-more'), submit = $('#gb-submit');
   const status = (text, kind = '') => { $('#gb-status').textContent = text; $('#gb-status').dataset.kind = kind; };
-  let notes = [], shown = 9, user, api, ref, submitting = false;
+  const PAGE = 9;
+  let notes = [], shown = PAGE, total = null, user, api, ref, unsubscribe = null, submitting = false;
   const dateFormat = new Intl.DateTimeFormat(english ? 'en-US' : 'ko-KR', {year:'numeric',month:'2-digit',day:'2-digit'});
   const count = () => { $('#gb-count').textContent = `${message.value.length} / 200`; };
   message.addEventListener('input', count);
   try { name.value = localStorage.getItem('gbNickname') || ''; } catch (_) {}
   function render() {
-    $('#gb-total').textContent = `Guestbook · ${notes.length}`;
+    $('#gb-total').textContent = `Guestbook · ${total ?? notes.length}`;
     wall.replaceChildren(...notes.slice(0, shown).map(d => {
       const li = document.createElement('li'); li.className = 'gb-card';
       const head = document.createElement('div'); head.className = 'gb-card-top';
-      const author = document.createElement('strong'); author.textContent = d.nickname || 'Anonymous';
+      const author = document.createElement('strong'); author.textContent = typeof d.nickname === 'string' && d.nickname.trim() ? d.nickname.slice(0, 20) : 'Anonymous';
       const time = document.createElement('time'); time.className = 'mono dim';
       const date = d.createdAt?.toDate?.();
       if (date) { time.dateTime = date.toISOString(); time.textContent = dateFormat.format(date); }
       else time.textContent = t('방금 전', 'Just now');
-      const text = document.createElement('p'); text.className = 'gb-text'; text.textContent = d.message;
+      const text = document.createElement('p'); text.className = 'gb-text'; text.textContent = d.message.slice(0, 200);
       head.append(author, time); li.append(head, text); return li;
     }));
     if (!notes.length) { const li = document.createElement('li'); li.className = 'gb-empty'; li.textContent = t('첫 번째 인사를 남겨주세요.', 'Be the first to leave a note.'); wall.append(li); }
     more.hidden = notes.length <= shown;
   }
-  more.addEventListener('click', () => { shown += 9; render(); });
+  // Only the visible page (+1 to know whether more exist) is streamed, so a large or
+  // spammed collection never makes every visitor download every note.
+  function subscribe() {
+    if (unsubscribe) unsubscribe();
+    unsubscribe = api.onSnapshot(api.query(ref, api.orderBy('createdAt', 'desc'), api.limit(shown + 1)), snapshot => {
+      notes = snapshot.docs.map(doc => doc.data()).filter(d => typeof d.message === 'string');
+      render();
+    }, () => { status(t('방명록을 불러오지 못했어요. 잠시 후 다시 열어주세요.', 'Could not load the guestbook. Please try again later.'), 'error'); });
+  }
+  // Count with the same ordering as the wall so notes without a timestamp are not counted.
+  const refreshTotal = () => api.getCountFromServer(api.query(ref, api.orderBy('createdAt', 'desc')))
+    .then(snapshot => { total = snapshot.data().count; render(); })
+    .catch(() => {});
+  more.addEventListener('click', () => { shown += PAGE; subscribe(); });
   function loadGuestbook() {
     Promise.all([import(SDK+'firebase-app.js'), import(SDK+'firebase-auth.js'), import(SDK+'firebase-firestore.js')])
       .then(async ([appModule, auth, fs]) => {
         api = fs;
         const app = appModule.initializeApp(config);
         ref = fs.collection(fs.getFirestore(app), 'guestbook');
-        fs.onSnapshot(fs.query(ref, fs.orderBy('createdAt','desc')), snapshot => {
-          notes = snapshot.docs.map(doc => doc.data()).filter(d => typeof d.message === 'string');
-          render();
-        }, () => { status(t('방명록을 불러오지 못했어요. 잠시 후 다시 열어주세요.', 'Could not load the guestbook. Please try again later.'), 'error'); });
-        try { user = (await auth.signInAnonymously(auth.getAuth(app))).user; submit.disabled = false; status(t('남긴 글은 공개됩니다. 연락처 등 개인정보는 적지 말아주세요.', 'Posts are public. Please do not include contact details or private information.')); }
+        subscribe();
+        refreshTotal();
+        // initializeAuth without a popup/redirect resolver: anonymous sign-in does not need
+        // Google's gapi iframe script, which the CSP blocks and which only adds weight.
+        const authInstance = auth.initializeAuth(app, { persistence: [auth.indexedDBLocalPersistence, auth.browserLocalPersistence] });
+        try { user = (await auth.signInAnonymously(authInstance)).user; submit.disabled = false; status(t('남긴 글은 공개됩니다. 연락처 등 개인정보는 적지 말아주세요.', 'Posts are public. Please do not include contact details or private information.')); }
         catch (_) { status(t('지금은 글을 남길 수 없어요. 잠시 후 다시 열어주세요.', 'Posting is unavailable right now. Please try again later.'), 'error'); }
       }).catch(() => { status(t('연결하지 못했어요. 네트워크를 확인해 주세요.', 'Could not connect. Please check your network.'), 'error'); });
   }
@@ -73,7 +88,7 @@
     try {
       await api.addDoc(ref, {nickname, message:text, authorId:user.uid, createdAt:api.serverTimestamp()});
       try { localStorage.setItem('gbLastSentAt', String(Date.now())); localStorage.setItem('gbNickname', nickname); } catch (_) {}
-      message.value = ''; count(); render(); status(t('남겨주셔서 고맙습니다.', 'Thanks for your note.'), 'ok');
+      message.value = ''; count(); if (total != null) total += 1; render(); status(t('남겨주셔서 고맙습니다.', 'Thanks for your note.'), 'ok');
     } catch (_) { status(t('저장하지 못했어요. 내용을 그대로 두었으니 다시 시도해 주세요.', 'Could not save your note. Your text is still here; please try again.'), 'error'); }
     finally { submitting = false; submit.disabled = false; }
   });
