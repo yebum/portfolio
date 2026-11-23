@@ -273,6 +273,12 @@
   };
   const hasKorean = value => /[가-힣]/.test(value || '');
   const captionCopy = {
+    'FEELD · 전시 설치 전경': 'FEELD · Exhibition installation',
+    'FEELD · 관람객과 숲 체험': 'FEELD · Visitors exploring the forest',
+    'FEELD · 자연물 터치 인터랙션': 'FEELD · Touch interaction with natural materials',
+    'FEELD · 현장 숲 영상': 'FEELD · Forest visuals on site',
+    'FEELD · 전시 현장 전경': 'FEELD · Exhibition overview',
+    'FEELD · 자연물 체험 디테일': 'FEELD · Tactile experience detail',
     'FEELD · 체험 인트로': 'FEELD · Experience introduction',
     'FEELD · 숲 장면': 'FEELD · Reconstructed forest',
     'FEELD · 숲길': 'FEELD · Forest path',
