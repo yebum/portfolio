@@ -419,7 +419,7 @@
   D.experience = [
         ['2026.11', 'Selected for National Science Museum interactive media open call “Illusions of the Body, Unfamiliar Senses”', 'Flat Depth'],
 
-    ['2026.10', 'Participating artist, HCF Media Art Show', 'Allow All'],
+    ['2026.10', 'Participating artist, HCF Media Art Show', 'Allow All, Seungmu'],
     ['2026.10', 'Lead Korean-artist visuals and sound-interactive production for XMF Festival', 'XMF FESTIVAL'],
     ['2026.08', 'Audiovisual production for Jambinai — Time of Extinction', 'KALEIDOSCOPE'],
     ['2026.08', 'YOUNG STARS Competition · finalist', 'MAD STARS'],
