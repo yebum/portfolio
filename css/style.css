@@ -1795,3 +1795,16 @@ html[lang='en'] .cs-sum { letter-spacing:-.015em; }
   }
   .footer-links { row-gap: 14px; }
 }
+
+/* ── XMF live × previz clips (4:5, footage over mock-up) ───────── */
+.pd-clips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
+.pd-clip { display: grid; gap: 10px; margin: 0; }
+.pd-clip-toggle { position: relative; display: block; width: 100%; padding: 0; border: 0; border-radius: 12px; overflow: hidden; background: #050505; cursor: pointer; aspect-ratio: 4 / 5; }
+.pd-clip video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pd-clip-state { position: absolute; right: 10px; bottom: 10px; padding: 5px 8px; border-radius: 6px; background: rgba(0, 0, 0, .55); color: #fff; font-size: 10px; opacity: 0; transition: opacity .2s; }
+.pd-clip.is-paused .pd-clip-state { opacity: 1; }
+.pd-clip.is-paused .pd-clip-state::before { content: "▶ Play"; }
+.pd-clip-toggle:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.pd-clip figcaption { padding: 0 var(--inset); }
+@media (max-width: 1100px) { .pd-clips { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .pd-clips { grid-template-columns: minmax(0, 1fr); } }
