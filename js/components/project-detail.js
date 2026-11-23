@@ -166,6 +166,22 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
     }
   });
 
+  // Clips load and play only while on screen; reduced motion leaves them paused until tapped.
+  let clipObserver = null;
+  function watchClips() {
+    clipObserver?.disconnect();
+    const videos = $$('.pd-clip video', detail);
+    if (!videos.length) return;
+    if (reduced) videos.forEach(v => v.closest('.pd-clip').classList.add('is-paused'));
+    clipObserver = new IntersectionObserver(entries => entries.forEach(({ target, isIntersecting }) => {
+      const fig = target.closest('.pd-clip');
+      if (!isIntersecting) { target.pause(); return; }
+      if (reduced || fig.classList.contains('is-paused')) return;
+      target.play().catch(() => fig.classList.add('is-paused'));
+    }), { threshold: 0.35 });
+    videos.forEach(v => clipObserver.observe(v));
+  }
+
   function renderDetail(id) {
     const p = Object.hasOwn(byId, id) ? byId[id] : null;
     if (!p) { location.hash = '#/index'; return; }
@@ -203,6 +219,22 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
         <div class="pd-gallery">${gallery.map((im, i) => `
           <figure data-reveal><button class="pd-gallery-open" type="button" data-gallery-index="${i}" aria-label="${esc(im.label || p.fullTitle)} ${t('크게 보기', 'view enlarged')}"><img src="${src(im.src)}"${imageDimensions(im.src)}${responsive(im.src, '(max-width: 760px) 100vw, 50vw')} alt="" loading="lazy" decoding="async"><span aria-hidden="true">↗</span></button>
           ${im.label ? `<figcaption class="mono dim">${esc(im.label)}</figcaption>` : ''}</figure>`).join('')}
+        </div>
+      </section>` : '';
+
+    // Stacked festival clips: on-site footage on top, stage preview mock-up below.
+    const clipList = (m.clips || []).filter(c => /^assets\/video\/[\w.-]+\.mp4$/.test(c.src));
+    const clips = clipList.length ? `
+      <section class="pd-block" aria-label="${t('현장 영상과 프리비즈', 'Live footage and stage preview')}">
+        <div class="sec-label"><span class="mono">Live × Previz</span><span class="ctx dim">${t('위 현장 영상 · 아래 프리비즈 목업', 'Top: live footage · Bottom: stage preview')}</span></div>
+        <div class="pd-clips">${clipList.map(c => `
+          <figure class="pd-clip" data-reveal>
+            <button class="pd-clip-toggle" type="button" aria-label="${esc(c.label)} ${t('재생 / 일시정지', 'play / pause')}">
+              <video src="${esc(c.src)}"${c.poster ? ` poster="${esc(src(c.poster))}"` : ''} width="720" height="900" muted loop playsinline preload="none" aria-hidden="true"></video>
+              <span class="pd-clip-state mono" aria-hidden="true"></span>
+            </button>
+            <figcaption class="mono dim">${esc(c.label)}</figcaption>
+          </figure>`).join('')}
         </div>
       </section>` : '';
 
@@ -288,6 +320,7 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
               <p>${esc(s.body)}</p>
             </div>`).join('')}
         </section>${decks}`}
+        ${clips}
         ${imgs}
         ${links}
 
@@ -299,6 +332,7 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
       </article>`;
     document.title = `${p.fullTitle} — Yebum Ko`;
     observeReveals(detail);
+    watchClips();
   }
 
   detail.addEventListener('click', e => {
@@ -307,6 +341,13 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
       const url = `${location.origin}/work/${encodeURIComponent(id)}/`;
       if (navigator.clipboard?.writeText) navigator.clipboard.writeText(url).then(() => toast(t('프로젝트 주소를 복사했습니다.', 'Project link copied.'))).catch(() => toast(url));
       else toast(url);
+      return;
+    }
+    const clipButton = e.target.closest('.pd-clip-toggle');
+    if (clipButton) {
+      const video = clipButton.querySelector('video'), fig = clipButton.closest('.pd-clip');
+      if (video.paused) { fig.classList.remove('is-paused'); video.play().catch(() => fig.classList.add('is-paused')); }
+      else { fig.classList.add('is-paused'); video.pause(); }
       return;
     }
     const imageButton = e.target.closest('[data-gallery-index]');

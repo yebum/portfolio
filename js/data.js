@@ -330,38 +330,37 @@ window.PORTFOLIO = {
           }
         ],
         "decks": [],
-        "images": [
+        "images": [],
+        "clips": [
           {
-            "src": "XMF-YOUNHA-01",
-            "label": "윤하 · Rock like star · 이미지 C"
+            "src": "assets/video/XMF-live-YOUNHA-486-1.mp4",
+            "poster": "XMF-live-YOUNHA-486-1",
+            "label": "비밀번호 486 · 01",
+            "labelEn": "Password 486 · 01"
           },
           {
-            "src": "XMF-YOUNHA-02",
-            "label": "윤하 · 비밀번호486 · 이미지 A"
+            "src": "assets/video/XMF-live-YOUNHA-486-2.mp4",
+            "poster": "XMF-live-YOUNHA-486-2",
+            "label": "비밀번호 486 · 02",
+            "labelEn": "Password 486 · 02"
           },
           {
-            "src": "XMF-YOUNHA-03",
-            "label": "윤하 · 비밀번호486 · 이미지 B"
+            "src": "assets/video/XMF-live-YOUNHA-486-3.mp4",
+            "poster": "XMF-live-YOUNHA-486-3",
+            "label": "비밀번호 486 · 03",
+            "labelEn": "Password 486 · 03"
           },
           {
-            "src": "XMF-YOUNHA-04",
-            "label": "윤하 · 비밀번호486 · 이미지 C"
+            "src": "assets/video/XMF-live-YOUNHA-486-4.mp4",
+            "poster": "XMF-live-YOUNHA-486-4",
+            "label": "비밀번호 486 · 04",
+            "labelEn": "Password 486 · 04"
           },
           {
-            "src": "XMF-YOUNHA-05",
-            "label": "윤하 · 비밀번호486 · 이미지 D"
-          },
-          {
-            "src": "XMF-YOUNHA-06",
-            "label": "윤하 · 비밀번호486 · 이미지 E"
-          },
-          {
-            "src": "XMF-YOUNHA-07",
-            "label": "윤하 · 비밀번호486 · 이미지 F"
-          },
-          {
-            "src": "XMF-YOUNHA-08",
-            "label": "윤하 · 비밀번호486 · 이미지 G"
+            "src": "assets/video/XMF-live-YOUNHA-486-5.mp4",
+            "poster": "XMF-live-YOUNHA-486-5",
+            "label": "비밀번호 486 · 05",
+            "labelEn": "Password 486 · 05"
           }
         ],
         "links": []
@@ -435,122 +434,43 @@ window.PORTFOLIO = {
           }
         ],
         "decks": [],
-        "images": [
+        "images": [],
+        "clips": [
           {
-            "src": "XMF-LUCY-01",
-            "label": "LUCY · 개화 · 이미지 A"
+            "src": "assets/video/XMF-live-LUCY-Gaehwa-1.mp4",
+            "poster": "XMF-live-LUCY-Gaehwa-1",
+            "label": "개화 · 01",
+            "labelEn": "Flowering · 01"
           },
           {
-            "src": "XMF-LUCY-02",
-            "label": "LUCY · 개화 · 이미지 B"
+            "src": "assets/video/XMF-live-LUCY-Gaehwa-2.mp4",
+            "poster": "XMF-live-LUCY-Gaehwa-2",
+            "label": "개화 · 02",
+            "labelEn": "Flowering · 02"
           },
           {
-            "src": "XMF-LUCY-03",
-            "label": "LUCY · 개화 · 이미지 C"
+            "src": "assets/video/XMF-live-LUCY-Ajirangi-1.mp4",
+            "poster": "XMF-live-LUCY-Ajirangi-1",
+            "label": "아지랑이 · 01",
+            "labelEn": "Ajirangi · 01"
           },
           {
-            "src": "XMF-LUCY-04",
-            "label": "LUCY · 개화 · 이미지 D"
+            "src": "assets/video/XMF-live-LUCY-Ajirangi-2.mp4",
+            "poster": "XMF-live-LUCY-Ajirangi-2",
+            "label": "아지랑이 · 02",
+            "labelEn": "Ajirangi · 02"
           },
           {
-            "src": "XMF-LUCY-05",
-            "label": "LUCY · 개화 · 이미지 E"
+            "src": "assets/video/XMF-live-LUCY-Anigeunde-1.mp4",
+            "poster": "XMF-live-LUCY-Anigeunde-1",
+            "label": "아니 근데 진짜 · 01",
+            "labelEn": "Ani Geunde Jinjja · 01"
           },
           {
-            "src": "XMF-LUCY-06",
-            "label": "LUCY · 개화 · 이미지 F"
-          },
-          {
-            "src": "XMF-LUCY-07",
-            "label": "LUCY · 개화 · 이미지 G"
-          },
-          {
-            "src": "XMF-LUCY-08",
-            "label": "LUCY · 개화 · 이미지 H"
-          },
-          {
-            "src": "XMF-LUCY-09",
-            "label": "LUCY · 아지랑이 · 이미지 A"
-          },
-          {
-            "src": "XMF-LUCY-10",
-            "label": "LUCY · 아지랑이 · 이미지 B"
-          },
-          {
-            "src": "XMF-LUCY-11",
-            "label": "LUCY · 아지랑이 · 이미지 C"
-          },
-          {
-            "src": "XMF-LUCY-12",
-            "label": "LUCY · 아지랑이 · 이미지 D"
-          },
-          {
-            "src": "XMF-LUCY-13",
-            "label": "LUCY · 아지랑이 · 이미지 E"
-          },
-          {
-            "src": "XMF-LUCY-14",
-            "label": "LUCY · 아지랑이 · 이미지 F"
-          },
-          {
-            "src": "XMF-LUCY-15",
-            "label": "LUCY · 아지랑이 · 이미지 G"
-          },
-          {
-            "src": "XMF-LUCY-16",
-            "label": "LUCY · 아지랑이 · 이미지 H"
-          },
-          {
-            "src": "XMF-LUCY-17",
-            "label": "LUCY · 아니 근데 진짜 · 이미지 A"
-          },
-          {
-            "src": "XMF-LUCY-18",
-            "label": "LUCY · 아니 근데 진짜 · 이미지 B"
-          },
-          {
-            "src": "XMF-LUCY-19",
-            "label": "LUCY · 아니 근데 진짜 · 이미지 D"
-          },
-          {
-            "src": "XMF-LUCY-20",
-            "label": "LUCY · 아니 근데 진짜 · 이미지 E"
-          },
-          {
-            "src": "XMF-LUCY-21",
-            "label": "LUCY · 아니 근데 진짜 · 이미지 F"
-          },
-          {
-            "src": "XMF-LUCY-22",
-            "label": "LUCY · 맞네 · 이미지 A"
-          },
-          {
-            "src": "XMF-LUCY-23",
-            "label": "LUCY · 맞네 · 이미지 B"
-          },
-          {
-            "src": "XMF-LUCY-24",
-            "label": "LUCY · 맞네 · 이미지 C"
-          },
-          {
-            "src": "XMF-LUCY-25",
-            "label": "LUCY · 맞네 · 이미지 D"
-          },
-          {
-            "src": "XMF-LUCY-26",
-            "label": "LUCY · 맞네 · 이미지 E"
-          },
-          {
-            "src": "XMF-LUCY-27",
-            "label": "LUCY · 맞네 · 이미지 F"
-          },
-          {
-            "src": "XMF-LUCY-28",
-            "label": "LUCY · 맞네 · 이미지 G"
-          },
-          {
-            "src": "XMF-LUCY-29",
-            "label": "LUCY · 맞네 · 이미지 H"
+            "src": "assets/video/XMF-live-LUCY-Anigeunde-2.mp4",
+            "poster": "XMF-live-LUCY-Anigeunde-2",
+            "label": "아니 근데 진짜 · 02",
+            "labelEn": "Ani Geunde Jinjja · 02"
           }
         ],
         "links": []
@@ -599,19 +519,26 @@ window.PORTFOLIO = {
           { "kind": "youtube", "id": "-ukPUqmVUCE", "label": "2026 · HI-FI UN!CORN · 프리비즈 03" }
         ],
         "decks": [],
-        "images": [
-          { "src": "XMF-Intro", "label": "HI-FI UN!CORN · Intro · Sky Bloom — 프리비즈" },
-          { "src": "XMF-SuperDuper-Sunburst", "label": "Super Duper · Sunburst — 프리비즈" },
-          { "src": "XMF-SuperDuper-Dreamland", "label": "Super Duper · Dreamland — 프리비즈" },
-          { "src": "XMF-StopIt-Mascot", "label": "Stop It · Mascot — 프리비즈" },
-          { "src": "XMF-StopIt-Corridor", "label": "Stop It · Corridor — 프리비즈" },
-          { "src": "XMF-HungryHeart-Liquid", "label": "Hungry Heart · Liquid Heart — 프리비즈" },
-          { "src": "XMF-HungryHeart-Inferno", "label": "Hungry Heart · Inferno — 프리비즈" },
-          { "src": "XMF-LeftOrRight", "label": "Left or Right · Camera FX — 프리비즈" },
-          { "src": "XMF-Butterfly-Visit", "label": "Butterfly · Visit — 프리비즈" },
-          { "src": "XMF-Butterfly-Bloom", "label": "Butterfly · Cold Bloom — 프리비즈" },
-          { "src": "XMF-CottonCandy-Bubble", "label": "Cotton Candy · Bubble — 프리비즈" },
-          { "src": "XMF-CottonCandy-Glitch", "label": "Cotton Candy · Candy Glitch — 프리비즈" }
+        "images": [],
+        "clips": [
+          {
+            "src": "assets/video/XMF-live-HIFI-StopIt.mp4",
+            "poster": "XMF-live-HIFI-StopIt",
+            "label": "Stop It",
+            "labelEn": "Stop It"
+          },
+          {
+            "src": "assets/video/XMF-live-HIFI-HungryHeart.mp4",
+            "poster": "XMF-live-HIFI-HungryHeart",
+            "label": "Hungry Heart",
+            "labelEn": "Hungry Heart"
+          },
+          {
+            "src": "assets/video/XMF-live-HIFI-Butterfly.mp4",
+            "poster": "XMF-live-HIFI-Butterfly",
+            "label": "Butterfly",
+            "labelEn": "Butterfly"
+          }
         ],
         "links": []
       }
@@ -679,110 +606,37 @@ window.PORTFOLIO = {
           }
         ],
         "decks": [],
-        "images": [
+        "images": [],
+        "clips": [
           {
-            "src": "XMF-hrtzwav-01",
-            "label": "HRTZWAV · dream · 이미지 A"
+            "src": "assets/video/XMF-live-HRTZWAV-Dream.mp4",
+            "poster": "XMF-live-HRTZWAV-Dream",
+            "label": "dream",
+            "labelEn": "dream"
           },
           {
-            "src": "XMF-hrtzwav-02",
-            "label": "HRTZWAV · dream · 이미지 B"
+            "src": "assets/video/XMF-live-HRTZWAV-Nineteen.mp4",
+            "poster": "XMF-live-HRTZWAV-Nineteen",
+            "label": "nineteen",
+            "labelEn": "nineteen"
           },
           {
-            "src": "XMF-hrtzwav-03",
-            "label": "HRTZWAV · dream · 이미지 C"
+            "src": "assets/video/XMF-live-HRTZWAV-Mind-1.mp4",
+            "poster": "XMF-live-HRTZWAV-Mind-1",
+            "label": "mind · 01",
+            "labelEn": "mind · 01"
           },
           {
-            "src": "XMF-hrtzwav-04",
-            "label": "HRTZWAV · nineteen · 이미지 A"
+            "src": "assets/video/XMF-live-HRTZWAV-Mind-2.mp4",
+            "poster": "XMF-live-HRTZWAV-Mind-2",
+            "label": "mind · 02",
+            "labelEn": "mind · 02"
           },
           {
-            "src": "XMF-hrtzwav-05",
-            "label": "HRTZWAV · nineteen · 이미지 B"
-          },
-          {
-            "src": "XMF-hrtzwav-06",
-            "label": "HRTZWAV · nineteen · 이미지 C"
-          },
-          {
-            "src": "XMF-hrtzwav-07",
-            "label": "HRTZWAV · nineteen · 이미지 D"
-          },
-          {
-            "src": "XMF-hrtzwav-08",
-            "label": "HRTZWAV · nineteen · 이미지 E"
-          },
-          {
-            "src": "XMF-hrtzwav-09",
-            "label": "HRTZWAV · mind · 이미지 A"
-          },
-          {
-            "src": "XMF-hrtzwav-10",
-            "label": "HRTZWAV · mind · 이미지 B"
-          },
-          {
-            "src": "XMF-hrtzwav-11",
-            "label": "HRTZWAV · mind · 이미지 C"
-          },
-          {
-            "src": "XMF-hrtzwav-12",
-            "label": "HRTZWAV · mind · 이미지 D"
-          },
-          {
-            "src": "XMF-hrtzwav-13",
-            "label": "HRTZWAV · mind · 이미지 E"
-          },
-          {
-            "src": "XMF-hrtzwav-14",
-            "label": "HRTZWAV · mind · 이미지 F"
-          },
-          {
-            "src": "XMF-hrtzwav-15",
-            "label": "HRTZWAV · play my guitar · 이미지 A"
-          },
-          {
-            "src": "XMF-hrtzwav-16",
-            "label": "HRTZWAV · play my guitar · 이미지 B"
-          },
-          {
-            "src": "XMF-hrtzwav-17",
-            "label": "HRTZWAV · play my guitar · 이미지 C"
-          },
-          {
-            "src": "XMF-hrtzwav-18",
-            "label": "HRTZWAV · play my guitar · 이미지 D"
-          },
-          {
-            "src": "XMF-hrtzwav-19",
-            "label": "HRTZWAV · 어리버리 · 이미지 C"
-          },
-          {
-            "src": "XMF-hrtzwav-20",
-            "label": "HRTZWAV · i am so fine · 이미지 A"
-          },
-          {
-            "src": "XMF-hrtzwav-21",
-            "label": "HRTZWAV · i am so fine · 이미지 B"
-          },
-          {
-            "src": "XMF-hrtzwav-22",
-            "label": "HRTZWAV · i am so fine · 이미지 C"
-          },
-          {
-            "src": "XMF-hrtzwav-23",
-            "label": "HRTZWAV · i am so fine · 이미지 D"
-          },
-          {
-            "src": "XMF-hrtzwav-24",
-            "label": "HRTZWAV · alive · 이미지 A"
-          },
-          {
-            "src": "XMF-hrtzwav-25",
-            "label": "HRTZWAV · alive · 이미지 B"
-          },
-          {
-            "src": "XMF-hrtzwav-26",
-            "label": "HRTZWAV · alive · 이미지 C"
+            "src": "assets/video/XMF-live-HRTZWAV-Alive.mp4",
+            "poster": "XMF-live-HRTZWAV-Alive",
+            "label": "alive",
+            "labelEn": "alive"
           }
         ],
         "links": []
@@ -851,34 +705,31 @@ window.PORTFOLIO = {
           }
         ],
         "decks": [],
-        "images": [
+        "images": [],
+        "clips": [
           {
-            "src": "XMF-THEFIX-01",
-            "label": "THE FIX · Intro · 이미지"
+            "src": "assets/video/XMF-live-THEFIX-Intro.mp4",
+            "poster": "XMF-live-THEFIX-Intro",
+            "label": "Intro",
+            "labelEn": "Intro"
           },
           {
-            "src": "XMF-THEFIX-02",
-            "label": "THE FIX · Moonrise · 이미지 A"
+            "src": "assets/video/XMF-live-THEFIX-Moonrise-1.mp4",
+            "poster": "XMF-live-THEFIX-Moonrise-1",
+            "label": "Moonrise · 01",
+            "labelEn": "Moonrise · 01"
           },
           {
-            "src": "XMF-THEFIX-03",
-            "label": "THE FIX · Moonrise · 이미지 B"
+            "src": "assets/video/XMF-live-THEFIX-Moonrise-2.mp4",
+            "poster": "XMF-live-THEFIX-Moonrise-2",
+            "label": "Moonrise · 02",
+            "labelEn": "Moonrise · 02"
           },
           {
-            "src": "XMF-THEFIX-04",
-            "label": "THE FIX · Moonrise · 이미지 C"
-          },
-          {
-            "src": "XMF-THEFIX-05",
-            "label": "THE FIX · Oddventure · 이미지 A"
-          },
-          {
-            "src": "XMF-THEFIX-06",
-            "label": "THE FIX · Oddventure · 이미지 B"
-          },
-          {
-            "src": "XMF-THEFIX-07",
-            "label": "THE FIX · Oddventure · 이미지 C"
+            "src": "assets/video/XMF-live-THEFIX-Oddventure.mp4",
+            "poster": "XMF-live-THEFIX-Oddventure",
+            "label": "Oddventure",
+            "labelEn": "Oddventure"
           }
         ],
         "links": []

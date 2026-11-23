@@ -329,6 +329,7 @@
       item.label = translateCaption(item.label);
       if (hasKorean(item.label)) item.label = `${copy.title} · Image ${String(i + 1).padStart(2, '0')}`;
     });
+    (p.media.clips || []).forEach(item => { item.label = item.labelEn || translateCaption(item.label); });
     p.media.links.forEach((item, i) => {
       if (hasKorean(item.label)) item.label = `Project link ${i + 1}`;
     });
