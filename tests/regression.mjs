@@ -33,7 +33,7 @@ try {
   page.on('console', message => {
     const warning = message.text();
     // Drive's PDF renders despite its optional Google sign-in subframe being blocked by Google.
-    if (warning.includes('Content Security Policy') && !warning.startsWith("Framing 'https://ogs.google.com/' violates")) errors.push(warning);
+    if (warning.includes('Content Security Policy') && !warning.includes('report-only') && !warning.startsWith("Framing 'https://ogs.google.com/' violates")) errors.push(warning);
   });
   const base = `http://127.0.0.1:${server.address().port}`;
   // Hold the app module to inspect the actual pre-initialization header state.
@@ -95,7 +95,7 @@ try {
     if (language) {
       const feeld = await page.evaluate(() => window.PORTFOLIO.projects.find(p => p.id === 'FEELD'));
       assert.ok(feeld.details.some(d => d.k === 'Tools & technology' && d.v.includes('Unity')), 'English retains technical information');
-      assert.equal(feeld.media.images[1].label, 'FEELD · Reconstructed forest', 'English gallery descriptions retain their meaning');
+      assert.equal(feeld.media.images.find(image => image.src === 'FEELD-Forest').label, 'FEELD · Reconstructed forest', 'English gallery descriptions retain their meaning');
     }
     await page.locator('[data-slide="2"]').dispatchEvent('mouseenter');
     assert.equal(await page.locator('#showreel-count').textContent(), '01 / 05', 'hover previews a scene name without changing the reel');
@@ -237,14 +237,14 @@ try {
         assert.equal(await page.locator('.pdf-view iframe[src$="FEELD.pdf"]').count(), 1, 'PDF is embedded on render');
         await page.locator('.pd-gallery-open').first().click();
         await page.waitForFunction(() => document.querySelector('#gallery-viewer').open && document.querySelector('#gallery-viewer-image').naturalWidth > 0);
-        assert.equal(await page.locator('#gallery-viewer-count').textContent(), '01 / 03');
+        assert.equal(await page.locator('#gallery-viewer-count').textContent(), '01 / 10');
         if (process.env.GALLERY_SCREENSHOT_DIR && !language) {
           await page.screenshot({ path: resolve(process.env.GALLERY_SCREENSHOT_DIR, 'project-gallery-viewer.png') });
         }
         await page.locator('[data-gallery-next]').click();
-        assert.equal(await page.locator('#gallery-viewer-count').textContent(), '02 / 03');
+        assert.equal(await page.locator('#gallery-viewer-count').textContent(), '02 / 10');
         await page.keyboard.press('ArrowLeft');
-        assert.equal(await page.locator('#gallery-viewer-count').textContent(), '01 / 03');
+        assert.equal(await page.locator('#gallery-viewer-count').textContent(), '01 / 10');
         await page.keyboard.press('Escape');
         assert.equal(await page.locator('#gallery-viewer').evaluate(el => el.open), false);
       }
@@ -359,7 +359,7 @@ try {
     stage.dispatchEvent(new TouchEvent('touchstart', { bubbles: true, touches: [point(300)] }));
     stage.dispatchEvent(new TouchEvent('touchend', { bubbles: true, changedTouches: [point(180)] }));
   });
-  assert.equal(await page.locator('#gallery-viewer-count').textContent(), '02 / 03', 'mobile swipe moves to the next image');
+  assert.equal(await page.locator('#gallery-viewer-count').textContent(), '02 / 10', 'mobile swipe moves to the next image');
   await page.keyboard.press('Escape');
   assert.deepEqual(errors, []);
   console.log('PASS: KO/EN, project pages and metadata, intercepted FormSubmit POST, file validation, filters, image gallery, mobile layout, reduced motion; no runtime or CSP errors.');

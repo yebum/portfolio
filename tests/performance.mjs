@@ -43,7 +43,7 @@ try {
   page.on('request', req => { if (req.resourceType() === 'image') requests.push(req.url()); });
   await page.goto(base + '/work/AllAllowed/');
   await page.waitForTimeout(800);
-  const hiddenReelImages = requests.filter(url => /\/(Neuroscape|FEELD)(-sm)?\.webp/.test(url));
+  const hiddenReelImages = requests.filter(url => /\/(Neuroscape|FEELD-Exhibition)(-sm)?\.webp/.test(url));
   console.log(JSON.stringify({asciiCallbacksPerSecond:fps, initialReelImages, offscreenArrivalWrites, hiddenReelImages}, null, 2));
   if (process.env.CHECK_PERFORMANCE) {
     assert.ok(fps <= 20, 'background should not wake on every display frame');

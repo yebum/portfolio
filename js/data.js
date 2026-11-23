@@ -12,7 +12,7 @@ window.PORTFOLIO = {
         "xr"
       ],
       "awards": ["제33회 계원조형예술제 학과우수작"],
-      "cover": "FEELD",
+      "cover": "FEELD-Exhibition",
       "lead": "직접 방문해 360도로 촬영·스캔하고 소리를 녹음한 여섯 숲을 Gaussian Splatting으로 재구성한 인터랙티브 미디어아트. 관객은 실제 자연물을 만지며 색을 잃은 숲을 깨우고, 손의 위치에 반응하는 소리를 들으며 다음 숲으로 이동한다.",
       "caseStudy": {
         "problem": {
@@ -88,6 +88,30 @@ window.PORTFOLIO = {
           }
         ],
         "images": [
+          {
+            "src": "FEELD-Installation",
+            "label": "FEELD · 전시 설치 전경"
+          },
+          {
+            "src": "FEELD-Visitors",
+            "label": "FEELD · 관람객과 숲 체험"
+          },
+          {
+            "src": "FEELD-Touch",
+            "label": "FEELD · 자연물 터치 인터랙션"
+          },
+          {
+            "src": "FEELD-ForestLive",
+            "label": "FEELD · 현장 숲 영상"
+          },
+          {
+            "src": "FEELD-VisitorsAlt",
+            "label": "FEELD · 전시 현장 전경"
+          },
+          {
+            "src": "FEELD-NatureDetail",
+            "label": "FEELD · 자연물 체험 디테일"
+          },
           {
             "src": "FEELD",
             "label": "FEELD · 체험 인트로"
