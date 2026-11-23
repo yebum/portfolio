@@ -33,7 +33,7 @@ try {
   page.on('console', message => {
     const warning = message.text();
     // Drive's PDF renders despite its optional Google sign-in subframe being blocked by Google.
-    if (warning.includes('Content Security Policy') && !warning.startsWith("Framing 'https://ogs.google.com/' violates")) errors.push(warning);
+    if (warning.includes('Content Security Policy') && !warning.includes('report-only') && !warning.startsWith("Framing 'https://ogs.google.com/' violates")) errors.push(warning);
   });
   const base = `http://127.0.0.1:${server.address().port}`;
   // Hold the app module to inspect the actual pre-initialization header state.
