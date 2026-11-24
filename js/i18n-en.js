@@ -42,6 +42,14 @@
       ['Six forests to explore at your own pace', 'Visitors can stay with each forest and end the experience when they choose; there is no fixed playtime. Field recordings, physical textures, responsive colour and sound, and the stone gesture form one continuous journey.'],
       'Tech lead · Unity interaction and Gaussian Splatting visual development'
     ),
+    FlatDepth: P(
+      'Flat Depth', 'houseCall · interactive projection mapping demo',
+      'A proposed four-surface projection space where flat walls and a floor appear to have depth from the viewer’s position. A spatial simulation and two demo films show the transition from an everyday room to a neon grid and test how perspective changes with head position.',
+      ['Where vision and touch disagree', 'Flat Depth asks whether what we see is the whole space. A room appears to extend beyond flat walls, even after a visitor touches and confirms their physical surface. The difference between the optical illusion and the real space is the work’s central experience.'],
+      ['A room that becomes a grid', 'The proposed interaction begins with a hand cue on the front wall, transforming an ordinary room through a white grid into a green neon space. Wall and floor responses are planned as further interactions. The one-take film follows this sequence, while a separate technical demo tests perspective changes with head position across the walls and floor. Both films show simulations, not footage of a completed installation.'],
+      ['Spatial simulation and two demo films', 'The team produced spatial images, a one-take experience demo and a head-position perspective study. Physical depth-camera and lidar integration, followed by calibration of four projectors on site, remain planned next steps.'],
+      'houseCall team · co-planning, demo video production and installation planning'
+    ),
     Seungmu: {
       title: 'Seungmu',
       context: '2026 HCF Media Art Show · houseCall',
@@ -273,6 +281,16 @@
   };
   const hasKorean = value => /[가-힣]/.test(value || '');
   const captionCopy = {
+    'Flat Depth · 원테이크 공간 데모 (1분 42초)': 'Flat Depth · One-take spatial demo (1 min 42 sec)',
+    'Flat Depth · 시점 추적 기술 데모 (54초)': 'Flat Depth · Head-position perspective demo (54 sec)',
+    'Flat Depth · 전시 공간 시뮬레이션': 'Flat Depth · Proposed exhibition space simulation',
+    'Flat Depth · 일상의 방 시뮬레이션': 'Flat Depth · Everyday room simulation',
+    'Flat Depth · 손 입력 장면 시뮬레이션': 'Flat Depth · Touch cue simulation',
+    'Flat Depth · 공간 전환 시뮬레이션': 'Flat Depth · Scene transition simulation',
+    'Flat Depth · 네온 그리드 공간 시뮬레이션': 'Flat Depth · Neon grid space simulation',
+    'Flat Depth · 바닥 깊이 연출 시뮬레이션': 'Flat Depth · Floor depth illusion simulation',
+    'Flat Depth · 벽면 반응 시뮬레이션': 'Flat Depth · Wall response simulation',
+    'Flat Depth · 상부 시점 공간 시뮬레이션': 'Flat Depth · Overhead spatial simulation',
     'FEELD · 전시 설치 전경': 'FEELD · Exhibition installation',
     'FEELD · 관람객과 숲 체험': 'FEELD · Visitors exploring the forest',
     'FEELD · 자연물 터치 인터랙션': 'FEELD · Touch interaction with natural materials',
@@ -322,6 +340,7 @@
       { k: 'Role', v: copy.role },
       ...p.details.filter(d => ['사용 툴', '사용 도구', '사용 기술', '제작 도구'].includes(d.k)).map(d => ({ k: 'Tools & technology', v: d.v })),
       ...(p.id === 'MATMI' ? [{ k: 'Duration', v: 'Four days · 2026' }] : []),
+      ...(p.id === 'FlatDepth' ? [{ k: 'Status', v: 'Spatial simulation and technical demo · before physical installation' }] : []),
     ];
     p.awards = p.awards.map(a => awardNames[a] || a);
     p.media.films.forEach((item, i) => {

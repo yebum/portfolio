@@ -106,6 +106,7 @@ try {
       assert.deepEqual(await prize.evaluate(el => ({ color: getComputedStyle(el).color, background: getComputedStyle(el).backgroundColor })), prizeStyle, 'noninteractive prize badges do not change on hover');
     }
     assert.equal(await page.locator('#index-list a[href="#/work/FEELD"]').count(), 1, 'FEELD appears in the project index');
+    assert.equal(await page.locator('#index-list a[href="#/work/FlatDepth"]').count(), 1, 'Flat Depth appears in the project index');
     assert.equal(await page.locator('#index-list a[href="#/work/AllAllowed"]').count(), 1, 'All Allowed appears in the project index');
     assert.deepEqual(await page.evaluate(() => window.PORTFOLIO.projects.flatMap(project => [project.cover, ...project.media.images.map(image => image.src)]).filter(name => !window.PORTFOLIO_IMAGE_SIZES[name])), [], 'all project images have intrinsic dimensions');
     await page.waitForTimeout(300);
@@ -200,13 +201,19 @@ try {
     assert.equal(await page.locator('html').getAttribute('lang'), language ? 'en' : 'ko');
     assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://www.yebumko.com/');
     assert.equal(await page.locator('meta[property="og:image"]').getAttribute('content'), 'https://www.yebumko.com/assets/img/AllAllowed-Stage.webp');
-    for (const projectId of ['FEELD', 'AllAllowed', 'Seungmu', 'TimeOfExtinction']) {
+    for (const projectId of ['FEELD', 'FlatDepth', 'AllAllowed', 'Seungmu', 'TimeOfExtinction']) {
       await page.goto(base + '/' + language + '#/work/' + projectId);
       await page.waitForFunction(() => !document.querySelector('#detail').hidden);
       await page.waitForFunction(() => document.querySelector('.pd-hero img')?.complete && document.querySelector('.pd-hero img')?.naturalWidth > 0);
       assert.ok(await page.locator('.pd-hero img').evaluate(img => img.complete && img.naturalWidth > 0), projectId + ' detail cover loads');
       assert.equal(await page.locator('.pd-next .next-card').count(), 2, 'previous and next links are both visible');
       assert.equal(await page.locator('.pd-next .next-card img').count(), 0, 'project navigation is visually distinct from image gallery');
+      if (projectId === 'FlatDepth') {
+        assert.equal(await page.locator('.embed video[controls]').count(), 2, 'both spatial demo films are embedded');
+        assert.equal(await page.locator('.pd-gallery figure').count(), 7, 'seven simulation images accompany the cover');
+        assert.match(await page.locator('.pd-lead').textContent(), language ? /simulation/ : /시뮬레이션/, 'demo status is explicit');
+        assert.match(await page.locator('#detail').textContent(), language ? /before physical installation/ : /현장 설치 전/, 'installation is not presented as complete');
+      }
       if (projectId === 'Seungmu') {
         assert.equal(await page.locator('.cs').count(), 0, 'Seungmu uses artwork story instead of case study');
         assert.equal(await page.locator('.pd-sections .pd-sec').count(), 2, 'Seungmu has performance and visual sequence sections');

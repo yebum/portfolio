@@ -133,6 +133,68 @@ window.PORTFOLIO = {
       }
     },
     {
+      "id": "FlatDepth",
+      "title": "Flat Depth",
+      "fullTitle": "Flat Depth",
+      "context": "houseCall · 인터랙티브 프로젝션 매핑 데모",
+      "year": "2026",
+      "disciplines": ["media"],
+      "awards": [],
+      "cover": "FlatDepth-Cover",
+      "lead": "평평한 벽과 바닥이 관람객의 위치에 따라 깊은 공간처럼 보이도록 구상한 인터랙티브 프로젝션 매핑 프로젝트. 평범한 방이 네온 그리드 공간으로 전환되는 흐름과 시점에 따른 원근 변화를 공간 시뮬레이션 및 기술 데모로 제작했다.",
+      "caseStudy": {
+        "problem": {
+          "summary": "눈으로 본 깊이와 손으로 확인한 평면 사이",
+          "body": [
+            "Flat Depth는 ‘우리가 보는 것이 정말 전부일까?’라는 질문에서 출발했다. 세 벽과 바닥은 평평하지만, 한 사람의 시점에 맞춰 영상을 투사하면 그 너머에 방과 복도가 이어지는 것처럼 보인다. 직접 벽을 만져도 사라지지 않는 깊이의 착시를 통해 시각과 촉각의 판단이 어긋나는 순간을 만들고자 했다."
+          ]
+        },
+        "solution": {
+          "summary": "방에서 그리드 공간으로, 관람객의 시점에 맞춰",
+          "body": [
+            "전시 콘셉트는 정면 벽의 손 모양 표시를 누르면 일상의 방이 흰 격자를 거쳐 초록 네온 그리드 공간으로 바뀌는 흐름이다. 옆벽을 만지면 벽면이 밀리거나 울렁이는 듯 반응하고, 걸으면 앞쪽 바닥 블록이 내려가는 것처럼 보이도록 계획했다. 실제 벽과 바닥의 높이는 변하지 않는다.",
+            "제출한 원테이크 데모는 방에서 그리드 공간으로 이동하고 다시 돌아오는 체험 순서를 한 번에 보여준다. 별도의 기술 데모에서는 머리 위치에 따라 투영 시점이 달라질 때 벽과 바닥의 원근이 어떻게 이어지는지 확인했다. 두 영상과 공간 이미지는 실제 전시장 촬영이 아닌 시뮬레이션 결과물이다."
+          ],
+          "points": [
+            { "label": "4면 공간 구상", "body": "정면·좌·우 벽과 바닥을 하나의 이어진 투사 공간으로 설계했다." },
+            { "label": "시점 기반 착시", "body": "관람객의 머리 위치에 맞춘 원근 변화를 기술 데모로 시뮬레이션했다." },
+            { "label": "체험 흐름", "body": "일상의 방, 흰 격자, 네온 그리드, 복귀로 이어지는 장면을 원테이크 영상으로 정리했다." }
+          ]
+        },
+        "result": {
+          "summary": "공간 시뮬레이션과 두 편의 데모 영상",
+          "body": [
+            "공간 구성 이미지와 원테이크 체험 데모, 머리 위치에 따른 시점 변화 기술 데모를 제작했다. 현재 공개된 자료는 제안 단계의 시뮬레이션이며, 실제 깊이 카메라·라이다 연동과 프로젝터 4대의 현장 보정은 후속 제작 단계로 계획되어 있다. houseCall 팀의 공동 작업으로, 고예범은 기획·영상 제작과 설치 계획에 참여했다."
+          ]
+        }
+      },
+      "details": [
+        { "k": "프로젝트 유형", "v": "프로젝션 매핑 제안 · 공간 시뮬레이션" },
+        { "k": "제작", "v": "houseCall 팀 공동 작업" },
+        { "k": "역할", "v": "공동 기획 · 데모 영상 제작 · 설치 계획" },
+        { "k": "제작 도구", "v": "TouchDesigner · Blender" },
+        { "k": "진행 상태", "v": "시뮬레이션 및 기술 데모 · 현장 설치 전" }
+      ],
+      "media": {
+        "films": [
+          { "kind": "local", "src": "assets/video/FlatDepth-OneTake.mp4", "label": "Flat Depth · 원테이크 공간 데모 (1분 42초)", "poster": "FlatDepth-Room" },
+          { "kind": "local", "src": "assets/video/FlatDepth-HeadTracking.mp4", "label": "Flat Depth · 시점 추적 기술 데모 (54초)", "poster": "FlatDepth-Grid" }
+        ],
+        "decks": [],
+        "images": [
+          { "src": "FlatDepth-Cover", "label": "Flat Depth · 전시 공간 시뮬레이션" },
+          { "src": "FlatDepth-Room", "label": "Flat Depth · 일상의 방 시뮬레이션" },
+          { "src": "FlatDepth-Touch", "label": "Flat Depth · 손 입력 장면 시뮬레이션" },
+          { "src": "FlatDepth-Transition", "label": "Flat Depth · 공간 전환 시뮬레이션" },
+          { "src": "FlatDepth-Grid", "label": "Flat Depth · 네온 그리드 공간 시뮬레이션" },
+          { "src": "FlatDepth-Floor", "label": "Flat Depth · 바닥 깊이 연출 시뮬레이션" },
+          { "src": "FlatDepth-Wall", "label": "Flat Depth · 벽면 반응 시뮬레이션" },
+          { "src": "FlatDepth-Overhead", "label": "Flat Depth · 상부 시점 공간 시뮬레이션" }
+        ],
+        "links": []
+      }
+    },
+    {
       "id": "Seungmu",
       "title": "승무",
       "fullTitle": "승무",
