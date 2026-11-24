@@ -312,6 +312,12 @@ window.PORTFOLIO = {
         "films": [
           {
             "kind": "local",
+            "src": "assets/video/AllAllowed-MAPFilm.mp4",
+            "label": "모두 허용 · MAP 하반기트랙 기록 영상 (3분 29초)",
+            "poster": "AllAllowed-MAPFilm"
+          },
+          {
+            "kind": "local",
             "src": "assets/video/AllAllowed-StagePreview.mp4",
             "label": "모두 허용 · 무대 프리뷰 (3분 18초)",
             "poster": "AllAllowed-Stage"
