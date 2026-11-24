@@ -237,14 +237,14 @@ try {
         assert.equal(await page.locator('.pdf-view iframe[src$="FEELD.pdf"]').count(), 1, 'PDF is embedded on render');
         await page.locator('.pd-gallery-open').first().click();
         await page.waitForFunction(() => document.querySelector('#gallery-viewer').open && document.querySelector('#gallery-viewer-image').naturalWidth > 0);
-        assert.equal(await page.locator('#gallery-viewer-count').textContent(), '01 / 10');
+        assert.equal(await page.locator('#gallery-viewer-count').textContent(), '01 / 09');
         if (process.env.GALLERY_SCREENSHOT_DIR && !language) {
           await page.screenshot({ path: resolve(process.env.GALLERY_SCREENSHOT_DIR, 'project-gallery-viewer.png') });
         }
         await page.locator('[data-gallery-next]').click();
-        assert.equal(await page.locator('#gallery-viewer-count').textContent(), '02 / 10');
+        assert.equal(await page.locator('#gallery-viewer-count').textContent(), '02 / 09');
         await page.keyboard.press('ArrowLeft');
-        assert.equal(await page.locator('#gallery-viewer-count').textContent(), '01 / 10');
+        assert.equal(await page.locator('#gallery-viewer-count').textContent(), '01 / 09');
         await page.keyboard.press('Escape');
         assert.equal(await page.locator('#gallery-viewer').evaluate(el => el.open), false);
       }
@@ -359,7 +359,7 @@ try {
     stage.dispatchEvent(new TouchEvent('touchstart', { bubbles: true, touches: [point(300)] }));
     stage.dispatchEvent(new TouchEvent('touchend', { bubbles: true, changedTouches: [point(180)] }));
   });
-  assert.equal(await page.locator('#gallery-viewer-count').textContent(), '02 / 10', 'mobile swipe moves to the next image');
+  assert.equal(await page.locator('#gallery-viewer-count').textContent(), '02 / 09', 'mobile swipe moves to the next image');
   await page.keyboard.press('Escape');
   assert.deepEqual(errors, []);
   console.log('PASS: KO/EN, project pages and metadata, intercepted FormSubmit POST, file validation, filters, image gallery, mobile layout, reduced motion; no runtime or CSP errors.');
