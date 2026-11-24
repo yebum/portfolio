@@ -3,7 +3,7 @@ import { createScrollReveal } from './components/scroll-reveal.js';
 import { createArrival } from './components/arrival.js?v=perf-20261028';
 import { createAsciiBackground } from './components/ascii-background.js?v=mobile-resize-20261122';
 import { createRecognition } from './components/recognition.js?v=materials-20261029';
-import { createProjectDetail } from './components/project-detail.js?v=xmf-live-20261124';
+import { createProjectDetail } from './components/project-detail.js?v=neuroscape-clips2-20261124';
 
 /* ════════════════════════════════════════════════════════════
    Yebum Ko — Portfolio 2026 · app.js
@@ -55,8 +55,10 @@ import { createProjectDetail } from './components/project-detail.js?v=xmf-live-2
 
   /* ── reveal on scroll ─────────────────────────────── */
   const reveals = createScrollReveal();
+  let releaseClips = () => {};
   const clearDetail = () => {
     reveals.release(detail);
+    releaseClips();
     detail.querySelectorAll('video').forEach(video => {
       video.pause();
       video.removeAttribute('src');
@@ -76,7 +78,9 @@ import { createProjectDetail } from './components/project-detail.js?v=xmf-live-2
   const view = { D, t, $, $$, esc, pad2, src, imageDimensions, responsive, externalUrl, reduced, byId, projectDiscs, TOTAL, clearDetail, observeReveals, settleReveals, toast };
   const renderIndex = createWorkIndex(view);
   const renderRecognition = createRecognition(view);
-  const { renderDetail, galleryViewer } = createProjectDetail(view);
+  const projectDetail = createProjectDetail(view);
+  const { renderDetail, galleryViewer } = projectDetail;
+  releaseClips = projectDetail.releaseClips;
 
   /* ════════════════════════ ROUTER ════════════════════════ */
   const SECTIONS = ['top', 'index', 'about', 'recognition', 'guestbook', 'contact'];

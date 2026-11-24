@@ -1424,6 +1424,29 @@ window.PORTFOLIO = {
             "label": ""
           }
         ],
+        "clipsTitle": "Scenes",
+        "clipsNote": "위 완성된 장면 · 아래 입자로 흩어지는 장면",
+        "clipsNoteEn": "Top: formed scene · Bottom: dissolving into particles",
+        "clips": [
+          {
+            "src": "assets/video/Neuroscape-live-Room.mp4",
+            "poster": "Neuroscape-live-Room",
+            "label": "방",
+            "labelEn": "Room"
+          },
+          {
+            "src": "assets/video/Neuroscape-live-Forest.mp4",
+            "poster": "Neuroscape-live-Forest",
+            "label": "숲",
+            "labelEn": "Forest"
+          },
+          {
+            "src": "assets/video/Neuroscape-live-Desert.mp4",
+            "poster": "Neuroscape-live-Desert",
+            "label": "사막",
+            "labelEn": "Desert"
+          }
+        ],
         "links": []
       }
     },
