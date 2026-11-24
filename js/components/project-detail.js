@@ -167,11 +167,18 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
   });
 
   // Clips load and play only while on screen; reduced motion leaves them paused until tapped.
-  let clipObserver = null;
-  function watchClips() {
+  let clipObserver = null, clipVideos = [];
+  // Unobserve explicitly so no detached video stays observed after leaving a project.
+  function releaseClips() {
+    clipVideos.forEach(v => clipObserver.unobserve(v));
     clipObserver?.disconnect();
+    clipObserver = null; clipVideos = [];
+  }
+  function watchClips() {
+    releaseClips();
     const videos = $$('.pd-clip video', detail);
     if (!videos.length) return;
+    clipVideos = videos;
     if (reduced) videos.forEach(v => v.closest('.pd-clip').classList.add('is-paused'));
     clipObserver = new IntersectionObserver(entries => entries.forEach(({ target, isIntersecting }) => {
       const fig = target.closest('.pd-clip');
@@ -226,7 +233,7 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
     const clipList = (m.clips || []).filter(c => /^assets\/video\/[\w.-]+\.mp4$/.test(c.src));
     const clips = clipList.length ? `
       <section class="pd-block" aria-label="${t('현장 영상과 프리비즈', 'Live footage and stage preview')}">
-        <div class="sec-label"><span class="mono">Live × Previz</span><span class="ctx dim">${t('위 현장 영상 · 아래 프리비즈 목업', 'Top: live footage · Bottom: stage preview')}</span></div>
+        <div class="sec-label"><span class="mono">${m.clipsTitle ? esc(m.clipsTitle) : 'Live × Previz'}</span><span class="ctx dim">${esc(m.clipsNote ? t(m.clipsNote, m.clipsNoteEn || m.clipsNote) : t('위 현장 영상 · 아래 프리비즈 목업', 'Top: live footage · Bottom: stage preview'))}</span></div>
         <div class="pd-clips">${clipList.map(c => `
           <figure class="pd-clip" data-reveal>
             <button class="pd-clip-toggle" type="button" aria-label="${esc(c.label)} ${t('재생 / 일시정지', 'play / pause')}">
@@ -374,5 +381,5 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
     }
   });
 
-  return { renderDetail, galleryViewer };
+  return { renderDetail, galleryViewer, releaseClips };
 }
