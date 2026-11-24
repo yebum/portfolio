@@ -308,6 +308,7 @@
     '선에 매달린 몸': 'A body suspended by threads',
     '녹아내리는 얼굴': 'A face dissolving',
     '군중의 흐름': 'The flow of the crowd',
+    '모두 허용 · MAP 하반기트랙 기록 영상 (3분 29초)': 'All Allowed · MAP second-half track film (3:29)',
     '모두 허용 · 무대 프리뷰 (3분 18초)': 'All Allowed · Stage preview (3:18)',
     '모두 허용 · 현장 촬영 (3분 24초)': 'All Allowed · Live documentation (3:24)',
     '잠비나이 · 공연 현장': 'Jambinai · Live performance',
