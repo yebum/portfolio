@@ -358,8 +358,6 @@
     '.about-labels .dim': 'Yebum Ko',
     '#about-h': 'Every project has a language of its own.',
     '.about-body .sec-sub': 'I create at the intersection of art and technology. My background in telecommunications engineering shapes how I work with signals, systems and interaction; digital media design gives those ideas a visual language. I develop live visuals, immersive experiences and digital services, from the first concept to a working prototype.',
-    '.about-docs .chips a:first-child': 'Resume PDF (Korean) ↓',
-    '.about-docs .chips a:last-child': 'Cover letter PDF (Korean) ↓',
     '.recognition .sec-head .sec-sub': 'Awards from art festivals, advertising, hackathons, startup competitions and digital-art projects, with links to the related work and public sources.',
     '#gb-h': 'Leave a note.',
     '.gb-head .sec-sub': 'Share a thought after browsing the portfolio.',
