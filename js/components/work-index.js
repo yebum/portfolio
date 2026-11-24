@@ -1,5 +1,6 @@
 // createWorkIndex owns its markup and DOM interactions.
 export function createWorkIndex({ D, t, $, $$, esc, pad2, src, imageDimensions, responsive, projectDiscs, TOTAL, settleReveals }) {
+  const awardIcon = '<svg class="award-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 4h8v5a4 4 0 0 1-8 0V4Z"/><path d="M8 6H5v2a4 4 0 0 0 4 4m7-6h3v2a4 4 0 0 1-4 4M12 13v5m-4 2h8"/></svg>';
   function renderIndex() {
     const list = $('#index-list'), filters = $('#filters'), section = $('#index');
     const counts = D.projects.reduce((m, p) => {
@@ -16,7 +17,7 @@ export function createWorkIndex({ D, t, $, $$, esc, pad2, src, imageDimensions, 
         <a class="row-link" href="#/work/${p.id}" data-reveal="card" data-thumb="${src(p.cover, true)}">
           <span class="row-thumb card"><img src="${src(p.cover)}"${imageDimensions(p.cover)}${responsive(p.cover, '(max-width: 580px) 100vw, (max-width: 900px) 50vw, (max-width: 1600px) 33vw, 25vw')} alt="" loading="lazy" decoding="async"></span>
           <span class="row-no mono">${pad2(i + 1)}</span>
-          <span class="row-title"><span class="t">${esc(p.fullTitle)}</span>${p.awards.length ? `<span class="row-award" title="${esc(p.awards.join(' · '))}" aria-label="Award"></span>` : ''}</span>
+          <span class="row-title"><span class="t">${esc(p.fullTitle)}</span>${p.awards.length ? `<span class="row-award" title="${esc(p.awards.join(' · '))}" aria-label="${t('수상·선정 이력', 'Award or selection')}">${awardIcon}</span>` : ''}</span>
           <span class="row-disc">${esc(projectDiscs(p).map(d => d.label).join(' / '))}</span>
           <span class="row-ctx">${esc(p.context)}</span>
           <span class="row-year mono">${esc(p.year)}</span>

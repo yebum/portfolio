@@ -374,9 +374,8 @@ h1, h2, h3, p { margin: 0; }
 .row-no { color: var(--mute); }
 .row-title { font-size: 18px; letter-spacing: -0.035em; line-height: 1.25; display: flex; align-items: center; gap: 10px; min-width: 0; }
 .row-title .t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.row-award, .legend-dot {
-  flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--ink);
-}
+.row-award, .legend-award { flex: none; display: inline-flex; align-items: center; justify-content: center; color: var(--ink); }
+.award-icon { display: block; width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .index-tools { display: flex; align-items: center; gap: 18px; }
 .legend { display: inline-flex; align-items: center; gap: 8px; }
 .row-disc, .row-ctx { color: var(--mute); font-size: 14px; letter-spacing: -0.02em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

@@ -107,6 +107,13 @@ try {
     }
     assert.equal(await page.locator('#index-list a[href="#/work/FEELD"]').count(), 1, 'FEELD appears in the project index');
     assert.equal(await page.locator('#index-list a[href="#/work/FlatDepth"]').count(), 1, 'Flat Depth appears in the project index');
+    assert.equal(await page.locator('#index-list a[href="#/work/FlatDepth"] .row-award .award-icon').count(), 1, 'selected Flat Depth has the recognition icon');
+    assert.equal(await page.locator('.legend .award-icon').count(), 1, 'the index legend uses the same recognition icon');
+    assert.equal(await page.locator('#stat-awards').textContent(), '13', 'recognition count includes the museum selection');
+    const flatDepthRecognition = page.locator('#awards .award-row').filter({ has: page.locator('.award-project', { hasText: 'Flat Depth' }) });
+    assert.equal(await flatDepthRecognition.count(), 1, 'Flat Depth selection appears in recognition');
+    assert.match(await flatDepthRecognition.locator('.award-prize').textContent(), language ? /Selected work/ : /선정작/);
+    assert.match(await flatDepthRecognition.locator('a[target="_blank"]').getAttribute('href'), /science\.go\.kr/);
     assert.equal(await page.locator('#index-list a[href="#/work/AllAllowed"]').count(), 1, 'All Allowed appears in the project index');
     assert.deepEqual(await page.evaluate(() => window.PORTFOLIO.projects.flatMap(project => [project.cover, ...project.media.images.map(image => image.src)]).filter(name => !window.PORTFOLIO_IMAGE_SIZES[name])), [], 'all project images have intrinsic dimensions');
     await page.waitForTimeout(300);
@@ -209,6 +216,7 @@ try {
       assert.equal(await page.locator('.pd-next .next-card').count(), 2, 'previous and next links are both visible');
       assert.equal(await page.locator('.pd-next .next-card img').count(), 0, 'project navigation is visually distinct from image gallery');
       if (projectId === 'FlatDepth') {
+        assert.match(await page.locator('.pd-hero .chip--award').textContent(), language ? /Selection/ : /선정/);
         assert.equal(await page.locator('.embed video[controls]').count(), 2, 'both spatial demo films are embedded');
         assert.equal(await page.locator('.pd-gallery figure').count(), 7, 'seven simulation images accompany the cover');
         assert.match(await page.locator('.pd-lead').textContent(), language ? /simulation/ : /시뮬레이션/, 'demo status is explicit');

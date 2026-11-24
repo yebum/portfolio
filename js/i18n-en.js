@@ -47,7 +47,7 @@
       'A proposed four-surface projection space where flat walls and a floor appear to have depth from the viewer’s position. A spatial simulation and two demo films show the transition from an everyday room to a neon grid and test how perspective changes with head position.',
       ['Where vision and touch disagree', 'Flat Depth asks whether what we see is the whole space. A room appears to extend beyond flat walls, even after a visitor touches and confirms their physical surface. The difference between the optical illusion and the real space is the work’s central experience.'],
       ['A room that becomes a grid', 'The proposed interaction begins with a hand cue on the front wall, transforming an ordinary room through a white grid into a green neon space. Wall and floor responses are planned as further interactions. The one-take film follows this sequence, while a separate technical demo tests perspective changes with head position across the walls and floor. Both films show simulations, not footage of a completed installation.'],
-      ['Spatial simulation and two demo films', 'The team produced spatial images, a one-take experience demo and a head-position perspective study. Physical depth-camera and lidar integration, followed by calibration of four projectors on site, remain planned next steps.'],
+      ['Spatial simulation and two demo films', 'The team produced spatial images, a one-take experience demo and a head-position perspective study. Flat Depth was selected for the National Science Museum’s experiential media call for its 2027 special exhibition, “The Illusion of the Body, Unfamiliar Senses.” Physical depth-camera and lidar integration, followed by calibration of four projectors on site, remain planned next steps.'],
       'houseCall team · co-planning, demo video production and installation planning'
     ),
     Seungmu: {
@@ -269,6 +269,7 @@
     ),
   };
   const awardNames = {
+    '국립중앙과학관 특별전 체험형 미디어 공모 선정': 'National Science Museum · Experiential Media Selection',
     '제33회 계원조형예술제 학과우수작': '33rd Kaywon Arts Festival · Outstanding Department Work',
     '2026 GLOBAL STARTUP COMPETITION 중앙대학교 가상융합대학장상': '2026 Global Startup Competition · Dean’s Award, Chung-Ang University College of Virtual Convergence',
     '제주 바이오 AX 해커톤 우수상': 'Jeju Bio AX Hackathon · Excellence Award',
@@ -377,7 +378,8 @@
     '.about-labels .dim': 'Yebum Ko',
     '#about-h': 'Every project has a language of its own.',
     '.about-body .sec-sub': 'I create at the intersection of art and technology. My background in telecommunications engineering shapes how I work with signals, systems and interaction; digital media design gives those ideas a visual language. I develop live visuals, immersive experiences and digital services, from the first concept to a working prototype.',
-    '.recognition .sec-head .sec-sub': 'Awards from art festivals, advertising, hackathons, startup competitions and digital-art projects, with links to the related work and public sources.',
+    '.recognition .sec-head .sec-sub': 'Awards and selected work from art festivals, advertising, hackathons, startup competitions and digital-art projects, with links to the related work and public sources.',
+    '.legend-label': 'Awarded / selected',
     '#gb-h': 'Leave a note.',
     '.gb-head .sec-sub': 'Share a thought after browsing the portfolio.',
     '.gb-name-field span': 'Name / nickname',
@@ -474,6 +476,7 @@
   };
   D.awards.forEach(a => {
     let copy = awardCopy[a.id];
+    if (a.id === 'FlatDepth') copy = ['National Science Museum 2027 Special Exhibition “The Illusion of the Body, Unfamiliar Senses” · Experiential Media Call', 'Flat Depth', 'Selected work', 'National Science Museum selection announcement'];
     if (a.id === 'FEELD') copy = ['33rd Kaywon Arts Festival', 'FEELD', 'Outstanding Department Work', ''];
     if (a.id === 'MATMI' && a.title.includes('GLOBAL STARTUP COMPETITION')) copy =
       ['2026 Global Startup Competition', 'MATMI', 'Dean’s Award, Chung-Ang University College of Virtual Convergence', 'Chung-Ang University article'];
