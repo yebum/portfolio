@@ -205,7 +205,7 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
       ['Discipline', esc(projectDiscs(p).map(d => d.ko).join(' / '))],
       ...p.details.map(d => [esc(d.k), esc(d.v)]),
       ...(p.media.decks.length ? [['Attachment', `<a class="fact-link" href="#cs-pdf" data-jump="cs-pdf">PDF ${pad2(p.media.decks.length)} — ${t('발표 자료 보기', 'View presentation')}</a>`]] : []),
-      ...(p.awards.length ? [['Awards', `<div class="chips">${p.awards.map(a => `<a class="chip chip--award" href="#/recognition" aria-label="${esc(a)} ${t('수상 이력 보기', 'award details')}">${esc(a)}</a>`).join('')}</div>`]] : []),
+      ...(p.awards.length ? [['Recognition', `<div class="chips">${p.awards.map(a => `<a class="chip chip--award" href="#/recognition" aria-label="${esc(a)} ${t('수상·선정 이력 보기', 'recognition details')}">${esc(a)}</a>`).join('')}</div>`]] : []),
     ];
 
     const films = m.films.length ? `
@@ -281,7 +281,7 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
               <div class="pd-hero-heading">
               <h1 class="display" id="pd-title">${esc(p.fullTitle)}</h1>
               <p class="pd-ctx">${esc(p.context)}</p>
-              ${p.awards.length ? `<div class="chips">${p.awards.map(a => `<a class="chip chip--award" href="#/recognition" aria-label="${esc(a)} ${t('수상 이력 보기', 'award details')}">${esc(a)}</a>`).join('')}</div>` : ''}
+              ${p.awards.length ? `<div class="chips">${p.awards.map(a => `<a class="chip chip--award" href="#/recognition" aria-label="${esc(a)} ${t('수상·선정 이력 보기', 'recognition details')}">${esc(a)}</a>`).join('')}</div>` : ''}
               </div>
             </div>
             <figure class="pd-hero-media">

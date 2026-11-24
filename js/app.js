@@ -1,9 +1,9 @@
-import { createWorkIndex } from './components/work-index.js?v=about-simplify-20261103';
+import { createWorkIndex } from './components/work-index.js?v=recognition-icon-20261124';
 import { createScrollReveal } from './components/scroll-reveal.js';
 import { createArrival } from './components/arrival.js?v=perf-20261028';
 import { createAsciiBackground } from './components/ascii-background.js?v=mobile-resize-20261122';
 import { createRecognition } from './components/recognition.js?v=materials-20261029';
-import { createProjectDetail } from './components/project-detail.js?v=neuroscape-clips2-20261124';
+import { createProjectDetail } from './components/project-detail.js?v=recognition-20261124';
 
 /* ════════════════════════════════════════════════════════════
    Yebum Ko — Portfolio 2026 · app.js
