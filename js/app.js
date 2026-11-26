@@ -1,7 +1,6 @@
 import { createWorkIndex } from './components/work-index.js?v=recognition-icon-20261124';
 import { createScrollReveal } from './components/scroll-reveal.js';
-import { createArrival } from './components/arrival.js?v=perf-20261028';
-import { createAsciiBackground } from './components/ascii-background.js?v=mobile-resize-20261122';
+import { createArrival } from './components/arrival.js?v=no-ascii-20261126';
 import { createRecognition } from './components/recognition.js?v=materials-20261029';
 import { createProjectDetail } from './components/project-detail.js?v=feeld-retro-20261126';
 
@@ -235,7 +234,6 @@ import { createProjectDetail } from './components/project-detail.js?v=feeld-retr
 
 
   renderIndex();
-  createAsciiBackground().then(() => dispatchEvent(new Event('portfolio:ascii-ready')));
   renderRecognition();
   observeReveals(document);
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';

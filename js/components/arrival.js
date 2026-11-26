@@ -6,7 +6,7 @@ export function createArrival() {
   const copy = arrival.querySelector('.arrival-copy');
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   let frame = 0, value = 0, target = 0, last = 0;
-  let height = arrival.offsetHeight, painted = '', canvas;
+  let height = arrival.offsetHeight, painted = '';
   const paint = () => {
     const active = !home.hidden;
     const entering = active && scrollY < height * .55;
@@ -18,8 +18,6 @@ export function createArrival() {
     copy.style.opacity = String(1 - Math.min(1, progress * 1.6));
     copy.style.transform = motion.matches ? 'none' : `translateY(${progress * -55}px)`;
     reel.style.transform = motion.matches || !active ? 'none' : `translateY(${(1-progress) * 64}px) scale(${.94 + progress * .06})`;
-    canvas ||= document.querySelector('.ascii-background');
-    canvas?.style.setProperty('--ascii-arrival-opacity', String(active ? .19 + (1-progress) * .16 : .19));
   };
   const tick = now => {
     const elapsed = Math.min(64, now - (last || now - 16)); last = now;
@@ -42,7 +40,6 @@ export function createArrival() {
   addEventListener('scroll', update, {passive:true});
   const measure = () => { if (!home.hidden) height = arrival.offsetHeight; update(); };
   new ResizeObserver(measure).observe(arrival);
-  addEventListener('portfolio:ascii-ready', () => { painted = ''; paint(); });
   motion.addEventListener('change', update);
   new MutationObserver(measure).observe(home, {attributes:true,attributeFilter:['hidden']});
   value = home.hidden ? 1 : Math.min(1, scrollY / Math.max(1, height * .9));
