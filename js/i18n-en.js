@@ -328,6 +328,7 @@
       .replace(/개화/g, 'Flowering').replace(/아지랑이/g, 'Ajirangi')
       .replace(/아니 근데 진짜/g, 'Ani Geunde Jinjja').replace(/맞네/g, 'Matne').replace(/어리버리/g, 'Eoribeori');
   };
+  const retrospectives = { FEELD: {"title": "What we worked through", "items": [{"label": "Visuals — from scattering to awakening", "body": "How to show Gaussian Splatting was the question we spent the most time on. Our first version scattered the points and gathered them again, but we decided it did not suit a hands-on station. We switched to a forest that starts without colour and fills in as hands touch it, so visitors feel they are waking the forest themselves."}, {"label": "The station — from artificial plants to real ones", "body": "Building the tactile station was new to me. I studied staging references and bought materials at the flower market in the Express Bus Terminal. The first version used only artificial plants; to make touch part of the immersion, we placed real moss, driftwood and grass wherever hands land."}, {"label": "Sensor placement — hidden, but never covered", "body": "We first planned to hide the Leap Motion under the station, but more hands on the surface could block a sensor below it. We also wanted first-time visitors to wonder how it works rather than see the sensor, so we tucked it naturally under the stand."}, {"label": "Interaction — easy for anyone", "body": "Early drafts had many gestures. We reduced them so that visitors of any age could understand the experience straight away. For the fist gesture that moves to the next forest, we placed a fist-sized stone on the station: holding it becomes the gesture, and it fits the mood of the work."}, {"label": "Sound — cleaning field recordings and making them respond", "body": "The field recordings needed more work than expected, with footsteps on leaves and background noise to clean up. Instead of only playing them back, we used Pure Data to add sounds that change with the hand position above the station."}]} };
   for (const p of D.projects) {
     const copy = projects[p.id];
     if (!copy) throw new Error(`Missing English project copy: ${p.id}`);
@@ -337,6 +338,7 @@
     p.lead = copy.lead;
     p.caseStudy = copy.caseStudy;
     if (copy.sections) p.sections = copy.sections;
+    if (p.retrospective) p.retrospective = retrospectives[p.id] || null;
     p.details = [
       { k: 'Project type', v: copy.context },
       { k: 'Role', v: copy.role },
