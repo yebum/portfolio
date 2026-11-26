@@ -15,21 +15,9 @@ await new Promise(done => server.listen(0, '127.0.0.1', done));
 const browser = await chromium.launch({ channel:'msedge', headless:true });
 try {
   const page = await browser.newPage({viewport:{width:1440,height:1000}});
-  await page.addInitScript(() => {
-    window.asciiFrames = 0;
-    const raf = window.requestAnimationFrame;
-    window.requestAnimationFrame = callback => {
-      const ascii = new Error().stack.includes('ascii-background.js');
-      return raf.call(window, now => { if (ascii) window.asciiFrames++; callback(now); });
-    };
-  });
   const base = `http://127.0.0.1:${server.address().port}`;
   await page.goto(base);
-  await page.locator('.ascii-background').waitFor();
   await page.waitForTimeout(500);
-  const start = await page.evaluate(() => window.asciiFrames);
-  await page.waitForTimeout(1200);
-  const fps = Math.round((await page.evaluate(() => window.asciiFrames) - start) / 1.2);
   const initialReelImages = await page.locator('.showreel-slide img[src]').count();
   await page.locator('#index').evaluate(el => el.scrollIntoView({behavior:'instant'}));
   await page.waitForTimeout(500);
@@ -44,16 +32,12 @@ try {
   await page.goto(base + '/work/AllAllowed/');
   await page.waitForTimeout(800);
   const hiddenReelImages = requests.filter(url => /\/(Neuroscape|FEELD-ForestLive)(-sm)?\.webp/.test(url));
-  console.log(JSON.stringify({asciiCallbacksPerSecond:fps, initialReelImages, offscreenArrivalWrites, hiddenReelImages}, null, 2));
+  console.log(JSON.stringify({initialReelImages, offscreenArrivalWrites, hiddenReelImages}, null, 2));
   if (process.env.CHECK_PERFORMANCE) {
-    assert.ok(fps <= 20, 'background should not wake on every display frame');
     assert.equal(initialReelImages, 1, 'only the first reel image is warmed before scrolling');
     assert.equal(offscreenArrivalWrites, 0, 'scrolling after the entrance does not rewrite its styles');
     assert.equal(hiddenReelImages.length, 0, 'detail pages do not download hidden reel images');
     await page.emulateMedia({reducedMotion:'reduce'});
-    const still = await page.locator('.ascii-background').evaluate(el => el.toDataURL());
-    await page.waitForTimeout(250);
-    assert.equal(await page.locator('.ascii-background').evaluate(el => el.toDataURL()), still);
     await page.getByRole('link', { name:'Yebum Ko — home', exact:true }).click();
     await page.waitForFunction(() => document.querySelector('.showreel-slide.is-active img').naturalWidth > 0);
     const mobile = await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844},deviceScaleFactor:1});

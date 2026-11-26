@@ -46,14 +46,6 @@ img { display: block; max-width: 100%; }
 /* Safety net: never let one wide element add a horizontal scrollbar (clip keeps position: sticky working). */
 html, body { overflow-x: clip; }
 body { isolation: isolate; }
-.ascii-background { position:fixed; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none; opacity:.19; }
-.ascii-toggle { display:block; margin-top:24px; color:var(--mute); min-height:32px; }
-.ascii-toggle:hover { color:var(--ink); }
-.ascii-toggle:disabled { cursor:default; }
-.ascii-background { opacity:var(--ascii-arrival-opacity,.19); }
-body:has(#detail:not([hidden]) .pd-hero) .ascii-background { opacity: .07; }
-@media(max-width:560px) { .ascii-background { opacity:.13; } }
-@media print { .ascii-background,.ascii-toggle { display:none; } }
 
 /* Quiet entry: the artwork is the first screen, the reel follows native scrolling. */
 .arrival { position:relative; height:calc(100svh - var(--nav-h)); min-height:420px; }
@@ -69,7 +61,6 @@ body .nav { transition:opacity .35s ease,box-shadow .3s var(--ease); }
   .arrival { min-height:360px; }
   .arrival-copy { bottom:20%; }
   .arrival-scroll { bottom:20px; }
-  .ascii-background { opacity:calc(var(--ascii-arrival-opacity,.19) * .75); }
 }
 @media(prefers-reduced-motion:reduce) { .arrival-copy,.intro .showreel,body .nav { transition:none; } }
 @media print { .arrival { display:none; } }
