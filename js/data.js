@@ -1515,6 +1515,10 @@ window.PORTFOLIO = {
           {
             "src": "Neuroscape",
             "label": ""
+          },
+          {
+            "src": "Neuroscape-Presentation",
+            "label": "Neuroscape · 2026 실감미디어 경진대회 현장 발표"
           }
         ],
         "clipsTitle": "Scenes",
