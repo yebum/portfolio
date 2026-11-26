@@ -3,7 +3,7 @@ import { createScrollReveal } from './components/scroll-reveal.js';
 import { createArrival } from './components/arrival.js?v=perf-20261028';
 import { createAsciiBackground } from './components/ascii-background.js?v=mobile-resize-20261122';
 import { createRecognition } from './components/recognition.js?v=materials-20261029';
-import { createProjectDetail } from './components/project-detail.js?v=recognition-20261124';
+import { createProjectDetail } from './components/project-detail.js?v=feeld-retro-20261126';
 
 /* ════════════════════════════════════════════════════════════
    Yebum Ko — Portfolio 2026 · app.js

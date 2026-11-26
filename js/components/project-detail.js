@@ -245,6 +245,16 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
         </div>
       </section>` : '';
 
+    // Retrospective: what was tried, changed and decided while making the work.
+    const retro = p.retrospective && p.retrospective.items?.length ? `
+      <section class="pd-block pd-retro" aria-labelledby="pd-retro-title">
+        <div class="sec-label"><span class="mono">${t('회고', 'Retrospective')}</span><span class="mono dim">${pad2(p.retrospective.items.length)}</span></div>
+        <h2 class="pd-retro-title" id="pd-retro-title" data-reveal>${esc(p.retrospective.title)}</h2>
+        <ol class="pd-retro-list">${p.retrospective.items.map((it, i) => `
+          <li data-reveal><span class="mono dim">${pad2(i + 1)}</span><h3>${esc(it.label)}</h3><p>${esc(it.body)}</p></li>`).join('')}
+        </ol>
+      </section>` : '';
+
     const links = m.links.length ? `
       <section class="pd-block" aria-label="Links">
         <div class="sec-label"><span class="mono">Links</span><span class="mono dim">${pad2(m.links.length)}</span></div>
@@ -327,6 +337,7 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
               <p>${esc(s.body)}</p>
             </div>`).join('')}
         </section>${decks}`}
+        ${retro}
         ${clips}
         ${imgs}
         ${links}

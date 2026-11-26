@@ -35,6 +35,9 @@ for (const project of projects) {
     ? ['problem', 'solution', 'result'].map(key => project.caseStudy[key]).filter(Boolean)
       .map(item => `<section><h2>${escape(item.summary)}</h2>${(item.body || []).map(line => `<p>${escape(line)}</p>`).join('')}</section>`).join('')
     : (project.sections || []).map(item => `<section><h2>${escape(item.label)}</h2><p>${escape(item.body)}</p></section>`).join('');
+  const staticRetro = project.retrospective?.items?.length
+    ? `<section><h2>${escape(project.retrospective.title)}</h2>${project.retrospective.items.map(item => `<h3>${escape(item.label)}</h3><p>${escape(item.body)}</p>`).join('')}</section>`
+    : '';
   const dimensions = imageSizes[project.cover];
   const small = imageSizes[`${project.cover}-sm`];
   const heroAttributes = dimensions ? ` width="${dimensions[0]}" height="${dimensions[1]}"${small ? ` srcset="/assets/img/${encodeURIComponent(project.cover)}-sm.webp ${small[0]}w, /assets/img/${encodeURIComponent(project.cover)}.webp ${dimensions[0]}w" sizes="(max-width: 820px) 100vw, 65vw"` : ''}` : '';
@@ -48,7 +51,7 @@ for (const project of projects) {
       </div>
       <figure class="pd-hero-media"><img src="/assets/img/${encodeURIComponent(project.cover)}.webp" alt="${escape(project.fullTitle)}"${heroAttributes} fetchpriority="high" decoding="async"></figure>
     </div></section>
-    <div class="static-project-copy"><p class="pd-lead">${escape(project.lead)}</p>${staticStory}</div>
+    <div class="static-project-copy"><p class="pd-lead">${escape(project.lead)}</p>${staticStory}${staticRetro}</div>
   </article>`;
   let html = template
     // The home reel is hidden on direct project URLs; do not fetch its hero image.
