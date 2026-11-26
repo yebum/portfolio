@@ -319,6 +319,7 @@
     '소멸의시간 · 차가운 귀환': 'Time of Extinction · Cold return',
     'FEELD · 프로젝트 영상': 'FEELD · Project film',
     '참가 증명서': 'Certificate of participation',
+    'Neuroscape · 2026 실감미디어 경진대회 현장 발표': 'Neuroscape · On-site presentation, 2026 Immersive Media Competition',
   };
   const translateCaption = label => {
     if (captionCopy[label]) return captionCopy[label];
