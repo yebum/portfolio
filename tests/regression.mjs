@@ -43,11 +43,11 @@ try {
   await page.goto(base + '/', { waitUntil: 'commit' });
   await page.locator('#nav').waitFor({ state: 'attached' });
   await page.waitForFunction(() => getComputedStyle(document.querySelector('#nav')).position === 'sticky');
-  assert.equal(await page.locator('#nav').evaluate(el => getComputedStyle(el).opacity), '0', 'header is hidden before app initialization');
+  assert.equal(await page.locator('#nav').evaluate(el => getComputedStyle(el).opacity), '1', 'header is visible before app initialization');
   releaseApp();
   await page.waitForLoadState('load');
   await page.unroute('**/js/app.js*');
-  assert.equal(await page.locator('#nav').evaluate(el => getComputedStyle(el).opacity), '0', 'header stays hidden after initialization');
+  assert.equal(await page.locator('#nav').evaluate(el => getComputedStyle(el).opacity), '1', 'header stays visible after initialization');
   for (const viewport of [{width:1440,height:1000},{width:390,height:844},{width:844,height:390}]) {
     await page.setViewportSize(viewport);
     await page.locator('#reel').evaluate(el => el.scrollIntoView({block:'start',behavior:'instant'}));
@@ -75,13 +75,9 @@ try {
     assert.equal(await page.locator('#index-list [data-reveal]').last().evaluate(el => el.classList.contains('in')), false, 'offscreen cards wait for scrolling');
     assert.equal(await page.locator('.ascii-background, .ascii-toggle').count(), 0, 'ASCII logo background is removed');
     if (process.env.UI_SCREENSHOT_DIR) await page.screenshot({ path: resolve(process.env.UI_SCREENSHOT_DIR, language ? 'reel-en.png' : 'reel-ko.png') });
-    assert.ok(await page.locator('#reel').evaluate(el => el.getBoundingClientRect().top >= innerHeight - 2), 'first screen reserves the viewport for the name');
-    assert.equal(await page.locator('#arrival-title').textContent(), 'Yebum Ko');
-    await page.locator('.arrival-scroll').click();
-    await page.waitForFunction(() => document.querySelector('#reel').getBoundingClientRect().top < 150);
-    await page.waitForTimeout(900);
-    assert.equal(await page.locator('body').evaluate(el => el.classList.contains('arrival-active')), false, 'navigation appears after scrolling to reel');
-    if (process.env.UI_SCREENSHOT_DIR && !language) await page.screenshot({path:resolve(process.env.UI_SCREENSHOT_DIR,'arrival-reel.png')});
+    assert.equal(await page.locator('.arrival').count(), 0, 'no separate name screen before the reel');
+    assert.ok(await page.locator('.showreel-stage').evaluate(el => el.getBoundingClientRect().top < innerHeight / 3), 'showreel is the first screen');
+    assert.equal(await page.locator('h1').count(), 1, 'home keeps a single page heading');
     if (language) {
       const feeld = await page.evaluate(() => window.PORTFOLIO.projects.find(p => p.id === 'FEELD'));
       assert.ok(feeld.details.some(d => d.k === 'Tools & technology' && d.v.includes('Unity')), 'English retains technical information');

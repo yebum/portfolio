@@ -1,6 +1,5 @@
 import { createWorkIndex } from './components/work-index.js?v=recognition-icon-20261124';
 import { createScrollReveal } from './components/scroll-reveal.js';
-import { createArrival } from './components/arrival.js?v=no-ascii-20261126';
 import { createRecognition } from './components/recognition.js?v=materials-20261029';
 import { createProjectDetail } from './components/project-detail.js?v=feeld-retro-20261126';
 
@@ -89,7 +88,8 @@ import { createProjectDetail } from './components/project-detail.js?v=feeld-retr
   let sectionClick = false;    // true when a nav/section link (not history) triggered the route
 
   function scrollToSection(name, smooth) {
-    const el = document.getElementById(name);
+    // The showreel is the first screen; "top" is simply the start of the page.
+    const el = name === 'top' ? document.body : document.getElementById(name);
     if (!el) return;
     const y = name === 'top' ? 0 : el.getBoundingClientRect().top + scrollY - (parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0);
     scrollTo({ top: y, behavior: smooth && !reduced ? 'smooth' : 'auto' });
@@ -182,7 +182,7 @@ import { createProjectDetail } from './components/project-detail.js?v=feeld-retr
     }
   }, { rootMargin: '-45% 0px -50% 0px' });
   ['index', 'about', 'recognition', 'guestbook', 'contact'].forEach(id => navIO.observe(document.getElementById(id)));
-  new IntersectionObserver(([e]) => { if (e.isIntersecting && current === 'home') setActiveNav(''); }, { rootMargin: '-45% 0px -50% 0px' }).observe($('#top'));
+  new IntersectionObserver(([e]) => { if (e.isIntersecting && current === 'home') setActiveNav(''); }, { rootMargin: '-45% 0px -50% 0px' }).observe($('#reel'));
 
   /* ── modal (reel) ─────────────────────────────────── */
   const modal = $('#modal'), frame = $('#modal-frame');
@@ -238,5 +238,4 @@ import { createProjectDetail } from './components/project-detail.js?v=feeld-retr
   observeReveals(document);
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   route();
-  createArrival();
 })();
