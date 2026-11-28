@@ -25,7 +25,7 @@ try {
   page.on('request', req => { if (req.resourceType() === 'image') requests.push(req.url()); });
   await page.goto(base + '/work/AllAllowed/');
   await page.waitForTimeout(800);
-  const hiddenReelImages = requests.filter(url => /\/(Neuroscape|FEELD-ForestLive)(-sm)?\.webp/.test(url));
+  const hiddenReelImages = requests.filter(url => /\/(Neuroscape-Reel|FEELD-ForestLive)(-sm)?\.webp/.test(url));
   console.log(JSON.stringify({initialReelImages, hiddenReelImages}, null, 2));
   if (process.env.CHECK_PERFORMANCE) {
     assert.equal(initialReelImages, 1, 'only the first reel image is warmed before scrolling');
@@ -37,7 +37,7 @@ try {
     const staticPage = await mobile.newPage();
     await staticPage.goto(base + '/work/Neuroscape/');
     const hero = staticPage.locator('.static-project .pd-hero img');
-    assert.match(await hero.evaluate(el => el.currentSrc), /Neuroscape-sm.webp$/, 'mobile static hero selects small source before JS');
+    assert.match(await hero.evaluate(el => el.currentSrc), /Neuroscape-Booth-sm.webp$/, 'mobile static hero selects small source before JS');
     assert.ok(Number(await hero.getAttribute('width')) > 0, 'static hero reserves image dimensions');
     await mobile.close();
   }
