@@ -13,6 +13,7 @@ window.PORTFOLIO = {
       ],
       "awards": ["제33회 계원조형예술제 학과우수작"],
       "cover": "FEELD-ForestLive",
+      "thumb": "FEELD-Thumb",
       "lead": "직접 방문해 360도로 촬영·스캔하고 소리를 녹음한 여섯 숲을 Gaussian Splatting으로 재구성한 인터랙티브 미디어아트. 관객은 실제 자연물을 만지며 색을 잃은 숲을 깨우고, 손의 위치에 반응하는 소리를 들으며 다음 숲으로 이동한다.",
       "caseStudy": {
         "problem": {
@@ -231,6 +232,7 @@ window.PORTFOLIO = {
       ],
       "awards": [],
       "cover": "Seungmu",
+      "thumb": "Seungmu-Thumb",
       "lead": "houseCall 팀원으로 참여한 2026 HCF 미디어아트쇼 작품. 망자의 안녕을 비는 춤인 승무를 두 무용수의 쌍승무와 무대 영상으로 풀어낸 공연이다.",
       "sections": [
         {
@@ -395,7 +397,7 @@ window.PORTFOLIO = {
         "motion"
       ],
       "awards": [],
-      "cover": "XMF-Intro",
+      "cover": "XMF2026-Artists",
       "lead": "XMF 2026에서 한국 아티스트 다섯 팀(윤하, LUCY, HI-FI UN!CORN, HRTZWAV, THE FIX)의 무대 비주얼을 총괄하고 곡별 사운드 인터랙티브 비주얼을 제작했다. 아티스트별로 현장 영상과 프리비즈 목업, 오디오 리액티브 영상을 정리했다.",
       "caseStudy": {
         "problem": {
@@ -865,6 +867,7 @@ window.PORTFOLIO = {
       "disciplines": ["media", "motion"],
       "awards": [],
       "cover": "TimeOfExtinction",
+      "thumb": "TimeOfExtinction-Thumb",
       "lead": "잠비나이의 공연 〈소멸의시간〉을 위해 제작한 오디오비주얼 프로젝트이다. 공연 음악의 밀도와 감정의 흐름을 시각적 움직임으로 확장하고, 무대 위의 사운드와 이미지가 하나의 장면처럼 느껴지도록 구성하였다.",
       "caseStudy": {
         "problem": {
@@ -966,6 +969,7 @@ window.PORTFOLIO = {
       ],
       "awards": [],
       "cover": "SilgamSujevi",
+      "thumb": "SilgamSujevi-Thumb",
       "lead": "제주 바닷가에서 가족과 함께하던 물수제비를 몸으로 다시 경험하는 Unity 6 게임. 카메라가 읽은 준비 자세와 팔 스윙을 캐릭터의 투척, 돌의 바운스, 점수와 재도전으로 연결했다.",
       "caseStudy": {
         "problem": {
@@ -1273,6 +1277,7 @@ window.PORTFOLIO = {
         "BCM Academy 창의상"
       ],
       "cover": "Neuroscape-Booth",
+      "thumb": "Neuroscape-Reel",
       "lead": "교사의 짧은 휴식 시간을 위한 EEG 반응형 VR 명상 콘텐츠. 교사와 교육기관 관계자의 문제 검증을 바탕으로, 약 10분 동안 뇌파 변화가 미디어아트에 반영되는 경험을 기획하고 MVP로 구현했다.",
       "metrics": {
         "title": "검증 결과",
@@ -1436,6 +1441,7 @@ window.PORTFOLIO = {
       "disciplines": ["media"],
       "awards": [],
       "cover": "BeyondTheCenter",
+      "thumb": "BeyondTheCenter-Thumb",
       "lead": "Beyond the Center는 포스트휴머니즘을 바탕으로 인간과 AI가 서로 연결되며 새로운 생태계를 형성하는 과정을 표현한 이머시브 미디어아트 프로젝트이다. 인간의 일상에서 발생하는 작은 행동 데이터를 하나의 ‘점’으로 시작해, 점들이 연결되어 시냅스와 도시의 네트워크를 이루고 다시 우주적 구조로 확장되는 과정을 3면 프로젝션 공간 안에 구현하였다.",
       "caseStudy": {
         "problem": {
@@ -1524,6 +1530,7 @@ window.PORTFOLIO = {
       "disciplines": ["media"],
       "awards": [],
       "cover": "XrStudio",
+      "thumb": "XrStudio-Thumb",
       "lead": "파국의 궤도는 단테의 『신곡』 중 애욕, 폭력, 배신의 지옥을 현대적으로 재해석한 미디어아트 작품이다. 세 개의 지옥을 관계가 무너지는 과정으로 연결하여, 욕망에서 시작된 감정이 폭력과 배신으로 이어지며 결국 파국에 이르는 흐름을 시각적으로 표현하였다.",
       "caseStudy": {
         "problem": {
@@ -1614,6 +1621,7 @@ window.PORTFOLIO = {
         "학과 우수작 연합PT"
       ],
       "cover": "Invader",
+      "thumb": "Invader-Thumb",
       "lead": "Invader는 고전 슈팅 게임의 단순한 회피·발사 구조를 Unity의 컴포넌트, 충돌, 프리팹 생성과 상태 관리로 직접 구현해 보기 위해 기획한 3D 아케이드 게임이다. 익숙한 우주선 대신 원숭이가 바나나로 드론을 막는 설정을 더해 규칙은 즉시 이해되지만 시각적으로는 기억에 남는 게임을 목표로 했다.",
       "caseStudy": {
         "problem": {

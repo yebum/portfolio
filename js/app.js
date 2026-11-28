@@ -1,4 +1,4 @@
-import { createWorkIndex } from './components/work-index.js?v=recognition-icon-20261124';
+import { createWorkIndex } from './components/work-index.js?v=thumbs-16x9-20261128';
 import { createScrollReveal } from './components/scroll-reveal.js';
 import { createRecognition } from './components/recognition.js?v=materials-20261029';
 import { createProjectDetail } from './components/project-detail.js?v=xmf-artists-20261128';

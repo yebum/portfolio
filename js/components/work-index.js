@@ -13,9 +13,9 @@ export function createWorkIndex({ D, t, $, $$, esc, pad2, src, imageDimensions, 
 
     const ordered = [...D.projects].sort((a, b) => Number(b.year) - Number(a.year));
     list.innerHTML = ordered.map((p, i) => `
-      <li data-disc="${esc(p.disciplines.join(' '))}" data-cover="${esc(p.cover)}">
-        <a class="row-link" href="#/work/${p.id}" data-reveal="card" data-thumb="${src(p.cover, true)}">
-          <span class="row-thumb card"><img src="${src(p.cover)}"${imageDimensions(p.cover)}${responsive(p.cover, '(max-width: 580px) 100vw, (max-width: 900px) 50vw, (max-width: 1600px) 33vw, 25vw')} alt="" loading="lazy" decoding="async"></span>
+      <li data-disc="${esc(p.disciplines.join(' '))}" data-cover="${esc(p.thumb || p.cover)}">
+        <a class="row-link" href="#/work/${p.id}" data-reveal="card" data-thumb="${src(p.thumb || p.cover, true)}">
+          <span class="row-thumb card"><img src="${src(p.thumb || p.cover)}"${imageDimensions(p.thumb || p.cover)}${responsive(p.thumb || p.cover, '(max-width: 580px) 100vw, (max-width: 900px) 50vw, (max-width: 1600px) 33vw, 25vw')} alt="" loading="lazy" decoding="async"></span>
           <span class="row-no mono">${pad2(i + 1)}</span>
           <span class="row-title"><span class="t">${esc(p.fullTitle)}</span>${p.awards.length ? `<span class="row-award" title="${esc(p.awards.join(' · '))}" aria-label="${t('수상·선정 이력', 'Award or selection')}">${awardIcon}</span>` : ''}</span>
           <span class="row-disc">${esc(projectDiscs(p).map(d => d.label).join(' / '))}</span>
