@@ -159,8 +159,8 @@
       'JalTayo VR', 'Metaverse Service Developer Competition',
       'An educational VR experience that lets children practise using a bus safely. They wait, board, tap a transit card, press the stop bell and get off inside a virtual environment.',
       ['Safety lessons need practice', 'Watching instructions alone does not help inexperienced children remember the order of a bus journey.'],
-      ['Learn by doing in VR', 'The experience follows the real sequence of a bus trip and lets children repeat each action.'],
-      ['A full bus-ride learning experience', 'The prototype covers the journey from waiting at the stop to leaving the bus safely.'],
+      ['Learn by doing in VR', 'The experience follows the real sequence of a bus trip and lets children repeat each action. The November 2026 development build adds a two-bus mission with a transfer, a look-alike bus for checking route numbers, a priority-seat quiz, a crosswalk with a pedestrian signal, a minimap, and comfort settings for seated or shorter children.'],
+      ['A full bus-ride learning experience', 'The prototype covers the journey from waiting at the stop to leaving the bus safely. The current build ends with a bus-licence stamp board that shows which of nine actions the child managed alone, and a complete playthrough was recorded as an archive.'],
       'Concept and VR development'
     ),
     PiratesStorm: P(
@@ -319,6 +319,15 @@
     '소멸의시간 · 차가운 귀환': 'Time of Extinction · Cold return',
     'FEELD · 프로젝트 영상': 'FEELD · Project film',
     '참가 증명서': 'Certificate of participation',
+    "잘타요VR · 손 연습 (카드 태그와 하차벨)": "JalTayo VR · Hand practice (card tap and stop bell)",
+    "잘타요VR · 오늘의 미션 카드": "JalTayo VR · Today’s mission card",
+    "잘타요VR · 버스에 타서 카드 태그": "JalTayo VR · Tapping the card after boarding",
+    "잘타요VR · 노약자석·임산부 배려석 퀴즈": "JalTayo VR · Priority seat quiz",
+    "잘타요VR · 정류장 방송과 안내 화면": "JalTayo VR · Stop announcement and display",
+    "잘타요VR · 초록불에 횡단보도 건너기": "JalTayo VR · Crossing on the green light",
+    "잘타요VR · 번호가 다른 버스 보내기": "JalTayo VR · Letting the wrong bus go",
+    "잘타요VR · 버스 면허증 결과판": "JalTayo VR · Bus licence result board",
+    "잘타요VR · 2026.11 개발 버전 플레이 영상 (에디터 녹화, 4분 14초)": "JalTayo VR · November 2026 development build playthrough (editor capture, 4 min 14 sec)",
     'Neuroscape · 2026 실감미디어 경진대회 현장 발표': 'Neuroscape · On-site presentation, 2026 Immersive Media Competition',
   };
   const translateCaption = label => {
@@ -346,6 +355,7 @@
       ...p.details.filter(d => ['사용 툴', '사용 도구', '사용 기술', '제작 도구'].includes(d.k)).map(d => ({ k: 'Tools & technology', v: d.v })),
       ...(p.id === 'MATMI' ? [{ k: 'Duration', v: 'Four days · 2026' }] : []),
       ...(p.id === 'FlatDepth' ? [{ k: 'Status', v: 'Spatial simulation and technical demo · before physical installation' }] : []),
+      ...(p.id === 'JalTayo' ? [{ k: 'Status', v: 'Development build in progress · November 2026' }] : []),
     ];
     p.awards = p.awards.map(a => awardNames[a] || a);
     p.media.films.forEach((item, i) => {
