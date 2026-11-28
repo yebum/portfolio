@@ -58,7 +58,7 @@ for (const project of projects) {
   </article>`;
   let html = template
     // The home reel is hidden on direct project URLs; do not fetch its hero image.
-    .replace(/(<img )src="assets\/img\/Neuroscape.webp" srcset=/, '$1data-src="assets/img/Neuroscape.webp" data-srcset=')
+    .replace(/(<img )src="assets\/img\/Neuroscape-Reel.webp" srcset=/, '$1data-src="assets/img/Neuroscape-Reel.webp" data-srcset=')
     .replace('<meta charset="UTF-8">', '<meta charset="UTF-8">\n  <base href="/">')
     .replace('<main id="home" class="view">', '<main id="home" class="view" hidden>')
     .replace('<main id="detail" class="view" hidden></main>', `<main id="detail" class="view">${staticDetail}</main>`)
