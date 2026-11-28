@@ -138,8 +138,8 @@ try {
       return { width: Math.round(box.width), height: Math.round(box.height), naturalRatio: img.naturalWidth / img.naturalHeight, left: Math.round(card.left), top: Math.round(card.top), bottom: Math.round(card.bottom) };
     }));
     assert.equal(new Set(cards.slice(0, 3).map(card => card.width)).size, 1, 'columns have equal widths');
-    assert.ok(new Set(cards.map(card => card.height)).size > 1, 'images retain varied heights');
-    assert.ok(cards.every(card => Math.abs(card.width / card.height - card.naturalRatio) < .02), 'images keep their natural proportions');
+    assert.equal(new Set(cards.map(card => card.height)).size, 1, 'thumbnails share one height');
+    assert.ok(cards.every(card => Math.abs(card.width / card.height - 16 / 9) < .02), 'thumbnails are framed at 16:9');
     assert.equal(new Set(cards.slice(0, 3).map(card => card.top)).size, 1, 'newest three projects lead each column');
     if (process.env.GALLERY_SCREENSHOT_DIR && !language) {
       await page.locator('#index-list > li').first().evaluate(el => el.scrollIntoView({ block: 'start', behavior: 'instant' }));
