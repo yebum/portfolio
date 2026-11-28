@@ -1820,3 +1820,13 @@ html[lang='en'] .cs-sum { letter-spacing:-.015em; }
   .artist-head { grid-template-columns: minmax(0, 1fr); }
   .artist-songs, .artist-note { grid-column: 1; grid-row: auto; }
 }
+
+/* ── Project thumbnails: one 16:9 frame everywhere (grid, list, phone rows, hover preview) ── */
+.index-preview { aspect-ratio: 16 / 9; }
+.index-preview img { width: 100%; height: 100%; object-fit: cover; }
+.index .row-thumb { aspect-ratio: 16 / 9; }
+.index .row-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.index.is-grid .row-thumb { aspect-ratio: 16 / 9; overflow: hidden; }
+.index.is-grid .row-thumb img { height: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.index:not(.is-grid) .row-thumb { aspect-ratio: 16 / 9; align-self: start; }
+.index:not(.is-grid) .row-thumb img { object-fit: cover; }
