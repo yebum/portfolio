@@ -38,6 +38,9 @@ for (const project of projects) {
   const staticRetro = project.retrospective?.items?.length
     ? `<section><h2>${escape(project.retrospective.title)}</h2>${project.retrospective.items.map(item => `<h3>${escape(item.label)}</h3><p>${escape(item.body)}</p>`).join('')}</section>`
     : '';
+  const staticArtists = project.media.artists?.length
+    ? `<section><h2>Artists</h2>${project.media.artists.map(a => `<h3 id="${escape(a.key)}">${escape(a.name)}</h3><p>${escape(a.songs)}</p><p>${escape(a.note)}</p>`).join('')}</section>`
+    : '';
   const dimensions = imageSizes[project.cover];
   const small = imageSizes[`${project.cover}-sm`];
   const heroAttributes = dimensions ? ` width="${dimensions[0]}" height="${dimensions[1]}"${small ? ` srcset="/assets/img/${encodeURIComponent(project.cover)}-sm.webp ${small[0]}w, /assets/img/${encodeURIComponent(project.cover)}.webp ${dimensions[0]}w" sizes="(max-width: 820px) 100vw, 65vw"` : ''}` : '';
@@ -51,7 +54,7 @@ for (const project of projects) {
       </div>
       <figure class="pd-hero-media"><img src="/assets/img/${encodeURIComponent(project.cover)}.webp" alt="${escape(project.fullTitle)}"${heroAttributes} fetchpriority="high" decoding="async"></figure>
     </div></section>
-    <div class="static-project-copy"><p class="pd-lead">${escape(project.lead)}</p>${staticStory}${staticRetro}</div>
+    <div class="static-project-copy"><p class="pd-lead">${escape(project.lead)}</p>${staticStory}${staticRetro}${staticArtists}</div>
   </article>`;
   let html = template
     // The home reel is hidden on direct project URLs; do not fetch its hero image.
@@ -76,6 +79,26 @@ for (const project of projects) {
   await mkdir(dir, { recursive: true });
   await writeFile(resolve(dir, 'index.html'), html.trimEnd() + '\n');
   urls.push(url);
+}
+// Old URLs of projects that were merged into another one keep working.
+for (const [from, to] of Object.entries(context.window.PORTFOLIO.redirects || {})) {
+  if (!/^[A-Za-z0-9-]+$/.test(from) || !/^[A-Za-z0-9/-]+$/.test(to)) throw new Error(`Unsafe redirect: ${from}`);
+  const target = `/#/work/${to}`;
+  const canonical = `${origin}/work/${to.split('/')[0]}/`;
+  const dir = resolve(root, 'work', from);
+  await mkdir(dir, { recursive: true });
+  await writeFile(resolve(dir, 'index.html'), `<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Yebum Ko</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="${canonical}">
+  <meta http-equiv="refresh" content="0; url=${target}">
+</head>
+<body><a href="${target}">${canonical}</a></body>
+</html>
+`);
 }
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(url => `  <url><loc>${url}</loc></url>`).join('\n')}\n</urlset>\n`;
 await writeFile(resolve(root, 'sitemap.xml'), sitemap);

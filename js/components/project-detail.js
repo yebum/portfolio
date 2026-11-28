@@ -189,7 +189,88 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
     videos.forEach(v => clipObserver.observe(v));
   }
 
-  function renderDetail(id) {
+  // Stacked festival clips: on-site footage on top, stage preview mock-up below.
+  function clipsHTML(list, title, note) {
+    const clipList = (list || []).filter(c => /^assets\/video\/[\w.-]+\.mp4$/.test(c.src));
+    return clipList.length ? `
+      <section class="pd-block" aria-label="${t('현장 영상과 프리비즈', 'Live footage and stage preview')}">
+        <div class="sec-label"><span class="mono">${title ? esc(title) : 'Live × Previz'}</span><span class="ctx dim">${esc(note || t('위 현장 영상 · 아래 프리비즈 목업', 'Top: live footage · Bottom: stage preview'))}</span></div>
+        <div class="pd-clips">${clipList.map(c => `
+          <figure class="pd-clip" data-reveal>
+            <button class="pd-clip-toggle" type="button" aria-label="${esc(c.label)} ${t('재생 / 일시정지', 'play / pause')}">
+              <video src="${esc(c.src)}"${c.poster ? ` poster="${esc(src(c.poster))}"` : ''} width="720" height="900" muted loop playsinline preload="none" aria-hidden="true"></video>
+              <span class="pd-clip-state mono" aria-hidden="true"></span>
+            </button>
+            <figcaption class="mono dim">${esc(c.label)}</figcaption>
+          </figure>`).join('')}
+        </div>
+      </section>` : '';
+  }
+
+  // One festival, several artists: a tab per artist, each with its own clips and films.
+  const artistKey = key => String(key).replace(/[^\w-]/g, '');
+  function artistsHTML(p) {
+    const list = p.media.artists || [];
+    if (!list.length) return '';
+    const tabs = list.map((a, i) => {
+      const k = artistKey(a.key);
+      const counts = [a.clips?.length ? `${pad2(a.clips.length)} ${t('현장', 'live')}` : '', a.films?.length ? `${pad2(a.films.length)} ${t('영상', 'films')}` : ''].filter(Boolean).join(' · ');
+      return `<button type="button" class="artist-tab" role="tab" id="artist-tab-${k}" aria-controls="artist-${k}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-artist-tab="${k}">
+          <span class="artist-tab-img"><img src="${src(a.cover)}"${imageDimensions(a.cover)}${responsive(a.cover, '(max-width: 760px) 30vw, 14vw')} alt="" loading="lazy" decoding="async"></span>
+          <span class="artist-tab-name">${esc(a.name)}</span>
+          <span class="artist-tab-meta mono dim">${counts}</span>
+        </button>`;
+    }).join('');
+    const panels = list.map((a, i) => {
+      const k = artistKey(a.key);
+      const films = a.films?.length ? `
+        <section class="pd-block" aria-label="Film">
+          <div class="sec-label"><span class="mono">Film</span><span class="mono dim">${pad2(a.films.length)}</span></div>
+          <div class="embeds${a.films.length > 1 ? ' embeds--2' : ''}">${a.films.map((f, j) => embedHTML('film', f, j, a.films.length, f.poster || null)).join('')}</div>
+        </section>` : '';
+      return `
+      <div class="artist-panel" role="tabpanel" id="artist-${k}" aria-labelledby="artist-tab-${k}"${i === 0 ? '' : ' hidden'}>
+        <div class="artist-head">
+          <span class="mono dim">${pad2(i + 1)} / ${pad2(list.length)}</span>
+          <h2>${esc(a.name)}</h2>
+          ${a.songs ? `<p class="artist-songs mono">${esc(a.songs)}</p>` : ''}
+          ${a.note ? `<p class="artist-note">${esc(a.note)}</p>` : ''}
+        </div>
+        ${clipsHTML(a.clips)}
+        ${films}
+      </div>`;
+    }).join('');
+    return `
+      <section class="pd-artists" id="artists" aria-label="Artists">
+        <div class="sec-label"><span class="mono">Artists</span><span class="mono dim">${pad2(list.length)}</span></div>
+        <div class="artist-tabs" role="tablist" aria-label="${t('아티스트 선택', 'Choose an artist')}">${tabs}</div>
+        ${panels}
+      </section>`;
+  }
+
+  function selectArtist(key, { focus = false, updateUrl = true } = {}) {
+    const tab = detail.querySelector(`[data-artist-tab="${artistKey(key)}"]`);
+    if (!tab) return false;
+    $$('[data-artist-tab]', detail).forEach(b => {
+      const on = b === tab;
+      b.setAttribute('aria-selected', on);
+      b.tabIndex = on ? 0 : -1;
+      const panel = document.getElementById(b.getAttribute('aria-controls'));
+      if (!panel || panel.hidden === !on) return;
+      if (!on) {
+        // stop anything still playing in the panel being hidden
+        panel.querySelectorAll('video').forEach(v => v.pause());
+        panel.querySelectorAll('iframe').forEach(f => { const s = f.src; f.src = 'about:blank'; f.src = s; });
+      }
+      panel.hidden = !on;
+      if (on) observeReveals(panel);
+    });
+    if (focus) tab.focus();
+    if (updateUrl && activeProject) history.replaceState(null, '', `#/work/${activeProject.id}/${artistKey(key)}`);
+    return true;
+  }
+
+  function renderDetail(id, sub) {
     const p = Object.hasOwn(byId, id) ? byId[id] : null;
     if (!p) { location.hash = '#/index'; return; }
     clearDetail();
@@ -229,21 +310,8 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
         </div>
       </section>` : '';
 
-    // Stacked festival clips: on-site footage on top, stage preview mock-up below.
-    const clipList = (m.clips || []).filter(c => /^assets\/video\/[\w.-]+\.mp4$/.test(c.src));
-    const clips = clipList.length ? `
-      <section class="pd-block" aria-label="${t('현장 영상과 프리비즈', 'Live footage and stage preview')}">
-        <div class="sec-label"><span class="mono">${m.clipsTitle ? esc(m.clipsTitle) : 'Live × Previz'}</span><span class="ctx dim">${esc(m.clipsNote ? t(m.clipsNote, m.clipsNoteEn || m.clipsNote) : t('위 현장 영상 · 아래 프리비즈 목업', 'Top: live footage · Bottom: stage preview'))}</span></div>
-        <div class="pd-clips">${clipList.map(c => `
-          <figure class="pd-clip" data-reveal>
-            <button class="pd-clip-toggle" type="button" aria-label="${esc(c.label)} ${t('재생 / 일시정지', 'play / pause')}">
-              <video src="${esc(c.src)}"${c.poster ? ` poster="${esc(src(c.poster))}"` : ''} width="720" height="900" muted loop playsinline preload="none" aria-hidden="true"></video>
-              <span class="pd-clip-state mono" aria-hidden="true"></span>
-            </button>
-            <figcaption class="mono dim">${esc(c.label)}</figcaption>
-          </figure>`).join('')}
-        </div>
-      </section>` : '';
+    const clips = clipsHTML(m.clips, m.clipsTitle, m.clipsNote ? t(m.clipsNote, m.clipsNoteEn || m.clipsNote) : '');
+    const artists = artistsHTML(p);
 
     // Retrospective: what was tried, changed and decided while making the work.
     const retro = p.retrospective && p.retrospective.items?.length ? `
@@ -338,6 +406,7 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
             </div>`).join('')}
         </section>${decks}`}
         ${retro}
+        ${artists}
         ${clips}
         ${imgs}
         ${links}
@@ -351,6 +420,7 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
     document.title = `${p.fullTitle} — Yebum Ko`;
     observeReveals(detail);
     watchClips();
+    return sub ? selectArtist(sub, { updateUrl: false }) : false;
   }
 
   detail.addEventListener('click', e => {
@@ -361,6 +431,8 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
       else toast(url);
       return;
     }
+    const artistTab = e.target.closest('[data-artist-tab]');
+    if (artistTab) { selectArtist(artistTab.dataset.artistTab); return; }
     const clipButton = e.target.closest('.pd-clip-toggle');
     if (clipButton) {
       const video = clipButton.querySelector('video'), fig = clipButton.closest('.pd-clip');
@@ -390,6 +462,18 @@ export function createProjectDetail({ D, t, $, $$, esc, pad2, src, imageDimensio
       const view = $('#pdf-view');
       if (view) view.innerHTML = pdfFrame(d, d.label || `PDF ${pad2(i + 1)}`);
     }
+  });
+
+  // Arrow keys / Home / End move between artist tabs (WAI-ARIA tabs pattern).
+  detail.addEventListener('keydown', e => {
+    const tab = e.target.closest('[data-artist-tab]');
+    if (!tab) return;
+    const tabs = $$('[data-artist-tab]', detail), i = tabs.indexOf(tab);
+    const next = e.key === 'ArrowRight' ? tabs[(i + 1) % tabs.length] : e.key === 'ArrowLeft' ? tabs[(i - 1 + tabs.length) % tabs.length]
+      : e.key === 'Home' ? tabs[0] : e.key === 'End' ? tabs[tabs.length - 1] : null;
+    if (!next) return;
+    e.preventDefault();
+    selectArtist(next.dataset.artistTab, { focus: true });
   });
 
   return { renderDetail, galleryViewer, releaseClips };

@@ -25,14 +25,6 @@
       result: { summary: result[0], body: [result[1]] },
     },
   });
-  const artist = (name, track) => P(
-    `XMF 2026 — ${name}`, 'XMF FESTIVAL · stage visual previews',
-    `A collection of song-specific visual images and audio-reactive videos created for ${name}'s XMF 2026 stage.`,
-    ['A distinct visual language for each song', `The stage needed visuals that followed the mood and rhythm of ${name}'s set.`],
-    ['Images and audio-reactive motion', `I developed song-specific imagery and reactive video studies, including visuals for “${track}.”`],
-    ['Stage previews and finished visual studies', 'The project brings the imagery and reactive clips together as a record of the proposed stage experience.'],
-    'Visual direction for Korean artists and audio-reactive visual production'
-  );
   const projects = {
     FEELD: P(
       'FEELD', 'Capstone project · interactive media art',
@@ -71,17 +63,13 @@
         { label: 'Final scene', body: 'Seen from above, the synchronized crowd forms one enormous human figure. A red glow near its heart suggests that feeling and humanity still remain within the mechanical movement.' },
       ],
     },
-    'XMF2026-YOUNHA': artist('Younha', 'Password 486'),
-    'XMF2026-LUCY': artist('LUCY', 'Flowering'),
-    'XMF2026-hrtzwav': artist('HRTZWAV', 'mind'),
-    'XMF2026-THEFIX': artist('THE FIX', 'Moonrise'),
     XMF2026: P(
-      'XMF 2026 — HI-FI UN!CORN', 'XMF FESTIVAL · stage visual previews',
-      'Stage visual previews for HI-FI UN!CORN at XMF 2026. Each song has its own atmosphere, shown both in a full-stage simulation and in close views of individual screens.',
-      ['Many moods, one stage sequence', 'Each song called for a different palette and visual rhythm, while remaining legible across a wide performance stage.'],
-      ['Song-by-song stage simulation', 'I designed distinct scenes and checked them in full-stage views and screen close-ups, refining colour, composition and transitions.'],
-      ['A complete visual preview', 'The final collection shows how the song-specific visuals would appear on stage. These are simulations rather than footage from a live performance.'],
-      'Lead visual direction for Korean artists and sound-interactive visual production'
+      'XMF 2026 — Korean artist stage visuals', 'XMF FESTIVAL · stage visual previews',
+      'At XMF 2026 I led the stage visuals for five Korean acts — Younha, LUCY, HI-FI UN!CORN, HRTZWAV and THE FIX — and produced sound-interactive visuals for each song. The work is organised by artist, with on-site footage, stage-preview mock-ups and audio-reactive videos.',
+      ['Five acts, a different screen for every song', 'The festival brought together five artists with different genres and moods. Each song needed its own colour and imagery, and every scene had to read clearly on a wide LED stage and from the audience.'],
+      ['A visual direction per artist, driven by sound', 'I set a visual direction for each artist first, then built song-specific scenes as audio-reactive visuals in TouchDesigner and checked them in stage previews showing the full stage and individual screens.'],
+      ['Five stages, recorded live and in preview', 'Choose an artist below to see on-site footage stacked over the stage-preview mock-up (live on top, preview below), along with the audio-reactive videos.'],
+      'Visual lead for Korean artists · sound-interactive visual production'
     ),
     MATMI: P(
       'MATMI', '2026 Global Start-up Design Thinking Hackathon · Team 13 Hexagon',
@@ -356,6 +344,7 @@
       ...(p.id === 'MATMI' ? [{ k: 'Duration', v: 'Four days · 2026' }] : []),
       ...(p.id === 'FlatDepth' ? [{ k: 'Status', v: 'Spatial simulation and technical demo · before physical installation' }] : []),
       ...(p.id === 'JalTayo' ? [{ k: 'Status', v: 'Development build in progress · November 2026' }] : []),
+      ...(p.media.artists?.length ? [{ k: 'Artists', v: p.media.artists.map(a => a.nameEn || a.name).join(' · ') }] : []),
     ];
     p.awards = p.awards.map(a => awardNames[a] || a);
     p.media.films.forEach((item, i) => {
@@ -370,6 +359,14 @@
       if (hasKorean(item.label)) item.label = `${copy.title} · Image ${String(i + 1).padStart(2, '0')}`;
     });
     (p.media.clips || []).forEach(item => { item.label = item.labelEn || translateCaption(item.label); });
+    (p.media.artists || []).forEach(a => {
+      a.name = a.nameEn || a.name; a.songs = a.songsEn || a.songs; a.note = a.noteEn || a.note;
+      (a.clips || []).forEach(item => { item.label = item.labelEn || translateCaption(item.label); });
+      (a.films || []).forEach((item, i) => {
+        item.label = translateCaption(item.label);
+        if (hasKorean(item.label)) item.label = `${a.name} · Film ${String(i + 1).padStart(2, '0')}`;
+      });
+    });
     p.media.links.forEach((item, i) => {
       if (hasKorean(item.label)) item.label = `Project link ${i + 1}`;
     });

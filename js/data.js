@@ -385,308 +385,35 @@ window.PORTFOLIO = {
       }
     },
     {
-      "id": "XMF2026-YOUNHA",
-      "title": "XMF 2026 · 윤하",
-      "fullTitle": "XMF 2026 — 윤하",
-      "context": "XMF FESTIVAL · 공연 비주얼 프리비즈",
-      "year": "2026",
-      "disciplines": ["media", "motion"],
-      "awards": [],
-      "cover": "XMF-YOUNHA-05",
-      "lead": "XMF 2026 윤하 무대를 위해 제작한 곡별 비주얼 이미지와 오디오 리액티브 영상 작업을 정리했다.",
-      "caseStudy": {
-        "problem": {
-          "summary": "곡별 분위기에 맞는 공연 비주얼 구성",
-          "body": [
-            "윤하의 곡마다 다른 분위기를 무대 화면에 담기 위해 곡별 비주얼을 제작했다."
-          ]
-        },
-        "solution": {
-          "summary": "곡별 이미지와 오디오 리액티브 영상 제작",
-          "body": [
-            "곡별 장면을 이미지로 정리하고, 사운드에 반응하는 영상 작업을 함께 구성했다."
-          ]
-        },
-        "result": {
-          "summary": "무대 비주얼 프리비즈와 영상 작업물 정리",
-          "body": [
-            "아래에서 오디오 리액티브 영상과 곡별 비주얼 이미지를 볼 수 있다. 이미지는 실제 공연 촬영본이 아닌 무대 비주얼 자료다."
-          ]
-        }
-      },
-      "details": [
-        {
-          "k": "프로젝트 유형",
-          "v": "페스티벌 공연 비주얼 · 무대 프리비즈"
-        },
-        {
-          "k": "역할",
-          "v": "한국 아티스트 비주얼 총괄 · 사운드 인터랙티브 비주얼 제작"
-        },
-        {
-          "k": "아티스트",
-          "v": "윤하"
-        }
-      ],
-      "media": {
-        "films": [
-          {
-            "kind": "youtube",
-            "id": "wxKWAmbJP9c",
-            "label": "윤하 · 오디오 리액티브 영상 01"
-          },
-          {
-            "kind": "youtube",
-            "id": "iNRbCWRgl9k",
-            "label": "윤하 · 오디오 리액티브 영상 02"
-          },
-          {
-            "kind": "youtube",
-            "id": "3XmZn50R7sk",
-            "label": "윤하 · 오디오 리액티브 영상 03"
-          }
-        ],
-        "decks": [],
-        "images": [],
-        "clips": [
-          {
-            "src": "assets/video/XMF-live-YOUNHA-486-1.mp4",
-            "poster": "XMF-live-YOUNHA-486-1",
-            "label": "비밀번호 486 · 01",
-            "labelEn": "Password 486 · 01"
-          },
-          {
-            "src": "assets/video/XMF-live-YOUNHA-486-2.mp4",
-            "poster": "XMF-live-YOUNHA-486-2",
-            "label": "비밀번호 486 · 02",
-            "labelEn": "Password 486 · 02"
-          },
-          {
-            "src": "assets/video/XMF-live-YOUNHA-486-3.mp4",
-            "poster": "XMF-live-YOUNHA-486-3",
-            "label": "비밀번호 486 · 03",
-            "labelEn": "Password 486 · 03"
-          },
-          {
-            "src": "assets/video/XMF-live-YOUNHA-486-4.mp4",
-            "poster": "XMF-live-YOUNHA-486-4",
-            "label": "비밀번호 486 · 04",
-            "labelEn": "Password 486 · 04"
-          },
-          {
-            "src": "assets/video/XMF-live-YOUNHA-486-5.mp4",
-            "poster": "XMF-live-YOUNHA-486-5",
-            "label": "비밀번호 486 · 05",
-            "labelEn": "Password 486 · 05"
-          }
-        ],
-        "links": []
-      }
-    },
-    {
-      "id": "XMF2026-LUCY",
-      "title": "XMF 2026 · LUCY",
-      "fullTitle": "XMF 2026 — LUCY",
-      "context": "XMF FESTIVAL · 공연 비주얼 프리비즈",
-      "year": "2026",
-      "disciplines": ["media", "motion"],
-      "awards": [],
-      "cover": "XMF-LUCY-06",
-      "lead": "XMF 2026 LUCY 무대를 위해 제작한 곡별 비주얼 이미지와 오디오 리액티브 영상 작업을 정리했다.",
-      "caseStudy": {
-        "problem": {
-          "summary": "곡별 분위기에 맞는 공연 비주얼 구성",
-          "body": [
-            "LUCY의 곡마다 다른 분위기를 무대 화면에 담기 위해 곡별 비주얼을 제작했다."
-          ]
-        },
-        "solution": {
-          "summary": "곡별 이미지와 오디오 리액티브 영상 제작",
-          "body": [
-            "곡별 장면을 이미지로 정리하고, 사운드에 반응하는 영상 작업을 함께 구성했다."
-          ]
-        },
-        "result": {
-          "summary": "무대 비주얼 프리비즈와 영상 작업물 정리",
-          "body": [
-            "아래에서 오디오 리액티브 영상과 곡별 비주얼 이미지를 볼 수 있다. 이미지는 실제 공연 촬영본이 아닌 무대 비주얼 자료다."
-          ]
-        }
-      },
-      "details": [
-        {
-          "k": "프로젝트 유형",
-          "v": "페스티벌 공연 비주얼 · 무대 프리비즈"
-        },
-        {
-          "k": "역할",
-          "v": "한국 아티스트 비주얼 총괄 · 사운드 인터랙티브 비주얼 제작"
-        },
-        {
-          "k": "아티스트",
-          "v": "LUCY"
-        }
-      ],
-      "media": {
-        "films": [
-          {
-            "kind": "youtube",
-            "id": "goaGQ2QL6uc",
-            "label": "LUCY · 오디오 리액티브 영상 01"
-          },
-          {
-            "kind": "youtube",
-            "id": "8Ft9amaR4Rg",
-            "label": "LUCY · 오디오 리액티브 영상 02"
-          },
-          {
-            "kind": "youtube",
-            "id": "Eas6KYp2h1I",
-            "label": "LUCY · 오디오 리액티브 영상 03"
-          },
-          {
-            "kind": "youtube",
-            "id": "ouYcTYhB5Vw",
-            "label": "LUCY · 오디오 리액티브 영상 04"
-          }
-        ],
-        "decks": [],
-        "images": [],
-        "clips": [
-          {
-            "src": "assets/video/XMF-live-LUCY-Gaehwa-1.mp4",
-            "poster": "XMF-live-LUCY-Gaehwa-1",
-            "label": "개화 · 01",
-            "labelEn": "Flowering · 01"
-          },
-          {
-            "src": "assets/video/XMF-live-LUCY-Gaehwa-2.mp4",
-            "poster": "XMF-live-LUCY-Gaehwa-2",
-            "label": "개화 · 02",
-            "labelEn": "Flowering · 02"
-          },
-          {
-            "src": "assets/video/XMF-live-LUCY-Ajirangi-1.mp4",
-            "poster": "XMF-live-LUCY-Ajirangi-1",
-            "label": "아지랑이 · 01",
-            "labelEn": "Ajirangi · 01"
-          },
-          {
-            "src": "assets/video/XMF-live-LUCY-Ajirangi-2.mp4",
-            "poster": "XMF-live-LUCY-Ajirangi-2",
-            "label": "아지랑이 · 02",
-            "labelEn": "Ajirangi · 02"
-          },
-          {
-            "src": "assets/video/XMF-live-LUCY-Anigeunde-1.mp4",
-            "poster": "XMF-live-LUCY-Anigeunde-1",
-            "label": "아니 근데 진짜 · 01",
-            "labelEn": "Ani Geunde Jinjja · 01"
-          },
-          {
-            "src": "assets/video/XMF-live-LUCY-Anigeunde-2.mp4",
-            "poster": "XMF-live-LUCY-Anigeunde-2",
-            "label": "아니 근데 진짜 · 02",
-            "labelEn": "Ani Geunde Jinjja · 02"
-          }
-        ],
-        "links": []
-      }
-    },
-    {
       "id": "XMF2026",
       "title": "XMF 2026",
-      "fullTitle": "XMF 2026 — HI-FI UN!CORN",
+      "fullTitle": "XMF 2026 — 한국 아티스트 무대 비주얼",
       "context": "XMF FESTIVAL · 공연 비주얼 프리비즈",
       "year": "2026",
-      "disciplines": ["media", "motion"],
+      "disciplines": [
+        "media",
+        "motion"
+      ],
       "awards": [],
       "cover": "XMF-Intro",
-      "lead": "XMF 2026의 HI-FI UN!CORN 무대를 위해 제작한 공연 비주얼 프리비즈다. Intro와 각 곡의 분위기에 맞춘 화면을 무대 전체와 클로즈업 시점에서 확인할 수 있도록 구성했다.",
+      "lead": "XMF 2026에서 한국 아티스트 다섯 팀(윤하, LUCY, HI-FI UN!CORN, HRTZWAV, THE FIX)의 무대 비주얼을 총괄하고 곡별 사운드 인터랙티브 비주얼을 제작했다. 아티스트별로 현장 영상과 프리비즈 목업, 오디오 리액티브 영상을 정리했다.",
       "caseStudy": {
         "problem": {
-          "summary": "곡마다 다른 분위기를 하나의 무대 비주얼 흐름으로 구성하기",
+          "summary": "다섯 팀, 곡마다 다른 무대 화면",
           "body": [
-            "Intro, Super Duper, Stop It, Hungry Heart, Butterfly, Cotton Candy 등 곡마다 다른 색과 이미지가 필요했다. 동시에 넓은 무대 화면과 관객 시점에서도 각 장면의 중심이 읽히도록 확인해야 했다."
+            "한 페스티벌 안에서 장르와 분위기가 다른 다섯 아티스트의 무대를 맡았다. 곡마다 다른 색과 이미지가 필요했고, 넓은 LED 무대와 관객 시점에서도 각 장면의 중심이 읽혀야 했다."
           ]
         },
         "solution": {
-          "summary": "곡별 장면을 무대 시뮬레이션과 화면별 클로즈업으로 점검",
+          "summary": "아티스트별 비주얼 방향과 사운드에 반응하는 영상",
           "body": [
-            "곡별로 색, 그래픽 요소와 화면 전환의 방향을 달리한 비주얼을 제작하고, 무대 전체와 개별 스크린을 함께 보여주는 프리비즈 이미지로 정리했다.",
-            "작업 기록에는 Intro의 푸른 조명, Super Duper의 밝은 그래픽, Hungry Heart의 강한 붉은 계열, Butterfly의 파스텔 톤, Cotton Candy의 분홍빛 장면 등이 담겨 있다."
+            "아티스트마다 비주얼 방향을 먼저 정하고, 곡별 장면을 TouchDesigner 기반 오디오 리액티브 영상으로 제작했다. 무대 전체와 개별 스크린을 함께 보여 주는 프리비즈로 장면을 점검했다."
           ]
         },
         "result": {
-          "summary": "무대 적용 모습을 보여주는 곡별 프리비즈 완성",
+          "summary": "현장 영상과 프리비즈로 정리한 다섯 팀의 무대",
           "body": [
-            "곡별 무대 비주얼을 한눈에 비교할 수 있는 프리비즈 이미지와 HI-FI UN!CORN 영상 후보를 완성했다. 아래 이미지는 실제 공연 촬영본이 아닌 무대 시뮬레이션 자료다."
-          ]
-        }
-      },
-      "details": [
-        { "k": "프로젝트 유형", "v": "페스티벌 공연 비주얼 · 무대 프리비즈" },
-        { "k": "역할", "v": "한국 아티스트 비주얼 총괄 · 사운드 인터랙티브 비주얼 제작" },
-        { "k": "아티스트", "v": "HI-FI UN!CORN" }
-      ],
-      "media": {
-        "films": [
-          { "kind": "youtube", "id": "aWXtcUzruUY", "label": "2026 · HI-FI UN!CORN · 프리비즈 01" },
-          { "kind": "youtube", "id": "y3D2Cf-OJag", "label": "2026 · HI-FI UN!CORN · 프리비즈 02" },
-          { "kind": "youtube", "id": "-ukPUqmVUCE", "label": "2026 · HI-FI UN!CORN · 프리비즈 03" }
-        ],
-        "decks": [],
-        "images": [],
-        "clips": [
-          {
-            "src": "assets/video/XMF-live-HIFI-StopIt.mp4",
-            "poster": "XMF-live-HIFI-StopIt",
-            "label": "Stop It",
-            "labelEn": "Stop It"
-          },
-          {
-            "src": "assets/video/XMF-live-HIFI-HungryHeart.mp4",
-            "poster": "XMF-live-HIFI-HungryHeart",
-            "label": "Hungry Heart",
-            "labelEn": "Hungry Heart"
-          },
-          {
-            "src": "assets/video/XMF-live-HIFI-Butterfly.mp4",
-            "poster": "XMF-live-HIFI-Butterfly",
-            "label": "Butterfly",
-            "labelEn": "Butterfly"
-          }
-        ],
-        "links": []
-      }
-    },
-    {
-      "id": "XMF2026-hrtzwav",
-      "title": "XMF 2026 · HRTZWAV",
-      "fullTitle": "XMF 2026 — HRTZWAV",
-      "context": "XMF FESTIVAL · 공연 비주얼 프리비즈",
-      "year": "2026",
-      "disciplines": ["media", "motion"],
-      "awards": [],
-      "cover": "XMF-hrtzwav-13",
-      "lead": "XMF 2026 HRTZWAV 무대를 위해 제작한 곡별 비주얼 이미지와 오디오 리액티브 영상 작업을 정리했다.",
-      "caseStudy": {
-        "problem": {
-          "summary": "곡별 분위기에 맞는 공연 비주얼 구성",
-          "body": [
-            "HRTZWAV의 곡마다 다른 분위기를 무대 화면에 담기 위해 곡별 비주얼을 제작했다."
-          ]
-        },
-        "solution": {
-          "summary": "곡별 이미지와 오디오 리액티브 영상 제작",
-          "body": [
-            "곡별 장면을 이미지로 정리하고, 사운드에 반응하는 영상 작업을 함께 구성했다."
-          ]
-        },
-        "result": {
-          "summary": "무대 비주얼 프리비즈와 영상 작업물 정리",
-          "body": [
-            "아래에서 오디오 리액티브 영상과 곡별 비주얼 이미지를 볼 수 있다. 이미지는 실제 공연 촬영본이 아닌 무대 비주얼 자료다."
+            "아래에서 아티스트를 고르면 현장 영상과 프리비즈 목업, 오디오 리액티브 영상을 볼 수 있다. 위아래로 합친 영상은 위가 현장 촬영, 아래가 프리비즈 목업이다."
           ]
         }
       },
@@ -700,153 +427,306 @@ window.PORTFOLIO = {
           "v": "한국 아티스트 비주얼 총괄 · 사운드 인터랙티브 비주얼 제작"
         },
         {
-          "k": "아티스트",
-          "v": "HRTZWAV"
-        }
-      ],
-      "media": {
-        "films": [
-          {
-            "kind": "youtube",
-            "id": "acpRG-9LG_8",
-            "label": "HRTZWAV · 오디오 리액티브 영상 01"
-          },
-          {
-            "kind": "youtube",
-            "id": "ENCqru3BxpM",
-            "label": "HRTZWAV · 오디오 리액티브 영상 02"
-          },
-          {
-            "kind": "youtube",
-            "id": "ievkp4UASfk",
-            "label": "HRTZWAV · 오디오 리액티브 영상 03"
-          }
-        ],
-        "decks": [],
-        "images": [],
-        "clips": [
-          {
-            "src": "assets/video/XMF-live-HRTZWAV-Dream.mp4",
-            "poster": "XMF-live-HRTZWAV-Dream",
-            "label": "dream",
-            "labelEn": "dream"
-          },
-          {
-            "src": "assets/video/XMF-live-HRTZWAV-Nineteen.mp4",
-            "poster": "XMF-live-HRTZWAV-Nineteen",
-            "label": "nineteen",
-            "labelEn": "nineteen"
-          },
-          {
-            "src": "assets/video/XMF-live-HRTZWAV-Mind-1.mp4",
-            "poster": "XMF-live-HRTZWAV-Mind-1",
-            "label": "mind · 01",
-            "labelEn": "mind · 01"
-          },
-          {
-            "src": "assets/video/XMF-live-HRTZWAV-Mind-2.mp4",
-            "poster": "XMF-live-HRTZWAV-Mind-2",
-            "label": "mind · 02",
-            "labelEn": "mind · 02"
-          },
-          {
-            "src": "assets/video/XMF-live-HRTZWAV-Alive.mp4",
-            "poster": "XMF-live-HRTZWAV-Alive",
-            "label": "alive",
-            "labelEn": "alive"
-          }
-        ],
-        "links": []
-      }
-    },
-    {
-      "id": "XMF2026-THEFIX",
-      "title": "XMF 2026 · THE FIX",
-      "fullTitle": "XMF 2026 — THE FIX",
-      "context": "XMF FESTIVAL · 공연 비주얼 프리비즈",
-      "year": "2026",
-      "disciplines": ["media", "motion"],
-      "awards": [],
-      "cover": "XMF-THEFIX-03",
-      "lead": "XMF 2026 THE FIX 무대를 위해 제작한 곡별 비주얼 이미지와 오디오 리액티브 영상 작업을 정리했다.",
-      "caseStudy": {
-        "problem": {
-          "summary": "곡별 분위기에 맞는 공연 비주얼 구성",
-          "body": [
-            "THE FIX의 곡마다 다른 분위기를 무대 화면에 담기 위해 곡별 비주얼을 제작했다."
-          ]
-        },
-        "solution": {
-          "summary": "곡별 이미지와 오디오 리액티브 영상 제작",
-          "body": [
-            "곡별 장면을 이미지로 정리하고, 사운드에 반응하는 영상 작업을 함께 구성했다."
-          ]
-        },
-        "result": {
-          "summary": "무대 비주얼 프리비즈와 영상 작업물 정리",
-          "body": [
-            "아래에서 오디오 리액티브 영상과 곡별 비주얼 이미지를 볼 수 있다. 이미지는 실제 공연 촬영본이 아닌 무대 비주얼 자료다."
-          ]
-        }
-      },
-      "details": [
-        {
-          "k": "프로젝트 유형",
-          "v": "페스티벌 공연 비주얼 · 무대 프리비즈"
-        },
-        {
-          "k": "역할",
-          "v": "한국 아티스트 비주얼 총괄 · 사운드 인터랙티브 비주얼 제작"
+          "k": "사용 툴",
+          "v": "TouchDesigner"
         },
         {
           "k": "아티스트",
-          "v": "THE FIX"
+          "v": "윤하 · LUCY · HI-FI UN!CORN · HRTZWAV · THE FIX"
         }
       ],
       "media": {
-        "films": [
-          {
-            "kind": "youtube",
-            "id": "7aTukKpvQtA",
-            "label": "THE FIX · 오디오 리액티브 영상 01"
-          },
-          {
-            "kind": "youtube",
-            "id": "Lymi5xGcOTw",
-            "label": "THE FIX · 오디오 리액티브 영상 02"
-          },
-          {
-            "kind": "youtube",
-            "id": "IX0Gb-b-izw",
-            "label": "THE FIX · 오디오 리액티브 영상 03"
-          }
-        ],
+        "films": [],
         "decks": [],
         "images": [],
-        "clips": [
+        "artists": [
           {
-            "src": "assets/video/XMF-live-THEFIX-Intro.mp4",
-            "poster": "XMF-live-THEFIX-Intro",
-            "label": "Intro",
-            "labelEn": "Intro"
+            "key": "YOUNHA",
+            "name": "윤하",
+            "nameEn": "Younha",
+            "cover": "XMF-YOUNHA-05",
+            "songs": "비밀번호 486",
+            "songsEn": "Password 486",
+            "note": "「비밀번호 486」을 중심으로 Y2K 키치 감성의 장면과 486 숫자를 레트로 인쇄물처럼 다룬 타이포그래피 장면을 만들었다.",
+            "noteEn": "Built around “Password 486”: kitsch Y2K scenes and typography scenes that treat the numbers 486 like retro print.",
+            "films": [
+              {
+                "kind": "youtube",
+                "id": "wxKWAmbJP9c",
+                "label": "윤하 · 오디오 리액티브 영상 01"
+              },
+              {
+                "kind": "youtube",
+                "id": "iNRbCWRgl9k",
+                "label": "윤하 · 오디오 리액티브 영상 02"
+              },
+              {
+                "kind": "youtube",
+                "id": "3XmZn50R7sk",
+                "label": "윤하 · 오디오 리액티브 영상 03"
+              }
+            ],
+            "clips": [
+              {
+                "src": "assets/video/XMF-live-YOUNHA-486-1.mp4",
+                "poster": "XMF-live-YOUNHA-486-1",
+                "label": "비밀번호 486 · 01",
+                "labelEn": "Password 486 · 01"
+              },
+              {
+                "src": "assets/video/XMF-live-YOUNHA-486-2.mp4",
+                "poster": "XMF-live-YOUNHA-486-2",
+                "label": "비밀번호 486 · 02",
+                "labelEn": "Password 486 · 02"
+              },
+              {
+                "src": "assets/video/XMF-live-YOUNHA-486-3.mp4",
+                "poster": "XMF-live-YOUNHA-486-3",
+                "label": "비밀번호 486 · 03",
+                "labelEn": "Password 486 · 03"
+              },
+              {
+                "src": "assets/video/XMF-live-YOUNHA-486-4.mp4",
+                "poster": "XMF-live-YOUNHA-486-4",
+                "label": "비밀번호 486 · 04",
+                "labelEn": "Password 486 · 04"
+              },
+              {
+                "src": "assets/video/XMF-live-YOUNHA-486-5.mp4",
+                "poster": "XMF-live-YOUNHA-486-5",
+                "label": "비밀번호 486 · 05",
+                "labelEn": "Password 486 · 05"
+              }
+            ]
           },
           {
-            "src": "assets/video/XMF-live-THEFIX-Moonrise-1.mp4",
-            "poster": "XMF-live-THEFIX-Moonrise-1",
-            "label": "Moonrise · 01",
-            "labelEn": "Moonrise · 01"
+            "key": "LUCY",
+            "name": "LUCY",
+            "nameEn": "LUCY",
+            "cover": "XMF-LUCY-06",
+            "songs": "개화 · 아지랑이 · 아니 근데 진짜",
+            "songsEn": "Flowering · Ajirangi · Ani Geunde Jinjja",
+            "note": "곡마다 질감을 다르게 정했다. 「개화」는 흰 종이 위로 번지는 물감, 「아지랑이」는 열기로 일렁이는 화면, 「아니 근데 진짜」는 종이 콜라주로 풀었다.",
+            "noteEn": "Each song has its own texture: pigment spreading over white paper for “Flowering,” a heat-haze shimmer for “Ajirangi,” and paper collage for “Ani Geunde Jinjja.”",
+            "films": [
+              {
+                "kind": "youtube",
+                "id": "goaGQ2QL6uc",
+                "label": "LUCY · 오디오 리액티브 영상 01"
+              },
+              {
+                "kind": "youtube",
+                "id": "8Ft9amaR4Rg",
+                "label": "LUCY · 오디오 리액티브 영상 02"
+              },
+              {
+                "kind": "youtube",
+                "id": "Eas6KYp2h1I",
+                "label": "LUCY · 오디오 리액티브 영상 03"
+              },
+              {
+                "kind": "youtube",
+                "id": "ouYcTYhB5Vw",
+                "label": "LUCY · 오디오 리액티브 영상 04"
+              }
+            ],
+            "clips": [
+              {
+                "src": "assets/video/XMF-live-LUCY-Gaehwa-1.mp4",
+                "poster": "XMF-live-LUCY-Gaehwa-1",
+                "label": "개화 · 01",
+                "labelEn": "Flowering · 01"
+              },
+              {
+                "src": "assets/video/XMF-live-LUCY-Gaehwa-2.mp4",
+                "poster": "XMF-live-LUCY-Gaehwa-2",
+                "label": "개화 · 02",
+                "labelEn": "Flowering · 02"
+              },
+              {
+                "src": "assets/video/XMF-live-LUCY-Ajirangi-1.mp4",
+                "poster": "XMF-live-LUCY-Ajirangi-1",
+                "label": "아지랑이 · 01",
+                "labelEn": "Ajirangi · 01"
+              },
+              {
+                "src": "assets/video/XMF-live-LUCY-Ajirangi-2.mp4",
+                "poster": "XMF-live-LUCY-Ajirangi-2",
+                "label": "아지랑이 · 02",
+                "labelEn": "Ajirangi · 02"
+              },
+              {
+                "src": "assets/video/XMF-live-LUCY-Anigeunde-1.mp4",
+                "poster": "XMF-live-LUCY-Anigeunde-1",
+                "label": "아니 근데 진짜 · 01",
+                "labelEn": "Ani Geunde Jinjja · 01"
+              },
+              {
+                "src": "assets/video/XMF-live-LUCY-Anigeunde-2.mp4",
+                "poster": "XMF-live-LUCY-Anigeunde-2",
+                "label": "아니 근데 진짜 · 02",
+                "labelEn": "Ani Geunde Jinjja · 02"
+              }
+            ]
           },
           {
-            "src": "assets/video/XMF-live-THEFIX-Moonrise-2.mp4",
-            "poster": "XMF-live-THEFIX-Moonrise-2",
-            "label": "Moonrise · 02",
-            "labelEn": "Moonrise · 02"
+            "key": "HIFI",
+            "name": "HI-FI UN!CORN",
+            "nameEn": "HI-FI UN!CORN",
+            "cover": "XMF-Intro",
+            "songs": "Intro · Super Duper · Stop It · Hungry Heart · Butterfly · Cotton Candy",
+            "songsEn": "Intro · Super Duper · Stop It · Hungry Heart · Butterfly · Cotton Candy",
+            "note": "Intro의 푸른 조명, Super Duper의 밝은 그래픽, Hungry Heart의 강한 붉은 계열, Butterfly의 파스텔 톤, Cotton Candy의 분홍빛 장면처럼 곡마다 다른 색과 그래픽으로 무대 흐름을 구성했다.",
+            "noteEn": "Blue light for the Intro, bright graphics for “Super Duper,” strong reds for “Hungry Heart,” pastel tones for “Butterfly” and pink scenes for “Cotton Candy” give each song its own colour within one stage flow.",
+            "films": [
+              {
+                "kind": "youtube",
+                "id": "aWXtcUzruUY",
+                "label": "2026 · HI-FI UN!CORN · 프리비즈 01"
+              },
+              {
+                "kind": "youtube",
+                "id": "y3D2Cf-OJag",
+                "label": "2026 · HI-FI UN!CORN · 프리비즈 02"
+              },
+              {
+                "kind": "youtube",
+                "id": "-ukPUqmVUCE",
+                "label": "2026 · HI-FI UN!CORN · 프리비즈 03"
+              }
+            ],
+            "clips": [
+              {
+                "src": "assets/video/XMF-live-HIFI-StopIt.mp4",
+                "poster": "XMF-live-HIFI-StopIt",
+                "label": "Stop It",
+                "labelEn": "Stop It"
+              },
+              {
+                "src": "assets/video/XMF-live-HIFI-HungryHeart.mp4",
+                "poster": "XMF-live-HIFI-HungryHeart",
+                "label": "Hungry Heart",
+                "labelEn": "Hungry Heart"
+              },
+              {
+                "src": "assets/video/XMF-live-HIFI-Butterfly.mp4",
+                "poster": "XMF-live-HIFI-Butterfly",
+                "label": "Butterfly",
+                "labelEn": "Butterfly"
+              }
+            ]
           },
           {
-            "src": "assets/video/XMF-live-THEFIX-Oddventure.mp4",
-            "poster": "XMF-live-THEFIX-Oddventure",
-            "label": "Oddventure",
-            "labelEn": "Oddventure"
+            "key": "HRTZWAV",
+            "name": "HRTZWAV",
+            "nameEn": "HRTZWAV",
+            "cover": "XMF-hrtzwav-13",
+            "songs": "alive · dream · mind · nineteen",
+            "songsEn": "alive · dream · mind · nineteen",
+            "note": "하늘과 구름, 말랑한 3D 오브젝트, 파스텔 에어브러시 같은 장면으로 곡마다 분위기를 나눴다.",
+            "noteEn": "Skies and clouds, soft inflated 3D objects and pastel airbrush scenes separate the mood of each song.",
+            "films": [
+              {
+                "kind": "youtube",
+                "id": "acpRG-9LG_8",
+                "label": "HRTZWAV · 오디오 리액티브 영상 01"
+              },
+              {
+                "kind": "youtube",
+                "id": "ENCqru3BxpM",
+                "label": "HRTZWAV · 오디오 리액티브 영상 02"
+              },
+              {
+                "kind": "youtube",
+                "id": "ievkp4UASfk",
+                "label": "HRTZWAV · 오디오 리액티브 영상 03"
+              }
+            ],
+            "clips": [
+              {
+                "src": "assets/video/XMF-live-HRTZWAV-Dream.mp4",
+                "poster": "XMF-live-HRTZWAV-Dream",
+                "label": "dream",
+                "labelEn": "dream"
+              },
+              {
+                "src": "assets/video/XMF-live-HRTZWAV-Nineteen.mp4",
+                "poster": "XMF-live-HRTZWAV-Nineteen",
+                "label": "nineteen",
+                "labelEn": "nineteen"
+              },
+              {
+                "src": "assets/video/XMF-live-HRTZWAV-Mind-1.mp4",
+                "poster": "XMF-live-HRTZWAV-Mind-1",
+                "label": "mind · 01",
+                "labelEn": "mind · 01"
+              },
+              {
+                "src": "assets/video/XMF-live-HRTZWAV-Mind-2.mp4",
+                "poster": "XMF-live-HRTZWAV-Mind-2",
+                "label": "mind · 02",
+                "labelEn": "mind · 02"
+              },
+              {
+                "src": "assets/video/XMF-live-HRTZWAV-Alive.mp4",
+                "poster": "XMF-live-HRTZWAV-Alive",
+                "label": "alive",
+                "labelEn": "alive"
+              }
+            ]
+          },
+          {
+            "key": "THEFIX",
+            "name": "THE FIX",
+            "nameEn": "THE FIX",
+            "cover": "XMF-THEFIX-03",
+            "songs": "Intro · Moonrise · Oddventure",
+            "songsEn": "Intro · Moonrise · Oddventure",
+            "note": "밴드의 무대를 여는 흑백 오디오 리액티브 Intro와 보랏빛 신스웨이브 달 장면 등 밴드 사운드에 맞춘 화면을 만들었다.",
+            "noteEn": "Screens shaped around the band’s sound, from a monochrome audio-reactive intro to a purple synthwave moon scene.",
+            "films": [
+              {
+                "kind": "youtube",
+                "id": "7aTukKpvQtA",
+                "label": "THE FIX · 오디오 리액티브 영상 01"
+              },
+              {
+                "kind": "youtube",
+                "id": "Lymi5xGcOTw",
+                "label": "THE FIX · 오디오 리액티브 영상 02"
+              },
+              {
+                "kind": "youtube",
+                "id": "IX0Gb-b-izw",
+                "label": "THE FIX · 오디오 리액티브 영상 03"
+              }
+            ],
+            "clips": [
+              {
+                "src": "assets/video/XMF-live-THEFIX-Intro.mp4",
+                "poster": "XMF-live-THEFIX-Intro",
+                "label": "Intro",
+                "labelEn": "Intro"
+              },
+              {
+                "src": "assets/video/XMF-live-THEFIX-Moonrise-1.mp4",
+                "poster": "XMF-live-THEFIX-Moonrise-1",
+                "label": "Moonrise · 01",
+                "labelEn": "Moonrise · 01"
+              },
+              {
+                "src": "assets/video/XMF-live-THEFIX-Moonrise-2.mp4",
+                "poster": "XMF-live-THEFIX-Moonrise-2",
+                "label": "Moonrise · 02",
+                "labelEn": "Moonrise · 02"
+              },
+              {
+                "src": "assets/video/XMF-live-THEFIX-Oddventure.mp4",
+                "poster": "XMF-live-THEFIX-Oddventure",
+                "label": "Oddventure",
+                "labelEn": "Oddventure"
+              }
+            ]
           }
         ],
         "links": []
@@ -1392,7 +1272,7 @@ window.PORTFOLIO = {
         "부산국제마케팅광고제 MAD STARS IMMERSIVE MEDIA COMPETITION 2026 · GRAND PRIX",
         "BCM Academy 창의상"
       ],
-      "cover": "Neuroscape",
+      "cover": "Neuroscape-Booth",
       "lead": "교사의 짧은 휴식 시간을 위한 EEG 반응형 VR 명상 콘텐츠. 교사와 교육기관 관계자의 문제 검증을 바탕으로, 약 10분 동안 뇌파 변화가 미디어아트에 반영되는 경험을 기획하고 MVP로 구현했다.",
       "metrics": {
         "title": "검증 결과",
@@ -3208,6 +3088,7 @@ window.PORTFOLIO = {
       }
     }
   ],
+  "redirects": {"XMF2026-YOUNHA": "XMF2026/YOUNHA", "XMF2026-LUCY": "XMF2026/LUCY", "XMF2026-hrtzwav": "XMF2026/HRTZWAV", "XMF2026-THEFIX": "XMF2026/THEFIX"},
   "featured": [
     "TimeOfExtinction",
     "Neuroscape",

@@ -1,7 +1,7 @@
 import { createWorkIndex } from './components/work-index.js?v=recognition-icon-20261124';
 import { createScrollReveal } from './components/scroll-reveal.js';
 import { createRecognition } from './components/recognition.js?v=materials-20261029';
-import { createProjectDetail } from './components/project-detail.js?v=feeld-retro-20261126';
+import { createProjectDetail } from './components/project-detail.js?v=xmf-artists-20261128';
 
 /* ════════════════════════════════════════════════════════════
    Yebum Ko — Portfolio 2026 · app.js
@@ -113,11 +113,16 @@ import { createProjectDetail } from './components/project-detail.js?v=feeld-retr
       else if (current !== 'detail') cameFromHome = false;
       let id;
       try { id = decodeURIComponent(parts[1]); } catch (_) { location.replace(`/${location.search}#/index`); return; }
+      // Former per-artist pages now live as tabs inside one project (e.g. XMF2026-LUCY → XMF2026/LUCY).
+      if (!Object.hasOwn(byId, id) && D.redirects && Object.hasOwn(D.redirects, id)) { location.replace(`/${location.search}#/work/${D.redirects[id]}`); return; }
       if (!Object.hasOwn(byId, id)) { location.replace(`/${location.search}#/index`); return; }
-      renderDetail(id);
+      let sub = '';
+      try { sub = parts[2] ? decodeURIComponent(parts[2]) : ''; } catch (_) { sub = ''; }
+      const toSub = renderDetail(id, sub);
       home.hidden = true; detail.hidden = false;
       detail.classList.remove('view'); void detail.offsetWidth; detail.classList.add('view');
       scrollTo({ top: 0, behavior: 'auto' });
+      if (toSub) cancelRouteLayout = afterLayout(() => scrollToSection('artists', false));
       current = 'detail';
       setActiveNav('index');
       return;

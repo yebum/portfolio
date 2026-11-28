@@ -105,7 +105,7 @@ try {
     await page.waitForTimeout(300);
     assert.equal(await page.locator('.showreel-slide img[src]').count(), 2, 'only current and next reel images loaded');
     assert.deepEqual(await page.locator('.showreel-slide').evaluateAll(slides => slides.map(slide => slide.getAttribute('href').split('/').pop())),
-      ['Neuroscape', 'FEELD', 'XMF2026-YOUNHA', 'MATMI', 'GetTheOceanSummerReady'],
+      ['Neuroscape', 'FEELD', 'YOUNHA', 'MATMI', 'GetTheOceanSummerReady'],
       'featured reel covers recent, documented work across disciplines without repeating XMF artists');
     await page.locator('[data-slide="3"]').click();
     await page.waitForFunction(() => document.querySelector('#showreel-count').textContent.startsWith('04'));

@@ -1794,3 +1794,29 @@ html[lang='en'] .cs-sum { letter-spacing:-.015em; }
   .pd-retro-list li { grid-template-columns: 36px minmax(0, 1fr); }
   .pd-retro-list p { grid-column: 2; }
 }
+
+/* ── Artist tabs (one festival project, one tab per artist) ── */
+.pd-artists { padding: 0 var(--pad); }
+.pd-artists > .sec-label { margin: 0 var(--inset); }
+.artist-tabs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--gap); margin: 18px 0 clamp(40px, 5vw, 72px); }
+.artist-tab { display: grid; gap: 8px; padding: 0 0 10px; border: 0; border-bottom: 2px solid transparent; background: none; color: var(--mute); text-align: left; cursor: pointer; transition: color .2s, border-color .2s; }
+.artist-tab-img { display: block; aspect-ratio: 4 / 3; border-radius: 10px; overflow: hidden; background: var(--card); }
+.artist-tab-img img { display: block; width: 100%; height: 100%; object-fit: cover; opacity: .55; filter: grayscale(.6); transition: opacity .25s, filter .25s, transform .4s var(--ease); }
+.artist-tab-name { padding: 0 2px; font-size: clamp(16px, 1.3vw, 21px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.2; }
+.artist-tab-meta { padding: 0 2px; font-size: 10.5px; }
+.artist-tab:hover, .artist-tab[aria-selected="true"] { color: var(--ink); }
+.artist-tab:hover .artist-tab-img img, .artist-tab[aria-selected="true"] .artist-tab-img img { opacity: 1; filter: none; }
+.artist-tab[aria-selected="true"] { border-bottom-color: var(--ink); }
+.artist-tab:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; border-radius: 10px; }
+.artist-panel > .pd-block { padding-left: 0; padding-right: 0; }
+.artist-head { display: grid; grid-template-columns: 64px minmax(0, .8fr) minmax(0, 1.4fr); gap: 6px 24px; align-items: baseline; margin: 0 var(--inset) clamp(28px, 3vw, 44px); padding-top: 20px; border-top: 1px solid var(--line); }
+.artist-head h2 { font-weight: 400; font-size: clamp(28px, 2.8vw, 46px); letter-spacing: -0.05em; line-height: 1.05; }
+.artist-songs { grid-column: 2; font-size: 11px; color: var(--mute); line-height: 1.6; }
+.artist-note { grid-column: 3; grid-row: 1 / span 2; font-size: clamp(15px, 1.05vw, 16.5px); line-height: 1.85; letter-spacing: -0.02em; color: var(--ink-2); max-width: 40em; }
+@media (max-width: 900px) {
+  .artist-tabs { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--pad); scrollbar-width: none; margin-left: calc(var(--pad) * -1); margin-right: calc(var(--pad) * -1); padding: 0 var(--pad); }
+  .artist-tabs::-webkit-scrollbar { display: none; }
+  .artist-tab { flex: 0 0 clamp(128px, 34vw, 190px); scroll-snap-align: start; }
+  .artist-head { grid-template-columns: minmax(0, 1fr); }
+  .artist-songs, .artist-note { grid-column: 1; grid-row: auto; }
+}
